@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['title']      = 'AdminLTE';
-$config['title_mini'] = 'LT';
-$config['title_lg']   = 'LTE';
+$config['title']      = 'MentorCell';
+$config['title_mini'] = 'MentorCell';
+$config['title_lg']   = 'MentorCell';
 
 
 
@@ -16,7 +16,7 @@ $config['new_membership']      = FALSE;
 
 /*
  * **********************
- * AdminLTE
+ * MentorCell
  * **********************
  */
 /* Page Title */

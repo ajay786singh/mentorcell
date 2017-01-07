@@ -1,52 +1,82 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-header('X-Powered-By: Prod-domProjects.com');
-header('X-XSS-Protection: 1');
-header('X-Frame-Options: SAMEORIGIN');
-header('X-Content-Type-Options: nosniff');
-header('Vary: Accept-Encoding');
-
-?>
-<!doctype html>
-    <html lang="<?php echo $lang; ?>">
-        <head prefix="og: http://ogp.me/ns#">
-        <meta charset="<?php echo $charset; ?>">
-        <title>HOME</title>
-        <meta name="description" content="">
-<?php if ($mobile === FALSE): ?>
-        <!--[if IE 8]>
-            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <![endif]-->
-<?php else: ?>
-        <meta name="HandheldFriendly" content="true">
-<?php endif; ?>
-<?php if ($mobile == TRUE && $mobile_ie == TRUE): ?>
-        <meta http-equiv="cleartype" content="on">
-<?php endif; ?>
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <meta property="og:title" content="HOME">
-        <meta property="og:type" content="article">
-        <meta property="og:image" content="">
-        <meta property="og:url" content="">
-        <meta property="og:site_name" content="domProjects">
-    </head>
-    <body>
-        <article>
-            <h1>HOME</h1>
-<?php if ($admin_link): ?>
-            <p><a href="<?php echo site_url('admin'); ?>">Admin</a></p>
-<?php endif; ?>
-
-<?php if ($logout_link): ?>
-            <p><a href="<?php echo site_url('auth/logout/public'); ?>">Logout</a></p>
-<?php else: ?>
-            <p><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
-<?php endif; ?>
-        </article>
-
-        <footer>
-
-        </footer>
-    </body>
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Comming Soon Bootstrap Landing Page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap and Font Awesome css-->
+    <link rel="stylesheet" href="<?php echo base_url('assets/soon/css/font-awesome.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/soon/css/bootstrap.min.css'); ?>">
+    <!-- Google fonts-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Pacifico">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <!-- Theme stylesheet-->
+    <link rel="stylesheet" href="<?php echo base_url('assets/soon/css/style.default.css'); ?>" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="<link rel="stylesheet" href="<?php echo base_url('assets/soon/css/custom.css'); ?>">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="<link rel="stylesheet" href="<?php echo base_url('assets/soon/favicon.png'); ?>">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <div style="background-image: url('<?php echo base_url('assets/soon/img/video-bg.jpg'); ?>')" class="main"> 
+      <!-- video background-->
+      <!-- replace URLs with your video content URL-->
+      <video id="video-background" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+        <source src="http://ondrejsvestka.cz/video/silver-lining-video.webm" type="video/webm">
+        <source src="http://ondrejsvestka.cz/video/silver-lining-video.mp4" type="video/mp4">
+      </video>
+      <div class="overlay"></div>
+      <div class="container">
+        <p class="social"><a href="#" title="" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" title="" class="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="" class="gplus"><i class="fa fa-google-plus"></i></a><a href="#" title="" class="instagram"><i class="fa fa-instagram"></i></a></p>
+        <h1 class="cursive">MentoCell comming soon</h1>
+        <h2 class="sub">We will help you to build your future. </h2>
+        <div class="mailing-list">
+          <h3 class="mailing-list-heading">Join our mailing list and we will notify you once it is ready!</h3>
+          <div class="row">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="email" class="sr-only"></label>
+                <input type="email" placeholder="jane.doe@example.com" id="email" class="form-control transparent">
+              </div>
+              <button class="btn btn-danger">subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <p>&copy;<?php date('Y'); ?> Mentor Cell</p>
+            </div>
+            <div class="col-md-6">
+             
+               <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- JAVASCRIPT FILES -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="javascripts/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+    <script src="<?php echo base_url('assets/soon/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/soon/js/jquery.cookie.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/soon/js/front.js'); ?>"></script>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+  </body>
 </html>

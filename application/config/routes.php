@@ -53,6 +53,13 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+/*login register links*/
+$route['login'] = 'home/login';
+$route['register'] = 'home/register';
+$route['logout'] = 'home/logout';
+/*login register links*/
+
+
 $route['admin'] = 'admin/dashboard';
 $route['admin/prefs/interfaces/(:any)'] = 'admin/prefs/interfaces/$1';
 

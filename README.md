@@ -1,4 +1,4 @@
-# CI-AdminLTE v1.4.3
+# MentorCell 1.0
 
 ## Demo
 
@@ -11,11 +11,6 @@ Coming soon
 ## Browser Compatibility
 Support for most major browsers including Chrome, Firefox, IE9+, Opera and Safari.
 
-## Languages
-  * English
-  * French
-  * Portuguese (translation by [marcelod](https://github.com/marcelod))
-  * ... and more soon
  
 ## Dependencies
 | NAME | VERSION | WEB | REPO |

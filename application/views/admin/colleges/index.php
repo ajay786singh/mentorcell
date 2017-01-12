@@ -18,8 +18,8 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Colleges</h3>
+            <div class="box-header with-border">
+                 <h3 class="box-title"><?php echo anchor('admin/colleges/create', '<i class="fa fa-plus"></i> Add New College', array('class' => 'btn btn-block btn-primary btn-flat')); ?></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -42,7 +42,7 @@
                   <td><?php echo $college_list['email_id'];?></td>
                   <td><?php echo $college_list['mobile_number'];?></td>
                   <td><?php echo $college_list['location'];?></td>
-                  <td><a href="<?php echo base_url()."colleges/edit/".$college_list['id'];?>">Edit</a> | <a href="<?php echo base_url()."colleges/edit/".$college_list['id'];?>">Delete</a></td>
+                  <td><a href="<?php echo base_url()."admin/colleges/edit/".$college_list['id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/colleges/delete/".$college_list['id'];?>">Delete</a></td>
                </tr>
                <?php }?>
                 </tbody>

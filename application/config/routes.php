@@ -61,5 +61,6 @@ $route['logout'] = 'home/logout';
 
 
 $route['admin'] = 'admin/dashboard';
+//$route['colleges'] = 'admin/colleges';
 $route['admin/prefs/interfaces/(:any)'] = 'admin/prefs/interfaces/$1';
 

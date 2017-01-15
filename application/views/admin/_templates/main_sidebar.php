@@ -96,6 +96,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-shield"></i> <span><?php echo 'Colleges'; ?></span>
                             </a>
                         </li>
+						
+						<li class="<?=active_link_controller('streams')?>">
+                            <a href="<?php echo site_url('admin/streams'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Streams'; ?></span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('types')?>">
+                            <a href="<?php echo site_url('admin/types'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Course Type'; ?></span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('courses')?>">
+                            <a href="<?php echo site_url('admin/courses '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Courses '; ?></span>
+                            </a>
+                        </li>
+						
+						
+						
+						
+						
                     </ul>
                 </section>
             </aside>

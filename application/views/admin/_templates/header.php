@@ -48,6 +48,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <script src="<?php echo base_url($plugins_dir . '/respond/respond.min.js'); ?>"></script>
         <![endif]-->
 <?php endif; ?>
+
+		<script>
+		var base_url = '<?php echo base_url(); ?>';
+		</script>
+
     </head>
     <body class="hold-transition skin-blue fixed sidebar-mini">
 <?php if ($mobile === FALSE && $admin_prefs['transition_page'] == TRUE): ?>

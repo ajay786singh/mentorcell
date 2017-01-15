@@ -15,12 +15,12 @@
 		<div id="login_response"></div>
       	<form>
       	<div class="inputRow">
-      		<input type="email" id="login_email" placeholder="Email Address" name="">
+      		<input type="email" id="login_email" required='' placeholder="Email Address" name="">
       		<i class="icon-email"></i>
       	</div>
       	<div class="inputRow">
 
-      		<input type="password" id="login_password" placeholder="Password" name="">
+      		<input type="password" id="login_password" required='' placeholder="Password" name="">
       	</div>
 
       	<div class="inputRow">
@@ -71,15 +71,15 @@
 		<div id="register_response"></div>
       	<form id="register_form">
       	<div class="inputRow">
-      		<input type="email" id="register_email" placeholder="Email Address" name="">
+      		<input type="email" id="register_email" required='' placeholder="Email Address" name="">
       		<i class="icon-email"></i>
       	</div>
       	<div class="inputRow">
-      		<input type="password" id="register_password" placeholder="Password" name="">
+      		<input type="password" id="register_password" required='' placeholder="Password" name="">
       		<i class="icon-email"></i>
       	</div>
       	<div class="inputRow">
-      		<input type="text" id="register_phone" placeholder="Mobile Number" name="">
+      		<input type="number" id="register_phone" required='' placeholder="Mobile Number" name="">
       		<i class="icon-phone-call"></i>
       	</div>
 

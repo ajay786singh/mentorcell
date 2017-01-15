@@ -30,16 +30,43 @@ class Common_model extends CI_Model {
         return (isset($id)) ? $id : FALSE;
     }
 
-    public function update($tbl, $data, $wherecol, $whereval)
+    public function update($table, $data, $wherecol, $whereval)
     {
         $this->db->where($wherecol, $whereval);
-        $this->db->update($tbl, $data);
+        $this->db->update($table, $data);
     }
 
-    public function delete($tbl,$id)
+    public function delete($table,$id)
     {
         $this->db->where('id', $id);
-        $this->db->delete($tbl);
+        $this->db->delete($table);
+    }
+	
+	/**
+	*@param tablename, column in where, value
+	*result as array
+	*/
+	function get_all_rows($table, $where_col, $where_val)
+    {
+        $this->db->where("$where_col",$where_val);
+        $result = $this->db->get($table)->result_array();
+        return $result;
+    }
+	
+	
+	/**
+	*@param tablename, column in where, value
+	*result as array
+	*/
+	function get_all_college_user()
+    {
+		$this->db->select('users.id, users.email');
+		$this->db->from('users AS users');// I use aliasing make joins easier
+		$this->db->join('users_groups AS users_groups', 'users_groups.user_id = users.id', 'INNER');
+		$this->db->join('groups AS groups', 'groups.id = users_groups.group_id', 'INNER');
+		$this->db->where('groups.name', "college");
+		$result = $this->db->get()->result_array();
+		return $result;
     }
     
 }

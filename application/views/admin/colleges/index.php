@@ -26,35 +26,41 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>College</th>
+				  <th>ID</th>
+				  <th>College Logo</th>
+                  <th>College Name</th>
                   <th>Contact Person</th>
                   <th>Email</th>
                   <th>Mobile</th>
-                  <th>Location</th>
+                  <th>Address</th>
                    <th>Manage</th>
-               </tr>
+                </tr>
                 </thead>
                 <tbody>
                 <?php foreach($college_lists as $college_list){ ?>
                 <tr>
-                  <td><?php echo $college_list['college_name'];?></td>
+				  <td><?php echo $college_list['id'];?></td>
+				  <td><img src="<?php echo base_url()."upload/".$college_list['logo'];?>" width="150px;" /></td>
+                  <td><?php echo $college_list['name'];?></td>
                   <td><?php echo $college_list['contact_person_name'];?>   </td>
                   <td><?php echo $college_list['email_id'];?></td>
-                  <td><?php echo $college_list['mobile_number'];?></td>
-                  <td><?php echo $college_list['location'];?></td>
+                  <td><?php echo $college_list['phone'];?></td>
+                  <td><?php echo $college_list['address'];?><br/><?php echo $college_list['city']." ".$college_list['state']." ".$college_list['country'];?></td>
                   <td><a href="<?php echo base_url()."admin/colleges/edit/".$college_list['id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/colleges/delete/".$college_list['id'];?>">Delete</a></td>
                </tr>
                <?php }?>
                 </tbody>
                 <tfoot>
-                 <tr>
-                  <th>College</th>
+                <tr>
+				  <th>ID</th>
+				  <th>College Logo</th>
+                  <th>College Name</th>
                   <th>Contact Person</th>
                   <th>Email</th>
                   <th>Mobile</th>
-                  <th>Location</th>
+                  <th>Address</th>
                    <th>Manage</th>
-               </tr>
+                </tr>
                 </tfoot>
               </table>
             </div>

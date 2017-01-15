@@ -6,12 +6,26 @@ class Home extends Public_Controller {
     public function __construct()
     {
         parent::__construct();
+		
+		$this->load->database();
+        $this->load->config('common/dp_config');
+        $this->load->config('common/dp_language');
+        $this->load->library(array('form_validation', 'ion_auth', 'template', 'common/mobile_detect'));
+        $this->load->helper(array('array', 'language', 'url'));
+        $this->load->model('common/prefs_model');
     }
 
 
 	public function index()
 	{
+		if ($this->ion_auth->logged_in()){
+		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		}else{
+			$this->data['user_login'] = array('id'=>false);
+		}
+		$this->load->view('public/layout/header', $this->data);
 		$this->load->view('public/home', $this->data);
+		$this->load->view('public/layout/footer', $this->data);
 	}
 	
 	 function login()
@@ -36,57 +50,39 @@ class Home extends Public_Controller {
             if ($this->form_validation->run() == TRUE)
             {
                 $remember = (bool) $this->input->post('remember');
-
                 if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
                 {
                     if ( ! $this->ion_auth->is_admin())
                     {
-                        $this->session->set_flashdata('message', $this->ion_auth->messages());
-                        redirect('/', 'refresh');
+                        $response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong>Logged In Successfully.</div>');
+						echo json_encode($response);die;
                     }
                     else
                     {
                         /* Data */
-                        $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-                        /* Load Template */
-						redirect('admin', 'refresh');
-                        //$this->template->auth_render('auth/dashboard', $this->data);
+                        $response = array('status'=>false,'message'=>'<div class="alert alert-danger">Please visit admin section.</div>');
+						echo json_encode($response);
+						die;
                     }
                 }
                 else
                 {
-                    $this->session->set_flashdata('message', $this->ion_auth->errors());
-				    redirect('login', 'refresh');
+				    $response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.$this->ion_auth->errors().'</div>');
+					echo json_encode($response);
+					die;
                 }
             }
             else
             {
-                $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-                $this->data['identity'] = array(
-                    'name'        => 'identity',
-                    'id'          => 'identity',
-                    'type'        => 'email',
-                    'value'       => $this->form_validation->set_value('identity'),
-                    'class'       => 'form-control',
-                    'placeholder' => 'Your email'
-                );
-                $this->data['password'] = array(
-                    'name'        => 'password',
-                    'id'          => 'password',
-                    'type'        => 'password',
-                    'class'       => 'form-control',
-                    'placeholder' => 'Your password'
-                );
-
-                /* Load Template */
-                $this->load->view('public/login', $this->data);
+				$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.(validation_errors()) ? validation_errors() : $this->session->flashdata('message').'</div>');
+				echo json_encode($response);
+				die;
             }
         }
         else
         {
-            redirect('/', 'refresh');
+            $response = array('status'=>true,'message'=>'<div class="alert alert-info"><strong>Info!</strong> You are already logged in.</div>');
+			echo json_encode($response);die;
         }
    }
 	
@@ -113,94 +109,60 @@ class Home extends Public_Controller {
 		$tables = $this->config->item('tables', 'ion_auth');
 
 		/* Validate form input */
-		$this->form_validation->set_rules('first_name', 'First Name', 'required');
-		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+		//$this->form_validation->set_rules('first_name', 'First Name', 'required');
+		//$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique['.$tables['users'].'.email]');
 		$this->form_validation->set_rules('phone', 'Phone', 'required');
-		$this->form_validation->set_rules('company', 'Company', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
-		$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'required');
-
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
+		
 		if ($this->form_validation->run() == TRUE)
 		{
-			$username = strtolower($this->input->post('first_name')) . ' ' . strtolower($this->input->post('last_name'));
+			//$username = strtolower($this->input->post('first_name')) . ' ' . strtolower($this->input->post('last_name'));
 			$email    = strtolower($this->input->post('email'));
+			$username = $email;
 			$password = $this->input->post('password');
-
 			$additional_data = array(
-				'first_name' => $this->input->post('first_name'),
-				'last_name'  => $this->input->post('last_name'),
-				'company'    => $this->input->post('company'),
 				'phone'      => $this->input->post('phone'),
 			);
 		}
 
 		if ($this->form_validation->run() == TRUE && $this->ion_auth->register($username, $password, $email, $additional_data))
 		{
-            $this->session->set_flashdata('message', $this->ion_auth->messages());
-			redirect('/', 'refresh');
+			$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> You have successfully started your journey. </div>');
+			echo json_encode($response);die;
 		}
 		else
 		{
-            $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+			$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.(validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message'))).'</div>');
+			echo json_encode($response);
+			die;
 
-			$this->data['first_name'] = array(
-				'name'  => 'first_name',
-				'id'    => 'first_name',
-				'type'  => 'text',
-                'class' => 'form-control',
-				'value' => $this->form_validation->set_value('first_name'),
-			);
-			$this->data['last_name'] = array(
-				'name'  => 'last_name',
-				'id'    => 'last_name',
-				'type'  => 'text',
-                'class' => 'form-control',
-				'value' => $this->form_validation->set_value('last_name'),
-			);
-			$this->data['email'] = array(
-				'name'  => 'email',
-				'id'    => 'email',
-				'type'  => 'email',
-                'class' => 'form-control',
-				'value' => $this->form_validation->set_value('email'),
-			);
-			$this->data['company'] = array(
-				'name'  => 'company',
-				'id'    => 'company',
-				'type'  => 'text',
-                'class' => 'form-control',
-				'value' => $this->form_validation->set_value('company'),
-			);
-			$this->data['phone'] = array(
-				'name'  => 'phone',
-				'id'    => 'phone',
-				'type'  => 'tel',
-                'pattern' => '^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$',
-                'class' => 'form-control',
-				'value' => $this->form_validation->set_value('phone'),
-			);
-			$this->data['password'] = array(
-				'name'  => 'password',
-				'id'    => 'password',
-				'type'  => 'password',
-                'class' => 'form-control',
-				'value' => $this->form_validation->set_value('password'),
-			);
-			$this->data['password_confirm'] = array(
-				'name'  => 'password_confirm',
-				'id'    => 'password_confirm',
-				'type'  => 'password',
-                'class' => 'form-control',
-				'value' => $this->form_validation->set_value('password_confirm'),
-			);
-
-            /* Load Template */
-           // $this->template->admin_render('admin/users/create', $this->data);
-			$this->load->view('public/register', $this->data);
         }
 		
 		
+	}
+	
+	function verify_otp()
+	{
+		$this->form_validation->set_rules('otp', 'OTP', 'required');
+		if ($this->form_validation->run() == TRUE)
+		{
+			$otp = $this->input->post('otp');
+		}
+		
+		if ($this->form_validation->run() == TRUE && $otp =='1234' /*wrie update code here*/)
+		{
+			$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Your Phone is verified now.</div>');
+			echo json_encode($response);die;
+		}
+		else
+		{
+			$response = array('status'=>false,'message'=>'<div class="alert alert-danger">Please enter correct OTP.</div>');
+			echo json_encode($response);
+			die;
+
+        }
+        
 	}
 	
 }

@@ -19,49 +19,112 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="box-body">
                                     <?php echo $message;?>
 
-                                    <?php echo form_open(uri_string(), array('class' => 'form-horizontal', 'id' => 'form-edit_user')); ?>
+                                    <?php echo form_open_multipart(uri_string(), array('class' => 'form-horizontal', 'id' => 'form-edit_college')); ?>
+                                        <div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select user</label>
+										  <div class="col-sm-10">
+										  <select  class="form-control" required="" name="user_id" id="user_id" >
+										  <option value="">Select User</option>
+										  <?php foreach($users as $user){
+											  if($user['id']==@$user_id['value']){$user_id_seleted="selected";}else{$user_id_seleted="";}
+											  echo '<option '.$user_id_seleted.' value="'.$user['id'].'">'.$user['email'].'</option>';
+										  } ?>
+										  </select>
+										  </div>
+										</div>
                                         <div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Name</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" name="college_name" id="college_name" value="<?php echo @$college_name['value']; ?>" placeholder="Enter First Name">
+										  <input type="text" class="form-control" required="" name="name" id="college_name" value="<?php echo @$name['value']; ?>" placeholder="Enter College Name">
 										  </div>
 										</div>
+										
 										<div class="form-group">
-										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Location</label>
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Code</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" id="location" name="location" value="<?php echo @$location['value'] ; ?>" placeholder="Enter City">
+										  <input type="text" class="form-control" required="" name="code" id="code" value="<?php echo @$code['value']; ?>" placeholder="Enter College Code">
 										  </div>
 										</div>
+										
 										<div class="form-group">
-										  <label for="exampleInputEmail1" class="col-sm-2 control-label" >Contact Person Name</label>
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Description</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" id="contact_person_name" name="contact_person_name" value="<?php echo @$contact_person_name['value']; ?>" placeholder="Enter Last Name">
+										  <textarea class="form-control" required="" name="description" placeholder="Enter College Description"><?php echo @$description['value']; ?></textarea>
+										  </div>
+										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Logo</label>
+										  <div class="col-sm-10">
+										  <input type="file" class="form-control"  name="logo" id="code" value="" placeholder="Enter College Code">
+										  </div>
+										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Banner</label>
+										  <div class="col-sm-10">
+										  <input type="file" class="form-control"  name="banner" id="banner"  placeholder="Enter College Code">
+										  </div>
+										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >Contact Person Name</label>
+										  <div class="col-sm-10">
+										  <input type="text" class="form-control" required="" id="contact_person_name" name="contact_person_name" value="<?php echo @$contact_person_name['value']; ?>" placeholder="Enter Contact Person Name">
 										  </div>
 										</div>
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Official Email address</label>
 										  <div class="col-sm-10">
-										  <input type="email" class="form-control" id="email_id" value="<?php echo @$email_id['value']; ?>" name="email_id" placeholder="Enter email">
+										  <input type="email" class="form-control" required="" id="email_id" value="<?php echo @$email_id['value']; ?>" name="email_id" placeholder="Enter Official Email address">
 										  </div>
 										</div>
-										<div class="form-group">
-										  <label for="exampleInputPassword1" class="col-sm-2 control-label">Password</label>
-										  <div class="col-sm-10">
-										  <input type="text" class="form-control" id="exampleInputPassword1" value="<?php echo @$pwd['value']; ?>" name="pwd" placeholder="Password">
-										  </div>
-										</div>
+										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Mobile</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" id="mobile_number" name="mobile_number" value="<?php echo @$mobile_number['value']; ?>" placeholder="Enter Mobile">
+										  <input type="text" class="form-control" required="" id="mobile_number" name="phone" value="<?php echo @$phone['value']; ?>" placeholder="Enter Mobile">
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Address</label>
+										  <div class="col-sm-10">
+										  <input type="text" class="form-control" required="" id="address" name="address" value="<?php echo @$address['value']; ?>" placeholder="Enter Address">
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">State</label>
+										  <div class="col-sm-10">
+										   <select  class="form-control" required="" name="state" id="college_state" >
+											  <option value="">Select State</option>
+											  <?php 
+											  foreach($states as $stateeach){
+												  if(intval($stateeach['id'])==$state['value']){$state_seleted="selected";}else{$state_seleted="";}
+												  echo '<option '.$state_seleted.' value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
+											  } ?>
+											</select>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">City</label>
+										  <div class="col-sm-10" id="college_city_box">
+										   <select  class="form-control" required="" name="city" id="college_city" >
+											  <option value="<?php echo $city['key']; ?>"><?php echo $city['value']; ?>
+											</select>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Pincode</label>
+										  <div class="col-sm-10">
+										  <input type="text" class="form-control" id="pincode" name="pincode" value="<?php echo @$pincode['value']; ?>" placeholder="Enter Pincode">
 										  </div>
 										</div>
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Status</label>
 										  <div class="col-sm-10">
-										  <select name="is_active">
-										  <option value="1">Active</option>
-										  <option value="0">De-active</option>
+										  <select name="status">
+										  <option value="1" <?php if(@$status['value']==1){echo "selected";} ?>>Active</option>
+										  <option value="0" <?php if(@$status['value']==0){echo "selected";} ?>>De-active</option>
 										  </select>
 										  </div>
 										</div>

@@ -45,7 +45,11 @@
                   <td><?php echo $college_list['contact_person_name'];?>   </td>
                   <td><?php echo $college_list['email_id'];?></td>
                   <td><?php echo $college_list['phone'];?></td>
-                  <td><?php echo $college_list['address'];?><br/><?php echo $college_list['city']." ".$college_list['state']." ".$college_list['country'];?></td>
+                  <td><?php echo $college_list['address'];?><br/><?php
+					$city = $this->common_model->get_single_row("cities", "id",$college_list['city']);
+					$state = $this->common_model->get_single_row("states", "id",$college_list['state']);
+					$country = $this->common_model->get_single_row("countries", "id",101);
+				  echo $city['name']." ".$state['name'].", ".$country['name'];?></td>
                   <td><a href="<?php echo base_url()."admin/colleges/edit/".$college_list['id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/colleges/delete/".$college_list['id'];?>">Delete</a></td>
                </tr>
                <?php }?>

@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="box-body">
                                     <?php echo $message;?>
 
-                                    <?php echo form_open_multipart(current_url(), array('class' => 'form-horizontal', 'id' => 'form-create_user'));
+                                    <?php echo form_open_multipart(current_url(), array('class' => 'form-horizontal', 'id' => 'form-create_college'));
 									?>
 									
 									
@@ -100,10 +100,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <div class="col-sm-10">
 										   <select  class="form-control" required="" name="state" id="college_state" >
 											  <option value="">Select State</option>
-											  <?php foreach($states as $state){
-												  if($state['id']==@$state['value']){$state_seleted="selected";}else{$state_seleted="";}
-												  echo '<option '.$state_seleted.' value="'.$state['id'].'">'.$state['name'].'</option>';
-											  } ?>
+												<?php 
+												foreach($states as $stateeach){
+												  if(intval($stateeach['id'])==$state['value']){$state_seleted="selected";}else{$state_seleted="";}
+												  echo '<option '.$state_seleted.' value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
+												} ?>
 											</select>
 										  </div>
 										</div>
@@ -111,7 +112,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">City</label>
 										  <div class="col-sm-10" id="college_city_box">
 										   <select  class="form-control" required="" name="city" id="college_city" >
+										   <?php if($city['value']){?>
+										   <option value="<?php echo $city['key']; ?>"><?php echo $city['value']; ?></option>
+										   <?php }else{ ?>
 											  <option value="">Select City</option>
+										   <?php } ?>  
 											</select>
 										  </div>
 										</div>

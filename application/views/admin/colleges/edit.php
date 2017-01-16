@@ -109,7 +109,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">City</label>
 										  <div class="col-sm-10" id="college_city_box">
 										   <select  class="form-control" required="" name="city" id="college_city" >
-											  <option value="<?php echo $city['key']; ?>"><?php echo $city['value']; ?>
+											  <option value="<?php echo $city['key']; ?>"><?php echo $city['value']; ?></option>
 											</select>
 										  </div>
 										</div>

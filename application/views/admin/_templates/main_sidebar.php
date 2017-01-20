@@ -52,6 +52,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-user"></i> <span><?php echo lang('menu_users'); ?></span>
                             </a>
                         </li>
+                         <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
+                        <li class="<?=active_link_controller('colleges')?>">
+                            <a href="<?php echo site_url('admin/colleges'); ?>">
+                                <i class="fa fa-user"></i> <span><?php echo lang('menu_colleges'); ?></span>
+                            </a>
+                        </li>
+                        
+                         <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
+                        <li class="<?=active_link_controller('coupons')?>">
+                            <a href="<?php echo site_url('admin/coupons'); ?>">
+                                <i class="fa fa-user"></i> <span><?php echo lang('menu_coupons'); ?></span>
+                            </a>
+                        </li>
                         <li class="<?=active_link_controller('groups')?>">
                             <a href="<?php echo site_url('admin/groups'); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo lang('menu_security_groups'); ?></span>

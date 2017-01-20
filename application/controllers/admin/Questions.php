@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Colleges extends Admin_Controller {
+class Questions extends Admin_Controller {
 
     public function __construct()
     {
@@ -19,7 +19,7 @@ class Colleges extends Admin_Controller {
 		
 		/* college model */
 		        $this->load->model('common/college_model');
-
+		        $this->load->model('admin/quiz_model');
     }
 
 
@@ -42,8 +42,8 @@ class Colleges extends Admin_Controller {
             }
 
             /* Load Template */
-			$this->data['college_lists'] = $this->college_model->get_all("tbl_colleges");
-            $this->template->admin_render('admin/colleges/index', $this->data);
+			$this->data['questions_lists'] = $this->quiz_model->quiz();
+            $this->template->admin_render('admin/questions/index', $this->data);
         }
 	}
 
@@ -58,20 +58,29 @@ class Colleges extends Admin_Controller {
 		$tables = $this->config->item('tables', 'ion_auth');
 		
            if( $this->input->method() == 'post'){
-			$this->data = array();
-			unset($_POST['submit']);
-			unset($_POST['id']);
-			$this->data = $this->input->post();
-			$this->college_model->insert($this->data,"tbl_colleges");
+			   $this->data = array();
+			$this->data = array(
+			'desire_course_id' =>$_POST['desire_course_id'],
+			'content'=>$_POST['question'],
+			'answer'=>$_POST['answer']
+			);
+			$insert_id = $this->quiz_model->insert_question($this->data,"tbl_quiz");
+			for($i=0;$i<count($_POST['option']);$i++){
+				$this->data = array(
+				'parent_id' =>$insert_id,
+				'content'=>$_POST['option'][$i],
+				);
+				$this->quiz_model->insert_options($this->data,"tbl_quiz");
+			}
 			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
-            redirect(base_url().'index.php/colleges/');
+            redirect(base_url().'index.php/questions/index');
 			
 		}else{
 			//$this->data = array();
-			$this->data['form_type'] = 'add';
+			$this->data['form_type'] = 'create';
 		}
-
-	            $this->template->admin_render('admin/colleges/college', $this->data);
+			$this->data['desire_courses'] = $this->college_model->get_all("tbl_desire_courses");
+	            $this->template->admin_render('admin/questions/quiz', $this->data);
 				
 
         }

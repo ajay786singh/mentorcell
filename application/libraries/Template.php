@@ -19,6 +19,7 @@ class Template {
         }
         else
         {
+			//print_r($data);die('1');
             $this->template['header']          = $this->CI->load->view('admin/_templates/header', $data, TRUE);
             $this->template['main_header']     = $this->CI->load->view('admin/_templates/main_header', $data, TRUE);
             $this->template['main_sidebar']    = $this->CI->load->view('admin/_templates/main_sidebar', $data, TRUE);

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Colleges extends Admin_Controller {
+class Coupons extends Admin_Controller {
 
     public function __construct()
     {
@@ -18,6 +18,7 @@ class Colleges extends Admin_Controller {
         $this->breadcrumbs->unshift(1, lang('menu_users'), 'admin/users');
 		
 		/* college model */
+		        $this->load->model('admin/coupon_model');
 		        $this->load->model('common/college_model');
 
     }
@@ -42,8 +43,10 @@ class Colleges extends Admin_Controller {
             }
 
             /* Load Template */
-			$this->data['college_lists'] = $this->college_model->get_all("tbl_colleges");
-            $this->template->admin_render('admin/colleges/index', $this->data);
+				$this->data['coupons_lists'] = $this->coupon_model->coupons("tbl_coupons");
+				
+				
+            	$this->template->admin_render('admin/coupons/index', $this->data);
         }
 	}
 
@@ -62,16 +65,17 @@ class Colleges extends Admin_Controller {
 			unset($_POST['submit']);
 			unset($_POST['id']);
 			$this->data = $this->input->post();
-			$this->college_model->insert($this->data,"tbl_colleges");
+			$this->college_model->insert($this->data,"tbl_coupons");
 			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
-            redirect(base_url().'index.php/colleges/');
+            redirect(base_url().'index.php/coupons/');
 			
 		}else{
 			//$this->data = array();
 			$this->data['form_type'] = 'add';
 		}
-
-	            $this->template->admin_render('admin/colleges/college', $this->data);
+	           $this->data['colleges_list'] = $this->college_model->get_all("tbl_colleges");
+				$this->data['courses_list'] = $this->college_model->get_all("tbl_desire_courses");
+			    $this->template->admin_render('admin/coupons/coupon', $this->data);
 				
 
         }
@@ -98,144 +102,22 @@ class Colleges extends Admin_Controller {
         $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/users/edit');
         $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
-        /* Data */
-		$user          = $this->ion_auth->user($id)->row();
-		$groups        = $this->ion_auth->groups()->result_array();
-		$currentGroups = $this->ion_auth->get_users_groups($id)->result();
-
-		/* Validate form input */
-		$this->form_validation->set_rules('first_name', 'lang:edit_user_validation_fname_label', 'required');
-		$this->form_validation->set_rules('last_name', 'lang:edit_user_validation_lname_label', 'required');
-		$this->form_validation->set_rules('phone', 'lang:edit_user_validation_phone_label', 'required');
-		$this->form_validation->set_rules('company', 'lang:edit_user_validation_company_label', 'required');
-
+        
 		if (isset($_POST) && ! empty($_POST))
 		{
             if ($this->_valid_csrf_nonce() === FALSE OR $id != $this->input->post('id'))
 			{
 				show_error($this->lang->line('error_csrf'));
 			}
-
-            if ($this->input->post('password'))
-			{
-				$this->form_validation->set_rules('password', $this->lang->line('edit_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
-				$this->form_validation->set_rules('password_confirm', $this->lang->line('edit_user_validation_password_confirm_label'), 'required');
-			}
-
-			if ($this->form_validation->run() == TRUE)
-			{
-				$data = array(
-					'first_name' => $this->input->post('first_name'),
-					'last_name'  => $this->input->post('last_name'),
-					'company'    => $this->input->post('company'),
-					'phone'      => $this->input->post('phone')
-				);
-
-                if ($this->input->post('password'))
-				{
-					$data['password'] = $this->input->post('password');
-				}
-
-                if ($this->ion_auth->is_admin())
-				{
-                    $groupData = $this->input->post('groups');
-
-					if (isset($groupData) && !empty($groupData))
-                    {
-						$this->ion_auth->remove_from_group('', $id);
-
-						foreach ($groupData as $grp)
-                        {
-							$this->ion_auth->add_to_group($grp, $id);
-						}
-					}
-				}
-
-                if($this->ion_auth->update($user->id, $data))
-			    {
-                    $this->session->set_flashdata('message', $this->ion_auth->messages());
-
-				    if ($this->ion_auth->is_admin())
-					{
-						redirect('admin/users', 'refresh');
-					}
-					else
-					{
-						redirect('admin', 'refresh');
-					}
-			    }
-			    else
-			    {
-                    $this->session->set_flashdata('message', $this->ion_auth->errors());
-
-				    if ($this->ion_auth->is_admin())
-					{
-						redirect('auth', 'refresh');
-					}
-					else
-					{
-						redirect('/', 'refresh');
-					}
-			    }
-			}
+			
+			$this->data['coupon_details'] = get_single_row("tbl_coupons","id", $id);
+			$this->data['colleges_list'] = get_all("tbl_colleges");
+			$this->data['courses_list'] = get_all("tbl_desire_courses");
 		}
-
-		// display the edit user form
-		$this->data['csrf'] = $this->_get_csrf_nonce();
-
-		// set the flash data error message if there is one
-		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
-
-		// pass the user to the view
-		$this->data['user']          = $user;
-		$this->data['groups']        = $groups;
-		$this->data['currentGroups'] = $currentGroups;
-
-		$this->data['first_name'] = array(
-			'name'  => 'first_name',
-			'id'    => 'first_name',
-			'type'  => 'text',
-            'class' => 'form-control',
-			'value' => $this->form_validation->set_value('first_name', $user->first_name)
-		);
-		$this->data['last_name'] = array(
-			'name'  => 'last_name',
-			'id'    => 'last_name',
-			'type'  => 'text',
-            'class' => 'form-control',
-			'value' => $this->form_validation->set_value('last_name', $user->last_name)
-		);
-		$this->data['company'] = array(
-			'name'  => 'company',
-			'id'    => 'company',
-			'type'  => 'text',
-            'class' => 'form-control',
-			'value' => $this->form_validation->set_value('company', $user->company)
-		);
-		$this->data['phone'] = array(
-			'name'  => 'phone',
-			'id'    => 'phone',
-            'type'  => 'tel',
-            'pattern' => '^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$',
-            'class' => 'form-control',
-			'value' => $this->form_validation->set_value('phone', $user->phone)
-		);
-		$this->data['password'] = array(
-			'name' => 'password',
-			'id'   => 'password',
-            'class' => 'form-control',
-			'type' => 'password'
-		);
-		$this->data['password_confirm'] = array(
-			'name' => 'password_confirm',
-			'id'   => 'password_confirm',
-            'class' => 'form-control',
-			'type' => 'password'
-		);
 
 
         /* Load Template */
-		$this->template->admin_render('admin/users/edit', $this->data);
+		$this->template->admin_render('admin/coupons/coupon', $this->data);
 	}
 
 

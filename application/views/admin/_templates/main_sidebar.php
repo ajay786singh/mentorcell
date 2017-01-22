@@ -70,7 +70,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-shield"></i> <span><?php echo lang('menu_security_groups'); ?></span>
                             </a>
                         </li>
-                        <li class="treeview <?=active_link_controller('prefs')?>">
+						
+                       <!-- <li class="treeview <?=active_link_controller('prefs')?>">
                             <a href="#">
                                 <i class="fa fa-cogs"></i>
                                 <span><?php echo lang('menu_preferences'); ?></span>
@@ -79,21 +80,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <ul class="treeview-menu">
                                 <li class="<?=active_link_function('interfaces')?>"><a href="<?php echo site_url('admin/prefs/interfaces/admin'); ?>"><?php echo lang('menu_interfaces'); ?></a></li>
                             </ul>
-                        </li>
+                        </li>-->
                         <li class="<?=active_link_controller('files')?>">
                             <a href="<?php echo site_url('admin/files'); ?>">
                                 <i class="fa fa-file"></i> <span><?php echo lang('menu_files'); ?></span>
                             </a>
                         </li>
-                        <li class="<?=active_link_controller('database')?>">
+                        <!--<li class="<?=active_link_controller('database')?>">
                             <a href="<?php echo site_url('admin/database'); ?>">
                                 <i class="fa fa-database"></i> <span><?php echo lang('menu_database_utility'); ?></span>
                             </a>
-                        </li>
+                        </li>-->
 
 
                         <li class="header text-uppercase"><?php echo $title; ?></li>
-                        <li class="<?=active_link_controller('license')?>">
+                        <!--<li class="<?=active_link_controller('license')?>">
                             <a href="<?php echo site_url('admin/license'); ?>">
                                 <i class="fa fa-legal"></i> <span><?php echo lang('menu_license'); ?></span>
                             </a>
@@ -102,7 +103,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <a href="<?php echo site_url('admin/resources'); ?>">
                                 <i class="fa fa-cubes"></i> <span><?php echo lang('menu_resources'); ?></span>
                             </a>
+                        </li>-->
+						<li class="<?=active_link_controller('colleges')?>">
+                            <a href="<?php echo site_url('admin/colleges'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Colleges'; ?></span>
+                            </a>
                         </li>
+						
+						<li class="<?=active_link_controller('streams')?>">
+                            <a href="<?php echo site_url('admin/streams'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Streams'; ?></span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('types')?>">
+                            <a href="<?php echo site_url('admin/types'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Course Type'; ?></span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('courses')?>">
+                            <a href="<?php echo site_url('admin/courses '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Courses '; ?></span>
+                            </a>
+                        </li>
+						
+						
+						
+						
+						
                     </ul>
                 </section>
             </aside>

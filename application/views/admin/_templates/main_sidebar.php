@@ -45,24 +45,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>
 
-
-                        <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
-                        <li class="<?=active_link_controller('users')?>">
+                         <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
+                      
+						<li class="<?=active_link_controller('users')?>">
                             <a href="<?php echo site_url('admin/users'); ?>">
                                 <i class="fa fa-user"></i> <span><?php echo lang('menu_users'); ?></span>
-                            </a>
-                        </li>
-                         <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
-                        <li class="<?=active_link_controller('colleges')?>">
-                            <a href="<?php echo site_url('admin/colleges'); ?>">
-                                <i class="fa fa-user"></i> <span><?php echo lang('menu_colleges'); ?></span>
-                            </a>
-                        </li>
-                        
-                         <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
-                        <li class="<?=active_link_controller('coupons')?>">
-                            <a href="<?php echo site_url('admin/coupons'); ?>">
-                                <i class="fa fa-user"></i> <span><?php echo lang('menu_coupons'); ?></span>
                             </a>
                         </li>
                         <li class="<?=active_link_controller('groups')?>">
@@ -81,11 +68,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <li class="<?=active_link_function('interfaces')?>"><a href="<?php echo site_url('admin/prefs/interfaces/admin'); ?>"><?php echo lang('menu_interfaces'); ?></a></li>
                             </ul>
                         </li>-->
-                        <li class="<?=active_link_controller('files')?>">
+                        <!--<li class="<?=active_link_controller('files')?>">
                             <a href="<?php echo site_url('admin/files'); ?>">
                                 <i class="fa fa-file"></i> <span><?php echo lang('menu_files'); ?></span>
                             </a>
-                        </li>
+                        </li>-->
                         <!--<li class="<?=active_link_controller('database')?>">
                             <a href="<?php echo site_url('admin/database'); ?>">
                                 <i class="fa fa-database"></i> <span><?php echo lang('menu_database_utility'); ?></span>
@@ -128,7 +115,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>
 						
-						
+						<li class="header text-uppercase">Coupons and Questions</li>
+						<li class="<?=active_link_controller('coupons')?>">
+                            <a href="<?php echo site_url('admin/coupons'); ?>">
+                                <i class="fa fa-user"></i> <span>Coupons</span>
+                            </a>
+                        </li>
 						
 						
 						

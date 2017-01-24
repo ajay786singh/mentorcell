@@ -287,6 +287,46 @@ class Colleges extends Admin_Controller {
 	}
 
 
+		public function gallery($id)
+	{
+        /* Load Template */
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+		$this->data['message']= "Add images Videos";
+		$this->data['college_id'] = $id;
+		/* Load Template */
+		$this->template->admin_render('admin/colleges/gallery', $this->data);
+	}
+	
+		public function course($id)
+	{
+        /* Load Template */
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+		$this->data['message']= "Assign Streams, Types and Courses";
+		
+		$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+		$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+		$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		
+		$this->data['college_id'] = $id;
+		$this->data['stream_id'] = $this->college_model->get_streams($id);
+		$this->data['type_id'] = $this->college_model->get_types($id);
+		$this->data['course_id'] = $this->college_model->get_courses($id);
+		/* Load Template */
+		$this->template->admin_render('admin/colleges/course', $this->data);
+	}
+	
 	public function _get_csrf_nonce()
 	{
 		$this->load->helper('string');
@@ -322,6 +362,117 @@ class Colleges extends Admin_Controller {
 		$option .= '</select>';
 		echo $option; die;
 	}
+	
+	
+	
+	
+	public function course_type()
+	{
+		$stream = $this->input->get('streams');
+		$college_id = $this->input->post('college_id');
+		$streams = explode(',',$stream);
+		
+		$course_type = $this->college_model->get_types($college_id);
+		
+		$types = $this->common_model->get_all_rows_inwhere("mc_types", 'stream_id',$streams);
+		foreach($types as $type){
+			if(in_array($type['type_id'],$course_type)){
+				echo '<option selected value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
+			}else{
+				echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
+			}
+			
+		}
+		exit;
+	}
+	
+	public function courses()
+	{
+		$type = $this->input->get('types');
+		$college_id = $this->input->post('college_id');
+		$types = explode(',',$type);
+		$courses_sel = $this->college_model->get_courses($college_id);
+		$courses = $this->common_model->get_all_rows_inwhere("mc_courses", 'type_id',$types);
+		foreach($courses as $course){
+			if(in_array($course['course_id'],$courses_sel)){
+				echo '<option selected  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+			}else{
+				echo '<option   value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+			}
+			
+		}
+		exit;
+	}
+	
+	public function save_courses()
+	{
+		$college_id = $this->input->post('college_id');
+		
+		$this->common_model->delete("mc_college_relations","collge_id",$college_id);
+		
+		$stream = $this->input->post('streams');
+		$streams = explode(',',$stream);
+		$dstream = array();
+		foreach($streams as $stream){
+			$dstream['term_name'] = 'stream';
+			$dstream['collge_id'] = $college_id;
+			$dstream['term_id'] = $stream;
+            $this->common_model->insert($dstream,"mc_college_relations");
+		}
+		
+		$type = $this->input->post('types');
+		$types = explode(',',$type);
+		$dtype = array();
+		foreach($types as $type){
+			$dtype['term_name'] = 'type';
+			$dtype['collge_id'] = $college_id;
+			$dtype['term_id'] = $type;
+            $this->common_model->insert($dtype,"mc_college_relations");
+		}
+		
+		$course = $this->input->post('courses');
+		$courses = explode(',',$course);
+		$dcourse = array();
+		foreach($courses as $course){
+			$dcourse['term_name'] = 'course';
+			$dcourse['collge_id'] = $college_id;
+			$dcourse['term_id'] = $course;
+            $this->common_model->insert($dcourse,"mc_college_relations");
+		}
+		
+	echo "Updated Successfully.";
+	exit;
+	}
+	
+	
+	public function saveimage(){
+		$college_id = $this->input->post('college_id');
+		
+		 /* Variables */
+		$tables = $this->config->item('tables', 'ion_auth');
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		$config['allowed_types']    = 'gif|jpg|png|mp4|mpeg';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+		
+		$this->upload->do_upload('file');
+		$file = $this->upload->data();
+
+		$image['college_id'] = $college_id;
+		$image['asset_name'] = $file['file_name'];
+		if(strpos($file['file_type'],'video')=== false){
+			$image['asset_type'] = 'image';
+		}else{
+			$image['asset_type'] = 'video';
+		}
+
+        $this->common_model->insert($image,"mc_college_image");
+		echo "Updated Successfully.";
+		exit;
+	}
+	
+	
 	
 	
 }

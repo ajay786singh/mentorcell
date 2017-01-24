@@ -36,9 +36,9 @@ class Common_model extends CI_Model {
         $this->db->update($table, $data);
     }
 
-    public function delete($table,$id)
+    public function delete($table,$field,$value)
     {
-        $this->db->where('id', $id);
+        $this->db->where($field, $value);
         $this->db->delete($table);
     }
 	
@@ -53,6 +53,17 @@ class Common_model extends CI_Model {
         return $result;
     }
 	
+	
+	/**
+	*@param tablename, column in where, value
+	*result as array
+	*/
+	function get_all_rows_inwhere($table, $where_col, $where_val)
+    {
+        $this->db->where_in("$where_col",$where_val);
+        $result = $this->db->get($table)->result_array();
+        return $result;
+    }
 	
 	/**
 	*@param tablename, column in where, value

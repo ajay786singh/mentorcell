@@ -35,6 +35,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url($frameworks_dir . '/datatables/dataTables.bootstrap.min.js'); ?>"></script>
    <link rel="stylesheet" href="<?php echo base_url($frameworks_dir . '/datatables/dataTables.bootstrap.css'); ?>">
 
+<script src="<?php echo base_url($frameworks_dir . '/dropzone/dropzone.js'); ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url($frameworks_dir . '/dropzone/dropzone.css'); ?>">
+  
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript">
+ $(".basic-multiple").select2();
+</script>
+  
+  
 <script>
   $(function () {
     $("#example1").DataTable();
@@ -48,9 +58,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
   });
   
-  
   /*otp verification*/
 	$(document).ready(function(){
+	
+		
 		$("#college_state").change(function(event) {
 			
 			var state_id = $(this).val();
@@ -65,7 +76,61 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 			});
 		});
-	})	
+		
+		
+		
+		/**/
+		$("#clg_stream_id").change(function(){
+			var college_id = ($("#college_id").val());
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/admin/colleges/course_type",
+				dataType: 'text',
+				data: {streams:$(this).val().join(),college_id:college_id},
+				success: function(res) {
+					$("#clg_type_id").html(res);
+				}
+			});
+		});
+		
+		$("#clg_type_id").change(function(){
+			var college_id = ($("#college_id").val());
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/admin/colleges/courses",
+				dataType: 'text',
+				data: {types:$(this).val().join(),college_id:college_id},
+				success: function(res) {
+					$("#clg_course_id").html(res);
+				}
+			});
+			
+		});
+		/**/
+		
+		/**/
+		$("#save_courses").click(function(e){
+			e.preventDefault();
+			var college_id = ($("#college_id").val());
+			var streams = ($("#clg_stream_id").val()==null)? '' :$("#clg_stream_id").val().join();
+			var types = ($("#clg_type_id").val()==null)? '' :$("#clg_type_id").val().join();
+			var courses = ($("#clg_course_id").val()==null)? '' :$("#clg_course_id").val().join();
+			
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/admin/colleges/save_courses",
+				dataType: 'text',
+				data: {streams:streams,types:types,courses:courses,college_id:college_id},
+				success: function(res) {
+					$("#message").show().html('<p>'+res+'</p>');
+				}
+			});
+			
+		})
+		/**/
+		
+		
+	});	
 	/*otp verification*/
 </script>
     </body>

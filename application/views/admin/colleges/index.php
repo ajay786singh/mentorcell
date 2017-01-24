@@ -50,7 +50,8 @@
 					$state = $this->common_model->get_single_row("states", "id",$college_list['state']);
 					$country = $this->common_model->get_single_row("countries", "id",101);
 				  echo $city['name']." ".$state['name'].", ".$country['name'];?></td>
-                  <td><a href="<?php echo base_url()."admin/colleges/edit/".$college_list['id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/colleges/delete/".$college_list['id'];?>">Delete</a></td>
+				  
+                  <td><a title="Edit" href="<?php echo base_url()."admin/colleges/view/".$college_list['id'];?>"><i class="fa fa-eye" aria-hidden="true"></i></a> | <a title="Edit" href="<?php echo base_url()."admin/colleges/edit/".$college_list['id'];?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> | <a title="Delete" href="<?php echo base_url()."admin/colleges/delete/".$college_list['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a> | <a title="Add Gallry" href="<?php echo base_url()."admin/colleges/gallery/".$college_list['id'];?>"><i class="fa fa-picture-o" aria-hidden="true"></i></a> | <a title="Courses" href="<?php echo base_url()."admin/colleges/course/".$college_list['id'];?>"><i class="fa fa-book" aria-hidden="true"></i></a></td>
                </tr>
                <?php }?>
                 </tbody>

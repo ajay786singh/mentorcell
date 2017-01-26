@@ -1265,3 +1265,6 @@ header('Vary: Accept-Encoding');
 </div>	
 </header>
 <!-- header close -->
+
+<!--body starts here -->
+<div id="mainContainer">

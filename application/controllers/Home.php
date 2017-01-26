@@ -13,6 +13,9 @@ class Home extends Public_Controller {
         $this->load->library(array('form_validation', 'ion_auth', 'template', 'common/mobile_detect'));
         $this->load->helper(array('array', 'language', 'url'));
         $this->load->model('common/prefs_model');
+		$this->load->model('common/college_model');
+		$this->load->model('common/common_model');
+		/* college model */
     }
 
 
@@ -23,6 +26,7 @@ class Home extends Public_Controller {
 		}else{
 			$this->data['user_login'] = array('id'=>false);
 		}
+
 		$this->load->view('public/layout/header', $this->data);
 		$this->load->view('public/home', $this->data);
 		$this->load->view('public/layout/footer', $this->data);
@@ -164,5 +168,41 @@ class Home extends Public_Controller {
         }
         
 	}
+	
+	function courses()
+	{
+		$stream = $this->input->get('stream');
+		$courses = $this->college_model->get_courseswithstream($stream);
+		echo '<option>Desired Courses</option>';
+		foreach($courses as $course){
+			
+				echo '<option   value="'.$course->course_id.'">'.$course->course_name.'</option>';
+			
+		}
+		exit;
+		
+	}
+
+	
+	function search()
+	{
+		
+		if ($this->ion_auth->logged_in()){
+		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		}else{
+			$this->data['user_login'] = array('id'=>false);
+		}
+		$query = array();
+		
+		//$this->college['colleges'] = $this->college_model->search_result_course($query);
+		
+		$this->college['college'] = $this->college_model->search_result_college($query);
+		
+		
+		$this->load->view('public/layout/header', $this->data);
+		$this->load->view('public/college', $this->college);
+		$this->load->view('public/layout/footer', $this->data);
+		
+	}	
 	
 }

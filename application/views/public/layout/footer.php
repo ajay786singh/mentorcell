@@ -1,3 +1,89 @@
+<footer class="footerSection">
+<section class="footerTop">
+
+<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+<div class="footerWidget">
+<h3>Website Name</h3>
+<p>A-1/4, Some street name, Town, City Name, Country Name</p>
+<p>some.email@website.com<br>
++91-9999-99-99-99</p>
+</div>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+<div class="footerWidget">
+<h3>About us</h3>
+<ul>
+<li><a href="#">Company Overview</a></li>
+<li><a href="#">What we do</a></li>
+<li><a href="#">Testimonial</a></li>
+<li><a href="#">Team</a></li>
+</ul>
+</div>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+<div class="footerWidget">
+<h3>Services</h3>
+<ul>
+<li><a href="#">Admission 2017</a></li>
+<li><a href="#">Career Profiling test</a></li>
+<li><a href="#">Abroad Education</a></li>
+<li><a href="#">Counselling</a></li>
+<li><a href="#">Counselling Video</a></li>
+<li><a href="#">Placement</a></li>
+</ul>
+</div>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+<div class="footerWidget">
+<h3>Connect with us</h3>
+<ul>
+<li><a href="#">Login | Register</a></li>
+<li><a href="#">College Login</a></li>
+<li><a href="#">Chat</a></li>
+<li><a href="#">Blog</a></li>
+<li><a href="#">News</a></li>
+<li><a href="#">Contact us</a></li>
+<li><a href="#">Write reviews</a></li>
+</ul>
+</div>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+<div class="footerWidget">
+<h3>Links</h3>
+<ul>
+<li><a href="#">Search step by step</a></li>
+<li><a href="#">Common Application Form</a></li>
+<li><a href="#">Value of redeem coupon</a></li>
+<li><a href="#">Mobile Apps</a></li>
+</ul>
+</div>
+</div>
+
+</section>
+
+<section class="footerBottom">
+<p><strong>MBA :</strong> <a href="#">About MBA</a> | <a href="#">MBA Colleges</a> | <a href="#">Exams</a> | <a href="#">Counseling Videos</a> | <a href="#">Apply to MBA Colleges</a> </p>
+
+<p><strong>Engineering :</strong> <a href="#">About MBA</a> | <a href="#">MBA Colleges</a> | <a href="#">Exams</a> | <a href="#">Counseling Videos</a> | <a href="#">Apply to MBA Colleges</a> </p>
+
+<p><strong>Other Courses :</strong> <a href="#">About MBA</a> | <a href="#">MBA Colleges</a> | <a href="#">Exams</a> | <a href="#">Counseling Videos</a> | <a href="#">Apply to MBA Colleges</a> </p>
+
+<p><strong>Study Abroad :</strong> <a href="#">About MBA</a> | <a href="#">MBA Colleges</a> | <a href="#">Exams</a> | <a href="#">Counseling Videos</a> | <a href="#">Apply to MBA Colleges</a> </p>
+
+<p><strong>Resources :</strong> <a href="#">About MBA</a> | <a href="#">MBA Colleges</a> | <a href="#">Exams</a> | <a href="#">Counseling Videos</a> | <a href="#">Apply to MBA Colleges</a> </p>
+</section>
+</footer>
+
+
+<div class="clearfix"></div>
+
+<!--body ends here -->
+</div>
+
 
 <!-- Login Modal Start -->
 <div id="loginModal" class="modal fade" role="dialog">
@@ -84,7 +170,14 @@
       	</div>
 
       	<div class="inputRow">
-      		<select id="register_interest"><option>Education Interests</option></select>
+      		<select id="register_interest"><option>Education Interests</option>
+				<?php 
+				$streams = $this->common_model->get_all_rows("mc_streams", 1,1);
+				foreach($streams as $stream){
+						echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
+				} ?>
+			
+			</select>
       		<i class="icon-education"></i>
       	</div>
 
@@ -94,7 +187,21 @@
       	</div>
 
       	<div class="inputRow">
-      		<select id="register_city"><option>Current City</option></select>
+      		<select id="register_city"><option>Current City</option>
+			<?php 
+				$states = $this->common_model->get_all_rows("states", "country_id",101);
+				foreach($states as $stateeach){
+				//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
+				echo '<optgroup label="'.$stateeach['name'].'">';
+					$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
+					
+					foreach($cities as $city){
+						echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
+					}
+					echo  '</optgroup>';
+				} ?>
+			
+			</select>
       		<i class="icon-city"></i>
       	</div>
 

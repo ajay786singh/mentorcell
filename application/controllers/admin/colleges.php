@@ -327,6 +327,53 @@ class Colleges extends Admin_Controller {
 		$this->template->admin_render('admin/colleges/course', $this->data);
 	}
 	
+	/*assign courses to colleges*/
+		public function assigncourse($id)
+	{
+        /* Load Template */
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+		$this->data['message']= "Assign Courses and extra informtion";
+
+		$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		
+		$this->data['college_id'] = $id;
+		$this->data['course_id'] = $this->college_model->get_courses($id);
+		/* Load Template */
+		$this->template->admin_render('admin/colleges/assigncourse', $this->data);
+	}
+	
+	public function save_assigncourses()
+	{
+		$college_id = $this->input->post('college_id');
+		$title = $this->input->post('title');
+		$duration = $this->input->post('duration');
+		$recognition = $this->input->post('recognition');
+		$fee = $this->input->post('fee');
+		$exam = $this->input->post('exam');
+		
+		$assigned_id = $this->input->post('assigned_id');
+		
+		$course['college_id'] = $college_id;
+		$course['title'] = $title;
+		$course['duration'] = $duration;
+		$course['recognition'] = $recognition;
+		$course['fee'] = $fee;
+		$course['exam'] = $exam;
+		
+        $this->common_model->insert($course,"mc_course_assignment");
+		
+	echo "Updated Successfully.";
+	exit;
+	}
+	/*assign courses to colleges*/
+	
+	
 	public function _get_csrf_nonce()
 	{
 		$this->load->helper('string');

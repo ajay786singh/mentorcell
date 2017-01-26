@@ -82,4 +82,21 @@ $(document).ready(function() {
 	/*login*/
 
 	
+	/**/
+	/**/
+		$("#register_interest").change(function(){
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/home/courses",
+				dataType: 'text',
+				data: {stream:$(this).val()},
+				success: function(res) {
+					$("#register_course").html(res);
+				}
+			});
+		});
+	
+	/**/
+	
+	
 });

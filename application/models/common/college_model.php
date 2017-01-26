@@ -34,4 +34,44 @@ class College_model extends CI_Model {
 		return $result;
 	}
     
+	
+	function get_courseswithstream($id){
+		$this->db->select('courses.course_id, courses.course_name');
+		$this->db->from('mc_courses AS courses');// I use aliasing make joins easier
+		$this->db->join('mc_types AS types', 'types.type_id = courses.type_id', 'INNER');
+		$this->db->join('mc_streams AS streams', 'streams.stream_id = types.stream_id', 'INNER');
+		/**/
+		$this->db->where('streams.stream_id',$id);
+		$result = $this->db->get()->result_object();
+		return $result;
+	}
+	
+	function search_result_course($query){
+		/**/
+		$this->db->select('ca.*,cl.*,cities.name as city, states.name as state, countries.name as country ');
+		$this->db->from('mc_course_assignment AS ca');// I use aliasing make joins easier
+		$this->db->join('mc_colleges AS cl', 'cl.id = ca.college_id', 'INNER');
+		$this->db->join('cities AS cities', 'cities.id = cl.city', 'LEFT');
+		$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
+		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');
+		/**/
+		$result = $this->db->get()->result_object();
+		return $result;
+	}
+
+	function search_result_college($query){
+		/**/
+		$this->db->select('cl.*,ca.* ,cities.name as city, states.name as state, countries.name as country ');
+		$this->db->from('mc_colleges AS cl');// I use aliasing make joins easier
+		$this->db->join('mc_course_assignment AS ca', 'cl.id = ca.college_id', 'INNER');
+		$this->db->join('cities AS cities', 'cities.id = cl.city', 'LEFT');
+		$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
+		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');
+		/**/
+		$this->db->where('cl.name', "new coollege");
+		$result = $this->db->get()->row_object();
+		return $result;
+	}	
+	
+	
 }

@@ -126,8 +126,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 			});
 			
-		})
+		});
 		/**/
+		
+		
+		
+		/*save assigned courses*/
+		$("#assign_courses").click(function(e){
+			e.preventDefault();
+			var college_id = $("#college_id").val();
+			var title = $("#title").val();
+			var duration = $("#duration").val();
+			var recognition = $("#recognition").val();
+			var fee = $("#fee").val();
+			var exam = $("#exam").val();
+			var assigned_id = $("#assigned_id").val();
+			
+			
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/admin/colleges/save_assigncourses",
+				dataType: 'text',
+				data: {college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,exam:exam,assigned_id:assigned_id},
+				success: function(res) {
+					$("#message").show().html('<p>'+res+'</p>');
+					
+					//$('form')[0].not('input[class=ignoreField]').reset();
+				}
+			});
+			
+		});
+		/*save assigned courses*/
 		
 		
 	});	

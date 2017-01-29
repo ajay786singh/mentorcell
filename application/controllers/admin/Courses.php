@@ -83,6 +83,8 @@ class Courses extends Admin_Controller {
 			$this->data['type_id']['value'] = $this->form_validation->set_value('type_id');
 			$this->data['course_name']['value'] = $this->form_validation->set_value('course_name');
 			$this->data['course_code']['value'] = $this->form_validation->set_value('course_code');
+			$this->data['course_duration']['value'] = $this->form_validation->set_value('course_duration');
+			
 			$this->data['status']['value'] = $this->form_validation->set_value('status');
 			
 			$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
@@ -156,6 +158,8 @@ class Courses extends Admin_Controller {
 				$data['type_id'] = $this->input->post('type_id');
 				$data['course_name'] = $this->input->post('course_name');
 				$data['course_code'] = $this->input->post('course_code');
+				$data['course_duration'] = $this->input->post('course_duration');
+				
 				$data['status'] = $this->input->post('status');
 				
                 if($this->common_model->update("mc_courses", $data, "course_id", $courses['course_id']))
@@ -183,6 +187,7 @@ class Courses extends Admin_Controller {
 			$this->data['course_name']['value'] = $this->form_validation->set_value('course_name',$courses['course_name']);
 			$this->data['course_code']['value'] = $this->form_validation->set_value('course_code',$courses['course_code']);
 			$this->data['status']['value'] = $this->form_validation->set_value('status',$courses['status']);
+			$this->data['course_duration']['value'] = $this->form_validation->set_value('course_duration',$courses['course_duration']);
 			$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
         /* Load Template */
 		$this->template->admin_render('admin/courses/edit', $this->data);

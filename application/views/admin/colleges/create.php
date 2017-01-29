@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select user</label>
 										  <div class="col-sm-10">
-										  <select  class="form-control" required="" name="user_id" id="user_id" >
+										  <select  class="form-control"  name="user_id" id="user_id" >
 										  <option value="">Select User</option>
 										  <?php foreach($users as $user){
 											  if($user['id']==@$user_id['value']){$user_id_seleted="selected";}else{$user_id_seleted="";}
@@ -84,9 +84,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 										
 										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Website</label>
+										  <div class="col-sm-10">
+										  <input type="text" class="form-control"  name="website" id="website" value="<?php echo @$website['value']; ?>" placeholder="Enter College Website">
+										  </div>
+										</div>
+										
+										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Mobile</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" id="mobile_number" name="phone" value="<?php echo @$phone['value']; ?>" placeholder="Enter Mobile">
+										  <input type="text" class="form-control"  id="mobile_number" name="phone" value="<?php echo @$phone['value']; ?>" placeholder="Enter Mobile">
 										  </div>
 										</div>
 										<div class="form-group">
@@ -126,6 +133,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <input type="text" class="form-control" id="pincode" name="pincode" value="<?php echo @$pincode['value']; ?>" placeholder="Enter Pincode">
 										  </div>
 										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Why Join</label>
+										  <div class="col-sm-10">
+										  <textarea class="form-control"  name="why_join" placeholder="Enter Why Join"><?php echo @$why_join['value']; ?></textarea>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Placement Services</label>
+										  <div class="col-sm-10">
+										  <textarea class="form-control" name="placement_services" placeholder="Enter Placement Services"><?php echo @$placement_services['value']; ?></textarea>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Top Recruiting Companies</label>
+										  <div class="col-sm-10">
+										  <textarea class="form-control" name="top_recruiting_companies" placeholder="Enter Top Recruiting Companies"><?php echo @$top_recruiting_companies['value']; ?></textarea>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Hostel Details</label>
+										  <div class="col-sm-10">
+										  <textarea class="form-control"  name="hostel_details" placeholder="Enter Hostel Details"><?php echo @$hostel_details['value']; ?></textarea>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Infrastructure/Teaching Facilities</label>
+										  <div class="col-sm-10">
+										  <textarea class="form-control"  name="teaching_facilities" placeholder="Enter Infrastructure/Teaching Facilities"><?php echo @$teaching_facilities['value']; ?></textarea>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Top Faculty</label>
+										  <div class="col-sm-10">
+										  <textarea class="form-control"  name="top_faculty" placeholder="Enter Top Faculty"><?php echo @$top_faculty['value']; ?></textarea>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Partner colleges</label>
+										  <div class="col-sm-10">
+										  <textarea class="form-control"  name="partner_colleges" placeholder="Enter Partner colleges"><?php echo @$partner_colleges['value']; ?></textarea>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Rank Holders</label>
+										  <div class="col-sm-10">
+										  <textarea class="form-control"  name="rank_holders" placeholder="Enter Rank Holders"><?php echo @$rank_holders['value']; ?></textarea>
+										  </div>
+										</div>
+										
+										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Status</label>
 										  <div class="col-sm-10">

@@ -19,7 +19,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-                 <h3 class="box-title"><?php echo $message; ?></h3>
+                 <h3 class="box-title"><?php echo anchor('admin/colleges/assigncourse/'.$college_id, '<i class="fa fa-plus"></i> Assign More Course', array('class' => 'btn btn-block btn-primary btn-flat')); ?></h3>
             </div>
             <!-- /.box-header -->
 				 <div class="box-body">
@@ -34,7 +34,9 @@
 						  <div class="col-sm-10">
 						  
 						  <select  class="form-control " required="" name="clg_course_id" id="clg_course_id" >
-						  <?php foreach($courses as $course){
+						  <?php 
+						   echo '<option  value="">Select Course</option>';
+						  foreach($courses as $course){
 											  if(in_array($course['course_id'],@$course_id)){$course_id_seleted="selected";}else{$course_id_seleted="";}
 											  echo '<option '.$course_id_seleted.' value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
 						   } ?></select>
@@ -50,13 +52,13 @@
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Duration</label>
 						  <div class="col-sm-10">
-						  <input type="text" class="form-control" required="" name="duration" id="duration" value="" placeholder="Enter Course Duration">
+						  <input type="text" class="form-control"  name="duration" id="duration" value="" placeholder="Enter Course Duration">
 						  </div>
 						</div>
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Recognition</label>
 						  <div class="col-sm-10">
-						  <input type="text" class="form-control" required="" name="recognition" id="recognition" value="" placeholder="Enter Course Recognition">
+						  <input type="text" class="form-control"  name="recognition" id="recognition" value="" placeholder="Enter Course Recognition">
 						  </div>
 						</div>
 						<div class="form-group">
@@ -84,6 +86,13 @@
 									<input type="hidden" class="ignoreField" value="" id="assigned_id">
 									<?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-primary btn-flat', 'id'=>'assign_courses', 'content' => lang('actions_submit'))); ?>
 								</div>
+								
+								<div class="btn-group" style="float:right">
+									
+									<?php echo anchor('admin/colleges/view/'.$college_id, 'Back', array('class' => 'btn btn-block btn-primary btn-flat')); ?>
+								</div>
+								
+								
 							</div>
 						</div>
 					<?php echo form_close();?>

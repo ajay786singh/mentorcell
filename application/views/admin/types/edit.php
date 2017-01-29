@@ -37,14 +37,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                          <div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Type Name</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" name="type_name" id="type_name" value="<?php echo @$type_name['value']; ?>" placeholder="Enter College Name">
+										  <input type="text" class="form-control" required="" name="type_name" id="type_name" value="<?php echo @$type_name['value']; ?>" placeholder="Enter Course Type i.e. B.Tech">
 										  </div>
 										</div>
 										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Type Code</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" name="type_code" id="type_code" value="<?php echo @$type_code['value']; ?>" placeholder="Enter College Code">
+										  <input type="text" class="form-control" required="" name="type_code" id="type_code" value="<?php echo @$type_code['value']; ?>" placeholder="Enter Course Type Code or same as name">
 										  </div>
 										</div>
 										<div class="form-group">

@@ -41,7 +41,7 @@
 				  <td><img src="<?php echo base_url()."upload/".$streams['stream_logo'];?>" width="150px;" /></td>
 				  <td><?php echo $streams['stream_name'];?></td>
                   <td><?php echo $streams['stream_code'];?></td>
-                  <td><?php echo ($streams['status']==1)?"Yes":"No";?>   </td>
+                  <td><?php echo ($streams['status']==1)?"Active":"Inactive";?>   </td>
                   <td><a href="<?php echo base_url()."admin/streams/edit/".$streams['stream_id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/streams/delete/".$streams['stream_id'];?>">Delete</a></td>
                </tr>
                <?php }?>

@@ -150,8 +150,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				data: {college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,exam:exam,assigned_id:assigned_id},
 				success: function(res) {
 					$("#message").show().html('<p>'+res+'</p>');
-					
-					//$('form')[0].not('input[class=ignoreField]').reset();
 				}
 			});
 			

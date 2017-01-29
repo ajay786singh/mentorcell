@@ -25,7 +25,17 @@
 			<div class="box-body">
 				<?php echo form_open(base_url()."index.php/admin/colleges/saveimage", array('class' => 'dropzone form-horizontal', 'id' => 'form-create_stream'));
 					?>
-				<input type="hidden" name="college_id" value="<?php echo $college_id; ?>" id="college_id">		
+				<input type="hidden" name="college_id" value="<?php echo $college_id; ?>" id="college_id">	
+
+				<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="btn-group" style="float:right">
+									
+									<?php echo anchor('admin/colleges/view/'.$college_id, 'Back', array('class' => 'btn btn-block btn-primary btn-flat')); ?>
+								</div>
+							</div>
+				</div>
+				
 				<?php echo form_close();?>
 			</div>
           

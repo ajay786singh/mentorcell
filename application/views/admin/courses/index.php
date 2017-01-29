@@ -22,7 +22,7 @@
 				  <th>Course ID</th>
 				  <th>Course Type</th>
 				  <th>Course Name</th>
-                  <th>Course Code</th>
+				  <th>Course Duration</th>
                   <th>Status</th>
                   <th>Manage</th>
                 </tr>
@@ -37,8 +37,8 @@
 				  ?>
 				  </td>
 				  <td><?php echo $courses['course_name'];?></td>
-                  <td><?php echo $courses['course_code'];?></td>
-                  <td><?php echo ($courses['status']==1)?"Yes":"No";?>   </td>
+				  <td><?php echo $courses['course_duration'];?></td>
+                  <td><?php echo ($courses['status']==1)?"Active":"Inactive";?>   </td>
                   <td><a href="<?php echo base_url()."admin/courses/edit/".$courses['course_id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/courses/delete/".$courses['course_id'];?>">Delete</a></td>
                </tr>
                <?php }?>
@@ -48,7 +48,7 @@
 				  <th>Course ID</th>
 				  <th>Course Type</th>
 				  <th>Course Name</th>
-                  <th>Course Code</th>
+				  <th>Course Duration</th>
                   <th>Status</th>
                   <th>Manage</th>
                 </tr>

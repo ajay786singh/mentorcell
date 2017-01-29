@@ -60,13 +60,13 @@ class Colleges extends Admin_Controller {
 		$this->load->library('upload', $config);
 
 		/* Validate form input */
-		$this->form_validation->set_rules('user_id', 'User', 'required');
+		//$this->form_validation->set_rules('user_id', 'User', 'required');
 		$this->form_validation->set_rules('name', 'College name', 'required');
 		$this->form_validation->set_rules('code', 'College Code', 'required');
 		$this->form_validation->set_rules('description', 'College Description', 'required');
 		$this->form_validation->set_rules('contact_person_name', 'Contact Person Name', 'required');
 		$this->form_validation->set_rules('email_id', 'Official Email address', 'required|valid_email');
-		$this->form_validation->set_rules('phone', 'Mobile', 'required');
+		//$this->form_validation->set_rules('phone', 'Mobile', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
 		$this->form_validation->set_rules('state', 'State', 'required');
 		//$this->form_validation->set_rules('city', 'City', 'required');
@@ -103,6 +103,7 @@ class Colleges extends Admin_Controller {
 			$this->data['code']['value'] = $this->form_validation->set_value('code');
 			$this->data['description']['value'] = $this->form_validation->set_value('description');
 			$this->data['contact_person_name']['value'] = $this->form_validation->set_value('contact_person_name');
+			$this->data['website']['value'] = $this->form_validation->set_value('website');
 			$this->data['email_id']['value'] = $this->form_validation->set_value('email_id');
 			$this->data['phone']['value'] = $this->form_validation->set_value('phone');
 			$this->data['address']['value'] = $this->form_validation->set_value('address');
@@ -111,6 +112,18 @@ class Colleges extends Admin_Controller {
 			$city = $this->common_model->get_single_row("cities", "state_id",$this->data['city']['key']);
 			$this->data['city']['value'] = $city['name'];
 			$this->data['pincode']['value'] = $this->form_validation->set_value('pincode');
+			
+			$this->data['why_join']['value'] = $this->form_validation->set_value('why_join');
+			$this->data['placement_services']['value'] = $this->form_validation->set_value('placement_services');
+			$this->data['top_recruiting_companies']['value'] = $this->form_validation->set_value('top_recruiting_companies');
+			$this->data['hostel_details']['value'] = $this->form_validation->set_value('hostel_details');
+			$this->data['teaching_facilities']['value'] = $this->form_validation->set_value('teaching_facilities');
+			$this->data['top_faculty']['value'] = $this->form_validation->set_value('top_faculty');
+			$this->data['partner_colleges']['value'] = $this->form_validation->set_value('partner_colleges');
+			$this->data['rank_holders']['value'] = $this->form_validation->set_value('rank_holders');
+			
+			
+			
 			$this->data['status']['value'] = $this->form_validation->set_value('status');
 			/* Get all users */
             $this->data['users'] = $this->common_model->get_all_college_user();
@@ -169,13 +182,13 @@ class Colleges extends Admin_Controller {
 		$colleges = $this->common_model->get_single_row("mc_colleges", "id", $id);
 		
 		/* Validate form input */
-		$this->form_validation->set_rules('user_id', 'User', 'required');
+		//$this->form_validation->set_rules('user_id', 'User', 'required');
 		$this->form_validation->set_rules('name', 'College name', 'required');
 		$this->form_validation->set_rules('code', 'College Code', 'required');
 		$this->form_validation->set_rules('description', 'College Description', 'required');
 		$this->form_validation->set_rules('contact_person_name', 'Contact Person Name', 'required');
 		$this->form_validation->set_rules('email_id', 'Official Email address', 'required|valid_email');
-		$this->form_validation->set_rules('phone', 'Mobile', 'required');
+		//$this->form_validation->set_rules('phone', 'Mobile', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
 		$this->form_validation->set_rules('state', 'State', 'required');
 		//$this->form_validation->set_rules('city', 'City', 'required');
@@ -197,10 +210,11 @@ class Colleges extends Admin_Controller {
 				$banner = $this->upload->data();
 			
 				$this->data = array();
-				if(isset($logo['file_name'])){
+		
+				if(isset($logo['file_name']) && $logo['file_size']>0){
 				$data['logo'] = $logo['file_name'];
 				}
-				if(isset($banner['file_name'])){
+				if(isset($banner['file_name']) && $banner['file_size']>0 ){
 				$data['banner'] = $banner['file_name'];
 				}
 				
@@ -210,12 +224,23 @@ class Colleges extends Admin_Controller {
 				$data['description'] = $this->input->post('description');
 				$data['contact_person_name'] = $this->input->post('contact_person_name');
 				$data['email_id'] = $this->input->post('email_id');
+				$data['website'] = $this->input->post('website');
 				$data['phone'] = $this->input->post('phone');
 				$data['address'] = $this->input->post('address');
 				$data['state'] = $this->input->post('state');
 				$data['city'] = $this->input->post('city');
 				$data['status'] = $this->input->post('status');
 				$data['pincode'] = $this->input->post('pincode');
+				
+				$data['why_join'] = $this->input->post('why_join');
+				$data['placement_services'] = $this->input->post('placement_services');
+				$data['top_recruiting_companies'] = $this->input->post('top_recruiting_companies');
+				$data['hostel_details'] = $this->input->post('hostel_details');
+				$data['teaching_facilities'] = $this->input->post('teaching_facilities');
+				$data['top_faculty'] = $this->input->post('top_faculty');
+				$data['partner_colleges'] = $this->input->post('partner_colleges');
+				$data['rank_holders'] = $this->input->post('rank_holders');
+				
 				$data['country'] = 101;
                 if($this->common_model->update("mc_colleges", $data, "id", $colleges['id']))
 			    {
@@ -225,9 +250,8 @@ class Colleges extends Admin_Controller {
 			    else
 			    {
                     $this->session->set_flashdata('message', $this->ion_auth->errors());
-
 				    
-						redirect('admin/colleges', 'refresh');
+					redirect('admin/colleges', 'refresh');
 					
 			    }
 			}
@@ -246,22 +270,33 @@ class Colleges extends Admin_Controller {
 			$this->data['description']['value'] = $this->form_validation->set_value('description',$colleges['description']);
 			$this->data['contact_person_name']['value'] = $this->form_validation->set_value('contact_person_name',$colleges['contact_person_name']);
 			$this->data['email_id']['value'] = $this->form_validation->set_value('email_id',$colleges['email_id']);
+			$this->data['website']['value'] = $this->form_validation->set_value('website',$colleges['website']);
 			$this->data['phone']['value'] = $this->form_validation->set_value('phone',$colleges['phone']);
 			$this->data['address']['value'] = $this->form_validation->set_value('address',$colleges['address']);
 			$this->data['state']['value'] = $this->form_validation->set_value('state',$colleges['state']);
 			$this->data['city']['key'] = $this->form_validation->set_value('city',$colleges['city']);
-			$city = $this->common_model->get_single_row("cities", "state_id",$this->data['city']['key']);
+			$city = $this->common_model->get_single_row("cities", "id",$colleges['city']);
 			
 			$this->data['city']['value'] = $city['name'];
 			$this->data['pincode']['value'] = $this->form_validation->set_value('pincode',$colleges['pincode']);
+			
+			$this->data['why_join']['value'] = $this->form_validation->set_value('why_join',$colleges['pincode']);
+			$this->data['placement_services']['value'] = $this->form_validation->set_value('placement_services',$colleges['placement_services']);
+			$this->data['top_recruiting_companies']['value'] = $this->form_validation->set_value('top_recruiting_companies',$colleges['top_recruiting_companies']);
+			$this->data['hostel_details']['value'] = $this->form_validation->set_value('hostel_details',$colleges['hostel_details']);
+			$this->data['teaching_facilities']['value'] = $this->form_validation->set_value('teaching_facilities',$colleges['teaching_facilities']);
+			$this->data['top_faculty']['value'] = $this->form_validation->set_value('top_faculty',$colleges['top_faculty']);
+			$this->data['partner_colleges']['value'] = $this->form_validation->set_value('partner_colleges',$colleges['partner_colleges']);
+			$this->data['rank_holders']['value'] = $this->form_validation->set_value('rank_holders',$colleges['rank_holders']);
+			
+			
 			$this->data['status']['value'] = $this->form_validation->set_value('status',$colleges['status']);
 			/* Get all users */
             $this->data['users'] = $this->common_model->get_all_college_user();
 			$this->data['states'] = $this->common_model->get_all_rows("states", "country_id",101);
-
-
+		
         /* Load Template */
-		$this->template->admin_render('admin/colleges/edit', $this->data);
+		   $this->template->admin_render('admin/colleges/edit', $this->data);
 	}
 
 
@@ -275,15 +310,13 @@ class Colleges extends Admin_Controller {
 
         /* Data */
         $id = (int) $id;
-
-        $this->data['user_info'] = $this->ion_auth->user($id)->result();
-        foreach ($this->data['user_info'] as $k => $user)
-        {
-            $this->data['user_info'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-        }
+		$this->data['college_id'] = $id;
+        $this->data['college'] = $this->college_model->get_college($id);
+		$this->data['images'] = $this->college_model->get_images($id);
+		$this->data['videos'] = $this->college_model->get_videos($id);
 
         /* Load Template */
-		$this->template->admin_render('admin/users/profile', $this->data);
+		$this->template->admin_render('admin/colleges/college', $this->data);
 	}
 
 
@@ -455,7 +488,11 @@ class Colleges extends Admin_Controller {
 	{
 		$college_id = $this->input->post('college_id');
 		
+		try{
 		$this->common_model->delete("mc_college_relations","collge_id",$college_id);
+		}catch(Exception $e){
+			
+		}
 		
 		$stream = $this->input->post('streams');
 		$streams = explode(',',$stream);
@@ -520,6 +557,33 @@ class Colleges extends Admin_Controller {
 	}
 	
 	
+	public function import(){
+		
+		if(isset($_FILES['excel'])){
+			echo "rajan"; die;
+		}
+		/* Load Template */
+		$this->template->admin_render('admin/colleges/import', $this->data);
+		
+	}	
+	
+	
+	public function import_save(){
+		
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		//$config['allowed_types']    = 'gif|jpg|png|mp4|mpeg';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+		
+		$this->upload->do_upload('excel');
+		$file = $this->upload->data();
+
+		print_r($file);
+		echo "rajan"; die;
+		
+		
+	}	
 	
 	
 }

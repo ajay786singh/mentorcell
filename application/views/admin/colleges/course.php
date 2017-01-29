@@ -73,6 +73,12 @@
 									<input type="hidden" value="<?php echo $college_id; ?>" id="college_id">
 									<?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-primary btn-flat', 'id'=>'save_courses', 'content' => lang('actions_submit'))); ?>
 								</div>
+								
+								<div class="btn-group" style="float:right">
+									
+									<?php echo anchor('admin/colleges/view/'.$college_id, 'Back', array('class' => 'btn btn-block btn-primary btn-flat')); ?>
+								</div>
+								
 							</div>
 						</div>
 					<?php echo form_close();?>

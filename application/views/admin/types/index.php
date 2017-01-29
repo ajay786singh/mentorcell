@@ -45,7 +45,7 @@
 				  </td>
 				  <td><?php echo $types['type_name'];?></td>
                   <td><?php echo $types['type_code'];?></td>
-                  <td><?php echo ($types['status']==1)?"Yes":"No";?>   </td>
+                  <td><?php echo ($types['status']==1)?"Active":"Inactive";?>   </td>
                   <td><a href="<?php echo base_url()."admin/types/edit/".$types['type_id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/types/delete/".$types['type_id'];?>">Delete</a></td>
                </tr>
                <?php }?>

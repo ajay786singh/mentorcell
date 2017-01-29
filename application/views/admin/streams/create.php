@@ -26,28 +26,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Stream Name</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" name="stream_name" id="stream_name" value="<?php echo @$stream_name['value']; ?>" placeholder="Enter College Name">
+										  <input type="text" class="form-control" required="" name="stream_name" id="stream_name" value="<?php echo @$stream_name['value']; ?>" placeholder="Enter Stream Name i.e. science & engineering">
 										  </div>
 										</div>
 										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Stream Code</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" name="stream_code" id="stream_code" value="<?php echo @$stream_code['value']; ?>" placeholder="Enter College Code">
+										  <input type="text" class="form-control" required="" name="stream_code" id="stream_code" value="<?php echo @$stream_code['value']; ?>" placeholder="Enter Stream Code or same as name">
 										  </div>
 										</div>
 										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Stream Description</label>
 										  <div class="col-sm-10">
-										  <textarea class="form-control" required="" name="stream_description" placeholder="Enter College Description"><?php echo @$stream_description['value']; ?></textarea>
+										  <textarea class="form-control" required="" name="stream_description" placeholder="Enter Stream Description"><?php echo @$stream_description['value']; ?></textarea>
 										  </div>
 										</div>
 										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Stream Logo</label>
 										  <div class="col-sm-10">
-										  <input type="file" class="form-control"  name="stream_logo" id="stream_logo" value="" placeholder="Enter College Code">
+										  <input type="file" class="form-control"  name="stream_logo" id="stream_logo" value="" placeholder="Add Stream Logo">
 										  </div>
 										</div>
 										

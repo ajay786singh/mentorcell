@@ -19,7 +19,10 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-                 <h3 class="box-title"><?php echo anchor('admin/colleges/create', '<i class="fa fa-plus"></i> Add New College', array('class' => 'btn btn-block btn-primary btn-flat')); ?></h3>
+                <?php echo anchor('admin/colleges/create', '<i class="fa fa-plus"></i> Add New College', array('class' => 'btn  btn-primary btn-flat')); ?>
+				 
+				 <?php echo anchor('admin/colleges/import', '<i class="fa fa-plus"></i> Export from Excel', array('class' => 'btn  btn-primary btn-flat pull-right')); ?>
+				 
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -31,7 +34,6 @@
                   <th>College Name</th>
                   <th>Contact Person</th>
                   <th>Email</th>
-                  <th>Mobile</th>
                   <th>Address</th>
                    <th>Manage</th>
                 </tr>
@@ -44,7 +46,6 @@
                   <td><?php echo $college_list['name'];?></td>
                   <td><?php echo $college_list['contact_person_name'];?>   </td>
                   <td><?php echo $college_list['email_id'];?></td>
-                  <td><?php echo $college_list['phone'];?></td>
                   <td><?php echo $college_list['address'];?><br/><?php
 					$city = $this->common_model->get_single_row("cities", "id",$college_list['city']);
 					$state = $this->common_model->get_single_row("states", "id",$college_list['state']);
@@ -62,7 +63,6 @@
                   <th>College Name</th>
                   <th>Contact Person</th>
                   <th>Email</th>
-                  <th>Mobile</th>
                   <th>Address</th>
                    <th>Manage</th>
                 </tr>

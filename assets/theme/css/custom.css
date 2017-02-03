@@ -1,21 +1,26 @@
-body {background: #b9b9b9;}
+body {background: #b9b9b9; font-family: 'ubunturegular';}
 
-h1, h2, h3, h4, h5, h6, ol, ul, li {margin: 0px; padding: 0px; list-style-type: none; font-weight: normal;}
+h1, h2, h3, h4, h5, h6, ol, ul, li, form, label, strong {margin: 0px; padding: 0px; list-style-type: none; font-weight: normal;}
 a, input, button, *:focus {outline: none;}
 
 a:hover {text-decoration: none;}
 
 #mainContainer {margin: 0 auto; background: #fff;}
 
-#header, .mainMenu, .homeSlider, .homeSlider .searchArea .searchNav,
+#mainContainer, #header, .mainMenu, .homeSlider, .homeSlider .searchArea .searchNav,
 .homeSlider .searchArea .formHolder, .homeSlider .searchArea .searchForm,
 .featureSlider, .containerBox, .stepsRow, .youTubePlayer, .careerCol, .youtubeThumb,
-.managementArea, .popularCourses, .contactForm, .footerSection, .footerTop, .footerBottom, .footerWidget,
+.managementArea, .popularCourses, .quickContact, .contactForm, .footerSection, .footerTop, .footerBottom, .footerWidget,
 #loginModal .loginForm, #loginModal .loginForm .inputRow, #registerModal .regForm, #registerModal .regForm .inputRow,
-.mainMenu .subMenuArea .subMenuLeft ol li {width: 100%; float: left; clear: both;}
+.mainMenu .subMenuArea .subMenuLeft ol li, .collegeHead, .informationList, .collegeFilter, .collegeFilterBox.toggleFilter .toggleItems,
+ .collegeFilterBox,
+.filterItems, .locationSearch, .collegeResultBox, .collegeResultBox .collegeTop,
+.collegeResultBox .collegeMiddle, .collegeResultBox .collegeBottom, .pagination,
+.collegeHead .collegeQuick, .addmisionProcedure, .collegeReviewTop, .collegeReviewBox {width: 100%; float: left; clear: both;}
 
 header#header {background:#15202f; position: relative; z-index:20; height: 55px;}
 header#header .logo {padding: 10px 0px 0px 0px;}
+
 
 .mainMenu {text-align: center; position: relative;}
 .mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 11px; padding: 20px 0px; margin: 0px 10px;}
@@ -83,13 +88,14 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .homeSlider .searchArea .formHolder .autoComplete ul li {display: block; cursor: pointer; font-size: 13px; color: rgba(0,0,0,0.54); padding: 6px 4px;}
 .homeSlider .searchArea .formHolder .autoComplete ul li:hover {background: rgba(0,0,0,0.05);}
 
-.featureSlider {background:#e4e9f3; padding: 15px 50px; position: relative; z-index: 2;}
+.featureSlider {background:#e4e9f3; padding:0px 50px; position: relative; z-index: 2;}
+.featureSlider .row {position: relative; padding-top: 15px; padding-bottom: 15px;}
 .featureSlider .featureHeading {position: absolute; top:0px; left: 0px; width: 40px; height: 100%; z-index: 10; background: #fff; font-size: 15px; color: rgba(0,0,0,0.87);}
 .featureSlider .featureHeading:before {content: 'Featured'; display: block; transform: rotate(-90deg) translate(-45px, 0px);}
 .featureSlider .featureLogo {width: 60px; display: inline-block; margin: 0px 10px 0px 0px; vertical-align: middle;}
 .featureSlider .featureLogo img {max-width: 100%; height: auto;}
 .featureSlider .featureText {width: calc(100% - 75px); display: inline-block; vertical-align: middle;}
-.featureSlider .featureText h3 {font-size: 20px; margin: 0px 0px 3px 0px; color: rgba(0,0,0,0.87);}
+.featureSlider .featureText h3 {font-size: 21px; margin: 0px 0px 3px 0px; color: rgba(0,0,0,0.87);}
 .featureSlider .featureText p {margin: 0px; color:rgba(0,0,0,0.54); font-size: 15px;}
 
 .featureSlider .bx-wrapper .bx-controls-direction a {width: 50px; height: 90px; right:-50px; margin: 0px; top:-15px; color: rgba(0,0,0,0.54); background: #d7dce8;}
@@ -105,8 +111,8 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .sectionHeading.whiteColor {color:#fff;}
 .sectionHeading.whiteColor:before {background: #fff;}
 
-.bgWhite {background: #fff;}
-.bgGrey {background:#f3f3f6;}
+.bgWhite {background: #fff; width: 100%; float: left; clear: both;}
+.bgGrey {background:#f3f3f6; width: 100%; float: left; clear: both;}
 .bgManagement {background: url('../images/imgbg1.jpg') no-repeat; background-size: cover;}
 .bgCourses {background: #ffa081;}
 .bgAbroad {background: url('../images/imgbg1.jpg') no-repeat; background-size: cover;}
@@ -159,7 +165,7 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .studyAbroad ul li .abroadIcon {text-align: center;}
 .studyAbroad ul li .abroadName {width: 100%; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; color: rgba(0,0,0,0.87); padding: 10px 0px 0px 0px; overflow:hidden;}
 
-
+.quickContact {margin: 0px 0px 20px 0px;}
 .quickContact p {font-size: 14px; margin: 0px 0px 15px 0px; color: rgba(0,0,0,0.87);}
 .quickContact .quickButton {background:#f77a52; transition: all ease-in-out 0.3s; color: #fff; padding:10px 40px; float: left; clear: both; display: block; border-radius: 6px; text-decoration: none;} 
 .quickContact .quickButton:hover {background: rgba(0,0,0,0.87);}
@@ -212,14 +218,238 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 #registerModal .regRight {width:60%; display: table-cell; vertical-align: middle;}
 
 
-.footerTop {background: #5e5f85; padding:20px 50px;}
+.collegeHead {border-bottom: 1px solid rgba(0,0,0,0.15);}
+.collegeHead .containerBox {padding-bottom: 0px;}
+.collegeSearch {width: 100%; max-width: 600px; padding: 15px 0px; float: left; clear: both;}
+.collegeSearch input[type="text"] {width: calc(100% - 150px); padding: 5px 20px; color: rgba(0,0,0,0.87); font-size: 16px;  float: left; height: 40px; border: 1px solid #a4a9b5;}
+.collegeSearch input[type="submit"] {width:150px; font-size: 16px; color: #fff; float: left; height: 40px; background: #f77a52; border: none; cursor: pointer;}
+
+.collegeNav {padding: 15px 0px 0px 0px;}
+.collegeNav ul li {display: inline-block; font-size: 16px;}
+.collegeNav ul li a {display: block; color: rgba(0,0,0,0.54); padding: 5px 22px; border-bottom: 3px solid transparent;}
+.collegeNav ul li a:hover, .collegeNav ul li a.active {border-bottom: 3px solid #f77a52; color: #000;}
+
+
+.collegeHead .collegeThumb {background:#d8d8d8; border:1px solid #979797; margin: 0px 0px 20px 0px; min-height:90px; text-align: center;}
+.collegeHead .collegeThumb img {display: inline-block; max-width: 100%; height: auto;}
+
+.collegeHead .collegeQuick {margin: 0px 0px 15px 0px;}
+.collegeHead .collegeQuick h2 {font-size:18px; font-family: 'ubuntumedium'; display: block; margin: 0px 0px 8px 0px;}
+.collegeHead .collegeQuick h2 .reviewRating {display: inline-block; padding: 0px 0px 0px 10px; font-size:15px; letter-spacing: normal; color: #4d4d4d; font-weight: normal;}
+.collegeHead .collegeQuick h2 .reviewRating b {font-weight: normal; color: #f77a52;}
+.collegeHead .collegeQuick h3 {font-size: 15px; font-family: 'ubuntumedium'; color: rgba(0,0,0,0.54); margin: 0px;}
+
+.collegeHead .collegeQuick h4 {font-size:20px; color: rgba(0,0,0,0.54); font-family: 'ubuntumedium'; display: block; margin: 0px 0px 10px 0px;}
+.collegeHead .collegeQuick h4 .reviewRating {display: inline-block; padding: 0px 0px 0px 10px; font-size:18px; letter-spacing: normal; color: #4d4d4d; font-weight: normal;}
+.collegeHead .collegeQuick h4 .reviewRating b {font-weight: normal; color: #f77a52;}
+.collegeHead .collegeQuick h5 {font-size:28px; font-family: 'ubuntumedium'; color: rgba(0,0,0,0.87); margin: 0px 0px 5px 0px;}
+.collegeHead .collegeQuick h5 a {text-decoration: underline; font-size: 16px; margin: 0px 0px 0px 10px;}
+
+.informationList {border-bottom: 1px solid rgba(0,0,0,0.15); padding: 0px 0px 8px 0px; margin: 0px 0px 15px 0px;}
+.informationList h3 {display: block; margin: 0px 0px 10px 0px; font-size: 15px; font-family: 'ubuntumedium'; color: rgba(0,0,0,0.54);}
+.informationList p {font-size: 14px; color: rgba(0,0,0,0.87); margin: 0px 0px 12px 0px;}
+.informationList .bulletPoint {display: inline-block; position: relative; width: 8px; height: 8px; background: rgba(0,0,0,0.20); border-radius: 20px; margin: 0px 15px;}
+
+.informationList .recrutingLogo {display:block; float: left; border:1px solid rgba(0,0,0,0.30); text-align: center; vertical-align: middle; width:calc(16.66% - 6px); margin: 8px 3px;}
+.informationList .recrutingLogo img {display: inline-block; max-width: 100%; height: auto;}
+
+.informationList .viewMore {font-size: 14px;}
+
+.addmisionProcedure {margin: 0px 0px 10px 0px;}
+.addmisionProcedure h4 {font-size: 14px; margin: 0px; font-family: 'ubuntumedium';}
+.addmisionProcedure p {margin: 0px 0px 10px 0px; font-size: 14px; color: rgba(0,0,0,0.54);}
+
+.collegeReviewTop .averageRating {display: inline-block; font-size: 13px; vertical-align: middle; margin: 0px 0px 8px 0px; font-family: 'ubuntumedium'; color: rgba(0,0,0,0.87);}
+.collegeReviewTop .ratingBox {display: inline-block; font-size: 13px; line-height: 11px; margin: 0px 10px 8px 10px; padding:5px 8px; border-radius: 5px; vertical-align: middle;  color:#fff;}
+.collegeReviewTop .ratingBox i {float: left; font-size: 12px; margin: 0px 3px 0px 0px;}
+.collegeReviewTop .ratingBox.green {background:#4ba43f;}
+.collegeReviewTop .ratingBox.yellow {background:#eadc6a;}
+.collegeReviewTop .ratingBox.red {background:#e05050;}
+
+.collegeReviewTop .recommendThis {display: inline-block; border-left: 2px solid rgba(0,0,0,0.20); padding: 0px 0px 0px 10px; font-size: 13px; vertical-align: middle; color: rgba(0,0,0,0.54); margin: 0px 0px 8px 0px;}
+.collegeReviewTop .recommendThis i {color:#f77a52; font-size: 15px; float: left; margin: 0px 4px 0px 0px;}
+
+.collegeReviewTop .collegeSort label {padding: 1px 0px; font-size: 13px;}
+.collegeReviewTop .collegeSort .customSelect {width: 145px;}
+.collegeReviewTop .collegeSort .customSelect select {font-size: 12px; padding: 2px; height: 22px;}
+.collegeReviewTop .collegeSort .customSelect i {font-size: 7px; top: 9px;}
+
+.collegeReviewBox {border: 1px solid rgba(0,0,0,0.30);  padding: 15px 0px; margin: 10px 0px 5px 0px; border-radius: 6px;}
+
+.collegeReviewBox .ratingName {display: inline-block; font-size: 16px; vertical-align: middle; margin: 0px 0px 8px 0px; color: rgba(0,0,0,0.87);}
+.collegeReviewBox .ratingClass {display: inline-block; font-size: 13px; vertical-align: middle; margin: 0px 0px 8px 10px; color: rgba(0,0,0,0.54);}
+.collegeReviewBox .ratingBox {display: inline-block; font-size: 13px; line-height: 11px; margin: 0px 10px 8px 10px; padding:5px 8px; border-radius: 5px; vertical-align: middle;  color:#fff;}
+.collegeReviewBox .ratingBox i {float: left; font-size: 12px; margin: 0px 3px 0px 0px;}
+.collegeReviewBox .ratingBox.green {background:#4ba43f;}
+.collegeReviewBox .ratingBox.yellow {background:#eadc6a;}
+.collegeReviewBox .ratingBox.red {background:#e05050;}
+.collegeReviewBox .recommendThis {display: inline-block; border-left: 2px solid rgba(0,0,0,0.20); padding: 0px 0px 0px 10px; font-size: 13px; vertical-align: middle; color: rgba(0,0,0,0.54); margin: 0px 0px 8px 0px;}
+.collegeReviewBox .recommendThis i {color:#f77a52; font-size: 15px; float: left; margin: 0px 4px 0px 0px;}
+
+
+.collegeReviewBox p {font-size: 13px; margin: 0px 0px 10px 0px;}
+.collegeReviewBox ul {margin: 0px; padding: 0px; float: left; width: 100%;}
+.collegeReviewBox ul li {display: block; float: left; width: 100%; clear: both; margin: 0px 0px 6px 0px;}
+.collegeReviewBox ul li .ratingLabel {width:65%; float: left; font-size: 13px;}
+.collegeReviewBox ul li .ratingstars {float: right; width: 35%; font-size: 15px;}
+.collegeReviewBox ul li .ratingstars i {color:#b8b8b8;}
+.collegeReviewBox ul li .ratingstars i.fill {color:#f8ab54;}
+
+.sectionGap, .videoDiscription, .liststyletyep, .collegeRankRating,
+.collegeSidenav ul, .collegeSidenav ul li .subMenu, .collegeSidenav .downloadBro, .collegeSidenav .askQuestion,
+.collegeVideoSlide, .coursesOffer, .coursesOffer h3, .coursesOffer .subCourses, .heading1, .heading2 {width: 100%; float: left; clear: both;}
+.sectionGap {margin: 0px 0px 20px 0px;}
+
+.heading1 {background: rgba(0,0,0,0.10); font-family: 'ubuntumedium'; padding:5px 15px; font-size: 16px; color: rgba(0,0,0,0.87); margin: 0px 0px 15px 0px;}
+.heading2 {font-family: 'ubuntumedium'; padding:5px 0px; font-size: 14px; color: rgba(0,0,0,0.54); border-bottom: 1px solid rgba(0,0,0,0.10); margin: 0px 0px 15px 0px;}
+
+.coursesOffer {border-bottom: 1px solid rgba(0,0,0,0.10); margin: 0px 0px 10px 0px;}
+.coursesOffer h3 {position: relative; font-family: 'ubuntumedium'; padding:10px 0px; font-size: 14px; color: rgba(0,0,0,0.87); margin: 0px 0px 10px 0px;}
+.coursesOffer h3 span.collegeClose {position: absolute; cursor: pointer; font-family: "mentorcell"; display: block; width: 30px; height: 35px; right: 0px; top:0px; text-align: center; line-height: 35px;}
+.coursesOffer h3 span.collegeClose:before {content: "\73"; }
+.coursesOffer h3.active span.collegeClose:before {content: "\72";}
+.coursesOffer h4 {font-size: 14px; padding: 5px 8px; display:inline-block; color: rgba(0,0,0,0.54); margin: 0px 10px 10px 0px; cursor: pointer;}
+.coursesOffer h4:hover, .coursesOffer h4.active {background: rgba(0,0,0,0.05);}
+.coursesOffer h4 span {color: #f77a52;}
+.coursesOffer ul {display: none; float: left; clear: both; margin: 0px 0px 10px 0px;}
+.coursesOffer ul.active {display: block;}
+.coursesOffer ul li {list-style-type:disc; float:left; width: 100%; clear: both; margin: 0px 0px 5px 20px; color: rgba(0,0,0,0.54); padding: 0px 10px 0px 0px;}
+.coursesOffer ul li a {color: #1a61c3;}
+.coursesOffer ul li a:hover {color: #000;}
+
+
+.liststyletyep {margin: 0px 0px 20px 0px;}
+.liststyletyep li {list-style-type: disc; margin: 0px 0px 10px 20px; color:rgba(0,0,0,0.54);}
+
+.collegeRankRating {text-align: center;}
+.collegeRankRating .rankingCol {display: inline-block; width: 30%;}
+.collegeRankRating .rankingCol .title {font-size: 13px; margin: 0px 0px 10px 0px; color: rgba(0,0,0,0.54); display: block;}
+.collegeRankRating .rankingCol .circle {width: 50px; font-size: 20px; font-family: 'ubuntumedium'; height: 50px; display: inline-block; line-height: 50px; color: #f77a52; border:1px solid #f77a52; border-radius: 100px;}
+
+.collegeSidenav ul {margin: 0px 0px 20px 0px;}
+.collegeSidenav ul li {font-size: 14px; display: block; clear: both; float: left; margin: 0px 0px 8px 0px;}
+.collegeSidenav ul li a {color: rgba(0,0,0,0.54);}
+.collegeSidenav ul li a:hover, .collegeSidenav ul li a.active {color: rgba(0,0,0,0.87); font-family: 'ubuntumedium';}
+.collegeSidenav ul li .subMenu {padding: 5px 0px 0px 0px;}
+.collegeSidenav ul li .subMenu ol li {font-size: 12px; margin: 0px 0px 5px 0px;}
+.collegeSidenav ul li .subMenu ol li a {display: block; padding: 0px 0px 0px 12px; border-left: 3px solid transparent;}
+.collegeSidenav ul li .subMenu ol li a:hover,
+.collegeSidenav ul li .subMenu ol li a.active {border-left:3px solid #f77a52;}
+
+.collegeSidenav .downloadBro {display: block; box-shadow:3px 3px 6px rgba(0,0,0,0.40); margin: 0px 0px 20px 0px; background:#f77a52; color: #fff; font-size: 15px; transition: all ease-in-out 0.3s; text-align: center; border-radius:6px; padding: 10px 0px;}
+.collegeSidenav .downloadBro:hover {background: #000; color: #fff;}
+
+.collegeSidenav .askQuestion {display: block; box-shadow:3px 3px 6px rgba(0,0,0,0.40); margin: 0px 0px 20px 0px; background:#ffffd4; color:rgba(0,0,0,0.54); font-size: 15px; transition: all ease-in-out 0.3s; text-align: center; border-radius:6px; padding: 10px 0px;}
+.collegeSidenav .askQuestion:hover {background: #000; color: #fff;}
+
+
+.videoDiscription h4 {font-size: 16px; font-family: 'ubuntumedium'; margin: 0px 0px 5px 0px; color: rgba(0,0,0,0.87);}
+.videoDiscription p {font-size: 14px; margin: 0px 0px 10px 0px; color: rgba(0,0,0,0.54);} 
+
+.collegeVideoSlide {position: relative; padding: 0px 20px;}
+
+.collegeVideoSlide .bx-wrapper .bx-controls-direction a {background: none; text-indent: 0px;}
+
+.collegeVideoSlide .bx-wrapper .bx-prev {left:-20px; width: 20px;}
+.collegeVideoSlide .bx-wrapper .bx-next {right:-20px; width: 20px;}
+
+.collegeVideoSlide .bx-wrapper .bx-prev:before {font-family: "mentorcell"; color: #000; font-size: 23px; line-height: 31px; left: 0px; content: "\70";}
+.collegeVideoSlide .bx-wrapper .bx-next:before {font-family: "mentorcell"; color: #000; font-size: 23px; line-height: 31px; right: 0px; content: "\71";}
+
+.collegeSearchCount {font-size: 16px; padding: 5px 0px;}
+.collegeSearchCount strong {font-family: 'ubuntumedium'; font-weight: normal;}
+
+.collegeSort label {padding:6px 0px; font-weight: normal; font-family: 'ubuntumedium'; font-size: 14px; color: rgba(0,0,0,0.54); display: block; float: left; margin: 0px 10px 0px 0px;}
+.collegeSort .customSelect {position: relative; width: 195px; border: 1px solid rgba(0,0,0,0.30); border-radius:4px; float: left; overflow: hidden;}
+.collegeSort .customSelect i {font-size: 10px; position: absolute; right: 10px; top:12px; z-index: 1;}
+.collegeSort .customSelect select {height:30px; padding: 6px; border: none; background: none; font-size: 14px; width: calc(100% + 30px); position: relative; z-index: 3;}
+
+.collegeFilter {border:1px solid #979797; margin: 0px 0px 20px 0px;}
+.collegeFilter h3 {display:block; clear: both; font-size: 16px; color:#fff; background: #15202f; font-family: 'ubuntumedium'; padding: 10px;}
+
+.collegeFilterBox {padding: 10px; border-bottom: 1px solid #dbdbdb;}
+.collegeFilterBox h4 {display: block; margin: 0px 0px 10px 0px; font-family: 'ubuntumedium'; font-size: 14px; position: relative;}
+.collegeFilterBox h4 span {display: block; float: right; font-size: 12px; color: #3656aa; cursor: pointer; padding: 2px 0px 0px 0px;}
+.collegeFilterBox h4 span i {float: left; display: block; margin:0px 3px 0px 0px;}
+
+.collegeFilterBox.toggleFilter {padding: 0px 0px;}
+
+.collegeFilterBox.toggleFilter h4 {margin: 10px; padding-right: 30px; cursor: pointer;}
+.collegeFilterBox.toggleFilter h4 b {float: right; position: absolute; width: 25px; height: 25px; top: -5px; right:0px; display: block; cursor: pointer; font-weight: normal; line-height: 25px; text-align: center;}
+.collegeFilterBox.toggleFilter h4 b:before {position: absolute; display: block; font-family: "mentorcell"; content: "\73";  left:5px; font-size: 14px;}
+.collegeFilterBox.toggleFilter.active h4 b:before {content: "\72";}
+.collegeFilterBox.toggleFilter .toggleItems {background:#eef1f4; padding: 10px; display: none;}
+
+
+.filterItems {max-height: 150px;}
+.filterItems ul li {font-size: 12px; display: block; line-height: normal; padding: 4px 0px; position: relative;}
+.filterItems ul li input {position: absolute; opacity: 0; visibility: hidden;}
+.filterItems ul li label {display: block; position: relative; padding: 0px 0px 0px 22px;}
+.filterItems ul li label:before {content:''; width:13px; height:13px; left: 0px; top: 0px; border:1px solid rgba(0,0,0,0.30); position: absolute; display: block;}
+.filterItems ul li input:checked + label:before {background:#f77a52;}
+
+.locationSearch {position: relative; margin:0px 0px 10px 0px;}
+.locationSearch input[type="text"] {width: 100%; font-size: 13px; padding: 4px; height: 28px;}
+.locationSearch input[type="submit"] {width: 30px; height: 28px; background: none; border:none; position: absolute; right: 0px; top: 0px; z-index: 4;}
+.locationSearch:after {font-family: "mentorcell"; content: "\6e"; font-size: 13px; position: absolute; z-index: 1; color: #000; top: 5px; right: 8px;}
+
+
+.collegeResultBox {margin: 0px 0px 20px 0px; border:1px solid #becad7; position: relative;}
+
+.collegeResultBox .collegeTop,
+.collegeResultBox .collegeMiddle, .collegeResultBox .collegeBottom {position: relative;}
+
+.collegeResultBox .collegeTop .collegeThumb {float:left; width:160px; text-align: center;}
+.collegeResultBox .collegeTop .collegeThumb img {max-width: 100%; height: auto;}
+.collegeResultBox .collegeTop .collegeName {float: left; width: calc(100% - 295px); padding:10px 15px;}
+.collegeResultBox .collegeTop .collegeName h3 {margin: 0px 0px 10px 0px; font-size: 16px;}
+.collegeResultBox .collegeTop .collegeName h4 {margin: 0px; font-size: 14px; color: rgba(0,0,0,0.54);}
+.collegeResultBox .collegeTop .viewCollege {position: absolute; top: 15px; right: 15px; width: 120px;}
+.collegeResultBox .collegeTop .viewCollege a {background:#f77a52; color: #fff; padding: 5px; text-align: center; display: block; border-radius: 6px; transition: all ease-in-out 0.3s}
+.collegeResultBox .collegeTop .viewCollege a:hover {background: #000;}
+
+.collegeResultBox .collegeMiddle {padding: 15px 0px; background:#eef1f4; border-top:1px solid #becad7; border-bottom:1px solid rgba(0,0,0,0.10); }
+.collegeResultBox .collegeMiddle h3 {color: #3757ab; font-size: 15px; margin: 0px 0px 5px 0px;}
+.collegeResultBox .collegeMiddle h3 span {display: inline-block; color:#f77a52; padding: 0px 0px 0px 5px; font-style: italic; }
+.collegeResultBox .collegeMiddle h4 {color:rgba(0,0,0,0.54); font-size: 14px; margin: 0px 0px 15px 0px;}
+
+.collegeResultBox .collegeMiddle ul li {display:block; float: left; font-size: 14px; padding:0px 15px; border-left:1px solid rgba(0,0,0,0.20);}
+.collegeResultBox .collegeMiddle ul li:first-child {border: none; padding-left: 0px;}
+.collegeResultBox .collegeMiddle ul li span {display: block; font-size: 12px; font-family: 'ubuntumedium'; color: rgba(0,0,0,0.54);}
+
+.collegeResultBox .collegeMiddle .moreCourses {display: block; float: left; font-size: 14px; margin: 15px 0px 0px 0px; clear: both; background: #d6e2ef; border-radius: 5px; padding: 3px 8px; color: #3757ab; transition: all ease-in-out 0.3s;}
+.collegeResultBox .collegeMiddle .moreCourses:hover {background: #000; color: #fff;}
+
+.collegeResultBox .collegeMiddle ol li {font-size: 13px; display: block; margin: 0px 0px 10px 0px; color: #3757ab;}
+.collegeResultBox .collegeMiddle ol li a {color: #3757ab;}
+.collegeResultBox .collegeMiddle ol li a:hover {color: #000;}
+.collegeResultBox .collegeMiddle ol li i {font-size: 16px; float: left; margin: 0px 5px 0px 0px;}
+
+.collegeResultBox .collegeBottom {background: #eef1f4; padding: 10px 15px;}
+.collegeResultBox .collegeBottom ul {float: right;}
+.collegeResultBox .collegeBottom ul li {float: left; padding: 0px 0px 0px 15px; display: block; font-size: 14px;}
+.collegeResultBox .collegeBottom ul li a {color: rgba(0,0,0,0.54); transition: all ease-in-out 0.3s; min-width: 100px; display: block; padding: 4px 10px; text-align: center;}
+.collegeResultBox .collegeBottom ul li a i {font-size: 16px; float: left; margin: 0px 4px 0px 0px;}
+.collegeResultBox .collegeBottom ul li a.button2 {background:#fff; border-radius: 5px;  border: 1px solid rgba(0,0,0,0.15);} 
+.collegeResultBox .collegeBottom ul li a.button3 {background:#ffffd4; border-radius: 5px;  border: 1px solid rgba(0,0,0,0.15);}
+
+.collegeResultBox .collegeBottom ul li a.button2:hover,
+.collegeResultBox .collegeBottom ul li a.button3:hover {background:#f77a52; color: #fff;}
+
+.pagination {text-align: center;}
+.pagination ul li {display: inline-block;  text-align: center;  font-size: 13px;}
+.pagination ul li a {display: block; width:30px; height:30px; line-height:30px; border:1px solid rgba(0,0,0,0.20); color: rgba(0,0,0,0.54);}
+.pagination ul li a:hover, .pagination ul li span.active {display: block; width:30px; height:30px; line-height:30px; background:#f77a52; border:1px solid #f77a52; color:#fff;}
+
+.footerSection {background: #232440;}
+.footerTop {padding:30px 50px; border-bottom: 1px solid #30314b;}
 .footerTop .footerWidget {padding:0px;}
 .footerTop .footerWidget h3 {color: #fff; margin: 0px 0px 8px 0px; font-size:16px;}
 .footerTop .footerWidget p {margin: 0px 0px 8px 0px; font-size: 12px; color:#fff;}
 .footerTop .footerWidget ul li {font-size: 12px; display: block; margin: 0px 0px 5px 0px;}
 .footerTop .footerWidget ul li a {color: #fff;}
 
-.footerBottom {background:#505178; padding:20px 65px;}
+.footerBottom {padding:30px 65px;}
 .footerBottom p {margin: 0px 0px 6px 0px; color: #fff; font-size: 12px; letter-spacing:1px;}
 .footerBottom p:last-child {margin: 0px;}
 .footerBottom p a {color: #fff;}

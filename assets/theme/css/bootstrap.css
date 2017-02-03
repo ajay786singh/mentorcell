@@ -5,7 +5,6 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -1082,7 +1081,6 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
@@ -1588,19 +1586,16 @@ pre code {
   margin-left: auto;
 }
 @media (min-width: 768px) {
-  #mainContainer {width: 750px;}
   .container {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  #mainContainer {width: 970px;}
   .container {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
-  #mainContainer {width:1170px;}
   .container {
     width: 1170px;
   }

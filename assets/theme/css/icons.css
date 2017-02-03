@@ -62,3 +62,45 @@
 .icon-phone-call:before {
   content: "\68";
 }
+.icon-bars:before {
+  content: "\69";
+}
+.icon-cw:before {
+  content: "\6a";
+}
+.icon-play-circle:before {
+  content: "\6b";
+}
+.icon-star:before {
+  content: "\6c";
+}
+.icon-download:before {
+  content: "\6d";
+}
+.icon-search:before {
+  content: "\6e";
+}
+.icon-camera:before {
+  content: "\6f";
+}
+.icon-caret-left:before {
+  content: "\70";
+}
+.icon-caret-right:before {
+  content: "\71";
+}
+.icon-caret-down:before {
+  content: "\72";
+}
+.icon-caret-up:before {
+  content: "\73";
+}
+.icon-star-1:before {
+  content: "\74";
+}
+.icon-thumbs-up:before {
+  content: "\75";
+}
+.icon-thumbs-down:before {
+  content: "\76";
+}

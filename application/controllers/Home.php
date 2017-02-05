@@ -192,15 +192,21 @@ class Home extends Public_Controller {
 		}else{
 			$this->data['user_login'] = array('id'=>false);
 		}
-		$query = array();
-		
-		//$this->college['colleges'] = $this->college_model->search_result_course($query);
-		
-		$this->college['college'] = $this->college_model->search_result_college($query);
 		
 		
 		$this->load->view('public/layout/header', $this->data);
-		$this->load->view('public/college', $this->college);
+		
+		$query = array();
+		if(isset($_GET['course'])){
+			$query['course'] = $_GET['course'];
+			$this->college['colleges'] = $this->college_model->search_result_course($query);
+			$this->load->view('public/search', $this->college);
+		}else{
+			$query['college'] = $_GET['college'];
+			$this->college['college'] = $this->college_model->search_result_college($query);
+			$this->load->view('public/college', $this->college);
+			
+		}
 		$this->load->view('public/layout/footer', $this->data);
 		
 	}	

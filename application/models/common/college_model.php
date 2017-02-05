@@ -55,7 +55,7 @@ class College_model extends CI_Model {
 		$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
 		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');
 		/**/
-		//$this->db->where('ca.name', "new coollege");$query['course']
+		$this->db->where('ca.course_id', $query['course'];
 		$result = $this->db->get()->result_object();
 		return $result;
 	}

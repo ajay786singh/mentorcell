@@ -135,6 +135,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$("#assign_courses").click(function(e){
 			e.preventDefault();
 			var college_id = $("#college_id").val();
+			var clg_course_id = $("#clg_course_id").val();
 			var title = $("#title").val();
 			var duration = $("#duration").val();
 			var recognition = $("#recognition").val();
@@ -147,7 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				type: "POST",
 				url: base_url+"index.php/admin/colleges/save_assigncourses",
 				dataType: 'text',
-				data: {college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,exam:exam,assigned_id:assigned_id},
+				data: {clg_course_id:clg_course_id,college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,exam:exam,assigned_id:assigned_id},
 				success: function(res) {
 					$("#message").show().html('<p>'+res+'</p>');
 				}

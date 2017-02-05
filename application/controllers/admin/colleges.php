@@ -384,6 +384,8 @@ class Colleges extends Admin_Controller {
 	public function save_assigncourses()
 	{
 		$college_id = $this->input->post('college_id');
+		$clg_course_id = $this->input->post('clg_course_id');
+		
 		$title = $this->input->post('title');
 		$duration = $this->input->post('duration');
 		$recognition = $this->input->post('recognition');
@@ -393,6 +395,7 @@ class Colleges extends Admin_Controller {
 		$assigned_id = $this->input->post('assigned_id');
 		
 		$course['college_id'] = $college_id;
+		$course['course_id'] = $clg_course_id;
 		$course['title'] = $title;
 		$course['duration'] = $duration;
 		$course['recognition'] = $recognition;

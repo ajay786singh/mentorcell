@@ -246,6 +246,12 @@
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.bxslider.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/custom.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/ajaxcalls.js'); ?>"></script>
+	
+	<link href="<?php echo base_url('assets/theme/css/chosen.min.css'); ?>" rel="stylesheet" />
+	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/chosen.jquery.min.js'); ?>"></script>
+	<script type="text/javascript">
+	$(".auto-choice").chosen();
+	</script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

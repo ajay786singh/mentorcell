@@ -489,7 +489,7 @@ class Colleges extends Admin_Controller {
 		$college_id = $this->input->post('college_id');
 		
 		try{
-		$this->common_model->delete("mc_college_relations","collge_id",$college_id);
+		$this->common_model->deletecolumn("mc_college_relations","college_id",$college_id);
 		}catch(Exception $e){
 			
 		}
@@ -499,7 +499,7 @@ class Colleges extends Admin_Controller {
 		$dstream = array();
 		foreach($streams as $stream){
 			$dstream['term_name'] = 'stream';
-			$dstream['collge_id'] = $college_id;
+			$dstream['college_id'] = $college_id;
 			$dstream['term_id'] = $stream;
             $this->common_model->insert($dstream,"mc_college_relations");
 		}
@@ -509,7 +509,7 @@ class Colleges extends Admin_Controller {
 		$dtype = array();
 		foreach($types as $type){
 			$dtype['term_name'] = 'type';
-			$dtype['collge_id'] = $college_id;
+			$dtype['college_id'] = $college_id;
 			$dtype['term_id'] = $type;
             $this->common_model->insert($dtype,"mc_college_relations");
 		}
@@ -519,7 +519,7 @@ class Colleges extends Admin_Controller {
 		$dcourse = array();
 		foreach($courses as $course){
 			$dcourse['term_name'] = 'course';
-			$dcourse['collge_id'] = $college_id;
+			$dcourse['college_id'] = $college_id;
 			$dcourse['term_id'] = $course;
             $this->common_model->insert($dcourse,"mc_college_relations");
 		}

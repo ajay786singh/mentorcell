@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</div>
 										</div>
 										
-										<div class="form-group">
+										<!--<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Type</label>
 										  <div class="col-sm-10">
 										  <select  class="form-control" required="" name="type" question_id="type" >
@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  } ?>
 										  </select>
 											</div>
-										</div>
+										</div>-->
 										
                                         <div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Question</label>
@@ -84,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <div class="btn-group">
                                                     <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-primary btn-flat', 'content' => lang('actions_submit'))); ?>
                                                     <?php echo form_button(array('type' => 'reset', 'class' => 'btn btn-warning btn-flat', 'content' => lang('actions_reset'))); ?>
-                                                    <?php echo anchor('admin/users', lang('actions_cancel'), array('class' => 'btn btn-default btn-flat')); ?>
+                                                    <?php echo anchor('admin/questionnaire', lang('actions_cancel'), array('class' => 'btn btn-default btn-flat')); ?>
                                                 </div>
                                             </div>
                                         </div>

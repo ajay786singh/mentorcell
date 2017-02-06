@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Questionnaire extends Admin_Controller {
+class Answers extends Admin_Controller {
 
     public function __construct()
     {
@@ -12,7 +12,7 @@ class Questionnaire extends Admin_Controller {
 
         /* Title Page :: Common */
         $this->page_title->push(lang('menu_users'));
-        $this->data['pagetitle'] = '<h1>Questionnaire</h1>';
+       
 
         /* Breadcrumbs :: Common */
         $this->breadcrumbs->unshift(1, lang('menu_users'), 'admin/streams');
@@ -24,29 +24,36 @@ class Questionnaire extends Admin_Controller {
     }
 
 
-	public function index()
+	public function index($question_id)
 	{
         if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
         {
             redirect('auth/login', 'refresh');
         }
         else
-        {
+        { 	
+			$question_detail = $this->common_model->get_single_row("mc_questionnaire",'question_id',$question_id);
+			$this->data['pagetitle'] = '<h1>Answers for question '.$question_detail['question'].'</h1>';
             /* Breadcrumbs */
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
             /* Load Template */
-			$this->data['questionnaire_list'] = $this->common_model->get_all("mc_questionnaire");
-            $this->template->admin_render('admin/questionnaire/index', $this->data);
+			$this->data['question_id'] = $question_id;
+			
+			$this->data['answer_list'] = $this->common_model->get_all_rows("mc_answers",'question_id',$question_id);
+            $this->template->admin_render('admin/answers/index', $this->data);
         }
 	}
 
 
-	public function create()
+	public function create($question_id)
 	{
+		$question_detail = $this->common_model->get_single_row("mc_questionnaire",'question_id',$question_id);
+		$this->data['pagetitle'] = '<h1>Answers for question '.$question_detail['question'].'</h1>';
 		/* Breadcrumbs */
         $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/streams/create');
         $this->data['breadcrumb'] = $this->breadcrumbs->show();
+		
 
         /* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
@@ -57,9 +64,8 @@ class Questionnaire extends Admin_Controller {
 		$this->load->library('upload', $config);
 
 		/* Validate form input */
-		$this->form_validation->set_rules('category_id', 'Category', 'required');
-		$this->form_validation->set_rules('question', 'Question', 'required');
-		$this->form_validation->set_rules('level_id', 'Level', 'required');
+		
+		$this->form_validation->set_rules('answer', 'Question', 'required');
 		// $this->form_validation->set_rules('type', 'Type', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 		
@@ -69,55 +75,56 @@ class Questionnaire extends Admin_Controller {
 			$this->data = array();
 			$this->data = $this->input->post();
 		}
-		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data,"mc_questionnaire"))
+		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data,"mc_answers"))
 		{
-            $this->session->set_flashdata('message', 'Questionnaire added successfully!');
-			redirect('admin/questionnaire', 'refresh');
+            $this->session->set_flashdata('message', 'Answers added successfully!');
+			redirect('admin/answers/index/'.$question_id, 'refresh');
 		}
 		else
 		{
             $this->data['message'] =  (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
-			$this->data['category_id']['value'] = $this->form_validation->set_value('category_id');
-			$this->data['question']['value'] = $this->form_validation->set_value('question');
-			$this->data['level_id']['value'] = $this->form_validation->set_value('level_id');
+			$this->data['answer_id']['value'] 	= $this->form_validation->set_value('answer_id');
+			$this->data['answer']['value'] 		= $this->form_validation->set_value('answer');
+			$this->data['question_id']['value'] 	= $this->form_validation->set_value('question_id');
 			// $this->data['type']['value'] 	= $this->form_validation->set_value('type');
 			if($this->form_validation->set_value('status')) {
 				$this->data['status']['value'] = $this->form_validation->set_value('status');
 			} else {
 				$this->data['status']['value'] = 1;
 			}
-			
-			$this->data['categories'] 	= $this->common_model->get_all_rows("mc_categories", 1,1);
-			$this->data['levels'] 		= $this->common_model->get_all_rows("mc_levels", 1,1);
+			$this->data['question_id'] = $question_id;
+			$this->data['categories'] 	= $this->common_model->get_all_rows("mc_answers", 1,1);
+			// $this->data['levels'] 		= $this->common_model->get_all_rows("mc_levels", 1,1);
 			// $this->data['types'] 		= array(1=>'Radio', 'Textbox', 'Checkbox');
             /* Load Template */
-            $this->template->admin_render('admin/questionnaire/create', $this->data);
+            $this->template->admin_render('admin/answers/create', $this->data);
         }
 
     }
 	
 
 
-	public function delete($question_id)
+	public function delete($question_id,$answer_id)
 	{
         /* Load Template */
 		$question_id = (int) $question_id;
+		$answer_id = (int) $answer_id;
 
 		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
 		{
 			redirect('auth', 'refresh');
 		}
 		
-				if($this->common_model->delete("mc_questionnaire","question_id",$question_id))
+				if($this->common_model->delete("mc_answers","answer_id",$answer_id))
 			    {
-                    $this->session->set_flashdata('message', 'Questionnaire Deleted!');
-					redirect('admin/questionnaire', 'refresh');
+                    $this->session->set_flashdata('message', 'Answers Deleted!');
+					redirect('admin/answers/index/'.$question_id, 'refresh');
 			    }
 			    else
 			    {
-					$this->session->set_flashdata('message', 'No Questionnaire found.');
-					redirect('admin/questionnaire', 'refresh');
+					$this->session->set_flashdata('message', 'No Answers found.');
+					redirect('admin/answers/index/'.$question_id, 'refresh');
 				}
 	}
 
@@ -125,7 +132,7 @@ class Questionnaire extends Admin_Controller {
 	public function edit($question_id)
 	{
         $question_id = (int) $question_id;
-
+		$question_detail = $this->common_model->get_single_row("mc_questionnaire",'question_id',$question_id);
 		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
 		{
 			redirect('auth', 'refresh');
@@ -137,16 +144,14 @@ class Questionnaire extends Admin_Controller {
 		$config['file_ext_tolower'] = TRUE;
 		$this->load->library('upload', $config);
         /* Breadcrumbs */
-        $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/questionnaire/edit');
+        $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/answers/edit');
         $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
         /* Data */
-		$questionnaire = $this->common_model->get_single_row("mc_questionnaire", "question_id", $question_id);
+		$answers = $this->common_model->get_single_row("mc_answers", "question_id", $question_id);
 		
 		/* Validate form input */
-		$this->form_validation->set_rules('category_id', 'Category', 'required');
-		$this->form_validation->set_rules('question', 'Question', 'required');
-		$this->form_validation->set_rules('level_id', 'Level', 'required');
+		$this->form_validation->set_rules('answer', 'Question', 'required');
 		// $this->form_validation->set_rules('type', 'Type', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 
@@ -159,22 +164,20 @@ class Questionnaire extends Admin_Controller {
 
 			if ($this->form_validation->run() == TRUE)
 			{
-				$data['category_id'] = $this->input->post('category_id');
-				$data['question'] = $this->input->post('question');
-				$data['level_id'] = $this->input->post('level_id');
+				$data['answer'] = $this->input->post('answer');
 				// $data['type']	 = $this->input->post('type');
 				
 				$data['status'] = $this->input->post('status');
 				
-                if($this->common_model->update("mc_questionnaire", $data, "question_id", $questionnaire['question_id']))
+                if($this->common_model->update("mc_answers", $data, "question_id", $answers['question_id']))
 			    {
-                    $this->session->set_flashdata('message', 'Questionnaire data Updated!');
-					redirect('admin/questionnaire', 'refresh');
+                    $this->session->set_flashdata('message', 'Answers data Updated!');
+					redirect('admin/answers/index/'.$question_id, 'refresh');
 			    }
 			    else
 			    {
                     $this->session->set_flashdata('message', $this->ion_auth->errors());
-						redirect('admin/questionnaire', 'refresh');
+						redirect('admin/answers/index/'.$question_id, 'refresh');
 					
 			    }
 			}
@@ -182,21 +185,22 @@ class Questionnaire extends Admin_Controller {
 
 		// display the edit user form
 		$this->data['csrf'] = $this->_get_csrf_nonce();
-		$this->data['questionnaire'] = $questionnaire;
+		$this->data['answers'] = $answers;
 
 		// set the flash data error message if there is one
 		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
-		$this->data['category_id']['value'] = $this->form_validation->set_value('category_id',$questionnaire['category_id']);
-		$this->data['question']['value'] = $this->form_validation->set_value('question',$questionnaire['question']);
-		$this->data['level_id']['value'] = $this->form_validation->set_value('level_id',$questionnaire['level_id']);
-		$this->data['status']['value'] = $this->form_validation->set_value('status',$questionnaire['status']);
-		$this->data['categories'] 	= $this->common_model->get_all_rows("mc_categories", 1,1);
-		$this->data['levels'] 		= $this->common_model->get_all_rows("mc_levels", 1,1);
+		$this->data['answer_id']['value'] 	= $this->form_validation->set_value('answer_id',$answers['answer_id']);
+		$this->data['answer']['value'] 		= $this->form_validation->set_value('answer',$answers['answer']);
+		$this->data['question_id'] 			= $question_id;
+		$this->data['status']['value'] 		= $this->form_validation->set_value('status',$answers['status']);
+		$this->data['answers'] 				= $this->common_model->get_all_rows("mc_answers", 1,1);
+		$this->data['pagetitle'] 			= '<h1>Answers for question '.$question_detail['question'].'</h1>';
+		// $this->data['levels'] 		= $this->common_model->get_all_rows("mc_levels", 1,1);
 		// $this->data['types'] 		= array(1=>'Radio', 'Textbox', 'Checkbox');
 			
         /* Load Template */
-		$this->template->admin_render('admin/questionnaire/edit', $this->data);
+		$this->template->admin_render('admin/answers/edit', $this->data);
 	}
 
 

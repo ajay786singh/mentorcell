@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-md-12">
                              <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title"><?php echo 'Add New Questionnaire'; ?></h3>
+                                    <h3 class="box-title"><?php echo 'Add New Answers'; ?></h3>
                                 </div>
                                 <div class="box-body">
                                     <?php echo $message;?>
@@ -29,50 +29,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				
 									?>
 
-                                    <?php echo form_open_multipart(current_url(), array('class' => 'form-horizontal', 'question_id' => 'form-create_stream'));
+                                    <?php echo form_open_multipart(current_url(), array('class' => 'form-horizontal', 'answer_id' => 'form-create_stream'));
 									
 									?>
 									
-										<div class="form-group">
-										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Category</label>
-										  <div class="col-sm-10">
-										  <select  class="form-control" required="" name="category_id" question_id="category_id" >
-										  <option value="">Select</option>
-										  <?php foreach($categories as $category){
-											  if($category['category_id']==@$category_id['value']){$type_id_seleted="selected";}else{$type_id_seleted="";}
-											  echo '<option '.$type_id_seleted.' value="'.$category['category_id'].'">'.$category['category_name'].'</option>';
-										  } ?>
-										  </select>
-											</div>
-										</div>
-										<div class="form-group">
-										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Level</label>
-										  <div class="col-sm-10">
-										  <select  class="form-control" required="" name="level_id" question_id="level_id" >
-										  <option value="">Select</option>
-										  <?php foreach($levels as $level){
-											  if($level['level_id']==@$level_id['value']){$type_id_seleted="selected";}else{$type_id_seleted="";}
-											  echo '<option '.$type_id_seleted.' value="'.$level['level_id'].'">'.$level['level'].'</option>';
-										  } ?>
-										  </select>
-											</div>
-										</div>
-										<!--<div class="form-group">
-										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Type</label>
-										  <div class="col-sm-10">
-										  <select  class="form-control" required="" name="type" question_id="type" >
-										  <option value="">Select</option>
-										  <?php foreach($types as $type){
-											  if($type==@$type['value']){$seleted="selected";}else{$seleted="";}
-											  echo '<option '.$seleted.' value="'.$type.'">'.$type.'</option>';
-										  } ?>
-										  </select>
-											</div>
-										</div>-->
+										
+										
                                         <div class="form-group">
-										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Question</label>
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Answer</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" name="question" question_id="question" value="<?php echo @$question['value']; ?>" placeholder="Enter Questionnaire Name">
+										  <input type="text" class="form-control" required="" name="answer" answer_id="answer" value="<?php echo @$answer['value']; ?>" placeholder="Enter Answer">
 										  </div>
 										</div>
 										
@@ -95,6 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div>
                                             </div>
                                         </div>
+										<input type='hidden' name='question_id' value="<?php echo $question_id;?>">
                                     <?php echo form_close();?>
                                 </div>
                             </div>

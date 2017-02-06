@@ -23,7 +23,7 @@
 				  <th>Category</th>
 				  <th>Question</th>
 				  <th>Level</th>
-				  <th>Type</th>
+				  <!--<th>Type</th>-->
                   <th>Status</th>
                   <th>Manage</th>
                 </tr>
@@ -45,9 +45,9 @@
 						echo $level['level'];
 					?>
 				  </td>
-				  <td><?php echo $questionnaire['type'];?></td>
+				  <!--<td><?php echo $questionnaire['type'];?></td>-->
                   <td><?php echo ($questionnaire['status']==1)?"Active":"Inactive";?>   </td>
-                  <td><a href="<?php echo base_url()."admin/questionnaire/edit/".$questionnaire['question_id'];?>">Edit</a> | <a href="javascript:void(0);" onClick="deleteRec(<?php echo $questionnaire['question_id'];?>)">Delete</a></td>
+                  <td><a href="<?php echo base_url()."admin/answers/index/".$questionnaire['question_id'];?>">Answers</a> | <a href="<?php echo base_url()."admin/questionnaire/edit/".$questionnaire['question_id'];?>">Edit</a> | <a href="javascript:void(0);" onClick="deleteRec(<?php echo $questionnaire['question_id'];?>)">Delete</a></td>
                </tr>
                <?php }?>
 			   <script>
@@ -65,7 +65,7 @@
 				  <th>Category</th>
 				  <th>Question</th>
 				  <th>Level</th>
-				  <th>Type</th>
+				  <!--<th>Type</th>-->
                   <th>Status</th>
                   <th>Manage</th>
                 </tr>

@@ -1,4 +1,4 @@
-body {background: #b9b9b9; font-family: 'ubunturegular';}
+body {background: #b9b9b9; font-family: 'ubunturegular'; padding: 55px 0px 0px 0px;}
 
 h1, h2, h3, h4, h5, h6, ol, ul, li, form, label, strong {margin: 0px; padding: 0px; list-style-type: none; font-weight: normal;}
 a, input, button, *:focus {outline: none;}
@@ -16,14 +16,15 @@ a:hover {text-decoration: none;}
  .collegeFilterBox,
 .filterItems, .locationSearch, .collegeResultBox, .collegeResultBox .collegeTop,
 .collegeResultBox .collegeMiddle, .collegeResultBox .collegeBottom, .pagination,
-.collegeHead .collegeQuick, .addmisionProcedure, .collegeReviewTop, .collegeReviewBox {width: 100%; float: left; clear: both;}
+.collegeHead .collegeQuick, .courceHead, .addmisionProcedure, .collegeReviewTop, .collegeReviewBox,
+.importantDates, .newsBox {width: 100%; float: left; clear: both;}
 
-header#header {background:#15202f; position: relative; z-index:20; height: 55px;}
+header#header {background:#15202f; position:fixed; left: 0px; top:0px; z-index:20; height: 55px;}
 header#header .logo {padding: 10px 0px 0px 0px;}
 
 
 .mainMenu {text-align: center; position: relative;}
-.mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 11px; padding: 20px 0px; margin: 0px 10px;}
+.mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 13px; padding: 19px 0px; margin: 0px 10px;}
 .mainMenu ul > li:first-child {margin-left:0px;}
 .mainMenu ul > li:last-child {margin-right:0px;}
 .mainMenu ul li a {color: #fff; text-decoration: none;}
@@ -46,7 +47,7 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .mainMenu .subMenuArea .subMenuHold.active {display:block;}
 .mainMenu .subMenuArea .subMenubox {width: 33.33%; float: left; padding: 15px;}
 .mainMenu .subMenuArea .subMenubox h3 {font-size:12px; font-weight: bold; color: #333; display: block; margin:0px 0px 10px 0px;}
-.mainMenu .subMenuArea .subMenubox .sublinks {display: block; margin: 0px 0px 4px 0px;}
+.mainMenu .subMenuArea .subMenubox .sublinks {display: block; margin: 0px 0px 4px 0px; font-size: 11px;}
 .mainMenu .subMenuArea .subMenubox .sublinks a {color:#828282;}
 .mainMenu .subMenuArea .subMenubox .sublinks a:hover {color:#000;}
 
@@ -71,7 +72,7 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .homeSlider .searchArea .searchNav ul li.active {background: #15202f;}
 .homeSlider .searchArea .searchNav ul li:last-child {border:none;}
 
-.homeSlider .searchArea .formHolder {width: 140%;}
+.homeSlider .searchArea .formHolder {width: 160%;}
 .homeSlider .searchArea .searchForm {background: #fff; position: relative; z-index: 1; height: 0px; opacity: 0; transition: all ease-in-out 0.3s;}
 .homeSlider .searchArea .searchForm.active {z-index: 2; opacity:1; height:48px; }
 .homeSlider .searchArea .formHolder input,
@@ -88,8 +89,8 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .homeSlider .searchArea .formHolder .autoComplete ul li {display: block; cursor: pointer; font-size: 13px; color: rgba(0,0,0,0.54); padding: 6px 4px;}
 .homeSlider .searchArea .formHolder .autoComplete ul li:hover {background: rgba(0,0,0,0.05);}
 
-.featureSlider {background:#e4e9f3; padding:0px 50px; position: relative; z-index: 2;}
-.featureSlider .row {position: relative; padding-top: 15px; padding-bottom: 15px;}
+.featureSlider {background:#e4e9f3; padding:0px; position: relative; z-index: 2;}
+.featureSlider .row {position: relative; padding: 15px 50px 15px 40px;}
 .featureSlider .featureHeading {position: absolute; top:0px; left: 0px; width: 40px; height: 100%; z-index: 10; background: #fff; font-size: 15px; color: rgba(0,0,0,0.87);}
 .featureSlider .featureHeading:before {content: 'Featured'; display: block; transform: rotate(-90deg) translate(-45px, 0px);}
 .featureSlider .featureLogo {width: 60px; display: inline-block; margin: 0px 10px 0px 0px; vertical-align: middle;}
@@ -113,7 +114,6 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 
 .bgWhite {background: #fff; width: 100%; float: left; clear: both;}
 .bgGrey {background:#f3f3f6; width: 100%; float: left; clear: both;}
-.bgManagement {background: url('../images/imgbg1.jpg') no-repeat; background-size: cover;}
 .bgCourses {background: #ffa081;}
 .bgAbroad {background: url('../images/imgbg1.jpg') no-repeat; background-size: cover;}
 
@@ -144,10 +144,11 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .youtubeThumb ul li img {max-width: 100%; height: auto;}
 
 
-.managementArea {text-align: center; font-size: 0px;}
-.managementArea ul li {display: inline-block; text-align: center; width:calc(16.60% - 20px); margin: 10px; background: #fff; border-radius: 6px; padding:15px 10px;}
+.managementArea {font-size: 0px;}
+.managementArea ul li {display: inline-block; width:calc(25% - 20px); margin: 10px;}
 .managementArea ul li .manageIcon {text-align: center;}
-.managementArea ul li .manageText {width: 100%; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; color: rgba(0,0,0,0.87); padding: 10px 0px 0px 0px; overflow:hidden;}
+.managementArea ul li .manageIcon img {width: 100%; height: auto; border-radius: 5px;}
+.managementArea ul li .manageText {width: 100%; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; color: rgba(0,0,0,0.87); padding: 10px 0px 5px 0px; overflow:hidden;}
 
 
 .popularCourses {text-align: center; font-size: 0px;}
@@ -189,8 +190,8 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 #loginModal .loginForm h5 a:hover {color: #000;}
 #loginModal .loginForm .inputRow {margin: 0px 0px 20px 0px; position: relative;}
 #loginModal .loginForm i {position: absolute; z-index: 2; top: 12px; left:18px; font-size: 23px; line-height: 1px; color:#bababa;}
-#loginModal .loginForm .inputRow input {width: 100%; font-size: 18px; letter-spacing: 1px; border:2px solid #c5c5c5; height: 48px; border-radius: 5px; padding: 0px 0px 0px 60px;}
-#loginModal .loginForm .inputRow input:focus {border:2px solid #5792cc;}
+#loginModal .loginForm .inputRow input {width: 100%; font-size: 14px; letter-spacing: 1px; border:1px solid #c5c5c5; height: 48px; border-radius: 5px; padding: 0px 0px 0px 60px;}
+#loginModal .loginForm .inputRow input:focus {border:1px solid #5792cc;}
 #loginModal .loginForm .inputRow input:focus + i {color:#5792cc;}
 #loginModal .loginForm .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
 #loginModal .loginForm .inputRow input.go:hover {background: #000;}
@@ -199,13 +200,13 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 #registerModal .modal-dialog {width:100%; max-width:870px; display: table;}
 #registerModal .modal-body {padding-top: 0px;}
 #registerModal .regForm {padding: 0px 30px 20px 30px;}
-#registerModal .regForm h3 {font-size: 18px; margin: 0px 0px 30px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
+#registerModal .regForm h3 {font-size: 16px; margin: 0px 0px 30px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
 #registerModal .regForm h3 a {color: #5792cc;}
 #registerModal .regForm h3 a:hover {color: rgba(0,0,0,0.87);}
 #registerModal .regForm .inputRow {margin: 0px 0px 10px 0px; position: relative;}
 #registerModal .regForm i {position: absolute; z-index: 2; top: 8px; left:18px; font-size: 23px; line-height: 1px; color:#bababa;}
-#registerModal .regForm .inputRow input, #registerModal .regForm .inputRow select {width: 100%; font-size: 18px; letter-spacing: 1px; border:2px solid #c5c5c5; height: 40px; border-radius: 5px; padding: 0px 0px 0px 60px;}
-#registerModal .regForm .inputRow input:focus, #registerModal .regForm .inputRow select:focus {border:2px solid #5792cc;}
+#registerModal .regForm .inputRow input, #registerModal .regForm .inputRow select {width: 100%; font-size: 14px; letter-spacing: 1px; border:1px solid #c5c5c5; height: 40px; border-radius: 5px; padding: 0px 0px 0px 60px;}
+#registerModal .regForm .inputRow input:focus, #registerModal .regForm .inputRow select:focus {border:1px solid #5792cc;}
 #registerModal .regForm .inputRow input:focus + i, #registerModal .regForm .inputRow select:focus + i {color:#5792cc;}
 #registerModal .regForm .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 0px 0px; color: #fff; padding: 0px; border:none;}
 #registerModal .regForm .inputRow input.go:hover {background: #000;}
@@ -245,15 +246,62 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .collegeHead .collegeQuick h5 {font-size:28px; font-family: 'ubuntumedium'; color: rgba(0,0,0,0.87); margin: 0px 0px 5px 0px;}
 .collegeHead .collegeQuick h5 a {text-decoration: underline; font-size: 16px; margin: 0px 0px 0px 10px;}
 
+.courceHead {padding: 0px 10px 10px 10px;}
+.courceHead .courcecol {height: 170px; width: calc(33.33% - 10px); float: left; position: relative; margin: 0px 5px 10px 5px; padding: 20px; background: #000;}
+.courceHead .courcecol.bigCol {height: 350px;}
+.courceHead .courcecol .vertical {position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;}
+.courceHead .courcecol h3 {display: block; color: #fff; font-size: 24px; margin: 0px 0px 15px 0px;}
+.courceHead .courcecol h4 {display: block; line-height: 32px; color: #fff; font-size: 24px; margin:0px;}
+.courceHead .courcecol h4 a {color:#fff;}
+.courceHead .courcecol h4 a:hover {color:#000;}
+
+.courceHead .courcecol ul li {font-size: 14px; margin: 0px 0px 4px 0px;}
+.courceHead .courcecol ul li a {color: #fff;}
+.courceHead .courcecol ul li a:hover {text-decoration: underline;}
+
+.courceHead .courcecol i {position: absolute; right:15px; bottom: 0px; color: rgba(0,0,0,0.15); font-size:100px; line-height:86px;}
+
+.courceHead .courcecol.bgColor1 {background: #555bc0;}
+.courceHead .courcecol.bgColor2 {background: linear-gradient(135deg, rgba(61,178,176,1) 0%, rgba(61,178,176,1) 21%, rgba(141,30,158,1) 61%, rgba(141,30,158,1) 100%);}
+.courceHead .courcecol.bgColor3 {background: linear-gradient(135deg, rgba(216,102,175,1) 0%, rgba(216,102,175,1) 21%, rgba(157,37,39,1) 61%, rgba(157,37,39,1) 100%);}
+.courceHead .courcecol.bgColor4 {background: linear-gradient(135deg, rgba(194,184,89,1) 0%, rgba(194,184,89,1) 20%, rgba(223,53,50,1) 61%, rgba(223,53,50,1) 100%);}
+.courceHead .courcecol.bgColor5 {background: linear-gradient(135deg, rgba(152,193,92,1) 0%, rgba(152,193,92,1) 20%, rgba(57,161,191,1) 61%, rgba(57,161,191,1) 100%);}
+
+
 .informationList {border-bottom: 1px solid rgba(0,0,0,0.15); padding: 0px 0px 8px 0px; margin: 0px 0px 15px 0px;}
 .informationList h3 {display: block; margin: 0px 0px 10px 0px; font-size: 15px; font-family: 'ubuntumedium'; color: rgba(0,0,0,0.54);}
 .informationList p {font-size: 14px; color: rgba(0,0,0,0.87); margin: 0px 0px 12px 0px;}
+.informationList p strong {font-family: 'ubuntubold';}
 .informationList .bulletPoint {display: inline-block; position: relative; width: 8px; height: 8px; background: rgba(0,0,0,0.20); border-radius: 20px; margin: 0px 15px;}
 
 .informationList .recrutingLogo {display:block; float: left; border:1px solid rgba(0,0,0,0.30); text-align: center; vertical-align: middle; width:calc(16.66% - 6px); margin: 8px 3px;}
 .informationList .recrutingLogo img {display: inline-block; max-width: 100%; height: auto;}
 
 .informationList .viewMore {font-size: 14px;}
+
+.importantDates {text-align: center; font-size: 0px;}
+.importantDates .dateBox {width: calc(33% - 10px); transition: all ease-in-out 0.5s; display: inline-block; text-align: left; vertical-align: middle; margin: 5px; border:1px solid rgba(0,0,0,0.30); background: #f3f6f9; padding: 10px; border-radius: 8px;}
+.importantDates .dateBox:hover {background:#b5c8da;}
+.importantDates .dateBox.dateLeft {opacity: 0.4; user-select:none; pointer-events: none;}
+.importantDates .dateBox.dateLeft:hover {background:#f3f6f9;}
+
+.importantDates .dateBox .leftCol {display: inline-block; width: 80px; height: 80px; margin: 0px 10px 0px 0px; padding: 10px 0px 0px 0px; border-radius: 100px; background: #4a5bbf; vertical-align: middle; text-align: center;}
+.importantDates .dateBox .leftCol .day {display: block; color: #fff; line-height: 20px; font-size: 24px; font-family: 'ubuntumedium';}
+.importantDates .dateBox .leftCol .month {display: block; color: #fff; padding: 2px 0px 5px 0px; line-height: normal; font-size: 14px;}
+.importantDates .dateBox .leftCol .year {display: block; color: #fff; line-height: normal; font-size: 12px; opacity: 0.6;}
+.importantDates .dateBox h4 {display: inline-block; font-size: 14px; margin: 0px; width: calc(100% - 90px); vertical-align: middle; color:rgba(0,0,0,0.87);}
+.importantDates .dateBox h4 a {color:rgba(0,0,0,0.87); text-decoration: none;}
+
+.newsBox {border:1px solid rgba(0,0,0,0.30); font-size: 0px; margin: 0px 0px 15px 0px; transition: all ease-in-out 0.5s;}
+.newsBox:hover {background: rgba(0,0,0,0.08);}
+.newsBox .newsImg {display: inline-block; vertical-align: middle; width: 40%;}
+.newsBox .newsImg img {width: 100%; height: auto;}
+
+.newsBox .newsContent {width: 60%; padding: 10px; display: inline-block; vertical-align: middle;} 
+.newsBox .newsContent h3 {font-size: 14px; margin:0px 0px 5px 0px; color: rgba(0,0,0,0.87); font-family: 'ubuntumedium';}
+.newsBox .newsContent h3 a {color:rgba(0,0,0,0.87); text-decoration: none; }
+.newsBox .newsContent h4 {font-size: 13px; margin:0px 0px 5px 0px; color: rgba(0,0,0,0.54);}
+.newsBox .newsContent p {font-size: 12px; color: rgba(0,0,0,0.87); margin: 0px;}
 
 .addmisionProcedure {margin: 0px 0px 10px 0px;}
 .addmisionProcedure h4 {font-size: 14px; margin: 0px; font-family: 'ubuntumedium';}
@@ -319,13 +367,14 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 
 
 .liststyletyep {margin: 0px 0px 20px 0px;}
-.liststyletyep li {list-style-type: disc; margin: 0px 0px 10px 20px; color:rgba(0,0,0,0.54);}
+.liststyletyep li {list-style-type: disc; margin: 0px 0px 10px 20px; color:rgba(0,0,0,0.70);}
 
 .collegeRankRating {text-align: center;}
 .collegeRankRating .rankingCol {display: inline-block; width: 30%;}
 .collegeRankRating .rankingCol .title {font-size: 13px; margin: 0px 0px 10px 0px; color: rgba(0,0,0,0.54); display: block;}
 .collegeRankRating .rankingCol .circle {width: 50px; font-size: 20px; font-family: 'ubuntumedium'; height: 50px; display: inline-block; line-height: 50px; color: #f77a52; border:1px solid #f77a52; border-radius: 100px;}
 
+.collegeSidenav h3 {margin: 0px 0px 10px 0px; font-size: 16px; font-family: 'ubuntumedium';}
 .collegeSidenav ul {margin: 0px 0px 20px 0px;}
 .collegeSidenav ul li {font-size: 14px; display: block; clear: both; float: left; margin: 0px 0px 8px 0px;}
 .collegeSidenav ul li a {color: rgba(0,0,0,0.54);}
@@ -444,12 +493,10 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .footerSection {background: #232440;}
 .footerTop {padding:30px 50px; border-bottom: 1px solid #30314b;}
 .footerTop .footerWidget {padding:0px;}
-.footerTop .footerWidget h3 {color: #fff; margin: 0px 0px 8px 0px; font-size:16px;}
-.footerTop .footerWidget p {margin: 0px 0px 8px 0px; font-size: 12px; color:#fff;}
-.footerTop .footerWidget ul li {font-size: 12px; display: block; margin: 0px 0px 5px 0px;}
+.footerTop .footerWidget h3 {color: #fff; margin: 0px 0px 8px 0px; font-size:18px;}
+.footerTop .footerWidget p {margin: 0px 0px 8px 0px; font-size: 13px; color:#fff;}
+.footerTop .footerWidget ul li {font-size: 13px; display: block; margin: 0px 0px 5px 0px;}
 .footerTop .footerWidget ul li a {color: #fff;}
 
-.footerBottom {padding:30px 65px;}
-.footerBottom p {margin: 0px 0px 6px 0px; color: #fff; font-size: 12px; letter-spacing:1px;}
-.footerBottom p:last-child {margin: 0px;}
-.footerBottom p a {color: #fff;}
+.footerBottom {padding:30px 65px; text-align: center;}
+.footerBottom p {margin: 0px 0px 0px 0px; color: #fff; font-size: 12px; letter-spacing:1px;}

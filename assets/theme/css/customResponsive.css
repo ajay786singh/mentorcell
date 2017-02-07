@@ -7,7 +7,6 @@
 
 @media only screen and (max-width:991px){
 .studyAbroad {padding: 0px;}
-.featureSlider {padding: 0px 50px 0px 0px;}
 .youTubePlayer {margin: 0px 0px 20px 0px;}
 .youtubeThumb ul li {width: 33.33%; padding: 10px;}
 .managementArea ul li {width: 20%;}
@@ -37,6 +36,9 @@
 .collegeResultBox .collegeTop .collegeName h4 {font-size: 12px;}
 .collegeResultBox .collegeMiddle ul li {clear: both; padding:5px 0px; border: none; border-top: 1px solid rgba(0,0,0,0.20);;}
 .collegeResultBox .collegeMiddle ol li {font-size: 11px;}
+
+.importantDates .dateBox {width: calc(50% - 10px);}
+
 }
 
 

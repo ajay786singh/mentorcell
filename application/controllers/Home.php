@@ -111,7 +111,7 @@ class Home extends Public_Controller {
 	{
 		/* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
-
+		$this->load->library('plivo');
 		/* Validate form input */
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
@@ -137,7 +137,27 @@ class Home extends Public_Controller {
 		if ($this->form_validation->run() == TRUE && $this->ion_auth->register($username, $password, $email, $additional_data))
 		{
 			$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> You have successfully started your journey. </div>');
-			echo json_encode($response);die;
+			
+			
+			
+			
+			$sms_data = array(
+            'src' => '+123456789', //The phone number to use as the caller id (with the country code). E.g. For USA 15671234567
+            'dst' => '+918800347161', // The number to which the message needs to be send (regular phone numbers must be prefixed with country code but without the ‘+’ sign) E.g., For USA 15677654321.
+            'text' => 'This is a test message', // The text to send
+            'type' => 'sms', //The type of message. Should be 'sms' for a text message. Defaults to 'sms'
+            'url' => base_url() . 'index.php/plivo_test/receive_sms', // The URL which will be called with the status of the message.
+            'method' => 'POST', // The method used to call the URL. Defaults to. POST
+        );
+
+        /*
+         * look up available number groups
+         */
+        $response_array = $this->plivo->send_sms($sms_data);
+
+			
+				echo json_encode($response);die;
+			
 		}
 		else
 		{

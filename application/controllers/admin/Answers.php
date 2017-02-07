@@ -40,7 +40,7 @@ class Answers extends Admin_Controller {
             /* Load Template */
 			$this->data['question_id'] = $question_id;
 			
-			$this->data['answer_list'] = $this->common_model->get_all_rows("mc_answers",'question_id',$question_id);
+			$this->data['answer_list'] = $this->common_model->get_all_rows("mc_answers",'question_id',$question_id,'answer_id asc');
             $this->template->admin_render('admin/answers/index', $this->data);
 			
         }
@@ -65,10 +65,17 @@ class Answers extends Admin_Controller {
 		$this->load->library('upload', $config);
 
 		/* Validate form input */
-		
-		$this->form_validation->set_rules('answer', 'Question', 'required');
+		$flag = FALSE;
+		for($i=1;$i<=5;$i++) {
+			if($this->input->post('answer'.$i)) {
+				$flag = TRUE;
+			}
+		}		
+		if(!$flag) {
+			$this->form_validation->set_rules('answer1', 'Question', 'required');
+		}
 		// $this->form_validation->set_rules('type', 'Type', 'required');
-		$this->form_validation->set_rules('status', 'Status', 'required');
+		$this->form_validation->set_rules('correct', 'Correct Answer', 'required');
 		
 		
 		if ($this->form_validation->run() == TRUE)
@@ -76,8 +83,28 @@ class Answers extends Admin_Controller {
 			$this->data = array();
 			$this->data = $this->input->post();
 		}
-		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data,"mc_answers"))
+		if ($this->form_validation->run() == TRUE)
 		{
+			$question_id	=	$this->input->post('question_id');
+			$correct		=	$this->input->post('correct');
+			$this->common_model->update("mc_answers",array('correct'=>0),'question_id',$question_id);
+			for($i=1;$i<=5;$i++) {
+				$data['answer']			=	$this->input->post('answer'.$i);
+				$answer_id				=	$this->input->post('answer_id'.$i);
+				$data['question_id']	=	$question_id;
+				if($data['answer']) {
+					if($correct	==	$i) {
+						$data['correct']	=	1;
+					}else {
+						$data['correct']	=	0;
+					}
+					if($answer_id) {
+						$this->common_model->update("mc_answers",$data,'answer_id',$answer_id);
+					} else {
+						$this->common_model->insert($data,"mc_answers");
+					}
+				}
+			}	
             $this->session->set_flashdata('message', 'Answers added successfully!');
 			redirect('admin/answers/index/'.$question_id, 'refresh');
 		}
@@ -89,13 +116,13 @@ class Answers extends Admin_Controller {
 			$this->data['answer']['value'] 		= $this->form_validation->set_value('answer');
 			$this->data['question_id']['value'] 	= $this->form_validation->set_value('question_id');
 			// $this->data['type']['value'] 	= $this->form_validation->set_value('type');
-			if($this->form_validation->set_value('status')) {
-				$this->data['status']['value'] = $this->form_validation->set_value('status');
+			if($this->form_validation->set_value('correct')) {
+				$this->data['correct']['value'] = $this->form_validation->set_value('correct');
 			} else {
-				$this->data['status']['value'] = 1;
+				$this->data['correct']['value'] = 1;
 			}
 			$this->data['question_id'] = $question_id;
-			$this->data['categories'] 	= $this->common_model->get_all_rows("mc_answers", 1,1);
+			$this->data['answer_list'] = $this->common_model->get_all_rows("mc_answers",'question_id',$question_id,'answer_id asc');
 			// $this->data['levels'] 		= $this->common_model->get_all_rows("mc_levels", 1,1);
 			// $this->data['types'] 		= array(1=>'Radio', 'Textbox', 'Checkbox');
             /* Load Template */
@@ -117,16 +144,16 @@ class Answers extends Admin_Controller {
 			redirect('auth', 'refresh');
 		}
 		
-				if($this->common_model->delete("mc_answers","answer_id",$answer_id))
-			    {
-                    $this->session->set_flashdata('message', 'Answers Deleted!');
-					redirect('admin/answers/index/'.$question_id, 'refresh');
-			    }
-			    else
-			    {
-					$this->session->set_flashdata('message', 'No Answers found.');
-					redirect('admin/answers/index/'.$question_id, 'refresh');
-				}
+		if($this->common_model->deletecolumn("mc_answers","answer_id",$answer_id))
+		{
+			$this->session->set_flashdata('message', 'Answers Deleted!');
+			redirect('admin/answers/index/'.$question_id, 'refresh');
+		}
+		else
+		{
+			$this->session->set_flashdata('message', 'No Answers found.');
+			redirect('admin/answers/index/'.$question_id, 'refresh');
+		}
 	}
 
 
@@ -154,7 +181,7 @@ class Answers extends Admin_Controller {
 		/* Validate form input */
 		$this->form_validation->set_rules('answer', 'Question', 'required');
 		// $this->form_validation->set_rules('type', 'Type', 'required');
-		$this->form_validation->set_rules('status', 'Status', 'required');
+		$this->form_validation->set_rules('correct', 'Status', 'required');
 
 		if (isset($_POST) && ! empty($_POST))
 		{
@@ -168,7 +195,7 @@ class Answers extends Admin_Controller {
 				$data['answer'] = $this->input->post('answer');
 				// $data['type']	 = $this->input->post('type');
 				
-				$data['status'] = $this->input->post('status');
+				$data['correct'] = $this->input->post('correct');
 				
                 if($this->common_model->update("mc_answers", $data, "question_id", $answers['question_id']))
 			    {
@@ -194,7 +221,7 @@ class Answers extends Admin_Controller {
 		$this->data['answer_id']['value'] 	= $this->form_validation->set_value('answer_id',$answers['answer_id']);
 		$this->data['answer']['value'] 		= $this->form_validation->set_value('answer',$answers['answer']);
 		$this->data['question_id'] 			= $question_id;
-		$this->data['status']['value'] 		= $this->form_validation->set_value('status',$answers['status']);
+		$this->data['correct']['value'] 		= $this->form_validation->set_value('correct',$answers['correct']);
 		$this->data['answers'] 				= $this->common_model->get_all_rows("mc_answers", 1,1);
 		$this->data['pagetitle'] 			= '<h1>Answers for question '.$question_detail['question'].'</h1>';
 		// $this->data['levels'] 		= $this->common_model->get_all_rows("mc_levels", 1,1);

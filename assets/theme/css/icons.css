@@ -104,3 +104,18 @@
 .icon-thumbs-down:before {
   content: "\76";
 }
+.icon-users:before {
+  content: "\77";
+}
+.icon-graduation-cap:before {
+  content: "\78";
+}
+.icon-calendar-combined:before {
+  content: "\79";
+}
+.icon-newspaper-o:before {
+  content: "\7a";
+}
+.icon-repo-push:before {
+  content: "\41";
+}

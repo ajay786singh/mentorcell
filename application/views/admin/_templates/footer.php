@@ -142,16 +142,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			var fee = $("#fee").val();
 			var exam = $("#exam").val();
 			var assigned_id = $("#assigned_id").val();
+			var procedure = $("#procedure").val();
+			var eligibility = $("#eligibility").val();
 			
 			
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/admin/colleges/save_assigncourses",
 				dataType: 'text',
-				data: {clg_course_id:clg_course_id,college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,exam:exam,assigned_id:assigned_id},
+				data: {clg_course_id:clg_course_id,college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,exam:exam,assigned_id:assigned_id,procedure:procedure,eligibility:eligibility},
 				success: function(res) {
 					$("#message").show().html('<p>'+res+'</p>');
-					$("#form-create_stream").reset();
+					setTimeout(function(){
+								
+								location.reload();
+								
+							},1000);
+					
 				}
 			});
 			

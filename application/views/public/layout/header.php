@@ -32,6 +32,8 @@ header('Vary: Accept-Encoding');
         <meta property="og:site_name" content="MentorCell">
 
 			<link href="<?php echo base_url('assets/theme/css/icons.css'); ?>" rel="stylesheet" type="text/css" media="all" />
+			<link href="<?php echo base_url('assets/theme/css/fonts.css'); ?>" rel="stylesheet" type="text/css" media="all" />
+			<link href="<?php echo base_url('assets/theme/css/jquery.mCustomScrollbar.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/bootstrap.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/jquery.bxslider.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/custom.css'); ?>" rel="stylesheet" type="text/css" media="all" />

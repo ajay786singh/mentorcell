@@ -391,6 +391,10 @@ class Colleges extends Admin_Controller {
 		$recognition = $this->input->post('recognition');
 		$fee = $this->input->post('fee');
 		$exam = $this->input->post('exam');
+		$procedure = $this->input->post('procedure');
+		$eligibility = $this->input->post('eligibility');
+		
+		
 		
 		$assigned_id = $this->input->post('assigned_id');
 		
@@ -401,6 +405,8 @@ class Colleges extends Admin_Controller {
 		$course['recognition'] = $recognition;
 		$course['fee'] = $fee;
 		$course['exam'] = $exam;
+		$course['procedure'] = $procedure;
+		$course['eligibility'] = $eligibility;
 		
         $this->common_model->insert($course,"mc_course_assignment");
 		

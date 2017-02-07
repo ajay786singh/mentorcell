@@ -156,12 +156,16 @@
       	<h3>Already have an account? <a href="#"  data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Login here</a></h3>
 		<div id="register_response"></div>
       	<form id="register_form">
-      	<div class="inputRow">
-      		<input type="email" id="register_email" required='' placeholder="Email Address" name="">
+		<div class="inputRow">
+      		<input type="text" id="register_fname" required='' placeholder="First Name" name="">
+      		<i class="icon-email"></i>
+      	</div>
+		<div class="inputRow">
+      		<input type="text" id="register_lname" required='' placeholder="Last Name" name="">
       		<i class="icon-email"></i>
       	</div>
       	<div class="inputRow">
-      		<input type="password" id="register_password" required='' placeholder="Password" name="">
+      		<input type="email" id="register_email" required='' placeholder="Email Address" name="">
       		<i class="icon-email"></i>
       	</div>
       	<div class="inputRow">
@@ -243,6 +247,7 @@
     <script>window.jQuery || document.write('<script src="<?php echo base_url('assets/theme/js/jquery.min.js'); ?>"><\/script>')</script>
 	<!-- script start -->
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/bootstrap.js'); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.mCustomScrollbar.concat.min.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.bxslider.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/custom.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/ajaxcalls.js'); ?>"></script>

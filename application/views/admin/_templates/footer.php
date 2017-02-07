@@ -151,6 +151,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				data: {clg_course_id:clg_course_id,college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,exam:exam,assigned_id:assigned_id},
 				success: function(res) {
 					$("#message").show().html('<p>'+res+'</p>');
+					$("#form-create_stream").reset();
 				}
 			});
 			

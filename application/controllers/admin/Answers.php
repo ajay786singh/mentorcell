@@ -42,6 +42,7 @@ class Answers extends Admin_Controller {
 			
 			$this->data['answer_list'] = $this->common_model->get_all_rows("mc_answers",'question_id',$question_id);
             $this->template->admin_render('admin/answers/index', $this->data);
+			
         }
 	}
 

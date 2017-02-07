@@ -5939,7 +5939,7 @@ button.close {
   margin-top: -2px;
 }
 .modal-title {
-  margin: 0; font-size:32px;
+  margin: 0; font-size:28px;
   line-height: 1.42857143; color: rgba(0,0,0,0.87);
 }
 .modal-body {

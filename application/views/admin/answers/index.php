@@ -12,7 +12,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-                 <h3 class="box-title"><?php echo anchor('admin/answers/create/'.$question_id, '<i class="fa fa-plus"></i> Add New Answer', array('class' => 'btn btn-block btn-primary btn-flat')); ?></h3>
+                 <h3 class="box-title"><?php echo anchor('admin/answers/create/'.$question_id, '<i class="fa fa-plus"></i> Add / Edit New Answer', array('class' => 'btn btn-block btn-primary btn-flat')); ?></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -32,15 +32,15 @@
 				 
 				  <td><?php echo $answers['answer'];?></td>				  
 				 
-                  <td><?php echo ($answers['status']==1)?"Active":"Inactive";?>   </td>
-                  <td><a href="<?php echo base_url()."admin/answers/edit/".$answers['answer_id'];?>">Edit</a> | <a href="javascript:void(0);" onClick="deleteRec(<?php echo $question_id;?>,<?php echo $answers['answer_id'];?>)">Delete</a></td>
+                  <td><?php echo ($answers['correct']==1)?"Correct Answer":"";?>   </td>
+                  <td><a href="javascript:void(0);" onClick="deleteRec(<?php echo $question_id;?>,<?php echo $answers['answer_id'];?>)">Delete</a></td>
                </tr>
                <?php }?>
 			   <script>
 				function deleteRec(question_id,answer_id) {
 					var c = window.confirm("Are you sure to delete this answer?");
 					if (c == true) {
-						location.href =  '<?php echo base_url()."admin/answers/delete/"?>/'+question_id+'/'+answer_id;
+						location.href =  '<?php echo base_url()."admin/answers/delete"?>/'+question_id+'/'+answer_id;
 					}
 				}
 			   </script>

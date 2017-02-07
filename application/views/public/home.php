@@ -6,92 +6,92 @@
 <div class="searchNav">
 <ul>
 	<li target-form="form1">College</li>
-	<li target-form="form2">Specialization</li>
-	<li target-form="form3">Course</li>
-	<li target-form="form4">Location</li>
+	<li target-form="form2">Course</li>
+	<!--<li target-form="form3">Exam</li>-->
 </ul>
 </div>
 
 <div class="formHolder">
 <div id="form1" class="searchForm">
-<form>
+<form action="search">
 <div class="formcol50">
-<input type="text" name="" placeholder="Find colleges by course or college name" />
-<div class="autoComplete">
-<h4>Colleges</h4>
-<ul>
-<li>Amrita School of Business Amrita Vishwa Vidyapeetham ( ASB Kollam )</li>
-<li>AIHM Institute of Hotel Management</li>
-<li>NATA Classes</li>
-<li>Indian Institute of Information Technology ( IIITA )</li>
-</ul>
-</div>
+<select id="register_city" multiple class="auto-choice" name="college">
+	<?php 
+		$colleges = $this->common_model->get_all("mc_colleges");
+			foreach($colleges as $college){
+				echo '<option value="'.$college['id'].'">'.$college['name'].'</option>';
+			}
+	?>	
+</select>
 </div>
 <div class="formcol50">
-<input type="text" name="" placeholder="Enter location" />
-<div class="autoComplete">
-<h4>Popular Locations</h4>
-<ul>
-<li>All India</li>
-<li>Bangalore</li>
-<li>Chandigarh Tricity</li>
-<li>Chennai</li>
-<li>Delhi / NCR</li>
-<li>Hyderabad</li>
-<li>Kolkata</li>
-<li>Mumbai ( All )</li>
-<li>Pune</li>
-<li>Cities</li>
-<li>Agartala</li>
-</ul>
-</div>
+<select id="register_city" class="auto-choice" multiple name="location"><option>Current City</option>
+	<?php 
+		$states = $this->common_model->get_all_rows("states", "country_id",101);
+		foreach($states as $stateeach){
+		//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
+		echo '<optgroup label="'.$stateeach['name'].'">';
+			$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
+			
+			foreach($cities as $city){
+				echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
+			}
+			echo  '</optgroup>';
+		} ?>
+			
+</select>
 </div>
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 </div>
 
 <div id="form2" class="searchForm">
-<form>
+<form action="search">
 <div class="formcol50">
-<input type="text" name="" placeholder="Find colleges by course or college name" />
-<div class="autoComplete">
-<h4>Colleges</h4>
-<ul>
-<li>Amrita School of Business Amrita Vishwa Vidyapeetham ( ASB Kollam )</li>
-<li>AIHM Institute of Hotel Management</li>
-<li>NATA Classes</li>
-<li>Indian Institute of Information Technology ( IIITA )</li>
-</ul>
-</div>
+<select id="register_city" multiple class="auto-choice" name="course">
+	<?php 
+		$courses = $this->common_model->get_all("mc_courses");
+		foreach($courses as $course){
+			
+				echo '<option   value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+			
+		}
+	?>	
+</select>
 </div>
 <div class="formcol50">
-<input type="text" name="" placeholder="Enter location" />
-<div class="autoComplete">
-<h4>Popular Locations</h4>
-<ul>
-<li>All India</li>
-<li>Bangalore</li>
-<li>Chandigarh Tricity</li>
-<li>Chennai</li>
-<li>Delhi / NCR</li>
-<li>Hyderabad</li>
-<li>Kolkata</li>
-<li>Mumbai ( All )</li>
-<li>Pune</li>
-<li>Cities</li>
-<li>Agartala</li>
-</ul>
-</div>
+<select id="register_city" class="auto-choice" multiple name="location"><option>Current City</option>
+	<?php 
+		$states = $this->common_model->get_all_rows("states", "country_id",101);
+		foreach($states as $stateeach){
+		//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
+		echo '<optgroup label="'.$stateeach['name'].'">';
+			$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
+			
+			foreach($cities as $city){
+				echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
+			}
+			echo  '</optgroup>';
+		} ?>
+			
+</select>
 </div>
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 </div>
 
 <div id="form3" class="searchForm">
-<form>
+<form action="search">
 <div class="formcol50">
-<input type="text" name="" placeholder="Find colleges by course or college name" />
-<div class="autoComplete">
+<select id="register_city" class="auto-choice" name="course"><option>Choose College</option>
+	<?php 
+		$colleges = $this->common_model->get_all("mc_colleges");
+			foreach($colleges as $college){
+				echo '<option value="'.$college['id'].'">'.$college['name'].'</option>';
+			}
+	?>	
+</select>
+<!--<div class="autoComplete">
 <h4>Colleges</h4>
 <ul>
 <li>Amrita School of Business Amrita Vishwa Vidyapeetham ( ASB Kollam )</li>
@@ -99,11 +99,28 @@
 <li>NATA Classes</li>
 <li>Indian Institute of Information Technology ( IIITA )</li>
 </ul>
-</div>
+</div>-->
 </div>
 <div class="formcol50">
-<input type="text" name="" placeholder="Enter location" />
-<div class="autoComplete">
+<!--<input type="text" name="" placeholder="Enter location" />-->
+
+<select id="register_city" class="auto-choice" multiple name="location"><option>Current City</option>
+	<?php 
+		$states = $this->common_model->get_all_rows("states", "country_id",101);
+		foreach($states as $stateeach){
+		//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
+		echo '<optgroup label="'.$stateeach['name'].'">';
+			$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
+			
+			foreach($cities as $city){
+				echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
+			}
+			echo  '</optgroup>';
+		} ?>
+			
+</select>
+
+<!--<div class="autoComplete">
 <h4>Popular Locations</h4>
 <ul>
 <li>All India</li>
@@ -118,48 +135,13 @@
 <li>Cities</li>
 <li>Agartala</li>
 </ul>
-</div>
+</div>-->
 </div>
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 </div>
 
-<div id="form4" class="searchForm">
-<form>
-<div class="formcol50">
-<input type="text" name="" placeholder="Find colleges by course or college name" />
-<div class="autoComplete">
-<h4>Colleges</h4>
-<ul>
-<li>Amrita School of Business Amrita Vishwa Vidyapeetham ( ASB Kollam )</li>
-<li>AIHM Institute of Hotel Management</li>
-<li>NATA Classes</li>
-<li>Indian Institute of Information Technology ( IIITA )</li>
-</ul>
-</div>
-</div>
-<div class="formcol50">
-<input type="text" name="" placeholder="Enter location" />
-<div class="autoComplete">
-<h4>Popular Locations</h4>
-<ul>
-<li>All India</li>
-<li>Bangalore</li>
-<li>Chandigarh Tricity</li>
-<li>Chennai</li>
-<li>Delhi / NCR</li>
-<li>Hyderabad</li>
-<li>Kolkata</li>
-<li>Mumbai ( All )</li>
-<li>Pune</li>
-<li>Cities</li>
-<li>Agartala</li>
-</ul>
-</div>
-</div>
-<button class="go"><span class="glyphicon glyphicon-search"></span></button>
-</form>
-</div>
+
 
 </div>
 

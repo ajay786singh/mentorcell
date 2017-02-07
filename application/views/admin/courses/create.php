@@ -62,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course Duration</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" name="course_code" id="course_code" value="<?php echo @$course_duration['value']; ?>" placeholder="Enter Course Duration i.e. 2 Years or 4 Months">
+										  <input type="text" class="form-control" required="" name="course_duration" id="course_duration" value="<?php echo @$course_duration['value']; ?>" placeholder="Enter Course Duration i.e. 2 Years or 4 Months">
 										  </div>
 										</div>
 										

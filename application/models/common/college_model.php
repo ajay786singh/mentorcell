@@ -62,13 +62,18 @@ class College_model extends CI_Model {
 
 	function search_result_college($query){
 		/**/
-		$this->db->select('cl.*,ca.* ,cities.name as city, states.name as state, countries.name as country ');
+		/*$this->db->select('cl.*,ca.* ,cities.name as city, states.name as state, countries.name as country ');
 		$this->db->from('mc_colleges AS cl');// I use aliasing make joins easier
 		$this->db->join('mc_course_assignment AS ca', 'cl.id = ca.college_id', 'INNER');
 		$this->db->join('cities AS cities', 'cities.id = cl.city', 'LEFT');
 		$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
-		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');
+		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');*/
 		/**/
+		$this->db->select('cl.*,cities.name as city, states.name as state, countries.name as country ');
+		$this->db->from('mc_colleges AS cl');// I use aliasing make joins easier
+		$this->db->join('cities AS cities', 'cities.id = cl.city', 'LEFT');
+		$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
+		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');
 		$this->db->where('cl.id', $query['college']);
 		$result = $this->db->get()->row_object();
 		return $result;

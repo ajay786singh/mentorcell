@@ -113,20 +113,24 @@ class Home extends Public_Controller {
 		$tables = $this->config->item('tables', 'ion_auth');
 
 		/* Validate form input */
-		//$this->form_validation->set_rules('first_name', 'First Name', 'required');
-		//$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+		$this->form_validation->set_rules('first_name', 'First Name', 'required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique['.$tables['users'].'.email]');
 		$this->form_validation->set_rules('phone', 'Phone', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
+		//$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
 		
 		if ($this->form_validation->run() == TRUE)
 		{
 			//$username = strtolower($this->input->post('first_name')) . ' ' . strtolower($this->input->post('last_name'));
 			$email    = strtolower($this->input->post('email'));
 			$username = $email;
-			$password = $this->input->post('password');
+			$password = '12345678';
 			$additional_data = array(
+				'first_name' => $this->input->post('first_name'),
+				'last_name'  => $this->input->post('last_name'),
 				'phone'      => $this->input->post('phone'),
+				'active'      => '0',
+				'activation_code' => '1234'
 			);
 		}
 
@@ -193,7 +197,7 @@ class Home extends Public_Controller {
 			$this->data['user_login'] = array('id'=>false);
 		}
 		
-		
+
 		$this->load->view('public/layout/header', $this->data);
 		
 		$query = array();
@@ -201,7 +205,7 @@ class Home extends Public_Controller {
 			$query['course'] = $_GET['course'];
 			$this->college['colleges'] = $this->college_model->search_result_course($query);
 			$this->load->view('public/search', $this->college);
-		}else{
+		}else if(isset($_GET['college'])){
 			$query['college'] = $_GET['college'];
 			$this->college['college'] = $this->college_model->search_result_college($query);
 			$this->load->view('public/college', $this->college);

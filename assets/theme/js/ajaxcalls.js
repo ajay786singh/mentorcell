@@ -4,8 +4,9 @@ $(document).ready(function() {
 	/*registration*/
 		$("#register_button").click(function(event) {
 			event.preventDefault();
+			var fname = $("input#register_fname").val();
+			var lname = $("input#register_lname").val();
 			var email = $("input#register_email").val();
-			var password = $("input#register_password").val();
 			var phone = $("input#register_phone").val();
 			var interest = $("input#register_interest").val();
 			var course = $("input#register_course").val();
@@ -14,7 +15,7 @@ $(document).ready(function() {
 				type: "POST",
 				url: base_url+"index.php/home/register",
 				dataType: 'json',
-				data: {email:email, password:password, phone:phone, interest:interest, course:course, city: city },
+				data: {first_name:fname,last_name:lname,email:email, phone:phone, interest:interest, course:course, city: city },
 				success: function(res) {
 					if (res)
 					{

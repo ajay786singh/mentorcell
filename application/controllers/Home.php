@@ -119,44 +119,50 @@ class Home extends Public_Controller {
 		$this->form_validation->set_rules('phone', 'Phone', 'required');
 		//$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
 		
+		$phone = trim($this->input->post('phone'));
+		$activation_code = rand ( 1000 , 9999 );
+		$password  = $this->random_password(8);
+		$email = strtolower($this->input->post('email'));
+		
 		if ($this->form_validation->run() == TRUE)
 		{
 			//$username = strtolower($this->input->post('first_name')) . ' ' . strtolower($this->input->post('last_name'));
-			$email    = strtolower($this->input->post('email'));
+			$email    = $email;
 			$username = $email;
-			$password = '12345678';
+			$password = $password;
 			$additional_data = array(
 				'first_name' => $this->input->post('first_name'),
 				'last_name'  => $this->input->post('last_name'),
-				'phone'      => $this->input->post('phone'),
+				'phone'      => $phone,
 				'active'      => '0',
-				'activation_code' => '1234'
+				'activation_code' => $activation_code
 			);
 		}
-
-		if ($this->form_validation->run() == TRUE && $this->ion_auth->register($username, $password, $email, $additional_data))
+		
+		if ($this->form_validation->run() == TRUE )
 		{
-			$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> You have successfully started your journey. </div>');
+			$user_id = $this->ion_auth->register($username, $password, $email, $additional_data);
+			$response = array('status'=>true,'user_id'=>$user_id,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> You have successfully started your journey. </div>');
 			
 			
 			
 			
 			$sms_data = array(
             'src' => '+123456789', //The phone number to use as the caller id (with the country code). E.g. For USA 15671234567
-            'dst' => '+918800347161', // The number to which the message needs to be send (regular phone numbers must be prefixed with country code but without the ‘+’ sign) E.g., For USA 15677654321.
-            'text' => 'This is a test message', // The text to send
+            'dst' => '+91'.$phone, // The number to which the message needs to be send (regular phone numbers must be prefixed with country code but without the ‘+’ sign) E.g., For USA 15677654321.
+            'text' => 'Your MentorCell OTP is '.$activation_code.' Please verify your account.', // The text to send
             'type' => 'sms', //The type of message. Should be 'sms' for a text message. Defaults to 'sms'
             'url' => base_url() . 'index.php/plivo_test/receive_sms', // The URL which will be called with the status of the message.
             'method' => 'POST', // The method used to call the URL. Defaults to. POST
-        );
+			);
 
-        /*
-         * look up available number groups
-         */
-        $response_array = $this->plivo->send_sms($sms_data);
-
-			
-				echo json_encode($response);die;
+			/*
+			 * look up available number groups
+			 */
+			$response_array = $this->plivo->send_sms($sms_data);
+			$headers = "From: webmaster@mentorcell.com" . "\r\n" ."CC: webmaster@mentorcell.com";
+			mail($email,'Your Password for MentorCell','Please use the password to login to MentorCell.\n Password:  '.$password.'\n URL: '.site_url()."\n Team\n MentorCell",$headers);
+			echo json_encode($response);die;
 			
 		}
 		else
@@ -170,15 +176,23 @@ class Home extends Public_Controller {
 		
 	}
 	
+	function random_password( $length = 8 ) {
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+    $password = substr( str_shuffle( $chars ), 0, $length );
+    return $password;
+	}
+
 	function verify_otp()
 	{
 		$this->form_validation->set_rules('otp', 'OTP', 'required');
+		$user_id = $this->input->post('user_id');
+		$otpdb =  $this->common_model->get_single_var('activation_code', 'users','id', $user_id);
 		if ($this->form_validation->run() == TRUE)
 		{
 			$otp = $this->input->post('otp');
 		}
 		
-		if ($this->form_validation->run() == TRUE && $otp =='1234' /*wrie update code here*/)
+		if ($this->form_validation->run() == TRUE && $otp ==$otpdb /*wrie update code here*/)
 		{
 			$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Your Phone is verified now.</div>');
 			echo json_encode($response);die;

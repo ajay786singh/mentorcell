@@ -23,6 +23,8 @@ $(document).ready(function() {
 						if(res.status==true){
 							$('#register_form').hide();
 							$('#otp_form').show();
+							$('#otp_form #user_otp').val(res.user_id);
+							console.log(res.user_id);
 						}
 					}
 				}
@@ -33,12 +35,12 @@ $(document).ready(function() {
 		$("#register_button_otp").click(function(event) {
 			event.preventDefault();
 			var register_otp = $("input#register_otp").val();
-			
+			var user_id = $('#user_otp').val();
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/home/verify_otp",
 				dataType: 'json',
-				data: {otp:register_otp},
+				data: {otp:register_otp,user_id:user_id},
 				success: function(res) {
 					if (res)
 					{

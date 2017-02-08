@@ -194,7 +194,7 @@ class Home extends Public_Controller {
 		
 		if ($this->form_validation->run() == TRUE && $otp ==$otpdb /*wrie update code here*/)
 		{
-			$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Your Phone is verified now.</div>');
+			$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Your Phone is verified now. Please check email for password.</div>');
 			echo json_encode($response);die;
 		}
 		else
@@ -242,6 +242,9 @@ class Home extends Public_Controller {
 		}else if(isset($_GET['college'])){
 			$query['college'] = $_GET['college'];
 			$this->college['college'] = $this->college_model->search_result_college($query);
+			$id = $this->college['college']->id;
+			$this->college['images'] = $this->college_model->get_images($id);
+			$this->college['videos'] = $this->college_model->get_videos($id);
 			$this->load->view('public/college', $this->college);
 			
 		}

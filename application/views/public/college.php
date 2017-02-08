@@ -30,7 +30,7 @@
 <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
 
 <div class="sectionGap">
-<div class="heading1">Counselling Video(7 Videos)</div>
+<div class="heading1">Counselling Video(<?php echo count($videos); ?> Videos)</div>
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="youTubePlayer">
@@ -48,18 +48,15 @@
 </div>
 
 <div class="sectionGap">
-<div class="heading1">College Photos and Videos(7 Videos, 5 Photos)</div>
+<div class="heading1">College Photos and Videos(<?php echo count($videos); ?> Videos, <?php echo count($images); ?> Photos)</div>
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="collegeVideoSlide">
 <ul class="bxslider">
-<li><img src="images/youtubeplayer.jpg"></li>
-<li><img src="images/youtubeplayer.jpg"></li>
-<li><img src="images/youtubeplayer.jpg"></li>
-<li><img src="images/youtubeplayer.jpg"></li>
-<li><img src="images/youtubeplayer.jpg"></li>
-<li><img src="images/youtubeplayer.jpg"></li>
-<li><img src="images/youtubeplayer.jpg"></li>
+<?php foreach($images as $image){ ?>
+		<li><img  src="<?php echo base_url()."upload/".$image->asset_name; ?>"></li>
+<?php } ?>
+
 </ul>
 </div>
 </div>
@@ -136,17 +133,16 @@
 
 
 <div class="sectionGap">
-<div class="heading1">Why Join Indian Institute of Technology, Delhi (IITD)</div>
+<div class="heading1">Why Join <?php echo $college->name; ?></div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-<ul class="liststyletyep">
-<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard </li>
-<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard</li>
-<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard </li>
-<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard </li>
+<ul>
+<?php 
+		$why_join = explode(';',$college->why_join);
+	   foreach($why_join as $why_join){
+		  echo "<li>$why_join</li>";
+	  }
+?>
 </ul>
-
 <div class="collegeRankRating">
 
 <div class="rankingCol">
@@ -178,30 +174,24 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="sectionGap">
 <div class="heading2">Placement Services</div>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 
-<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
+<?php $services =explode(';',$college->placement_services);
+	  foreach($services as $service){
+		  echo "<p>$service</p>";
+	  }
 
-<p>For Management Studies (2014-15)</p>
-
-<p>% of students placed : 100%</br>
-% of students secured PPOs/PPLs : 30 %</br>
-No. of first time recruiters : 28</br>
-Total no. of students placed : 62</br>
-No. of offers mode : 82</br>
-No. of participating companies : 49</br>
-Highest salary offered : Rs. 19.87 Lakhs P.A</br>
-Average salary offered : Rs. 13.27 Lakhs P.A</br>
-Lowest salary offered : Rs. 7.36 Lakhs P.A</p>
-
+ ?>
 
 </div>
 
 <div class="sectionGap">
 <div class="heading2">Top Recruiting Companies</div>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+<?php $companies = explode(';',$college->top_recruiting_companies);
+	   foreach($companies as $company){
+		  echo "<span>$company</span>&nbsp; ";
+	  }
 
-<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
+ ?>
 
 
 </div>

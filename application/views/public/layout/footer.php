@@ -225,7 +225,7 @@
       	<div class="inputRow">
       		<input type="submit" value="Verify" id="register_button_otp" class="go" name="">
       	</div>
-
+		<input type="hidden" id="user_otp" name="user_otp" value="">
       	</form>
 
       </div>

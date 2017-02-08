@@ -7,12 +7,11 @@ class Common_model extends CI_Model {
         return $row;
     }
 
-    function get_college_interest() {
-        $this->db->select('*');
-        $this->db->from("tbl_edu_interest");
-        $this->db->where('userid',$id);
-        $row = $this->db->get()->result_array();
-        return $row;
+    function get_single_var($field, $table, $where_col, $where_val)
+    {
+		$this->db->where("$where_col",$where_val);
+        $res= $this->db->get($table)->row()->$field;
+        return $res;
     }
 
     function get_single_row($table, $where_col, $where_val)

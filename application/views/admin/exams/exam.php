@@ -61,7 +61,14 @@
                   <label for="exampleInputEmail1">Contact Information</label>
                   <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="contact_information" id="contact_information"><?php echo @$exams_list['contact_information']; ?></textarea>
                 </div>
-                 
+                  <div class="form-group">
+                  <label for="exampleInputEmail1">Important Dates</label>
+                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="impotant_dates" id="impotant_dates"><?php echo @$exams_list['impotant_dates']; ?></textarea>
+                </div>
+                 <div class="form-group">
+                  <label for="exampleInputEmail1">Results</label>
+                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="results" id="results"><?php echo @$exams_list['results']; ?></textarea>
+                </div>
               <div class="form-group">
                   <label for="exampleInputEmail1">Status</label>
                   <select name="is_active">

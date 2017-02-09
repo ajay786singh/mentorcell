@@ -25,7 +25,7 @@
 </select>
 </div>
 <div class="formcol50">
-<select id="register_city" style="width:350px;" class="auto-choice" multiple name="location"><option>Current City</option>
+<select id="register_city" style="width:350px;" class="auto-choice" multiple name="location">
 	<?php 
 		$states = $this->common_model->get_all_rows("states", "country_id",101);
 		foreach($states as $stateeach){
@@ -38,6 +38,36 @@
 			}
 			echo  '</optgroup>';
 		} ?>
+			
+</select>
+</div>
+<div class="formcol50">
+<select id="stream" style="width:350px;" class="auto-choice" multiple name="stream">
+	<?php 
+	$streams = $this->common_model->get_all_rows("mc_streams", 1,1);
+	foreach($streams as $stream){
+	  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
+	} ?>
+			
+</select>
+</div>
+<div class="formcol50">
+<select id="type" style="width:350px;" class="auto-choice" multiple name="type">
+	<?php 
+	$types = $this->common_model->get_all_rows("mc_types", 1,1);
+	foreach($types as $type){
+	  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
+  } ?>
+			
+</select>
+</div>
+<div class="formcol50">
+<select id="course" style="width:350px;" class="auto-choice" multiple name="course"> 
+<?php 
+	$courses = $this->common_model->get_all_rows("mc_courses", 1,1);
+	foreach($courses as $course){
+		echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+	} ?>
 			
 </select>
 </div>

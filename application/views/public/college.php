@@ -30,7 +30,7 @@
 <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
 
 <div class="sectionGap">
-<div class="heading1">Counselling Video(<?php echo count($videos); ?> Videos)</div>
+<div class="heading1" id="counselling-video">Counselling Video(<?php echo count($videos); ?> Videos)</div>
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="youTubePlayer">
@@ -41,14 +41,19 @@
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="videoDiscription">
 <h4>Some topic of the Video</h4>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+<?php 
+		$descriptions = explode(';',$college->description);
+	   foreach($descriptions as $description){
+		  echo "<p>$description</p>";
+	  }
+?>
 </div>
 </div>
 
 </div>
 
 <div class="sectionGap">
-<div class="heading1">College Photos and Videos(<?php echo count($videos); ?> Videos, <?php echo count($images); ?> Photos)</div>
+<div class="heading1" id="college-videos-photos">College Photos and Videos(<?php echo count($videos); ?> Videos, <?php echo count($images); ?> Photos)</div>
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="collegeVideoSlide">
@@ -66,7 +71,7 @@
 
 
 <div class="sectionGap">
-<div class="heading1">Courses offered</div>
+<div class="heading1" id="courses-offered">Courses offered</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="coursesOffer">
 <h3>Arts, Law, Languages and Teaching <span class="collegeClose"></span></h3>
@@ -133,7 +138,7 @@
 
 
 <div class="sectionGap">
-<div class="heading1">Why Join <?php echo $college->name; ?></div>
+<div class="heading1" id="why-join">Why Join <?php echo $college->name; ?></div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <ul>
 <?php 
@@ -173,7 +178,7 @@
 <div class="heading1">College Details</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="sectionGap">
-<div class="heading2">Placement Services</div>
+<div class="heading2" id="placement-services">Placement Services</div>
 
 <?php $services =explode(';',$college->placement_services);
 	  foreach($services as $service){
@@ -185,16 +190,72 @@
 </div>
 
 <div class="sectionGap">
-<div class="heading2">Top Recruiting Companies</div>
+<div class="heading2" id="top-recruiting-companies">Top Recruiting Companies</div>
 <?php $companies = explode(';',$college->top_recruiting_companies);
 	   foreach($companies as $company){
-		  echo "<span>$company</span>&nbsp; ";
+		  echo "<span>$company,</span>&nbsp; ";
 	  }
 
  ?>
 
 
 </div>
+
+
+<div class="sectionGap">
+<div class="heading2" id="hostel-facility">Hostel Facility</div>
+<?php $companies = explode(';',$college->hostel_details);
+	   foreach($companies as $company){
+		  echo "<span>$company,</span>&nbsp; ";
+	  }
+
+ ?>
+
+
+</div><div class="sectionGap">
+<div class="heading2" id="infrastructure">Infrastructure / Teaching Facilities</div>
+<?php $companies = explode(';',$college->teaching_facilities);
+	   foreach($companies as $company){
+		  echo "<span>$company,</span>&nbsp; ";
+	  }
+
+ ?>
+
+
+</div><div class="sectionGap">
+<div class="heading2" id="top-faculties">Top Faculties</div>
+<?php $companies = explode(';',$college->top_faculty);
+	   foreach($companies as $company){
+		  echo "<span>$company,</span>&nbsp; ";
+	  }
+
+ ?>
+
+
+</div><div class="sectionGap">
+<div class="heading2" id="partner-colleges">Partner Colleges</div>
+<?php $companies = explode(';',$college->partner_colleges);
+	   foreach($companies as $company){
+		  echo "<span>$company,</span>&nbsp; ";
+	  }
+
+ ?>
+
+
+</div><div class="sectionGap">
+<div class="heading2" id="ranking-awards">Ranking and Awards</div>
+<?php $companies = explode(';',$college->rank_holders);
+	   foreach($companies as $company){
+		  echo "<span>$company,</span>&nbsp; ";
+	  }
+
+ ?>
+
+
+</div>
+
+
+
 
 </div>
 
@@ -210,27 +271,24 @@
 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
 <div class="collegeSidenav">
 <ul>
-<li><a href="#">Counselling Videos</a></li>
-<li><a href="#">Courses Offered</a></li>
-<li><a href="#">Why Join IITD</a></li>
-<li><a href="#">Ask Current Student</a></li>
-<li><a href="#">College Review</a></li>
+<li><a href="#counselling-video">Counselling Videos</a></li>
+<li><a href="#courses-offered">Courses Offered</a></li>
+<li><a href="#why-join">Why Join IITD</a></li>
+<li><a href="college-videos-photos">College Videos and Photos</a></li>
 <li><a href="#" class="active">College Details</a>
   <div class="subMenu">
   <ol>
-    <li><a href="#" class="active">Infrastructure</a></li>
-	<li><a href="#">Hostel Facility</a></li>
-	<li><a href="#">Recognitions and Accreditations</a></li>
-	<li><a href="#">Infrastructure / Teaching Facilities</a></li>
-	<li><a href="#">Scholarships</a></li>
-	<li><a href="#">Ranking and Awards</a></li>
-	<li><a href="#">Placement</a></li>
-	<li><a href="#">Top Recruitment Company</a></li>
-	<li><a href="#">Popular spots nearby campus</a></li>
+    <li><a href="#infrastructure" class="active">Infrastructure</a></li>
+	<li><a href="#hostel-facility">Hostel Facility</a></li>
+	<li><a href="#partner-colleges">Partner Colleges</a></li>
+	<li><a href="#top-faculties">Infrastructure / Teaching Facilities</a></li>
+	<li><a href="#ranking-awards">Ranking and Awards</a></li>
+	<li><a href="#placement-services">Placement</a></li>
+	<li><a href="#top-recruiting-companies">Top Recruitment Company</a></li>
   </ol>
   </div>
 </li>
-<li><a href="#">College Details of IITD</a></li>
+<!--<li><a href="#">College Details of IITD</a></li>-->
 </ul>
 
 <a href="#" class="downloadBro"><i class="icon-download"></i> Download Brochure</a>

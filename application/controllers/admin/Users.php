@@ -48,9 +48,10 @@ class Users extends Admin_Controller {
         /* Breadcrumbs */
         $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/users/create');
         $this->data['breadcrumb'] = $this->breadcrumbs->show();
-
+		
         /* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
+		$groups        = $this->ion_auth->groups()->result_array();
 
 		/* Validate form input */
 		$this->form_validation->set_rules('first_name', 'lang:users_firstname', 'required');
@@ -75,14 +76,41 @@ class Users extends Admin_Controller {
 			);
 		}
 
-		if ($this->form_validation->run() == TRUE && $this->ion_auth->register($username, $password, $email, $additional_data))
+		if ($this->form_validation->run() == TRUE )
 		{
-            $this->session->set_flashdata('message', $this->ion_auth->messages());
-			redirect('admin/users', 'refresh');
+			
+			$id  = $this->ion_auth->register($username, $password, $email, $additional_data);
+			
+			if($id){
+			
+				if ($this->ion_auth->is_admin())
+				{
+                    $groupData = $this->input->post('groups');
+
+					if (isset($groupData) && !empty($groupData))
+                    {
+						$this->ion_auth->remove_from_group('', $id);
+
+						foreach ($groupData as $grp)
+                        {
+							$this->ion_auth->add_to_group($grp, $id);
+						}
+					}
+				}
+			
+				$this->session->set_flashdata('message', $this->ion_auth->messages());
+				redirect('admin/users', 'refresh');
+			
+			}else{
+				
+			}
+			
 		}
 		else
 		{
             $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+			
+			$this->data['groups']        = $groups;
 
 			$this->data['first_name'] = array(
 				'name'  => 'first_name',

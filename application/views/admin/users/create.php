@@ -65,6 +65,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <?php echo form_input($password_confirm);?>
                                             </div>
                                         </div>
+										
+										<?php if ($this->ion_auth->is_admin()): ?>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"><?php echo lang('users_member_of_groups');?></label>
+                                            <div class="col-sm-10">
+											<?php foreach ($groups as $group):?>
+											<?php
+												$gID     = $group['id'];
+												$checked = NULL;
+												$item    = NULL;
+											?>
+										<div class="checkbox">
+										<label>
+										<input type="checkbox" name="groups[]" value="<?php echo $group['id'];?>">
+										<?php echo htmlspecialchars($group['name'], ENT_QUOTES, 'UTF-8'); ?>
+										</label>
+										</div>
+										<?php endforeach?>
+										</div>
+										</div>
+										<?php endif ?>
+										
+										
+										
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <div class="btn-group">

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+error_reporting(E_ALL);
 class Exams extends Admin_Controller {
 
     public function __construct()
@@ -59,7 +59,6 @@ class Exams extends Admin_Controller {
         //$this->data['breadcrumb'] = $this->breadcrumbs->show();
         /* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
-		
            if( $this->input->method() == 'post'){
 			$this->data = array();
 			unset($_POST['submit']);
@@ -68,15 +67,12 @@ class Exams extends Admin_Controller {
 			$this->exam_model->insert($this->data,"mc_exams");
 			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
 			    $this->template->admin_render('admin/exams/index');
-			
 		}else{
 			//$this->data = array();
 			$this->data['form_type'] = 'add';
 		}
 	           $this->data['exams_list'] = $this->exam_model->get_all("mc_exams");
 			    $this->template->admin_render('admin/exams/exam', $this->data);
-				
-
         }
 	
 
@@ -90,31 +86,25 @@ class Exams extends Admin_Controller {
 
 	public function edit($id)
 	{
-        $id = (int) $id;
-
-		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() && ! ($this->ion_auth->user()->row()->id == $id)))
-		{
-			redirect('auth', 'refresh');
+        $id = (int) $id;        
+		$tables = $this->config->item('tables', 'ion_auth');
+           if( $this->input->method() == 'post'){
+			$this->data = array();
+			unset($_POST['submit']);
+			unset($_POST['id']);
+			$this->data = $this->input->post();
+			$this->exam_model->update("mc_exams",$this->data, "id", $id);
+			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
+			  $this->data['exam_lists'] = $this->exam_model->get_all("mc_exams");
+			  $this->template->admin_render('admin/exams/index', $this->data);
+		}else{
+			//$this->data = array();
+			//$this->data['form_type'] = 'add';
 		}
-
-        /* Breadcrumbs */
-        $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/users/edit');
-        $this->data['breadcrumb'] = $this->breadcrumbs->show();
-
-        
-		if (isset($_POST) && ! empty($_POST))
-		{
-            if ($this->_valid_csrf_nonce() === FALSE OR $id != $this->input->post('id'))
-			{
-				show_error($this->lang->line('error_csrf'));
-			}
-			
-			$this->data['exams_list'] = get_single_row("mc_exams","id", $id);
-		}
-
-
+	    $this->data['form_data'] = $id;
+		$this->data['exams_list'] = $this->exam_model->get_single_row("mc_exams","id", $id);
+		$this->template->admin_render('admin/exams/exam', $this->data);
         /* Load Template */
-		$this->template->admin_render('admin/exams/index', $this->data);
 	}
 
 

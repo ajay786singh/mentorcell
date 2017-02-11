@@ -45,14 +45,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Code</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" name="code" id="code" value="<?php echo @$code['value']; ?>" placeholder="Enter College Code">
+										  <input type="text" class="form-control"  name="code" id="code" value="<?php echo @$code['value']; ?>" placeholder="Enter College Code">
 										  </div>
 										</div>
 										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Description</label>
 										  <div class="col-sm-10">
-										  <textarea class="form-control" required="" name="description" placeholder="Enter College Description"><?php echo @$description['value']; ?></textarea>
+										  <textarea class="form-control"  name="description" placeholder="Enter College Description"><?php echo @$description['value']; ?></textarea>
 										  </div>
 										</div>
 										
@@ -73,13 +73,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >Contact Person Name</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" id="contact_person_name" name="contact_person_name" value="<?php echo @$contact_person_name['value']; ?>" placeholder="Enter Contact Person Name">
+										  <input type="text" class="form-control"  id="contact_person_name" name="contact_person_name" value="<?php echo @$contact_person_name['value']; ?>" placeholder="Enter Contact Person Name">
 										  </div>
 										</div>
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Official Email address</label>
 										  <div class="col-sm-10">
-										  <input type="email" class="form-control" required="" id="email_id" value="<?php echo @$email_id['value']; ?>" name="email_id" placeholder="Enter Official Email address">
+										  <input type="email" class="form-control"  id="email_id" value="<?php echo @$email_id['value']; ?>" name="email_id" placeholder="Enter Official Email address">
 										  </div>
 										</div>
 										
@@ -105,7 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">State</label>
 										  <div class="col-sm-10">
-										   <select  class="form-control" required="" name="state" id="college_state" >
+										   <select  class="form-control"  name="state" id="college_state" >
 											  <option value="">Select State</option>
 												<?php 
 												foreach($states as $stateeach){
@@ -118,7 +118,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">City</label>
 										  <div class="col-sm-10" id="college_city_box">
-										   <select  class="form-control" required="" name="city" id="college_city" >
+										   <select  class="form-control"  name="city" id="college_city" >
 										   <?php if($city['value']){?>
 										   <option value="<?php echo $city['key']; ?>"><?php echo $city['value']; ?></option>
 										   <?php }else{ ?>

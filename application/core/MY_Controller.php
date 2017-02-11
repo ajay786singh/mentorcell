@@ -68,7 +68,7 @@ class Admin_Controller extends MY_Controller
 	{
 		parent::__construct();
 
-        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
         {
             redirect('auth/login', 'refresh');
         }

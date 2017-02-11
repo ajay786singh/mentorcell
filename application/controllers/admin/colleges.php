@@ -29,7 +29,7 @@ class Colleges extends Admin_Controller {
 
 	public function index()
 	{
-        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
         {
             redirect('auth/login', 'refresh');
         }
@@ -62,13 +62,13 @@ class Colleges extends Admin_Controller {
 		/* Validate form input */
 		//$this->form_validation->set_rules('user_id', 'User', 'required');
 		$this->form_validation->set_rules('name', 'College name', 'required');
-		$this->form_validation->set_rules('code', 'College Code', 'required');
-		$this->form_validation->set_rules('description', 'College Description', 'required');
-		$this->form_validation->set_rules('contact_person_name', 'Contact Person Name', 'required');
-		$this->form_validation->set_rules('email_id', 'Official Email address', 'required|valid_email');
+		//$this->form_validation->set_rules('code', 'College Code', 'required');
+		//$this->form_validation->set_rules('description', 'College Description', 'required');
+		//$this->form_validation->set_rules('contact_person_name', 'Contact Person Name', 'required');
+		//$this->form_validation->set_rules('email_id', 'Official Email address', 'required|valid_email');
 		//$this->form_validation->set_rules('phone', 'Mobile', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
-		$this->form_validation->set_rules('state', 'State', 'required');
+		//$this->form_validation->set_rules('state', 'State', 'required');
 		//$this->form_validation->set_rules('city', 'City', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 		
@@ -142,7 +142,7 @@ class Colleges extends Admin_Controller {
         /* Load Template */
 		$id = (int) $id;
 
-		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
 		{
 			redirect('auth', 'refresh');
 		}
@@ -164,7 +164,7 @@ class Colleges extends Admin_Controller {
 	{
         $id = (int) $id;
 
-		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
 		{
 			redirect('auth', 'refresh');
 		}
@@ -184,13 +184,13 @@ class Colleges extends Admin_Controller {
 		/* Validate form input */
 		//$this->form_validation->set_rules('user_id', 'User', 'required');
 		$this->form_validation->set_rules('name', 'College name', 'required');
-		$this->form_validation->set_rules('code', 'College Code', 'required');
-		$this->form_validation->set_rules('description', 'College Description', 'required');
-		$this->form_validation->set_rules('contact_person_name', 'Contact Person Name', 'required');
-		$this->form_validation->set_rules('email_id', 'Official Email address', 'required|valid_email');
+		//$this->form_validation->set_rules('code', 'College Code', 'required');
+		//$this->form_validation->set_rules('description', 'College Description', 'required');
+		//$this->form_validation->set_rules('contact_person_name', 'Contact Person Name', 'required');
+		//$this->form_validation->set_rules('email_id', 'Official Email address', 'required|valid_email');
 		//$this->form_validation->set_rules('phone', 'Mobile', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
-		$this->form_validation->set_rules('state', 'State', 'required');
+		//$this->form_validation->set_rules('state', 'State', 'required');
 		//$this->form_validation->set_rules('city', 'City', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 
@@ -341,7 +341,7 @@ class Colleges extends Admin_Controller {
         /* Load Template */
 		$id = (int) $id;
 
-		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
 		{
 			redirect('auth', 'refresh');
 		}
@@ -366,7 +366,7 @@ class Colleges extends Admin_Controller {
         /* Load Template */
 		$id = (int) $id;
 
-		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
 		{
 			redirect('auth', 'refresh');
 		}

@@ -192,15 +192,7 @@
 <div class="heading1">Results of CAT</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-<p>Check JEE Main 2017 important dates here!</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+<?php echo $exam_data['results'];  ?>
 </div>
 </div>
 

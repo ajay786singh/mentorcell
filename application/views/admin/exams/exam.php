@@ -26,7 +26,12 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="post" action="<?php echo base_url()."admin/exams/create";?>">
+            <?php 
+			
+			if(!$form_data){
+				$form_type =  "create";
+			}else{$form_type = "edit/".$form_data;}?>
+            <form role="form" method="post" action="<?php echo base_url()."admin/exams/".$form_type;?>">
               <div class="box-body">
               <div class="form-group">
                   <label for="exampleInputEmail1">Course Name</label>

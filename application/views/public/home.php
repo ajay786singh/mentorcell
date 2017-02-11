@@ -15,7 +15,7 @@
 <div id="form1" class="searchForm">
 <form action="search">
 <div class="formcol50">
-<select id="register_city" multiple class="auto-choice" name="college">
+<select id="register_city" style="width:350px;" multiple class="auto-choice" name="college">
 	<?php 
 		$colleges = $this->common_model->get_all("mc_colleges");
 			foreach($colleges as $college){
@@ -25,7 +25,7 @@
 </select>
 </div>
 <div class="formcol50">
-<select id="register_city" class="auto-choice" multiple name="location"><option>Current City</option>
+<select id="register_city" style="width:350px;" class="auto-choice" multiple name="location">
 	<?php 
 		$states = $this->common_model->get_all_rows("states", "country_id",101);
 		foreach($states as $stateeach){
@@ -41,6 +41,36 @@
 			
 </select>
 </div>
+<div class="formcol50">
+<select id="stream" style="width:350px;" class="auto-choice" multiple name="stream">
+	<?php 
+	$streams = $this->common_model->get_all_rows("mc_streams", 1,1);
+	foreach($streams as $stream){
+	  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
+	} ?>
+			
+</select>
+</div>
+<div class="formcol50">
+<select id="type" style="width:350px;" class="auto-choice" multiple name="type">
+	<?php 
+	$types = $this->common_model->get_all_rows("mc_types", 1,1);
+	foreach($types as $type){
+	  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
+  } ?>
+			
+</select>
+</div>
+<div class="formcol50">
+<select id="course" style="width:350px;" class="auto-choice" multiple name="course"> 
+<?php 
+	$courses = $this->common_model->get_all_rows("mc_courses", 1,1);
+	foreach($courses as $course){
+		echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+	} ?>
+			
+</select>
+</div>
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 </div>
@@ -48,7 +78,7 @@
 <div id="form2" class="searchForm">
 <form action="search">
 <div class="formcol50">
-<select id="register_city" multiple class="auto-choice" name="course">
+<select id="register_city" style="width:350px;" multiple class="auto-choice" name="course">
 	<?php 
 		$courses = $this->common_model->get_all("mc_courses");
 		foreach($courses as $course){
@@ -60,7 +90,7 @@
 </select>
 </div>
 <div class="formcol50">
-<select id="register_city" class="auto-choice" multiple name="location"><option>Current City</option>
+<select id="register_city" style="width:350px;" class="auto-choice" multiple name="location"><option>Current City</option>
 	<?php 
 		$states = $this->common_model->get_all_rows("states", "country_id",101);
 		foreach($states as $stateeach){
@@ -83,7 +113,7 @@
 <div id="form3" class="searchForm">
 <form action="search">
 <div class="formcol50">
-<select id="register_city" class="auto-choice" name="course"><option>Choose College</option>
+<select id="register_city" style="width:350px;" class="auto-choice" name="course"><option>Choose College</option>
 	<?php 
 		$colleges = $this->common_model->get_all("mc_colleges");
 			foreach($colleges as $college){
@@ -104,7 +134,7 @@
 <div class="formcol50">
 <!--<input type="text" name="" placeholder="Enter location" />-->
 
-<select id="register_city" class="auto-choice" multiple name="location"><option>Current City</option>
+<select id="register_city" style="width:350px;" class="auto-choice" multiple name="location"><option>Current City</option>
 	<?php 
 		$states = $this->common_model->get_all_rows("states", "country_id",101);
 		foreach($states as $stateeach){

@@ -68,6 +68,18 @@
 						  </div>
 						</div>
 						<div class="form-group">
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College procedure</label>
+						  <div class="col-sm-10">
+						  <input type="text" class="form-control" required="" name="procedure" id="procedure" value="" placeholder="Enter procedure">
+						  </div>
+						</div>
+						<div class="form-group">
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College eligibility</label>
+						  <div class="col-sm-10">
+						  <input type="text" class="form-control" required="" name="eligibility" id="eligibility" value="" placeholder="Enter eligibility">
+						  </div>
+						</div>
+						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Exams</label>
 						  <div class="col-sm-10">
 						  <input type="text" class="form-control" required="" name="exam" id="exam" value="" placeholder="Enter Exams">

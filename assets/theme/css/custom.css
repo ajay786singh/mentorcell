@@ -72,7 +72,7 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .homeSlider .searchArea .searchNav ul li.active {background: #15202f;}
 .homeSlider .searchArea .searchNav ul li:last-child {border:none;}
 
-.homeSlider .searchArea .formHolder {width: 160%;}
+.homeSlider .searchArea .formHolder {width: 120%;}
 .homeSlider .searchArea .searchForm {background: #fff; position: relative; z-index: 1; height: 0px; opacity: 0; transition: all ease-in-out 0.3s;}
 .homeSlider .searchArea .searchForm.active {z-index: 2; opacity:1; height:48px; }
 .homeSlider .searchArea .formHolder input,

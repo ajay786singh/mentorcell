@@ -121,9 +121,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-user"></i> <span>Coupons</span>
                             </a>
                         </li>
-						
-						
-						
+						<li class="<?=active_link_controller('coupons')?>">
+                            <a href="<?php echo site_url('admin/questionnaire'); ?>">
+                                <i class="fa fa-user"></i> <span>Questionnaire</span>
+                            </a>
+                        </li>					
                     </ul>
                 </section>
             </aside>

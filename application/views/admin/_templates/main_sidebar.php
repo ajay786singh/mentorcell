@@ -125,7 +125,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <a href="<?php echo site_url('admin/questionnaire'); ?>">
                                 <i class="fa fa-user"></i> <span>Questionnaire</span>
                             </a>
-                        </li>					
+                        </li>	
+                        
+                        <li class="<?=active_link_controller('exams')?>">
+                            <a href="<?php echo site_url('admin/exams '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Exams '; ?></span>
+                            </a>
+                        </li>
+                        <li class="<?=active_link_controller('course_detail')?>">
+                            <a href="<?php echo site_url('admin/course_detail '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Courses Detail '; ?></span>
+                            </a>
+                        </li>				
                     </ul>
                 </section>
             </aside>

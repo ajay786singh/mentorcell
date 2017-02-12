@@ -45,15 +45,16 @@ header('Vary: Accept-Encoding');
 		</head>
 <body>
 
+<div id="mainContainer">
 <!-- header start -->
 <header id="header">
-<div class="container">
+<div class="container-fluid">
 <div class="row">
-<div class="col-xs-8 col-sm-2 col-md-2 col-lg-2">
-<div class="logo"><img src="<?php echo base_url('assets/theme/images/logo.jpg'); ?>" /></div>	
+<div class="col-xs-7 col-sm-7 col-md-2 col-lg-2">
+<div class="logo"><a href="<?php site_url(); ?>"><img src="<?php echo base_url('assets/theme/images/logo.jpg'); ?>" /></a></div>	
 </div>
 
-<div class="col-xs-2 col-sm-8 col-md-8 col-lg-8">
+<div class="col-xs-2 hidden-sm hidden-xs col-md-8 col-lg-8">
 <nav class="mainMenu">
 <ul>
 <li><a href="#">Management</a>
@@ -1161,96 +1162,18 @@ header('Vary: Accept-Encoding');
 
 </li>
 
-<li><a href="#">Generate Coupon</a>
 
-<!--submenu start-->
-<div class="subMenuArea">
-<div class="subMenuRow">
-<!--left menu category start-->
-<div class="subMenuCol subMenuLeft">
-	<ol>
-		<li class="active" menu-id="submenu38">Top colleges</li>
-		<li menu-id="submenu39">Exams</li>
-		<li menu-id="submenu40">Resource</li>
-	</ol>
-</div>
-<!--left menu category close-->
-
-<!--right menu start-->
-<div class="subMenuCol subMenuRight">
-<div class="subMenuHold active" id="submenu38">
-<div class="subMenubox">
-<h3>Submenu Heading 1</h3>
-<div class="links">
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
-</div>
-</div>
-
-<div class="subMenubox">
-<h3>Submenu Heading 2</h3>
-<div class="links">
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
-<span class="sublinks"><a href="#">BBA/BBM</a></span>
-</div>
-</div>
-
-<div class="subMenubox">
-<h3>Submenu Heading 3</h3>
-<div class="links">
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
-</div>
-</div>
-</div>
-
-<div class="subMenuHold" id="submenu39">
-<div class="subMenubox">
-<h3>Submenu Heading 1</h3>
-<div class="links">
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
-<span class="sublinks"><a href="#">BBA/BBM</a></span>
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
-</div>
-</div>
-
-<div class="subMenubox">
-<h3>Submenu Heading 2</h3>
-<div class="links">
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
-<span class="sublinks"><a href="#">BBA/BBM</a></span>
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
-</div>
-</div>
-</div>
-
-<div class="subMenuHold" id="submenu40">
-<div class="subMenubox">
-<h3>Submenu Heading 1</h3>
-<div class="links">
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
-<span class="sublinks"><a href="#">BBA/BBM</a></span>
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
-</div>
-</div>
-
-</div>
-
-
-
-
-</div>
-<!--right menu close-->
-
-</div>
-</div>
-<!--submenu close-->
-
-
-</li>
 </ul>
 </nav>
 </div>
 
-<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+<div class="col-xs-5 col-sm-5 col-md-2 col-lg-2">
+
+<div class="couponTab icon-bookmark">
+<span><a href="coupon.html">C<br>o<br>u<br>p<br>o<br>n</a></span>
+<i></i>
+</div>
+
 <div class="userNav">
 <ul>
 <?php if($user_login['id']){?>
@@ -1267,6 +1190,3 @@ header('Vary: Accept-Encoding');
 </div>	
 </header>
 <!-- header close -->
-
-<!--body starts here -->
-<div id="mainContainer">

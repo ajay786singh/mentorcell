@@ -35,10 +35,13 @@
 						  
 						  <select  class="form-control " required="" name="clg_course_id" id="clg_course_id" >
 						  <?php 
+						 
 						   echo '<option  value="">Select Course</option>';
 						  foreach($courses as $course){
-											  if(in_array($course['course_id'],@$course_id)){$course_id_seleted="selected";}else{$course_id_seleted="";}
-											  echo '<option '.$course_id_seleted.' value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+											  if(in_array($course['course_id'],@$course_id)){
+												  echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>'; 
+											  }
+											 
 						   } ?></select>
 						  </div>
 						</div>

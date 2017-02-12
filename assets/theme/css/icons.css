@@ -119,3 +119,21 @@
 .icon-repo-push:before {
   content: "\41";
 }
+.icon-key:before {
+  content: "\42";
+}
+.icon-bookmark:before {
+  content: "\43";
+}
+.icon-tick:before {
+  content: "\44";
+}
+.icon-facebook:before {
+  content: "\45";
+}
+.icon-twitter:before {
+  content: "\46";
+}
+.icon-linkedin:before {
+  content: "\47";
+}

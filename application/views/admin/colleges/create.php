@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select user</label>
 										  <div class="col-sm-10">
-										  <select  class="form-control"  name="user_id" id="user_id" >
+										  <select  class="form-control basic-multiple"  name="user_id" id="user_id" multiple="multiple" >
 										  <option value="">Select User</option>
 										  <?php foreach($users as $user){
 											  if($user['id']==@$user_id['value']){$user_id_seleted="selected";}else{$user_id_seleted="";}

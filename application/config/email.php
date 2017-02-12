@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
  */
 
 
-$config['API_KEY'] = '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';
+$config['API_KEY'] = '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';
 
 $config['FROM_EAIL'] = 'no-reply@mentorcell.com';
 

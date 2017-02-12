@@ -39,7 +39,14 @@ class Colleges extends Admin_Controller {
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
             /* Load Template */
-			$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
+			$userId = $this->ion_auth->get_user_id();
+			if($this->ion_auth->in_group('college')){
+				$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges", 'user_id',$userId);
+			}else{
+				$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
+			}
+			
+			
             $this->template->admin_render('admin/colleges/index', $this->data);
         }
 	}
@@ -219,6 +226,7 @@ class Colleges extends Admin_Controller {
 				}
 				
 				$data['user_id'] = $this->input->post('user_id');
+
 				$data['name'] = $this->input->post('name');
 				$data['code'] = $this->input->post('code');
 				$data['description'] = $this->input->post('description');
@@ -314,6 +322,15 @@ class Colleges extends Admin_Controller {
         $this->data['college'] = $this->college_model->get_college($id);
 		$this->data['images'] = $this->college_model->get_images($id);
 		$this->data['videos'] = $this->college_model->get_videos($id);
+		
+		$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+		$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+		$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		
+		
+		$this->data['stream_id'] = $this->college_model->get_streams($id);
+		$this->data['type_id'] = $this->college_model->get_types($id);
+		$this->data['course_id'] = $this->college_model->get_courses($id);
 
         /* Load Template */
 		$this->template->admin_render('admin/colleges/college', $this->data);

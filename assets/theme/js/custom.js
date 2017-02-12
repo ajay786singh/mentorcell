@@ -109,4 +109,20 @@ $(this).parent().siblings().find('.toggleItems').slideUp('fast');
 });
 /**** filter toggle close ****/
 
+$('.couponHolder .regForm .inputRow input.go, .couponHolder .loginForm .inputRow input.go').click(function(){
+
+$('#couponTab2').addClass('active');
+$('#couponBox1').removeClass('active');
+$('#couponBox2').addClass('active');
+
+});
+
+$('.iqTest .go').click(function(){
+
+$('#couponTab3').addClass('active');
+$('#couponBox2').removeClass('active');
+$('#couponBox3').addClass('active');
+
+});
+
 });

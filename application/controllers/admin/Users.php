@@ -51,14 +51,16 @@ class Users extends Admin_Controller {
 		
         /* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
+		$this->load->library('plivo');
+		$this->load->library('sendgridemail');
 		$groups        = $this->ion_auth->groups()->result_array();
 
 		/* Validate form input */
-		$this->form_validation->set_rules('first_name', 'lang:users_firstname', 'required');
-		$this->form_validation->set_rules('last_name', 'lang:users_lastname', 'required');
+		//$this->form_validation->set_rules('first_name', 'lang:users_firstname', 'required');
+		//$this->form_validation->set_rules('last_name', 'lang:users_lastname', 'required');
 		$this->form_validation->set_rules('email', 'lang:users_email', 'required|valid_email|is_unique['.$tables['users'].'.email]');
-		$this->form_validation->set_rules('phone', 'lang:users_phone', 'required');
-		$this->form_validation->set_rules('company', 'lang:users_company', 'required');
+		//$this->form_validation->set_rules('phone', 'lang:users_phone', 'required');
+
 		$this->form_validation->set_rules('password', 'lang:users_password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
 		$this->form_validation->set_rules('password_confirm', 'lang:users_password_confirm', 'required');
 
@@ -97,6 +99,18 @@ class Users extends Admin_Controller {
 						}
 					}
 				}
+			
+			
+				/**/
+				$email_data = array(
+								'subject'=>'Your Password for MentorCell',
+								'to' =>$email,
+								'message' => "Please use the password to login to MentorCell.\n Password:  ".$password."\n URL: ".site_url()."/admin \n Team\n MentorCell"
+							);
+				$response_array = $this->sendgridemail->send_email($email_data);
+				
+				/**/
+			
 			
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				redirect('admin/users', 'refresh');
@@ -195,10 +209,10 @@ class Users extends Admin_Controller {
 		$currentGroups = $this->ion_auth->get_users_groups($id)->result();
 
 		/* Validate form input */
-		$this->form_validation->set_rules('first_name', 'lang:edit_user_validation_fname_label', 'required');
-		$this->form_validation->set_rules('last_name', 'lang:edit_user_validation_lname_label', 'required');
-		$this->form_validation->set_rules('phone', 'lang:edit_user_validation_phone_label', 'required');
-		$this->form_validation->set_rules('company', 'lang:edit_user_validation_company_label', 'required');
+		//$this->form_validation->set_rules('first_name', 'lang:edit_user_validation_fname_label', 'required');
+		//$this->form_validation->set_rules('last_name', 'lang:edit_user_validation_lname_label', 'required');
+		//$this->form_validation->set_rules('phone', 'lang:edit_user_validation_phone_label', 'required');
+		//$this->form_validation->set_rules('company', 'lang:edit_user_validation_company_label', 'required');
 
 		if (isset($_POST) && ! empty($_POST))
 		{

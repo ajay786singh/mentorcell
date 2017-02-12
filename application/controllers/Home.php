@@ -172,7 +172,7 @@ class Home extends Public_Controller {
 			
 			$this->email->subject('Your Password for MentorCell');
 			
-			$this->email->message('Please use the password to login to MentorCell.\n Password:  '.$password.'\n URL: '.site_url().'\n Team\n MentorCell');
+			$this->email->message("Please use the password to login to MentorCell.\n Password:  ".$password."\n URL: ".site_url()."\n Team\n MentorCell");
 			
 			echo $this->email->send();
 			

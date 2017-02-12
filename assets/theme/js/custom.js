@@ -117,12 +117,16 @@ $('#couponBox2').addClass('active');
 
 });
 
-/* $('.iqTest .go').click(function(){
+
+$('.iqTest .go').click(function(){
+
 
 $('#couponTab3').addClass('active');
 $('#couponBox2').removeClass('active');
 $('#couponBox3').addClass('active');
 
-}); */
+});
+
+
 
 });

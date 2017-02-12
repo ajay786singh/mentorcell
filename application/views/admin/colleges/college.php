@@ -88,12 +88,12 @@
 				<div class="collegeVideoSlide">
 				<ul class="bxslider">
 				<?php foreach($images as $image){ ?>
-				<li style="float:left"><img width="200px;" src="<?php echo base_url()."upload/".$image->asset_name; ?>"></li>
+				<li style="float:left"><img width="200px;" height="140px;" src="<?php echo base_url()."upload/".$image->asset_name; ?>"></li>
 				<?php } ?>
 				</ul>
 				<ul class="bxslider">
 				<?php foreach($videos as $video){ ?>
-				<li style="float:left"><video width="200" controls>
+				<li style="float:left"><video width="200" height="200" controls>
 					<source src="<?php echo base_url()."upload/".$video->asset_name; ?>" type="video/mp4">
 					<source src="<?php echo base_url()."upload/".$video->asset_name; ?>" type="video/ogg">
 						Your browser does not support HTML5 video.
@@ -110,60 +110,52 @@
 				<div class="sectionGap">
 				<div class="heading1"><h2>Courses offered</h2></div>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<div class="coursesOffer">
-				<h3>Arts, Law, Languages and Teaching <span class="collegeClose"></span></h3>
-				<h4 data-tab="collegetab1">Arts <span>(7)</span></h4> <h4 data-tab="collegetab2">Language Learning <span>(4)</span></h4> <h4 data-tab="collegetab3">Social Sciences <span>(1)</span></h4>
+				
+				<?php 
 
-				<div class="subCourses">
-				<ul id="collegetab1">
-				<li><a href="#">M.A. in Economics (International Studies), </a> <span>2 Years</span></li>
-				<li><a href="#">M.A. in Arts & Aesthetics, </a> <span>2 Years</span></li>
-				<li><a href="#">M.Phil. in Life Sciences, </a> <span>1 Year</span></li>
-				<li><a href="#">M.Phil. in Environmental Science, </a> <span>1 Year</span></li>
-				<li><a href="#">M.Phil. in Social Science, </a> <span>1 Year</span></li>
-				<li><a href="#">Ph.D. in Computational Biology and Bioinformatics, </a> <span>3 Years</span></li>
-				<li><a href="#">Ph.D. in Social Science, </a> <span>3 Years</span></li>
-				</ul>
+					foreach($streams as $stream){
+						if(in_array($stream['stream_id'],@$stream_id)){
+							  echo '<div class="coursesOffer"><h3> '.$stream['stream_name'].'<span class="collegeClose"></span></h3>';
+							  
+							  
+							  
+							  foreach($types as $type){
+											  if(in_array($type['type_id'],@$type_id)){
+											  echo '<h4 data-tab="collegetab1">'.$type['type_name'].'</h4>';
+											  
+											  
+											  echo  '<div class="subCourses">
+												<ul id="collegetab1" style="display:block">';
+											  
+											   foreach($courses as $course){
+													  if(in_array($course['course_id'],@$course_id)){
+														  
+														echo '<li><a>'.$course['course_name'].'</a></li>';
+													  }
+												}
+											  
+											 echo  '</div>
+												</ul>'; 
+											  
+											  
+											  
+											  }
+											  
+											  
+											
+						     } 
+							  
+							echo "</div>";  
+							  
+						}
+											  
+					}
 
-				<ul id="collegetab2">
-				<li><a href="#">M.A. in Linguistics, </a> <span>2 Years</span></li>
-				<li><a href="#">M.A. in English, </a> <span>2 Years</span></li>
-				<li><a href="#">M.A. in Urdu, </a> <span>2 Years</span></li>
-				<li><a href="#">M.A. in Hindi, </a> <span>2 Years</span></li>
-				</ul>
-
-				<ul id="collegetab3">
-				<li><a href="#">M.A. in Social Science, </a> <span>2 Years</span></li>
-				</ul>
-
-				</div>
-				</div>
 
 
-				<div class="coursesOffer">
-				<h3>Science & Engineering <span class="collegeClose"></span></h3>
-				<h4 data-tab="collegetab4">MSc <span>(3)</span></h4> <h4 data-tab="collegetab5">M.E / M.Tech <span>(2)</span></h4> <h4 data-tab="collegetab6">Phd<span>(2)</span></h4>
 
-				<div class="subCourses">
-				<ul id="collegetab4">
-				<li><a href="#">M.Sc. in Biotechnology, </a> <span>2 Years</span></li>
-				<li><a href="#">M.Sc. in Environmental Sciences, </a> <span>2 Years</span></li>
-				<li><a href="#">M.Sc. in Life Sciences, </a> <span>2 Years</span></li>
-				</ul>
-
-				<ul id="collegetab5">
-				<li><a href="#">M.Tech., </a> <span>2 Years</span></li>
-				<li><a href="#">M.Tech.in Computational and System Biology, </a> <span>2 Years</span></li>
-				</ul>
-
-				<ul id="collegetab6">
-				<li><a href="#">Ph.D. in Computational Biology and Bioinformatics, </a> <span>3 Years</span></li>
-				<li><a href="#">Ph.D. in Biotechnology, </a> <span>3 Years</span></li>
-				</ul>
-
-				</div>
-				</div>
-
+				?>
+				
 
 
 
@@ -218,9 +210,10 @@
 					<div class="heading2" id="placement-services">Placement Services</div>
 
 					<?php $services =explode(';',$college->placement_services);
-						  foreach($services as $service){
-							  echo "<p>$service</p>";
-						  }
+							$i = 0;
+							foreach($services as $service){
+							   echo "<p>$service</p>";
+							}
 
 					 ?>
 
@@ -229,9 +222,15 @@
 					<div class="sectionGap">
 					<div class="heading2" id="top-recruiting-companies">Top Recruiting Companies</div>
 					<?php $companies = explode(';',$college->top_recruiting_companies);
-						   foreach($companies as $company){
-							  echo "<span>$company,</span>&nbsp; ";
-						  }
+						   $i = 0;
+						    foreach($companies as $company){
+							    if($i == count($companies)){
+									echo "<span>$company,</span>&nbsp; ";
+							    }else{
+								   echo "<span>$company</span>&nbsp; ";
+							    }
+							    $i++;
+						    }
 
 					 ?>
 
@@ -242,9 +241,15 @@
 					<div class="sectionGap">
 					<div class="heading2" id="hostel-facility">Hostel Facility</div>
 					<?php $companies = explode(';',$college->hostel_details);
-						   foreach($companies as $company){
-							  echo "<span>$company,</span>&nbsp; ";
-						  }
+						   $i = 0;
+						    foreach($companies as $company){
+							    if($i == count($companies)){
+									echo "<span>$company,</span>&nbsp; ";
+							    }else{
+								   echo "<span>$company</span>&nbsp; ";
+							    }
+							    $i++;
+						    }
 
 					 ?>
 
@@ -252,9 +257,15 @@
 					</div><div class="sectionGap">
 					<div class="heading2" id="infrastructure">Infrastructure / Teaching Facilities</div>
 					<?php $companies = explode(';',$college->teaching_facilities);
-						   foreach($companies as $company){
-							  echo "<span>$company,</span>&nbsp; ";
-						  }
+						   $i = 0;
+						    foreach($companies as $company){
+							    if($i == count($companies)){
+									echo "<span>$company,</span>&nbsp; ";
+							    }else{
+								   echo "<span>$company</span>&nbsp; ";
+							    }
+							    $i++;
+						    }
 
 					 ?>
 
@@ -262,9 +273,15 @@
 					</div><div class="sectionGap">
 					<div class="heading2" id="top-faculties">Top Faculties</div>
 					<?php $companies = explode(';',$college->top_faculty);
-						   foreach($companies as $company){
-							  echo "<span>$company,</span>&nbsp; ";
-						  }
+						   $i = 0;
+						    foreach($companies as $company){
+							    if($i == count($companies)){
+									echo "<span>$company,</span>&nbsp; ";
+							    }else{
+								   echo "<span>$company</span>&nbsp; ";
+							    }
+							    $i++;
+						    }
 
 					 ?>
 
@@ -272,8 +289,14 @@
 					</div><div class="sectionGap">
 					<div class="heading2" id="partner-colleges">Partner Colleges</div>
 					<?php $companies = explode(';',$college->partner_colleges);
-						   foreach($companies as $company){
-							  echo "<span>$company,</span>&nbsp; ";
+							$i = 0;
+							foreach($companies as $company){
+							   if($i == count($companies)){
+									echo "<span>$company,</span>&nbsp; ";
+							    }else{
+								   echo "<span>$company</span>&nbsp; ";
+							    }
+							    $i++;
 						  }
 
 					 ?>
@@ -282,9 +305,15 @@
 					</div><div class="sectionGap">
 					<div class="heading2" id="ranking-awards">Ranking and Awards</div>
 					<?php $companies = explode(';',$college->rank_holders);
-						   foreach($companies as $company){
-							  echo "<span>$company,</span>&nbsp; ";
-						  }
+					        $i = 0;
+						    foreach($companies as $company){
+							    if($i == count($companies)){
+									echo "<span>$company,</span>&nbsp; ";
+							    }else{
+								   echo "<span>$company</span>&nbsp; ";
+							    }
+							    $i++;
+						    }
 
 					 ?>
 

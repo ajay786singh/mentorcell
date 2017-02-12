@@ -1,16 +1,15 @@
 <footer class="footerSection">
+<div class="container">
 <section class="footerTop">
 
-<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 <div class="footerWidget">
 <h3>Website Name</h3>
-<p>A-1/4, Some street name, Town, City Name, Country Name</p>
-<p>some.email@website.com<br>
-+91-9999-99-99-99</p>
-</div>
+<p>G-130, Sec-63,<br>
+Noida, UP<br>
+201301</p>
+<p>info@mentorcell.com</p>
 </div>
 
-<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 <div class="footerWidget">
 <h3>About us</h3>
 <ul>
@@ -20,9 +19,7 @@
 <li><a href="#">Team</a></li>
 </ul>
 </div>
-</div>
 
-<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 <div class="footerWidget">
 <h3>Services</h3>
 <ul>
@@ -34,9 +31,7 @@
 <li><a href="#">Placement</a></li>
 </ul>
 </div>
-</div>
 
-<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 <div class="footerWidget">
 <h3>Connect with us</h3>
 <ul>
@@ -49,9 +44,7 @@
 <li><a href="#">Write reviews</a></li>
 </ul>
 </div>
-</div>
 
-<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 <div class="footerWidget">
 <h3>Links</h3>
 <ul>
@@ -61,23 +54,20 @@
 <li><a href="#">Mobile Apps</a></li>
 </ul>
 </div>
-</div>
+
 
 </section>
 
 <section class="footerBottom">
-<p><strong>MBA :</strong> <a href="#">About MBA</a> | <a href="#">MBA Colleges</a> | <a href="#">Exams</a> | <a href="#">Counseling Videos</a> | <a href="#">Apply to MBA Colleges</a> </p>
-
-<p><strong>Engineering :</strong> <a href="#">About MBA</a> | <a href="#">MBA Colleges</a> | <a href="#">Exams</a> | <a href="#">Counseling Videos</a> | <a href="#">Apply to MBA Colleges</a> </p>
-
-<p><strong>Other Courses :</strong> <a href="#">About MBA</a> | <a href="#">MBA Colleges</a> | <a href="#">Exams</a> | <a href="#">Counseling Videos</a> | <a href="#">Apply to MBA Colleges</a> </p>
-
-<p><strong>Study Abroad :</strong> <a href="#">About MBA</a> | <a href="#">MBA Colleges</a> | <a href="#">Exams</a> | <a href="#">Counseling Videos</a> | <a href="#">Apply to MBA Colleges</a> </p>
-
-<p><strong>Resources :</strong> <a href="#">About MBA</a> | <a href="#">MBA Colleges</a> | <a href="#">Exams</a> | <a href="#">Counseling Videos</a> | <a href="#">Apply to MBA Colleges</a> </p>
+<p>Copyright © 2017 mentorcell.com. All Rights Reserved</p>
+<div class="footerSocial">
+<a href="#" class="fbBg"><i class="icon-facebook"></i></a>
+<a href="#" class="twBg"><i class="icon-twitter"></i></a>
+<a href="#" class="inBg"><i class="icon-linkedin"></i></a>
+</div>
 </section>
+</div>
 </footer>
-
 
 <div class="clearfix"></div>
 

@@ -192,10 +192,15 @@
 <div class="sectionGap">
 <div class="heading2" id="top-recruiting-companies">Top Recruiting Companies</div>
 <?php $companies = explode(';',$college->top_recruiting_companies);
-	   foreach($companies as $company){
-		  echo "<span>$company,</span>&nbsp; ";
-	  }
-
+	   $i = 0;
+		foreach($companies as $company){
+			if($i == count($companies)){
+				echo "<span>$company,</span>&nbsp; ";
+			}else{
+			   echo "<span>$company</span>&nbsp; ";
+			}
+			$i++;
+		}
  ?>
 
 
@@ -205,9 +210,15 @@
 <div class="sectionGap">
 <div class="heading2" id="hostel-facility">Hostel Facility</div>
 <?php $companies = explode(';',$college->hostel_details);
-	   foreach($companies as $company){
-		  echo "<span>$company,</span>&nbsp; ";
-	  }
+	   $i = 0;
+		foreach($companies as $company){
+			if($i == count($companies)){
+				echo "<span>$company,</span>&nbsp; ";
+			}else{
+			   echo "<span>$company</span>&nbsp; ";
+			}
+			$i++;
+		}
 
  ?>
 
@@ -215,9 +226,15 @@
 </div><div class="sectionGap">
 <div class="heading2" id="infrastructure">Infrastructure / Teaching Facilities</div>
 <?php $companies = explode(';',$college->teaching_facilities);
-	   foreach($companies as $company){
-		  echo "<span>$company,</span>&nbsp; ";
-	  }
+	   $i = 0;
+		foreach($companies as $company){
+			if($i == count($companies)){
+				echo "<span>$company,</span>&nbsp; ";
+			}else{
+			   echo "<span>$company</span>&nbsp; ";
+			}
+			$i++;
+		}
 
  ?>
 
@@ -225,9 +242,15 @@
 </div><div class="sectionGap">
 <div class="heading2" id="top-faculties">Top Faculties</div>
 <?php $companies = explode(';',$college->top_faculty);
-	   foreach($companies as $company){
-		  echo "<span>$company,</span>&nbsp; ";
-	  }
+	   $i = 0;
+		foreach($companies as $company){
+			if($i == count($companies)){
+				echo "<span>$company,</span>&nbsp; ";
+			}else{
+			   echo "<span>$company</span>&nbsp; ";
+			}
+			$i++;
+		}
 
  ?>
 
@@ -235,9 +258,15 @@
 </div><div class="sectionGap">
 <div class="heading2" id="partner-colleges">Partner Colleges</div>
 <?php $companies = explode(';',$college->partner_colleges);
-	   foreach($companies as $company){
-		  echo "<span>$company,</span>&nbsp; ";
-	  }
+	   $i = 0;
+		foreach($companies as $company){
+			if($i == count($companies)){
+				echo "<span>$company,</span>&nbsp; ";
+			}else{
+			   echo "<span>$company</span>&nbsp; ";
+			}
+			$i++;
+		}
 
  ?>
 
@@ -245,9 +274,15 @@
 </div><div class="sectionGap">
 <div class="heading2" id="ranking-awards">Ranking and Awards</div>
 <?php $companies = explode(';',$college->rank_holders);
-	   foreach($companies as $company){
-		  echo "<span>$company,</span>&nbsp; ";
-	  }
+		$i = 0;
+		foreach($companies as $company){
+			if($i == count($companies)){
+				echo "<span>$company,</span>&nbsp; ";
+			}else{
+			   echo "<span>$company</span>&nbsp; ";
+			}
+			$i++;
+		}
 
  ?>
 

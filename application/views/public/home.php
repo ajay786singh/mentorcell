@@ -1,18 +1,17 @@
-
 <!-- Home Slider start -->
 <section class="homeSlider">
 <div class="searchArea">
 <h3>what are you looking for?</h3>
 <div class="searchNav">
 <ul>
-	<li target-form="form1">College</li>
-	<li target-form="form2">Course</li>
-	<!--<li target-form="form3">Exam</li>-->
+	<li target-form="form1" class="active">College</li>
+	<li target-form="form2">Exam</li>
+	<li target-form="form3">Courses</li>
 </ul>
 </div>
 
 <div class="formHolder">
-<div id="form1" class="searchForm">
+<div id="form1" class="searchForm active">
 <form action="search">
 <div class="formcol50">
 <select id="register_city" style="width:350px;" multiple class="auto-choice" name="college">
@@ -76,6 +75,43 @@
 </div>
 
 <div id="form2" class="searchForm">
+<form>
+<div class="formcol50">
+<input type="text" name="" placeholder="Find colleges by course or college name" />
+<div class="autoComplete">
+<h4>Colleges</h4>
+<ul>
+<li>Amrita School of Business Amrita Vishwa Vidyapeetham ( ASB Kollam )</li>
+<li>AIHM Institute of Hotel Management</li>
+<li>NATA Classes</li>
+<li>Indian Institute of Information Technology ( IIITA )</li>
+</ul>
+</div>
+</div>
+<div class="formcol50">
+<input type="text" name="" placeholder="Enter location" />
+<div class="autoComplete">
+<h4>Popular Locations</h4>
+<ul>
+<li>All India</li>
+<li>Bangalore</li>
+<li>Chandigarh Tricity</li>
+<li>Chennai</li>
+<li>Delhi / NCR</li>
+<li>Hyderabad</li>
+<li>Kolkata</li>
+<li>Mumbai ( All )</li>
+<li>Pune</li>
+<li>Cities</li>
+<li>Agartala</li>
+</ul>
+</div>
+</div>
+<button class="go"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+</div>
+
+<div id="form3" class="searchForm">
 <form action="search">
 <div class="formcol50">
 <select id="register_city" style="width:350px;" multiple class="auto-choice" name="course">
@@ -110,97 +146,64 @@
 </form>
 </div>
 
-<div id="form3" class="searchForm">
-<form action="search">
-<div class="formcol50">
-<select id="register_city" style="width:350px;" class="auto-choice" name="course"><option>Choose College</option>
-	<?php 
-		$colleges = $this->common_model->get_all("mc_colleges");
-			foreach($colleges as $college){
-				echo '<option value="'.$college['id'].'">'.$college['name'].'</option>';
-			}
-	?>	
-</select>
-<!--<div class="autoComplete">
-<h4>Colleges</h4>
-<ul>
-<li>Amrita School of Business Amrita Vishwa Vidyapeetham ( ASB Kollam )</li>
-<li>AIHM Institute of Hotel Management</li>
-<li>NATA Classes</li>
-<li>Indian Institute of Information Technology ( IIITA )</li>
-</ul>
-</div>-->
-</div>
-<div class="formcol50">
-<!--<input type="text" name="" placeholder="Enter location" />-->
-
-<select id="register_city" style="width:350px;" class="auto-choice" multiple name="location"><option>Current City</option>
-	<?php 
-		$states = $this->common_model->get_all_rows("states", "country_id",101);
-		foreach($states as $stateeach){
-		//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
-		echo '<optgroup label="'.$stateeach['name'].'">';
-			$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
-			
-			foreach($cities as $city){
-				echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
-			}
-			echo  '</optgroup>';
-		} ?>
-			
-</select>
-
-<!--<div class="autoComplete">
-<h4>Popular Locations</h4>
-<ul>
-<li>All India</li>
-<li>Bangalore</li>
-<li>Chandigarh Tricity</li>
-<li>Chennai</li>
-<li>Delhi / NCR</li>
-<li>Hyderabad</li>
-<li>Kolkata</li>
-<li>Mumbai ( All )</li>
-<li>Pune</li>
-<li>Cities</li>
-<li>Agartala</li>
-</ul>
-</div>-->
-</div>
-<button class="go"><span class="glyphicon glyphicon-search"></span></button>
-</form>
-</div>
-
-
-
 </div>
 
 </div>
 
-<div class="mobileAppIcons"><a href="#"><img src="<?php echo base_url('assets/theme/images/googleplay.jpg'); ?>"></a> <a href="#"><img src="<?php echo base_url('assets/theme/images/appstore.jpg'); ?>"></a></div>
+<div class="mobileAppIcons hidden-xs"><a href="#"><img src="<?php echo base_url('assets/theme/images/googleplay.jpg'); ?>"></a></div>
 
 <ul class="bxslider">
 <li><img src="<?php echo base_url('assets/theme/images/slide1.jpg'); ?>"></li>
-<li><img src="<?php echo base_url('assets/theme/images/slide2.jpg'); ?>"></li>
-<li><img src="<?php echo base_url('assets/theme/images/slide3.jpg'); ?>"></li>
+<li><img src="<?php echo base_url('assets/theme/images/slide1.jpg'); ?>"></li>
+<li><img src="<?php echo base_url('assets/theme/images/slide1.jpg'); ?>"></li>
 </ul>
 </section>
 <!-- Home Slider close -->
 
 <section class="featureSlider">
+<div class="container-fluid">
+<div class="row">
 <div class="featureHeading"></div>
 <ul class="bxslider">
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.jpg'); ?>"></div> <div class="featureText"><h3>SRM University</h3> <p>Awesome University</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.jpg'); ?>"></div> <div class="featureText"><h3>SRM University</h3> <p>Awesome University</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.jpg'); ?>"></div> <div class="featureText"><h3>SRM University</h3> <p>Awesome University</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.jpg'); ?>"></div> <div class="featureText"><h3>SRM University</h3> <p>Awesome University</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.jpg'); ?>"></div> <div class="featureText"><h3>SRM University</h3> <p>Awesome University</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.jpg'); ?>"></div> <div class="featureText"><h3>SRM University</h3> <p>Awesome University</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.jpg'); ?>"></div> <div class="featureText"><h3>SRM University</h3> <p>Awesome University</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.jpg'); ?>"></div> <div class="featureText"><h3>SRM University</h3> <p>Awesome University</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.jpg'); ?>"></div> <div class="featureText"><h3>SRM University</h3> <p>Awesome University</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.jpg'); ?>"></div> <div class="featureText"><h3>SRM University</h3> <p>Awesome University</p></div></li>
+<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
+<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
+<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
+<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
+<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
+<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
+<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
+<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
+<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
+<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
 </ul>
+</div>
+</div>
+</section>
+
+<section class="bgGrey">
+<div class="container">
+<div class="row">
+<div class="containerBox">
+<div class="sectionHeading">About us</div>
+
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<div class="careerCol">
+<p>MentorCell.com is founded by IIT and IIM Alumni with a vision to extend support and guidance to students at school and college level for the betterment of their academic and professional career and thus contribute towards nation building.</p>
+<p>We are providing career counseling to students through researched content and videos. We have provided here researched and precise content on courses, career choices, exams, colleges, fees, reviews, college admission process and scholarships etc. which is simple and quick to understand.</p>
+<p>We aim that all students get rightly educated and take the right step towards building their career.
+</p>
+</div>
+</div>
+
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<div class="youTubePlayer">
+<img src="<?php echo base_url('assets/theme/images/youtubeplayer.jpg'); ?>">
+</div>
+</div>
+
+</div>
+</div>
+</div>
 </section>
 
 <section class="bgWhite">
@@ -212,21 +215,21 @@
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 <div class="stepsRow">
 	<div class="stepIcon"><img src="<?php echo base_url('assets/theme/images/step1.jpg'); ?>" /></div>
-	<div class="stepText"><h3><span>1</span> Step 1</h3> <p>Register and generate coupon.</p> <a href="#" class="stepButton">Generate Coupon</a></div>
+	<div class="stepText"><h3><span>1</span> Step 1</h3> <p>Register and generate coupon.</p> <a href="#" class="stepButton">Register</a></div>
 </div>
 </div>
 
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 <div class="stepsRow">
 	<div class="stepIcon"><img src="<?php echo base_url('assets/theme/images/step2.jpg'); ?>" /></div>
-	<div class="stepText"><h3><span>2</span> Step 2</h3> <p>College Search & Get Counseling</p> <a href="#" class="stepButton">About counseling</a></div>
+	<div class="stepText"><h3><span>2</span> Step 2</h3> <p>College Search & Get Counseling</p> <a href="#" class="stepButton">College search</a></div>
 </div>
 </div>
 
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 <div class="stepsRow">
 	<div class="stepIcon"><img src="<?php echo base_url('assets/theme/images/step3.jpg'); ?>" /></div>
-	<div class="stepText"><h3><span>3</span> Step 3</h3> <p>Take Admission & Redeem Coupon</p> <a href="#" class="stepButton">About scholarship</a></div>
+	<div class="stepText"><h3><span>3</span> Step 3</h3> <p>Take Admission & Redeem Coupon</p> <a href="#" class="stepButton">Generate coupon</a></div>
 </div>
 </div>
 
@@ -242,7 +245,7 @@
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading">Confused regarding career/career?</div>
+<div class="sectionHeading">Career counseling video</div>
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="youTubePlayer">
@@ -252,10 +255,8 @@
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="careerCol">
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
-<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
-<a href="#" class="counsButton">Get counselling</a>
+<p>We are providing career counseling to students through researched content and videos. We have provided here researched and precise video content on courses, career choices etc which is simple and quick to understand. To make the process simpler, we have also put up counseling videos made by experts and educational institutions.</p>
+<!--<a href="#" class="counsButton">Get counselling</a>-->
 </div>
 </div>
 
@@ -276,78 +277,63 @@
 </div>
 </section>
 
-<section class="bgManagement">
+<section class="bgWhite">
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading whiteColor">Anything particular?</div>
+<div class="sectionHeading">Anything particular?</div>
 
 <div class="col-xs-12 col-sm-12">
 <div class="managementArea">
 <ul>
 <li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
+<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/1.png'); ?>" /></a></div>
+<div class="manageText"><a href="anything-particular.html">Management</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
+<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/2.png'); ?>" /></a></div>
+<div class="manageText"><a href="anything-particular.html">Engineering</div>
 </li>
 
 <li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
+<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/3.png'); ?>" /></a></div>
+<div class="manageText"><a href="anything-particular.html">Architecture</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
+<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/4.png'); ?>" /></a></div>
+<div class="manageText"><a href="anything-particular.html">Medical</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
+<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/5.png'); ?>" /></a></div>
+<div class="manageText"><a href="anything-particular.html">Dental</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
+<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/6.png'); ?>" /></a></div>
+<div class="manageText"><a href="anything-particular.html">Pharmacy</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
+<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/7.png'); ?>" /></a></div>
+<div class="manageText"><a href="anything-particular.html">Paramedical</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
+<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/8.png'); ?>" /></a></div>
+<div class="manageText"><a href="anything-particular.html">Hotel Management</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
+<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/9.png'); ?>" /></a></div>
+<div class="manageText"><a href="anything-particular.html">Law</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
-</li>
-
-<li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
-</li>
-
-<li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
-</li>
-
-<li>
-<div class="manageIcon"><img src="<?php echo base_url('assets/theme/images/manage-icon.jpg'); ?>" /></div>
-<div class="manageText">Management</div>
+<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/10.png'); ?>" /></a></div>
+<div class="manageText"><a href="anything-particular.html">Computer Application</a></div>
 </li>
 
 </ul>
@@ -373,34 +359,87 @@
 <ul>
 <li>MBA</li>
 <li>BBA</li>
-<li>B.tech</li>
-<li>M.tech</li>
+<li>B.E/B.Tech</li>
+<li>M.E/M.Tech</li>
 <li>MBBS</li>
 <li>BDS</li>
-<li>MBA</li>
-<li>BBA</li>
-<li>B.tech</li>
-<li>M.tech</li>
-<li>MBBS</li>
-<li>BDS</li>
-<li>MBA</li>
-<li>BBA</li>
-<li>B.tech</li>
-<li>M.tech</li>
-<li>MBBS</li>
-<li>BDS</li>
-<li>MBA</li>
-<li>BBA</li>
-<li>B.tech</li>
-<li>M.tech</li>
-<li>MBBS</li>
-<li>BDS</li>
-<li>MBA</li>
-<li>BBA</li>
-<li>B.tech</li>
-<li>M.tech</li>
-<li>MBBS</li>
-<li>BDS</li>
+<li>B.Com</li>
+<li>BCA</li>
+<li>MCA</li>
+<li>BHM</li>
+<li>B.Sc (Nursing)</li>
+<li>B.Pharma</li>
+<li>B.Sc</li>
+<li>B.Arch</li>
+<li>B.Sc (Aviation)</li>
+<li>B.Sc (Computers)</li>
+<li>B.Des.</li>
+<li>LLB</li>
+<li>Bachelor of Physiotherapy (BPT)</li>
+<li>BAMS</li>
+<li>BHMS</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+
+<section class="bgWhite">
+<div class="container">
+<div class="row">
+<div class="containerBox">
+<div class="sectionHeading">Introducing Our Team</div>
+
+<div class="col-xs-12 col-sm-12">
+<div class="teamArea">
+<ul>
+
+<li>
+<div class="teamIcon"><img src="<?php echo base_url('assets/theme/images/ak-gupta.jpg'); ?>" /></div>
+<div class="teamText">
+<h3>Amit Kumar Gupta</h3>
+<h4>Co-Founder</h4>
+<p>Amit Kumar Gupta did his Bachelors and Masters in Mechanical Engineering...</p>
+<a href="#" data-toggle="modal" data-target="#teamModal1" class="teamDetail">Detail</a>
+</div>
+</li>
+
+<li>
+<div class="teamIcon"><img src="<?php echo base_url('assets/theme/images/sanjeev-singh.jpg'); ?>" /></div>
+<div class="teamText">
+<h3>Sanjeev Singh</h3>
+<h4>Co-Founder</h4>
+<p>Sanjeev Singh holds a Masters in Computer Science from USC, Columbia...</p>
+<a href="#" data-toggle="modal" data-target="#teamModal2" class="teamDetail">Detail</a>
+</div>
+</li>
+
+<li>
+<div class="teamIcon"><img src="<?php echo base_url('assets/theme/images/p-chaudhuri.jpg'); ?>" /></div>
+<div class="teamText">
+<h3>Pranab Chaudhuri</h3>
+<h4>Co-Founder</h4>
+<p>Pranab Chaudhuri holds a Bachelors and Masters in Maths & Computing from...</p>
+<a href="#" data-toggle="modal" data-target="#teamModal3" class="teamDetail">Detail</a>
+</div>
+</li>
+
+<li>
+<div class="teamIcon"><img src="<?php echo base_url('assets/theme/images/d-mishra.jpg'); ?>" /></div>
+<div class="teamText">
+<h3>Dinesh Mishra</h3>
+<h4>Co-Founder</h4>
+<p>Dinesh Mishra did his Graduation in Hotel Management and MBA in Hospitality</p>
+<a href="#" data-toggle="modal" data-target="#teamModal4" class="teamDetail">Detail</a>
+</div>
+</li>
+
 </ul>
 
 </div>
@@ -421,7 +460,7 @@
 
 <div class="col-xs-12 col-sm-12">
 <div class="studyAbroad">
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
+<p>We help you realise your dream of studying abroad by providing end-to-end support right from student profile analysis and counseling to college selection and admission process in universities abroad.</p>
 
 <ul>
 	<li><div class="abroadIcon"><img src="<?php echo base_url('assets/theme/images/flag1.jpg'); ?>" /></div> <div class="abroadName">Germany</div> </li>
@@ -447,13 +486,41 @@
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading">Confused regarding career/placement?</div>
+<div class="sectionHeading">Contact us</div>
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="quickContact">
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+<h3>GET IN TOUCH</h3>
+<p>Mon - Sat: 09 AM - 06 PM</p>
 
-<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
+<ul>
+<li>
+<span class="contactIcon"></span>
+<span class="contactText">
+<h4>ADDRESS</h4>
+<p>G-130, Sec-63,<br>
+Noida-201307, India</p>
+</span>
+</li>
+
+<li>
+<span class="contactIcon"></span>
+<span class="contactText">
+<h4>CALL US</h4>
+<p>+91 9953862807 / +91 7042387480</p>
+</span>
+</li>
+
+<li>
+<span class="contactIcon"></span>
+<span class="contactText">
+<h4>E-MAIL</h4>
+<p><a href="mailto:info@mentorcell.com">info@mentorcell.com</a> / <a href="mailto:dinesh@mentorcell.com">dinesh@mentorcell.com</a></p>
+</span>
+</li>
+
+</ul>
+
 <a href="#" class="quickButton">Get a call back</a>
 </div>
 </div>
@@ -462,9 +529,9 @@
 <div class="contactForm">
 	<form>
 	<ul>
-		<li><input type="email" name="" placeholder="Email Address"></li>
-		<li><input type="text" name="" placeholder="Full Name"></li>
-		<li><input type="tel" name="" placeholder="Mobile Number"></li>
+	    <li><input type="text" name="" placeholder="Full Name"> <i class="icon-name"></i></li>
+		<li><input type="email" name="" placeholder="Email Address"> <i class="icon-email"></i></li>
+		<li><input type="tel" name="" placeholder="Mobile Number"> <i class="icon-phone-call"></i></li>
 		<li><textarea placeholder="Message"></textarea></li>
 		<li><input type="submit" value="Send" class="go" name=""></li>
 		</ul>
@@ -476,3 +543,120 @@
 </div>
 </div>
 </section>
+
+
+
+
+
+<!-- team 1 start -->
+<div id="teamModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    <div class="regRight">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Amit Kumar Gupta</h4>
+      </div>
+      <div class="modal-body">
+      <div class="teamPopup">
+      <div class="teamImg"><img src="<?php echo base_url('assets/theme/images/ak-gupta.jpg'); ?>"></div>
+      <h5>Co-Founder</h5>
+      <p>Amit Kumar Gupta did his Bachelors and Masters in Mechanical Engineering from IIT Kharagpur and holds a laurea Magistrale in Industrial Engineering & Management from University of Udine, Italy.  He has more than ten years of experience in Manufacturing Industry in the field of Supply Chain, in India and Italy. During his job tenure, he has been continuously guiding, training and developing teams working under him. He has a deep interest in Mentoring and high belief in moral education.</p>
+      </div>
+      <div class="clearfix"></div>
+      </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+<!-- team 1 Close -->
+
+<!-- team 2 start -->
+<div id="teamModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    <div class="regRight">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Sanjeev Singh</h4>
+      </div>
+      <div class="modal-body">
+      <div class="teamPopup">
+      <div class="teamImg"><img src="<?php echo base_url('assets/theme/images/sanjeev-singh.jpg'); ?>"></div>
+      <h5>Co-Founder</h5>
+      <p>Sanjeev Singh holds a Masters in Computer Science from USC, Columbia, USA and Bachelors & Masters in Maths and Computing from IIT Kharagpur. He has over 10 years of experience in industry and academia. He has worked as a web and app developer, and was involved in research in mobile computing, particularly in smartphone assisted safe driving.</p>
+      </div>
+      <div class="clearfix"></div>
+      </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+<!-- team 2 Close -->
+
+
+<!-- team 3 start -->
+<div id="teamModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    <div class="regRight">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Pranab Chaudhuri</h4>
+      </div>
+      <div class="modal-body">
+      <div class="teamPopup">
+      <div class="teamImg"><img src="<?php echo base_url('assets/theme/images/p-chaudhuri.jpg'); ?>"></div>
+      <h5>Co-Founder</h5>
+      <p>Pranab Chaudhuri holds a Bachelors and Masters in Maths & Computing from IIT Kharagpur. He has around 11 years of experience in industry working with High Tech companies like Oracle and VMware. He underwent training in 3D immersive visualization at NASA John C Stennis Space Center, Mississippi. He has worked in various domains like cloud, SAAS, Analystics etc.</p>
+      </div>
+      <div class="clearfix"></div>
+      </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+<!-- team 3 Close -->
+
+<!-- team 4 start -->
+<div id="teamModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    <div class="regRight">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Dinesh Mishra</h4>
+      </div>
+      <div class="modal-body">
+      <div class="teamPopup">
+      <div class="teamImg"><img src="<?php echo base_url('assets/theme/images/d-mishra.jpg'); ?>"></div>
+      <h5>Co-Founder</h5>
+      <p>Dinesh Mishra did his Graduation in Hotel Management and MBA in Hospitality Management. He has almost 13 years of experience in Hospitality industry in India and abroad. He also has more than ten years of experience in educational consultancy sector and founded Edu Mantra Educational Society in the year 2009.</p>
+      </div>
+      <div class="clearfix"></div>
+      </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+<!-- team 4 Close -->

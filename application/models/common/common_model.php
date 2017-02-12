@@ -50,11 +50,14 @@ class Common_model extends CI_Model {
 	*@param tablename, column in where, value
 	*result as array
 	*/
-	function get_all_rows($table, $where_col, $where_val, $order_by="")
+	function get_all_rows($table, $where_col, $where_val, $order_by="", $limit="")
     {
         $this->db->where("$where_col",$where_val);
 		if($order_by) {
 			$this->db->order_by($order_by);
+		}
+		if($limit) {
+			$this->db->limit($limit);
 		}
         $result = $this->db->get($table)->result_array();
         return $result;

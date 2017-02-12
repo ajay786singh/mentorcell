@@ -119,3 +119,12 @@
 .icon-repo-push:before {
   content: "\41";
 }
+.icon-key:before {
+  content: "\42";
+}
+.icon-bookmark:before {
+  content: "\43";
+}
+.icon-tick:before {
+  content: "\44";
+}

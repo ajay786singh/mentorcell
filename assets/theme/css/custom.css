@@ -17,8 +17,9 @@ a:hover {text-decoration: none;}
 .filterItems, .locationSearch, .collegeResultBox, .collegeResultBox .collegeTop,
 .collegeResultBox .collegeMiddle, .collegeResultBox .collegeBottom, .pagination,
 .collegeHead .collegeQuick, .courceHead, .addmisionProcedure, .collegeReviewTop, .collegeReviewBox,
-.importantDates, .newsBox, .couponTabs, .couponHolder, .iqTest ol li, .iqTest ol li .iqAnsRow,
-.teamArea, .teamPopup {width: 100%; float: left; clear: both;}
+
+.importantDates, .newsBox, .couponTabs, .couponHolder, .iqTest ol li, .iqTest ol li .iqAnsRow {width: 100%; float: left; clear: both;}
+
 
 header#header {background:#15202f; position:fixed; left: 0px; top:0px; z-index:20; height: 55px;}
 header#header .logo {padding: 10px 0px 0px 0px; width: 100%;}
@@ -74,7 +75,11 @@ header#header .logo img {max-width: 100%; height: auto;}
 .homeSlider .searchArea .searchNav ul li.active {background: #15202f;}
 .homeSlider .searchArea .searchNav ul li:last-child {border:none;}
 
+<<<<<<< HEAD
 .homeSlider .searchArea .formHolder {width: 100%;}
+=======
+.homeSlider .searchArea .formHolder {width: 160%;}
+>>>>>>> 500ba1afc92dee6c15ed3cbafc0b732da2e5f042
 .homeSlider .searchArea .searchForm {background: #fff; position: relative; z-index: 1; height: 0px; opacity: 0; transition: all ease-in-out 0.3s;}
 .homeSlider .searchArea .searchForm.active {z-index: 2; opacity:1; height:48px; }
 .homeSlider .searchArea .formHolder input,
@@ -588,6 +593,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .teamPopup .teamImg img {width: 100%; height:100%; border:2px solid #fff; border-radius:100%;}
 .teamPopup h5 {font-size: 16px; text-align: center; margin: 0px 0px 10px 0px;}
 .teamPopup p {font-size: 14px; margin: 0px 0px 10px 0px; text-align: left; color: rgba(0,0,0,0.54);} 
+
 /****new close****/
 
 .footerSection {background: #232440;}

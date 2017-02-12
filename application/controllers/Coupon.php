@@ -12,7 +12,7 @@ class Coupon extends Public_Controller {
         $this->load->helper(array('array', 'language', 'url'));
 		$this->load->model('common/common_model');
 		
-		$this->questionsDisp	=	5;
+		$this->questionsDisp	=	20;
 		$this->minValue			=	80;
 		$this->maxValue			=	120;
 		$this->eachCorrectValue	=	round(($this->maxValue - $this->minValue) / $this->questionsDisp);

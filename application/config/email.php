@@ -6,12 +6,10 @@ if (!defined('BASEPATH'))
 /**
  * Config for the Plivo library
  */
-$config['protocol'] = 'smtp';
 
-$config['smtp_port'] = '587';
 
-$config['smtp_host'] = 'smtp.sendgrid.net';
+$config['API_KEY'] = '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';
 
-$config['smtp_user'] = 'sanjeev.singh82@gmail.com';
+$config['FROM_EAIL'] = 'no-reply@mentorcell.com';
 
-$config['smtp_pass'] = 'smidi001';
+$config['FROM_NAME'] = 'Mentorcell';

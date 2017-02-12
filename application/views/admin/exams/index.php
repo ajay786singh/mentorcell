@@ -34,7 +34,7 @@
                 <tr>
                   <td><?php echo $exam_list['course_name'];?></td>
                   <td><?php echo $exam_list['exam_name'];?></td>
-                  <td><a href="<?php echo base_url()."admin/exams/edit/".$exam_list['id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/exams/edit/".$exam_list['id'];?>">Delete</a></td>
+                  <td><a href="<?php echo base_url()."admin/exams/edit/".$exam_list['id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/exams/delete/".$exam_list['id'];?>">Delete</a></td>
                </tr>
                <?php }?>
                 </tbody>

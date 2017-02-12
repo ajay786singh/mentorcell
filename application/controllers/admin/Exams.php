@@ -77,10 +77,12 @@ class Exams extends Admin_Controller {
 	
 
 
-	public function delete()
+	public function delete($id)
 	{
         /* Load Template */
-		$this->template->admin_render('admin/users/delete', $this->data);
+		//$this->template->admin_render('admin/users/delete', $this->data);
+		$this->exam_model->delete($id);
+		redirect('admin/exams/index', 'refresh');
 	}
 
 
@@ -93,10 +95,13 @@ class Exams extends Admin_Controller {
 			unset($_POST['submit']);
 			unset($_POST['id']);
 			$this->data = $this->input->post();
+			
 			$this->exam_model->update("mc_exams",$this->data, "id", $id);
 			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
-			  $this->data['exam_lists'] = $this->exam_model->get_all("mc_exams");
-			  $this->template->admin_render('admin/exams/index', $this->data);
+			  //$this->data['exam_lists'] = $this->exam_model->get_all("mc_exams");
+			  //$this->template->admin_render('admin/exams/index', $this->data);
+			  redirect('admin/exams/index', 'refresh');
+			  
 		}else{
 			//$this->data = array();
 			//$this->data['form_type'] = 'add';

@@ -17,7 +17,7 @@ a:hover {text-decoration: none;}
 .filterItems, .locationSearch, .collegeResultBox, .collegeResultBox .collegeTop,
 .collegeResultBox .collegeMiddle, .collegeResultBox .collegeBottom, .pagination,
 .collegeHead .collegeQuick, .courceHead, .addmisionProcedure, .collegeReviewTop, .collegeReviewBox,
-.importantDates, .newsBox {width: 100%; float: left; clear: both;}
+.importantDates, .newsBox, .couponTabs, .couponHolder, .iqTest ol li, .iqTest ol li .iqAnsRow {width: 100%; float: left; clear: both;}
 
 header#header {background:#15202f; position:fixed; left: 0px; top:0px; z-index:20; height: 55px;}
 header#header .logo {padding: 10px 0px 0px 0px;}
@@ -72,7 +72,7 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .homeSlider .searchArea .searchNav ul li.active {background: #15202f;}
 .homeSlider .searchArea .searchNav ul li:last-child {border:none;}
 
-.homeSlider .searchArea .formHolder {width: 120%;}
+.homeSlider .searchArea .formHolder {width: 160%;}
 .homeSlider .searchArea .searchForm {background: #fff; position: relative; z-index: 1; height: 0px; opacity: 0; transition: all ease-in-out 0.3s;}
 .homeSlider .searchArea .searchForm.active {z-index: 2; opacity:1; height:48px; }
 .homeSlider .searchArea .formHolder input,
@@ -171,9 +171,11 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .quickContact .quickButton {background:#f77a52; transition: all ease-in-out 0.3s; color: #fff; padding:10px 40px; float: left; clear: both; display: block; border-radius: 6px; text-decoration: none;} 
 .quickContact .quickButton:hover {background: rgba(0,0,0,0.87);}
 
-.contactForm ul li {display: block; margin: 0px 0px 12px 0px;}
+.contactForm ul li {display: block; margin: 0px 0px 12px 0px; position: relative;}
+.contactForm ul li i {position: absolute; top: 8px; left: 15px; z-index: 1; font-size: 20px; color: rgba(0,0,0,0.54);}
 .contactForm ul li input, .contactForm ul li textarea {width: 100%; transition: all ease-in-out 0.4s; border: 2px solid #b4b4b4; border-radius: 4px; font-size: 14px; height:40px; padding: 0px 0px 0px 54px;}
 .contactForm ul li input:focus, .contactForm ul li textarea:focus {border:2px solid #2c76bf;}
+.contactForm ul li input:focus + i, .contactForm ul li textarea:focus + i {color: #2c76bf;}
 .contactForm ul li textarea {padding: 10px; height:150px;}
 .contactForm ul li input.go {background:#f77a52; color: #fff; font-size: 16px; border:none; padding: 0px 20px; width: 150px;}
 .contactForm ul li input.go:hover {background: rgba(0,0,0,0.87);}
@@ -489,6 +491,76 @@ header#header .logo {padding: 10px 0px 0px 0px;}
 .pagination ul li {display: inline-block;  text-align: center;  font-size: 13px;}
 .pagination ul li a {display: block; width:30px; height:30px; line-height:30px; border:1px solid rgba(0,0,0,0.20); color: rgba(0,0,0,0.54);}
 .pagination ul li a:hover, .pagination ul li span.active {display: block; width:30px; height:30px; line-height:30px; background:#f77a52; border:1px solid #f77a52; color:#fff;}
+
+
+/****new start****/
+.couponTab {position: absolute; right: 20px; top: 55px; color: #fff; width: 40px; text-align: center;}
+.couponTab:before {font-size:104px; position: absolute; left: -32px; line-height: 96px; color: #5ea81a;}
+.couponTab a {display: block; color: #fff;}
+.couponTab span {display: block; position: relative; z-index: 9; text-align: center; font-size: 10px; line-height:10px; padding:10px 0px;}
+
+.couponTabs {text-align: center;}
+.couponTabs ul {font-size: 0px;}
+.couponTabs ul li {max-width: 33.33%; width: 200px; opacity: 0.5; display: inline-block; font-size: 0px; text-align: center; position: relative; padding: 5px 0px;}
+.couponTabs ul li h3 {width: 60px; height: 60px; line-height: 60px;  text-align: center; position: relative; border-radius: 200px; background: rgba(0,0,0,0.05); border:2px solid rgba(0,0,0,0.15); display: inline-block;}
+.couponTabs ul li h3 img {width: 30px; height: auto; border-radius: 100px;}
+.couponTabs ul li h3 i {position: absolute; right: -5px; top: -5px; font-size: 20px; line-height: 0px;}
+.couponTabs ul li h4 {font-size: 13px; margin: 0px; display: block; clear: both; padding: 10px 0px 0px 0px;}
+
+.couponTabs ul li.active {opacity: 1;}
+.couponTabs ul li.active h3 i {color: #f77a52;}
+
+.couponHolder {padding: 20px 0px;}
+.couponHolder .couponRow {display: none;}
+.couponHolder .couponRow.active {display: block;}
+
+.couponHolder .regForm {padding:20px; vertical-align: top; margin: 0px 15px; background: rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.10); border-radius: 10px; display: inline-block; width: calc(50% - 40px);}
+.couponHolder .regForm h3 {font-size: 20px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block;}
+.couponHolder .regForm h3 a {color: #5792cc;}
+.couponHolder .regForm h3 a:hover {color: rgba(0,0,0,0.87);}
+.couponHolder .regForm .inputRow {margin: 0px 0px 10px 0px; position: relative;}
+.couponHolder .regForm i {position: absolute; z-index: 2; top: 8px; left:18px; font-size: 23px; line-height: 1px; color:#bababa;}
+.couponHolder .regForm .inputRow input, .couponHolder .regForm .inputRow select {width: 100%; font-size: 14px; letter-spacing: 1px; border:1px solid #c5c5c5; height: 40px; border-radius: 5px; padding: 0px 0px 0px 60px;}
+.couponHolder .regForm .inputRow input:focus, .couponHolder .regForm .inputRow select:focus {border:1px solid #5792cc;}
+.couponHolder .regForm .inputRow input:focus + i, .couponHolder .regForm .inputRow select:focus + i {color:#5792cc;}
+.couponHolder .regForm .inputRow input.go {background: #f77a52; width:150px; transition: all  ease-in-out 0.3s; margin: 10px 0px 0px 0px; color: #fff; padding: 0px; border:none;}
+.couponHolder .regForm .inputRow input.go:hover {background: #000;}
+
+.couponHolder .loginForm {padding:20px; vertical-align: top; margin: 0px 15px; background: rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.10); border-radius: 10px; display: inline-block; width: calc(50% - 40px);}
+.couponHolder .loginForm h3 {font-size: 20px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block;}
+.couponHolder .loginForm h3 a {color: #5792cc;}
+.couponHolder .loginForm h3 a:hover {color: rgba(0,0,0,0.87);}
+.couponHolder .loginForm h4 {font-size: 16px; margin: 0px 0px 30px 0px; color: rgba(0,0,0,0.87); display: block;}
+.couponHolder .loginForm h5 {font-size: 16px; margin:0px; color: #5792cc; display: block;}
+.couponHolder .loginForm h5 a {color: #5792cc;}
+.couponHolder .loginForm h5 a:hover {color: #000;}
+.couponHolder .loginForm .inputRow {margin: 0px 0px 20px 0px; position: relative;}
+.couponHolder .loginForm i {position: absolute; z-index: 2; top: 12px; left:18px; font-size: 23px; line-height: 1px; color:#bababa;}
+.couponHolder .loginForm .inputRow input {width: 100%; font-size: 14px; letter-spacing: 1px; border:1px solid #c5c5c5; height: 40px; border-radius: 5px; padding: 0px 0px 0px 60px;}
+.couponHolder .loginForm .inputRow input:focus {border:1px solid #5792cc;}
+.couponHolder .loginForm .inputRow input:focus + i {color:#5792cc;}
+.couponHolder .loginForm .inputRow input.go {background: #f77a52; width:150px; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
+.couponHolder .loginForm .inputRow input.go:hover {background: #000;}
+
+.iqTest ol li {background: rgba(0,0,0,0.03); border:1px dashed rgba(0,0,0,0.07); padding: 15px; margin: 0px 0px 15px 0px;}
+.iqTest ol li h3 {font-size: 17px; margin: 0px 0px 12px 0px; color: #000;}
+.iqTest ol li h4 {font-size: 15px; margin: 0px 0px 12px 0px; padding: 0px 0px 0px 20px; color:rgba(0,0,0,0.87);}
+.iqTest ol li .iqAnsRow {padding: 0px 0px 0px 20px;}
+.iqTest ol li .iqAnsBox {float: left; margin: 0px 30px 0px 0px; font-size: 14px; color: rgba(0,0,0,0.70);}
+.iqTest ol li .iqAnsBox input {position: absolute; width: 0px; height: 0px; opacity: 0; overflow: hidden; z-index: -2;}
+.iqTest ol li .iqAnsBox label {display: block; position: relative; padding: 0px 0px 0px 25px; line-height: 16px;}
+.iqTest ol li .iqAnsBox label:before {content:''; position: absolute; left: 0px; top: 0px; display:block; width: 15px; height: 15px; background: rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.20); border-radius: 100px;}
+.iqTest ol li .iqAnsBox input:checked + label:before {background: green;}
+
+.iqTest .go {background: #f77a52; height: 45px; border-radius: 6px; border:none; width:150px; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
+.iqTest .go:hover {background: #000;}
+
+.iqResult {text-align: center; border-top:1px solid rgba(0,0,0,0.10); padding: 20px 0px 0px 0px;}
+.iqResult h3 {font-size: 22px; margin: 0px 0px 5px 0px;}
+.iqResult h4 {font-size: 18px; margin: 0px 0px 15px 0px;}
+.iqResult h5 {font-size: 22px; margin: 0px 0px 15px 0px; background: rgba(0,0,0,0.10); width: 70px; height: 70px; line-height: 70px; display: inline-block; border-radius: 100px;}
+.iqResult h6 {background: green; display: inline-block; color: #fff; padding: 5px 15px; font-size: 14px;}
+/****new close****/
 
 .footerSection {background: #232440;}
 .footerTop {padding:30px 50px; border-bottom: 1px solid #30314b;}

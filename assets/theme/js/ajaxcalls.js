@@ -101,5 +101,44 @@ $(document).ready(function() {
 	
 	/**/
 	
+	/*Question Answer Submit*/
+		$("#question_answer").click(function(event) {
+			event.preventDefault();
+			var question_ids	= 	$("#question_ids").val();
+			var a_answers		=	Array();
+			if(question_ids) {
+				a_question_ids	=	question_ids.split(",");
+				for(i=0;i<a_question_ids.length;i++) {
+					var answer	= 	$("input[name='answer"+a_question_ids[i]+"']:checked").val();
+					a_answers.push(a_question_ids[i]+":"+answer);
+				}
+			}
+			answers	=	"";
+			if(a_answers) {
+				var answers	=	a_answers.join(",");
+			}
+			// 
+			
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"/coupon/question_answer_submitted",
+				dataType: 'json',
+				data: {answers_val:answers},
+				success: function(res) {
+					if (res)
+					{
+						/* if(res.message.match(/alert-warning/g)){
+							$('#iqResult').html(res.message);
+						}  */
+						$('.iqResult').html(res.message);
+						$('#couponTab3').addClass('active');
+						$('#couponBox2').removeClass('active');
+						$('#couponBox3').addClass('active');
+					}
+				}
+			});
+		});
+	/*login*/
+	
 	
 });

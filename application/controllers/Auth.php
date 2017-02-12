@@ -98,7 +98,7 @@ class Auth extends MY_Controller {
         }
         else
         {
-			if($this->ion_auth->in_group('college')){
+			if($this->ion_auth->in_group('college') || $this->ion_auth->is_admin()){
 				redirect('admin/dashboard', 'refresh');
 			}else{
 				redirect('/', 'refresh');

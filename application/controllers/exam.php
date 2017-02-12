@@ -19,14 +19,14 @@ class Exam extends Public_Controller {
     }
 
 
-	public function index()
+	public function index($exam_name)
 	{
 		if ($this->ion_auth->logged_in()){
 		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
 		}else{
 			$this->data['user_login'] = array('id'=>false);
 		}
-
+		$this->data['exam_data'] = $this->exam_model->get_single_row("mc_exams", "exam_name",$exam_name );
 		$this->load->view('public/layout/header', $this->data);
 		$this->load->view('public/exam', $this->data);
 		$this->load->view('public/layout/footer', $this->data);

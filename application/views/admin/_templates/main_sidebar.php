@@ -32,6 +32,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php endif; ?>
                     <!-- Sidebar menu -->
                     <ul class="sidebar-menu">
+						<?php if($this->ion_auth->is_admin()){ ?>
+					
                         <li>
                             <a href="<?php echo site_url('/'); ?>">
                                 <i class="fa fa-home text-primary"></i> <span><?php echo lang('menu_access_website'); ?></span>
@@ -91,11 +93,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-cubes"></i> <span><?php echo lang('menu_resources'); ?></span>
                             </a>
                         </li>-->
+						
+						<?php } ?>
 						<li class="<?=active_link_controller('colleges')?>">
                             <a href="<?php echo site_url('admin/colleges'); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Colleges'; ?></span>
                             </a>
                         </li>
+						
+						<?php if($this->ion_auth->is_admin()){ ?>
 						
 						<li class="<?=active_link_controller('streams')?>">
                             <a href="<?php echo site_url('admin/streams'); ?>">
@@ -125,7 +131,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <a href="<?php echo site_url('admin/questionnaire'); ?>">
                                 <i class="fa fa-user"></i> <span>Questionnaire</span>
                             </a>
-                        </li>					
+                        </li>	
+                        
+                        <li class="<?=active_link_controller('exams')?>">
+                            <a href="<?php echo site_url('admin/exams '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Exams '; ?></span>
+                            </a>
+                        </li>
+                        <li class="<?=active_link_controller('course_detail')?>">
+                            <a href="<?php echo site_url('admin/course_detail '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Courses Detail '; ?></span>
+                            </a>
+                        </li>	
+
+						<?php } ?>	
                     </ul>
                 </section>
             </aside>

@@ -112,6 +112,7 @@ class Home extends Public_Controller {
 		/* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
 		$this->load->library('plivo');
+		$this->load->library('sendgridemail');
 		/* Validate form input */
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
@@ -160,8 +161,13 @@ class Home extends Public_Controller {
 			 * look up available number groups
 			 */
 			$response_array = $this->plivo->send_sms($sms_data);
-			$headers = "From: webmaster@mentorcell.com" . "\r\n" ."CC: webmaster@mentorcell.com";
-			mail($email,'Your Password for MentorCell','Please use the password to login to MentorCell.\n Password:  '.$password.'\n URL: '.site_url()."\n Team\n MentorCell",$headers);
+			
+			$email_data = array(
+								'subject'=>'Your Password for MentorCell',
+								'to' =>$email,
+								'message' => "Please use the password to login to MentorCell.\n Password:  ".$password."\n URL: ".site_url()."\n Team\n MentorCell"
+							);
+			$response_array = $this->sendgridemail->send_email($email_data);
 			echo json_encode($response);die;
 			
 		}

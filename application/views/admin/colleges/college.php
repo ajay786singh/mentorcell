@@ -172,87 +172,135 @@
 
 
 				</div>
-
-
+				
+				
 				<div class="sectionGap">
-				<div class="heading1"><h2>Why Join Indian Institute of Technology, Delhi (IITD)</h2></div>
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="heading1" id="why-join">Why Join <?php echo $college->name; ?></div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<ul>
+					<?php 
+							$why_join = explode(';',$college->why_join);
+						   foreach($why_join as $why_join){
+							  echo "<li>$why_join</li>";
+						  }
+					?>
+					</ul>
+					<div class="collegeRankRating">
 
-				<ul class="liststyletyep">
-				<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard </li>
-				<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard</li>
-				<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-				<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard </li>
-				<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard </li>
-				</ul>
-
-				<!--<div class="collegeRankRating">
-
-				<div class="rankingCol">
-				<div class="title">Rank of College</div>
-				<div class="circle">1</div>
-				</div>
-
-
-				<div class="rankingCol">
-				<div class="title">College rating</div>
-				<div class="circle">4.7</div>
-				</div>
-
-				<div class="rankingCol">
-				<div class="title">Placement rating</div>
-				<div class="circle">4.3</div>
-				</div>
-
-				</div>-->
-
-				</div>
+					<div class="rankingCol">
+					<div class="title">Rank of College</div>
+					<div class="circle">1</div>
+					</div>
 
 
-				</div>
+					<div class="rankingCol">
+					<div class="title">College rating</div>
+					<div class="circle">4.7</div>
+					</div>
+
+					<div class="rankingCol">
+					<div class="title">Placement rating</div>
+					<div class="circle">4.3</div>
+					</div>
+
+					</div>
+
+					</div>
 
 
-				<div class="sectionGap">
-				<div class="heading1"><h2>College Details</h2></div>
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<div class="sectionGap">
-				<div class="heading2"><h3>Placement Services</h3></div>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
-				<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
-
-				<p>For Management Studies (2014-15)</p>
-
-				<p>% of students placed : 100%</br>
-				% of students secured PPOs/PPLs : 30 %</br>
-				No. of first time recruiters : 28</br>
-				Total no. of students placed : 62</br>
-				No. of offers mode : 82</br>
-				No. of participating companies : 49</br>
-				Highest salary offered : Rs. 19.87 Lakhs P.A</br>
-				Average salary offered : Rs. 13.27 Lakhs P.A</br>
-				Lowest salary offered : Rs. 7.36 Lakhs P.A</p>
+					</div>
 
 
-				</div>
+					<div class="sectionGap">
+					<div class="heading1">College Details</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="sectionGap">
+					<div class="heading2" id="placement-services">Placement Services</div>
 
-				<div class="sectionGap">
-				<div class="heading2"><h3>Top Recruiting Companies</h3></div>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+					<?php $services =explode(';',$college->placement_services);
+						  foreach($services as $service){
+							  echo "<p>$service</p>";
+						  }
 
-				<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
+					 ?>
+
+					</div>
+
+					<div class="sectionGap">
+					<div class="heading2" id="top-recruiting-companies">Top Recruiting Companies</div>
+					<?php $companies = explode(';',$college->top_recruiting_companies);
+						   foreach($companies as $company){
+							  echo "<span>$company,</span>&nbsp; ";
+						  }
+
+					 ?>
 
 
-				</div>
-
-				</div>
+					</div>
 
 
-				</div>
+					<div class="sectionGap">
+					<div class="heading2" id="hostel-facility">Hostel Facility</div>
+					<?php $companies = explode(';',$college->hostel_details);
+						   foreach($companies as $company){
+							  echo "<span>$company,</span>&nbsp; ";
+						  }
+
+					 ?>
+
+
+					</div><div class="sectionGap">
+					<div class="heading2" id="infrastructure">Infrastructure / Teaching Facilities</div>
+					<?php $companies = explode(';',$college->teaching_facilities);
+						   foreach($companies as $company){
+							  echo "<span>$company,</span>&nbsp; ";
+						  }
+
+					 ?>
+
+
+					</div><div class="sectionGap">
+					<div class="heading2" id="top-faculties">Top Faculties</div>
+					<?php $companies = explode(';',$college->top_faculty);
+						   foreach($companies as $company){
+							  echo "<span>$company,</span>&nbsp; ";
+						  }
+
+					 ?>
+
+
+					</div><div class="sectionGap">
+					<div class="heading2" id="partner-colleges">Partner Colleges</div>
+					<?php $companies = explode(';',$college->partner_colleges);
+						   foreach($companies as $company){
+							  echo "<span>$company,</span>&nbsp; ";
+						  }
+
+					 ?>
+
+
+					</div><div class="sectionGap">
+					<div class="heading2" id="ranking-awards">Ranking and Awards</div>
+					<?php $companies = explode(';',$college->rank_holders);
+						   foreach($companies as $company){
+							  echo "<span>$company,</span>&nbsp; ";
+						  }
+
+					 ?>
+
+
+					</div>
 
 
 
 
+					</div>
+
+
+					</div>
+				
+				
+				
 
 				</div>
 

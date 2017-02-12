@@ -73,57 +73,25 @@
 
 <div class="informationList">
 <h3>OVERVIEW/SUMMARY</h3>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum.</p>
-
-<p><strong>Latest Update:</strong></p>
-
-<ul class="liststyletyep">
-<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard </li>
-<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard</li>
-<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard </li>
-<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard </li>
-</ul>
-
+<?php echo $exam_data['overview']; ?>
 </div>
 
 
 <div class="informationList">
 <h3>ELIGIBILITY</h3>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-<p><a href="#">Check JEE Main 2017 important dates here!</a></p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-</div>
+<?php echo $exam_data['eligibility']; ?></div>
 
 <div class="informationList">
 <h3>PROCESS</h3>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum.</p>
-</div>
+<?php echo $exam_data['process']; ?></div>
 
 <div class="informationList">
 <h3>SYLLABUS</h3>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum.</p>
-</div>
+<?php echo $exam_data['syllabus']; ?></div>
 
 <div class="informationList">
 <h3>CONTACT INFORMATION</h3>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum.</p>
+<?php echo $exam_data['contact_information']; ?>
 </div>
 
 
@@ -224,15 +192,7 @@
 <div class="heading1">Results of CAT</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-<p>Check JEE Main 2017 important dates here!</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+<?php echo $exam_data['results'];  ?>
 </div>
 </div>
 
@@ -302,7 +262,7 @@
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="newsBox">
-<div class="newsImg"><img src="images/news2.jpg" /></div>
+<div class="newsImg"><img src="<?php echo base_url(); ?>images/news2.jpg" /></div>
 <div class="newsContent">
 <h3><a href="#">Aadhaar Card Mandatory For JEE Main 2017 Candidates</a></h3>
 <h4>Nov 28, 2017</h4>

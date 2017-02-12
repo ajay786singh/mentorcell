@@ -130,7 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Pincode</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" id="pincode" name="pincode" value="<?php echo @$pincode['value']; ?>" placeholder="Enter Pincode">
+										  <input type="number" max="999999" min="100000" class="form-control" id="pincode" name="pincode" value="<?php echo @$pincode['value']; ?>" placeholder="Enter Pincode">
 										  </div>
 										</div>
 										

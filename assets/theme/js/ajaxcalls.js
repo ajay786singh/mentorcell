@@ -110,8 +110,14 @@ $(document).ready(function() {
 				a_question_ids	=	question_ids.split(",");
 				for(i=0;i<a_question_ids.length;i++) {
 					var answer	= 	$("input[name='answer"+a_question_ids[i]+"']:checked").val();
-					a_answers.push(a_question_ids[i]+":"+answer);
+					if(answer != undefined) {
+						a_answers.push(a_question_ids[i]+":"+answer);
+					}
 				}
+			}
+			if(a_question_ids.length != a_answers.length) {
+				alert("Kindly answer all the questions!!");
+				return false;
 			}
 			answers	=	"";
 			if(a_answers) {

@@ -75,7 +75,10 @@ $(document).ready(function() {
 					{
 						$('#login_response').html(res.message);
 						if(res.status==true){
-							setTimeout(function(){window.location.reload(); }, 3000);
+							// setTimeout(function(){window.location.reload(); }, 3000);
+							setTimeout(function(){
+								location.href = base_url+"coupon/"
+							}, 3000);
 							
 						}
 					}

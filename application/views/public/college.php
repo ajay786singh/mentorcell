@@ -140,12 +140,14 @@
 <div class="sectionGap">
 <div class="heading1" id="why-join">Why Join <?php echo $college->name; ?></div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<ul>
+<ul class="liststyletyep">
 <?php 
 		$why_join = explode(';',$college->why_join);
-	   foreach($why_join as $why_join){
+		if(count($why_join)>1){
+		foreach($why_join as $why_join){
 		  echo "<li>$why_join</li>";
-	  }
+		}
+		}
 ?>
 </ul>
 <div class="collegeRankRating">
@@ -179,113 +181,102 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="sectionGap">
 <div class="heading2" id="placement-services">Placement Services</div>
-
+<ul class="liststyletyep">
 <?php $services =explode(';',$college->placement_services);
+	if(count($services)>1){
 	  foreach($services as $service){
-		  echo "<p>$service</p>";
+		  echo "<li>$service</li>";
 	  }
+	}  
 
  ?>
-
+</ul>
 </div>
 
 <div class="sectionGap">
 <div class="heading2" id="top-recruiting-companies">Top Recruiting Companies</div>
+<ul class="liststyletyep">
 <?php $companies = explode(';',$college->top_recruiting_companies);
-	   $i = 0;
+		if(count($companies)>1){
 		foreach($companies as $company){
-			if($i == count($companies)){
-				echo "<span>$company,</span>&nbsp; ";
-			}else{
-			   echo "<span>$company</span>&nbsp; ";
-			}
-			$i++;
+				echo "<li>$company</li>";
+		}
 		}
  ?>
-
+<ul class="liststyletyep">
 
 </div>
 
 
 <div class="sectionGap">
 <div class="heading2" id="hostel-facility">Hostel Facility</div>
+<ul class="liststyletyep">
 <?php $companies = explode(';',$college->hostel_details);
 	   $i = 0;
+	   if(count($companies)>1){
 		foreach($companies as $company){
-			if($i == count($companies)){
-				echo "<span>$company,</span>&nbsp; ";
-			}else{
-			   echo "<span>$company</span>&nbsp; ";
-			}
-			$i++;
+				echo "<li>$company</li>";
 		}
+	   }
 
  ?>
-
+</ul>
 
 </div><div class="sectionGap">
 <div class="heading2" id="infrastructure">Infrastructure / Teaching Facilities</div>
+<ul class="liststyletyep">
 <?php $companies = explode(';',$college->teaching_facilities);
 	   $i = 0;
+	   if(count($companies)>1){
 		foreach($companies as $company){
-			if($i == count($companies)){
-				echo "<span>$company,</span>&nbsp; ";
-			}else{
-			   echo "<span>$company</span>&nbsp; ";
-			}
-			$i++;
+				echo "<li>$company</li>";
 		}
+	   }
 
  ?>
-
+</ul>
 
 </div><div class="sectionGap">
 <div class="heading2" id="top-faculties">Top Faculties</div>
+<ul class="liststyletyep">
 <?php $companies = explode(';',$college->top_faculty);
 	   $i = 0;
+	   if(count($companies)>1){
 		foreach($companies as $company){
-			if($i == count($companies)){
-				echo "<span>$company,</span>&nbsp; ";
-			}else{
-			   echo "<span>$company</span>&nbsp; ";
-			}
-			$i++;
+				echo "<li>$company</li>";
 		}
+	   }
 
  ?>
-
+</ul>
 
 </div><div class="sectionGap">
 <div class="heading2" id="partner-colleges">Partner Colleges</div>
+<ul class="liststyletyep">
 <?php $companies = explode(';',$college->partner_colleges);
 	   $i = 0;
+	   if(count($companies)>1){
 		foreach($companies as $company){
-			if($i == count($companies)){
-				echo "<span>$company,</span>&nbsp; ";
-			}else{
-			   echo "<span>$company</span>&nbsp; ";
-			}
-			$i++;
+				echo "<li>$company</li>";
 		}
+	   }
 
  ?>
-
+</ul>
 
 </div><div class="sectionGap">
 <div class="heading2" id="ranking-awards">Ranking and Awards</div>
+<ul class="liststyletyep">
 <?php $companies = explode(';',$college->rank_holders);
 		$i = 0;
+		if(count($companies)>1){
 		foreach($companies as $company){
-			if($i == count($companies)){
-				echo "<span>$company,</span>&nbsp; ";
-			}else{
-			   echo "<span>$company</span>&nbsp; ";
-			}
-			$i++;
+				echo "<li>$company</li>";
+		}
 		}
 
  ?>
-
+</ul>
 
 </div>
 

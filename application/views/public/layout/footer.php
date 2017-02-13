@@ -125,17 +125,6 @@ Noida, UP<br>
 
     <!-- Modal content-->
     <div class="modal-content">
-    <div class="regLeft">
-    <h3>Why Signup?</h3>
-    <ul>
-    	<li>Will get assistance from now till getting your placement.</li>
-    	<li>IQ test and redeem coupon</li>
-    	<li>Researched material and video of different courses.</li>
-    	<li>View College Brochures.</li>
-    	<li>Counseling video of different colleges.</li>
-    	<li>Ask Questions to Counselors</li>
-    </ul>
-    </div>
     <div class="regRight">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>

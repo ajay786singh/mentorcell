@@ -221,6 +221,42 @@ Noida, UP<br>
 
 
 
+
+<!-- message -->
+<!-- Login Modal Start -->
+<div id="landingpage" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Coming Soon</h2>
+      </div>
+      <div class="modal-body">
+      <div class="loginForm">
+		<h3 style="background: #ff9978;
+    padding: 30px;">Dear Visitor! This website is under construction and a few features may not work. We are going to launch a national level marketing campaign from 20th February, 2017. By then, all features will be available to the user. Sorry for the inconvenience and thanks for your support! 
+		<br/> Team MentorCell</h3>
+
+      </div>
+      <div class="clearfix"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Login Modal Close -->
+
+
+
+
+
+<!-- message -->
+
+
+
+
 <!-- JAVASCRIPT FILES -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="<?php echo base_url('assets/theme/js/jquery.min.js'); ?>"><\/script>')</script>

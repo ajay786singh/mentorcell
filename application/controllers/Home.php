@@ -165,7 +165,7 @@ class Home extends Public_Controller {
 			$email_data = array(
 								'subject'=>'Your Password for MentorCell',
 								'to' =>$email,
-								'message' => "Please use the password to login to MentorCell.\n Password:  ".$password."\n URL: ".site_url()."\n Team\n MentorCell"
+								'message' => "Please use these credentials to login to MentorCell.\n Username: ".$email."\n Password:  ".$password."\n URL: ".site_url()."\n Team\n MentorCell"
 							);
 			$response_array = $this->sendgridemail->send_email($email_data);
 			echo json_encode($response);die;

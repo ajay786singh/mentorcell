@@ -1182,7 +1182,8 @@ header('Vary: Accept-Encoding');
 <div class="userNav">
 <ul>
 <?php if($user_login['id']){?>
-	<li class="userLogin"><?php echo $user_login['email']; ?></li>
+	<!--<li class="userLogin"><?php echo $user_login['email']; ?></li>-->
+	<li class="userLogin"><?php echo $user_login['first_name']; ?></li>
 	<li class="userReg" ><a href="<?php echo site_url('home/logout'); ?>" >Logout</a></li>
 <?php }else{ ?>
 	<li class="userLogin" data-toggle="modal" data-target="#loginModal">Login</li>

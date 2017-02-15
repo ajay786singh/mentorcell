@@ -116,4 +116,28 @@ class College_model extends CI_Model {
 		return $result;
 	}
 	
+	
+	
+	/*get all state we have colleges*/
+	function get_states(){
+		$this->db->select('states.id as id,states.name as name');
+		$this->db->from('mc_colleges AS cl');
+		$this->db->join('states AS  states', 'states.id = cl.state', 'INNER');
+		$this->db->group_by('states.id');
+		$this->db->order_by("name", "asc");
+		$result = $this->db->get()->result_object();
+		return $result;
+	}
+	
+	function get_cities($id){
+		$this->db->select('cities.id as id,cities.name as name');
+		$this->db->from('mc_colleges AS cl');
+		$this->db->join('cities AS cities', 'cities.id = cl.city', 'INNER');
+		$this->db->where('cities.state_id', $id);
+		$this->db->group_by('cities.id');
+		$this->db->order_by("name", "asc");
+		$result = $this->db->get()->result_object();
+		return $result;
+	}
+	
 }

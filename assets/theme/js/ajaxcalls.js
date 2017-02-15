@@ -155,4 +155,22 @@ $(document).ready(function() {
 	/*login*/
 	
 	
+	
+	$("#register_state").change(function(event) {
+			
+			var state_id = $(this).val();
+			
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/home/city",
+				dataType: 'text',
+				data: {state_id:state_id},
+				success: function(res) {
+					$("#register_city").html(res);
+				}
+			});
+		});
+		
+	
+	
 });

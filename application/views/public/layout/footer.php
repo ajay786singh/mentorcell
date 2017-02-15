@@ -105,7 +105,7 @@ Noida, UP<br>
 
       	<h4><input type="checkbox" id="login_remember" name=""> Keep me signed in.</h4>
       	<h5><a href="#">Forgot password?</a></h5>
-
+		<input type='hidden' id="couponClicked" value='0'>
       	</form>
 
       </div>

@@ -60,8 +60,9 @@ $(document).ready(function() {
 	/*login*/
 		$("#login_button").click(function(event) {
 			event.preventDefault();
-			var identity = $("input#login_email").val();
-			var password = $("input#login_password").val();
+			var identity 		= $("input#login_email").val();
+			var password 		= $("input#login_password").val();
+			var couponClicked 	= $("#couponClicked").val();
 			var remember = 0;
 			if($("input#login_remember").is(':checked')){remember=1;}else{remember=0;}
 			
@@ -77,7 +78,11 @@ $(document).ready(function() {
 						if(res.status==true){
 							// setTimeout(function(){window.location.reload(); }, 3000);
 							setTimeout(function(){
-								location.href = base_url+"coupon/"
+								if(couponClicked == 1) {
+									location.href = base_url+"coupon/";
+								} else {
+									window.location.reload();
+								}
 							}, 3000);
 							
 						}

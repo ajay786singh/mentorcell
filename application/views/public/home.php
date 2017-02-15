@@ -14,7 +14,7 @@
 <div id="form1" class="searchForm active">
 <form action="search">
 <div class="formcol50">
-<select id="register_city"  data-placeholder="Choose a College" class="auto-choice" name="college">
+<select id="search_college"  data-placeholder="Choose a College" class="auto-choice" name="college">
 <option value="">Choose a College to Join</option>
 	<?php 
 		$colleges = $this->common_model->get_all("mc_colleges");
@@ -25,19 +25,8 @@
 </select>
 </div>
 <div class="formcol50">
-<select id="register_city"  class="auto-choice" multiple name="location">
-	<?php 
-		$states = $this->common_model->get_all_rows("states", "country_id",101);
-		foreach($states as $stateeach){
-		//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
-		echo '<optgroup label="'.$stateeach['name'].'">';
-			$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
-			
-			foreach($cities as $city){
-				echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
-			}
-			echo  '</optgroup>';
-		} ?>
+<select id="register_city_location"  class="auto-choice" multiple name="location">
+	<?php echo $location; ?>
 			
 </select>
 </div>
@@ -90,23 +79,10 @@
 </div>
 </div>
 <div class="formcol50">
-<input type="text" name="" placeholder="Enter location" />
-<div class="autoComplete">
-<h4>Popular Locations</h4>
-<ul>
-<li>All India</li>
-<li>Bangalore</li>
-<li>Chandigarh Tricity</li>
-<li>Chennai</li>
-<li>Delhi / NCR</li>
-<li>Hyderabad</li>
-<li>Kolkata</li>
-<li>Mumbai ( All )</li>
-<li>Pune</li>
-<li>Cities</li>
-<li>Agartala</li>
-</ul>
-</div>
+<select id="register_city_location"  class="auto-choice" multiple name="location">
+	<?php echo $location; ?>
+			
+</select>
 </div>
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
@@ -115,7 +91,7 @@
 <div id="form3" class="searchForm">
 <form action="search">
 <div class="formcol50">
-<select id="register_city" class="auto-choice" name="course">
+<select id="search_course" class="auto-choice" name="course">
 <option value="">Choose a Course to Join</option>
 	<?php 
 		$courses = $this->common_model->get_all("mc_courses");
@@ -128,19 +104,8 @@
 </select>
 </div>
 <div class="formcol50">
-<select id="register_city" style="width:350px;" class="auto-choice" multiple name="location"><option>Current City</option>
-	<?php 
-		$states = $this->common_model->get_all_rows("states", "country_id",101);
-		foreach($states as $stateeach){
-		//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
-		echo '<optgroup label="'.$stateeach['name'].'">';
-			$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
-			
-			foreach($cities as $city){
-				echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
-			}
-			echo  '</optgroup>';
-		} ?>
+<select id="register_city_location"  class="auto-choice" multiple name="location">
+	<?php echo $location; ?>
 			
 </select>
 </div>

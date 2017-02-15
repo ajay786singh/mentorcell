@@ -26,9 +26,24 @@ class Home extends Public_Controller {
 		}else{
 			$this->data['user_login'] = array('id'=>false);
 		}
-
+			
+		$cstates = $this->college_model->get_states();
+		$options = '';
+		foreach($cstates as $stateeach){
+				//echo '<option  value="'.$stateeach->id.'">'.$stateeach->name.'</option>';
+				$options.= '<optgroup label="'.$stateeach->name.'">';
+					$cities = $this->college_model->get_cities($stateeach->id);
+					foreach($cities as $city){
+						$options.= '<option value="'.$city->id.'">'.$city->name.'</option>';
+					}
+					$options.=  '</optgroup>';
+		} 
+		
+		
+		$this->data['location'] = $options;
 		$this->load->view('public/layout/header', $this->data);
 		$this->load->view('public/home', $this->data);
+		
 		$this->load->view('public/layout/footer', $this->data);
 	}
 	
@@ -168,6 +183,9 @@ class Home extends Public_Controller {
 								'message' => "Please use these credentials to login to MentorCell.\n Username: ".$email."\n Password:  ".$password."\n URL: ".site_url()."\n Team\n MentorCell"
 							);
 			$response_array = $this->sendgridemail->send_email($email_data);
+			/*auto login*/
+			$this->ion_auth->login($email, $password, false);
+			
 			echo json_encode($response);die;
 			
 		}
@@ -256,6 +274,18 @@ class Home extends Public_Controller {
 		}
 		$this->load->view('public/layout/footer', $this->data);
 		
-	}	
+	}
+
+	public function city()
+	{
+		$state_id = $this->input->get('state_id');
+		$cities = $this->common_model->get_all_rows("cities", "state_id",$state_id);
+		$option = '';
+		foreach($cities as $city){
+			$option .= '<option value="'.$city['id'].'">'.$city['name'].'</option>';
+		}
+		$option .= '';
+		echo $option; die;
+	}
 	
 }

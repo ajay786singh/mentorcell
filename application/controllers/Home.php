@@ -288,4 +288,11 @@ class Home extends Public_Controller {
 		echo $option; die;
 	}
 	
+	public function clgcity()
+	{
+		$college_id = $this->input->get('college_id');
+		$college = $this->college_model->get_clgstate($college_id);
+		echo json_encode($college); die;
+	}
+	
 }

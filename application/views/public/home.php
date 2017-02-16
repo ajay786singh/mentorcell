@@ -164,7 +164,9 @@
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="youTubePlayer">
-<img src="<?php echo base_url('assets/theme/images/youtubeplayer.jpg'); ?>">
+<video id="introductionVideo" controls preload=auto>
+<source src="https://s3.ap-south-1.amazonaws.com/assets.mentorcell/WhatIsMentorcell.mp4" type='video/mp4'/>
+</video>
 </div>
 </div>
 

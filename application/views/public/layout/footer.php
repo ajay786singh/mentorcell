@@ -105,7 +105,7 @@ Noida, UP<br>
 
       	<h4><input type="checkbox" id="login_remember" name=""> Keep me signed in.</h4>
       	<h5><a href="#">Forgot password?</a></h5>
-
+		<input type='hidden' id="couponClicked" value='0'>
       	</form>
 
       </div>
@@ -170,19 +170,26 @@ Noida, UP<br>
       	</div>
 
       	<div class="inputRow">
-      		<select id="register_city"><option>Current City</option>
+      		<select id="register_state"><option>Current State</option>
 			<?php 
 				$states = $this->common_model->get_all_rows("states", "country_id",101);
 				foreach($states as $stateeach){
-				//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
-				echo '<optgroup label="'.$stateeach['name'].'">';
+				echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
+				//echo '<optgroup label="'.$stateeach['name'].'">';
 					$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
 					
-					foreach($cities as $city){
-						echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
-					}
-					echo  '</optgroup>';
+					//foreach($cities as $city){
+						//echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
+					//}
+					//echo  '</optgroup>';
 				} ?>
+			
+			</select>
+			<i class="icon-city"></i>
+			</div>
+			<div class="inputRow">
+			<select id="register_city"><option>Current City</option>
+			
 			
 			</select>
       		<i class="icon-city"></i>

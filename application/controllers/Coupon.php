@@ -61,11 +61,40 @@ class Coupon extends Public_Controller {
 			$c_data['user_id']	=	$user_id;
 			$this->common_model->insert($c_data, "mc_coupons");
 			
-			$message	=	"<h3>You Are Genius</h3>
+			$message	=	"
 			<h4>Your IQ is</h4>
 			<h5>".$resultDisplay."</h5>
 			<div class='clearfix'></div>
 			<h6>Your Coupon code is : ".$coupon."</h6>";
+			
+			$this->load->library('plivo');
+			$this->load->library('sendgridemail');
+			
+			$row	=	$this->common_model->get_single_row('users', 'id', $user_id);
+			$phone	=	$row['phone']; 
+			$email	=	$row['email']; 
+			
+			$sms_data = array(
+				'src' => '+123456789', //The phone number to use as the caller id (with the country code). E.g. For USA 15671234567
+				'dst' => '+91'.$phone, // The number to which the message needs to be send (regular phone numbers must be prefixed with country code but without the ‘+’ sign) E.g., For USA 15677654321.
+				'text' => 'Your MentorCell Coupon code is '.$coupon.'', // The text to send
+				'type' => 'sms', //The type of message. Should be 'sms' for a text message. Defaults to 'sms'
+				'url' => base_url() . 'index.php/plivo_test/receive_sms', // The URL which will be called with the status of the message.
+				'method' => 'POST', // The method used to call the URL. Defaults to. POST
+			);
+
+			/*
+			 * look up available number groups
+			 */
+			$response_array = $this->plivo->send_sms($sms_data);
+			
+			$email_data = array(
+								'subject'=>'Your Coupon code for MentorCell',
+								'to' =>$email,
+								'message' => "Please use these coupon to get MentorCell discount.\n Coupon: ".$coupon."\n URL: ".site_url()."\n Team\n MentorCell"
+							);
+			$response_array = $this->sendgridemail->send_email($email_data);
+			
 			
 			$response 		= 	array('status'=>true,'message'=>$message);
 			echo json_encode($response);die;

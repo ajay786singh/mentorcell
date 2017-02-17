@@ -32,7 +32,7 @@
                 <?php foreach($course_description_page_name_list as $course_description_page_name){ ?>
                 <tr>
                   <td><?php echo $course_description_page_name['course_description_page_name'];?></td>
-                  <td><a href="<?php echo base_url()."admin/course_description/edit/".$course_description_page_name['id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/course_description/edit/".$course_description_page_name['id'];?>">Delete</a></td>
+                  <td><a href="<?php echo base_url()."admin/course_detail/edit/".$course_description_page_name['id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/course_detail/delete/".$course_description_page_name['id'];?>">Delete</a></td>
                </tr>
                <?php }?>
                 </tbody>

@@ -1,5 +1,4 @@
-
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -28,7 +27,7 @@
             <!-- form start -->
             <?php 
 			
-			if(!$form_data){
+			if(!@$form_data){
 				$form_type =  "create";
 			}else{$form_type = "edit/".$form_data;}?>
             <form role="form" method="post" action="<?php echo base_url()."admin/exams/".$form_type;?>">
@@ -98,12 +97,3 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-<script src="<?php echo base_url();?>/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    //bootstrap WYSIHTML5 - text editor
-    $(".textarea").wysihtml5();
-  });
-</script>

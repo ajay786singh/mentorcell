@@ -132,16 +132,10 @@ $('#couponBox3').addClass('active');
         localStorage.setItem('popState','shown')
     }
 /*triggering the popup*/
-
-
 	
-
-
-
-
-
-
-
+	if(isPasswordRest == 1){
+		 $('#forgotsetModal').modal('show');
+	}
 
 
 });

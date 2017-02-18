@@ -104,7 +104,7 @@ Noida, UP<br>
       	</div>
 
       	<h4><input type="checkbox" id="login_remember" name=""> Keep me signed in.</h4>
-      	<h5><a href="#">Forgot password?</a></h5>
+      	<h5><a data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>
 		<input type='hidden' id="couponClicked" value='0'>
       	</form>
 
@@ -117,6 +117,81 @@ Noida, UP<br>
 </div>
 <!-- Login Modal Close -->
 
+
+
+<!-- Forgot Password Modal Start -->
+<div id="forgotModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Forgot Password</h4>
+      </div>
+      <div class="modal-body">
+      <div class="loginForm">
+      	<h3>Enter Registered Email Address to Recieve Instructions.</h3>
+		<div id="forgot_response"></div>
+      	<form>
+      	<div class="inputRow">
+      		<input type="email" id="forgot_email" required='' placeholder="Email Address" name="">
+      		<i class="icon-email"></i>
+      	</div>
+    
+      	<div class="inputRow">
+      		<input type="submit" value="Submit" id="forgot_button" class="go" name="">
+      	</div>
+      	</form>
+
+      </div>
+      <div class="clearfix"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Forgot Password Modal Start -->
+
+
+
+<!-- Forgot Password Modal Start -->
+<div id="forgotsetModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Reset Password</h4>
+      </div>
+      <div class="modal-body">
+      <div class="loginForm">
+      	<h3>Enter New Password.</h3>
+		<div id="forgotset_response"></div>
+      	<form>
+      	<div class="inputRow">
+      		<input type="password" id="forgotset_password" required='' placeholder="Password" name="">
+      		<i class="icon-email"></i>
+      	</div>
+		<div class="inputRow">
+      		<input type="password" id="forgotset_cpassword" required='' placeholder="Confirm Password" name="">
+      		<i class="icon-email"></i>
+      	</div>
+		<input type="hidden" id="forgotset_code" required='' placeholder="Confirm Password" name="" value="<?php echo $_GET['code'];?>">
+      	<div class="inputRow">
+      		<input type="submit" value="Submit" id="forgotset_button" class="go" name="">
+      	</div>
+      	</form>
+
+      </div>
+      <div class="clearfix"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Forgot Password Modal Start -->
 
 
 <!-- Register Modal Start -->

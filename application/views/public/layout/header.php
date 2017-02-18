@@ -40,6 +40,7 @@ header('Vary: Accept-Encoding');
 			<link href="<?php echo base_url('assets/theme/css/customResponsive.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<script>
 			var base_url = '<?php echo base_url(); ?>';
+			var isPasswordRest = <?php echo isset($_GET['setpassword']) ? 1 : 0 ; ?>;
 			</script>
 			
 		</head>

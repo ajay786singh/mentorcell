@@ -133,4 +133,15 @@ $('#couponBox3').addClass('active');
     }
 /*triggering the popup*/
 
+
+	
+
+
+
+
+
+
+
+
+
 });

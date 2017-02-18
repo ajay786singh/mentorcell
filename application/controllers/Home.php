@@ -42,6 +42,12 @@ class Home extends Public_Controller {
 		
 		$this->data['location'] = $options;
 		$this->load->view('public/layout/header', $this->data);
+		
+		$this->data['colleges'] = $this->common_model->get_all("mc_colleges");
+		$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+		$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+		//$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		$this->data['courses'] = $this->common_model->get_all("mc_courses");
 		$this->load->view('public/home', $this->data);
 		
 		$this->load->view('public/layout/footer', $this->data);
@@ -286,6 +292,13 @@ class Home extends Public_Controller {
 		}
 		$option .= '';
 		echo $option; die;
+	}
+	
+	public function clgcity()
+	{
+		$college_id = $this->input->get('college_id');
+		$college = $this->college_model->get_clgstate($college_id);
+		echo json_encode($college); die;
 	}
 	
 }

@@ -171,6 +171,25 @@ $(document).ready(function() {
 			});
 		});
 		
+		
+		
+		
+		$("#search_college").chosen().change(function() {
+			var college_id = $(this).val();
+			
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/home/clgcity",
+				dataType: 'json',
+				data: {college_id:college_id},
+				success: function(res) {
+					console.log(res);
+					$("#register_city_location").val(res.city).trigger("chosen:updated").prop('disabled', true).trigger("chosen:updated");
+					
+					
+				}
+			});
+		});
 	
 	
 });

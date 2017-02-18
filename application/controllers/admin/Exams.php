@@ -66,7 +66,7 @@ class Exams extends Admin_Controller {
 			$this->data = $this->input->post();
 			$this->exam_model->insert($this->data,"mc_exams");
 			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
-			    $this->template->admin_render('admin/exams/index');
+			    redirect('admin/exams/index', 'refresh');
 		}else{
 			//$this->data = array();
 			$this->data['form_type'] = 'add';

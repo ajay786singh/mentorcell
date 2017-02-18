@@ -237,6 +237,100 @@ class Home extends Public_Controller {
         
 	}
 	
+	
+	
+	function forgotpassword()
+	{
+       
+            $this->load->config('admin/dp_config');
+            $this->load->config('common/dp_config');
+			$this->load->library('sendgridemail');
+            /* Valid form */
+            $this->form_validation->set_rules('identity', 'Email', 'required');
+            
+            if ($this->form_validation->run() == TRUE)
+            {
+				$email = strtolower($this->input->post('identity'));
+				$forgotten = $this->ion_auth->forgotten_password($email);
+
+				if($forgotten['identity']==$email){
+					
+					$reseturl = site_url()."?setpassword=true&code=".$forgotten['forgotten_password_code'];
+					$email_data = array(
+								'subject'=>'Reset your Password for MentorCell',
+								'to' =>$email,
+								'message' => "Please follow link to set password for  MentorCell.\n URL: ".$reseturl."\n  Team\n MentorCell"
+							);
+						$response_array = $this->sendgridemail->send_email($email_data);
+					
+					$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Please check email for instruction.</div>');
+					echo json_encode($response);die;
+				}
+               
+            }
+            else
+            {
+				$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.(validation_errors()) ? validation_errors() : $this->session->flashdata('message').'</div>');
+				echo json_encode($response);
+				die;
+            }
+       
+    }
+	
+		function setpassword()
+	{
+       
+            $this->load->config('admin/dp_config');
+            $this->load->config('common/dp_config');
+			$this->load->library('sendgridemail');
+            /* Valid form */
+            //$this->form_validation->set_rules('identity', 'Email', 'required');
+
+			$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
+
+			$this->form_validation->set_rules('code', 'Code', 'required');
+			
+            if ($this->form_validation->run() == TRUE)
+            {
+				$code = $this->input->post('code');
+				$user = @$this->ion_auth->forgotten_password_complete($code);
+
+				if($user){
+					
+					$change = $this->ion_auth->reset_password($user['identity'], $this->input->post('password'));
+					
+					$email_data = array(
+								'subject'=>'Password updated for MentorCell',
+								'to' =>$user['identity'],
+								'message' => "Your password updated successfully for MentorCell.\n Team\n MentorCell"
+							);
+						$response_array = $this->sendgridemail->send_email($email_data);
+					
+					$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Password updated successfully.</div>');
+					echo json_encode($response);
+					
+					die;
+				}else{
+					
+					$response = array('status'=>false,'message'=>'<div class="alert alert-danger">Token is expired!</div>');
+					echo json_encode($response);
+					die;
+					
+				}
+            }
+            else
+            {
+				$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.(validation_errors()) ? validation_errors() : $this->session->flashdata('message').'</div>');
+				echo json_encode($response);
+				die;
+            }
+       
+    }
+	
+	
+	
+	
+	
 	function courses()
 	{
 		$stream = $this->input->get('stream');

@@ -48,7 +48,7 @@ $(document).ready(function() {
 						if(res.status==true){
 							$('#register_form').hide();
 							$('#otp_form').hide();
-							setTimeout(function(){window.location.reload(); }, 3000);
+							setTimeout(function(){window.location.reload(); }, 1500);
 							
 						}
 					}
@@ -83,7 +83,7 @@ $(document).ready(function() {
 								} else {
 									window.location.reload();
 								}
-							}, 3000);
+							}, 1500);
 							
 						}
 					}
@@ -92,6 +92,64 @@ $(document).ready(function() {
 		});
 	/*login*/
 
+	
+	
+	/*forgot password*/
+		$("#forgot_button").click(function(event) {
+			event.preventDefault();
+			var identity = $("input#forgot_email").val();
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/home/forgotpassword",
+				dataType: 'json',
+				data: {identity:identity},
+				success: function(res) {
+					if (res)
+					{
+						$('#forgot_response').html(res.message);
+						if(res.status==true){
+							setTimeout(function(){
+								//window.location.reload(); 
+								 $('#forgotModal').modal('hide');
+							}, 1500);
+							
+						}
+					}
+				}
+			});
+		});
+	/*forgot password*/
+	
+	/*forgot password*/
+		$("#forgotset_button").click(function(event) {
+			event.preventDefault();
+			var password = $("input#forgotset_password").val();
+			var cpassword = $("input#forgotset_cpassword").val();
+			var code = $("input#forgotset_code").val();
+			
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/home/setpassword",
+				dataType: 'json',
+				data: {password:password,cpassword:cpassword,code:code},
+				success: function(res) {
+					if (res)
+					{
+						$('#forgotset_response').html(res.message);
+						if(res.status==true){
+							setTimeout(function(){
+								window.location.href=base_url; 
+								 //$('#forgotsetModal').modal('hide');
+							}, 1500);
+							
+						}
+					}
+				}
+			});
+		});
+	/*forgot password*/
+	
+	
 	
 	/**/
 	/**/

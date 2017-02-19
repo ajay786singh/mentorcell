@@ -8,14 +8,15 @@ $(document).ready(function() {
 			var lname = $("input#register_lname").val();
 			var email = $("input#register_email").val();
 			var phone = $("input#register_phone").val();
-			var interest = $("input#register_interest").val();
-			var course = $("input#register_course").val();
-			var city = $("input#register_city").val();
+			var interest = $("select#register_interest").val();
+			var course = $("select#register_course").val();
+			var state = $("select#register_state").val();
+			var city = $("select#register_city").val();
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/home/register",
 				dataType: 'json',
-				data: {first_name:fname,last_name:lname,email:email, phone:phone, interest:interest, course:course, city: city },
+				data: {first_name:fname,last_name:lname,email:email, phone:phone, interest:interest, course:course,state:state,city: city },
 				success: function(res) {
 					if (res)
 					{

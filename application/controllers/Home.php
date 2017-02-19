@@ -139,12 +139,19 @@ class Home extends Public_Controller {
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique['.$tables['users'].'.email]');
 		$this->form_validation->set_rules('phone', 'Phone', 'required');
+
 		//$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
 		
 		$phone = trim($this->input->post('phone'));
 		$activation_code = rand ( 1000 , 9999 );
 		$password  = $this->random_password(8);
 		$email = strtolower($this->input->post('email'));
+		
+		$interest = $this->input->post('interest');
+		$course = $this->input->post('course');
+		$state = $this->input->post('state');
+		$city = $this->input->post('city');
+		
 		
 		if ($this->form_validation->run() == TRUE)
 		{
@@ -164,10 +171,13 @@ class Home extends Public_Controller {
 		if ($this->form_validation->run() == TRUE )
 		{
 			$user_id = $this->ion_auth->register($username, $password, $email, $additional_data);
+			$this->ion_auth->set_user_meta($user_id, 'interest', $interest);
+			$this->ion_auth->set_user_meta($user_id, 'course', $course);
+			$this->ion_auth->set_user_meta($user_id, 'state', $state);
+			$this->ion_auth->set_user_meta($user_id, 'city', $city);
+			
+			
 			$response = array('status'=>true,'user_id'=>$user_id,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> You have successfully started your journey. </div>');
-			
-			
-			
 			
 			$sms_data = array(
             'src' => '+123456789', //The phone number to use as the caller id (with the country code). E.g. For USA 15671234567

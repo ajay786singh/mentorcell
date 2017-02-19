@@ -2253,4 +2253,21 @@ class Ion_auth_model extends CI_Model
 		// just return the string IP address now for better compatibility
 		return $ip_address;
 	}
+	
+	
+	/*user meta*/
+	function set_user_meta($user_id, $meta_key, $meta_value){
+		 	 
+		$data = array('user_id'=>$user_id,'meta_key'=>$meta_key,'meta_value'=>$meta_value);
+		$this->db->insert('users_meta', $data);
+        $id = $this->db->insert_id();
+        return (isset($id)) ? $id : FALSE;
+		
+	}
+	
+	function get_user_meta($user_id, $meta_key){
+		
+	}
+	
+	/*user meta*/
 }

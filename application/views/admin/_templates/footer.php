@@ -29,7 +29,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php endif; ?>
         <script src="<?php echo base_url($frameworks_dir . '/adminlte/js/adminlte.min.js'); ?>"></script>
         <script src="<?php echo base_url($frameworks_dir . '/domprojects/js/dp.min.js'); ?>"></script>
-        
+   <!-- bootstrap datepicker -->
+<script src="<?php echo base_url($plugins_dir . '/datepicker/bootstrap-datepicker.js'); ?>"></script>       
         <!-- DataTables -->
 <script src="<?php echo base_url($frameworks_dir . '/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url($frameworks_dir . '/datatables/dataTables.bootstrap.min.js'); ?>"></script>
@@ -43,8 +44,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript">
  $(".basic-multiple").select2();
 </script>
-  
-  
+
+<!------- WYSIWYG editor code---------------------------------->
+
+<script src="<?php echo base_url();?>/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script>
+  $( document ).ready(function() {
+
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    //bootstrap WYSIHTML5 - text editor
+    $(".textarea").wysihtml5();
+  });
+</script>
+<!------- WYSIWYG editor code---------------------------------->
 <script>
   $(function () {
     $("#example1").DataTable();

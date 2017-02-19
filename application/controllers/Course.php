@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -25,6 +26,7 @@ class Course extends Public_Controller {
 		}else{
 			$this->data['user_login'] = array('id'=>false);
 		}
+		
 		$this->data['course_data'] = $this->course_detail_model->get_single_row("mc_course_description", "course_description_page_name",$course_name );
 		$this->load->view('public/layout/header', $this->data);
 		$this->load->view('public/course_detail', $this->data);

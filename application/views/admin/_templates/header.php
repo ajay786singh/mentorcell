@@ -49,6 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <script src="<?php echo base_url($plugins_dir . '/respond/respond.min.js'); ?>"></script>
         <![endif]-->
 <?php endif; ?>
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/datepicker/datepicker3.css'); ?>">
 
 		<script>
 		var base_url = '<?php echo base_url(); ?>';

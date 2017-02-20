@@ -247,17 +247,18 @@ Noida, UP<br>
       	<div class="inputRow">
       		<select id="register_state"><option>Current State</option>
 			<?php 
+
 				$states = $this->common_model->get_all_rows("states", "country_id",101);
 				foreach($states as $stateeach){
 				echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
 				//echo '<optgroup label="'.$stateeach['name'].'">';
 					$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
 					
-					//foreach($cities as $city){
-						//echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
-					//}
-					//echo  '</optgroup>';
-				} ?>
+					foreach($cities as $city){
+						echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
+					}
+					echo  '</optgroup>';
+				}?>
 			
 			</select>
 			<i class="icon-city"></i>

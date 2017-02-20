@@ -65,18 +65,27 @@
 <div id="form2" class="searchForm">
 <form>
 <div class="formcol50">
-<input type="text" name="" placeholder="Find colleges by course or college name" />
+<input type="text" name="stream" placeholder="Find Stream" id="stream_name" />
 <div class="autoComplete">
-<h4>Colleges</h4>
+<h4>Select Stream</h4>
 <ul>
-<li>Amrita School of Business Amrita Vishwa Vidyapeetham ( ASB Kollam )</li>
-<li>AIHM Institute of Hotel Management</li>
-<li>NATA Classes</li>
-<li>Indian Institute of Information Technology ( IIITA )</li>
+<?php 
+$exam_search = $this->exam_model->get_all("mc_exams");
+foreach($exam_search as $exam_search_data){
+?>
+<li><?php echo $exam_search_data['course_name']; ?></li>
+<?php }?>
 </ul>
 </div>
 </div>
 <div class="formcol50">
+<input type="text" name="" placeholder="Select Exam" onClick="return getExamByCourse();"/>
+<div class="autoComplete">
+<h4>Select Exam</h4>
+<ul id="exam_lists">
+
+</ul>
+</div>
 <select id="register_city_location"  class="auto-choice" multiple name="location">
 	<?php echo $location; ?>
 			
@@ -254,48 +263,48 @@
 <div class="managementArea">
 <ul>
 <li>
-<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/1.png'); ?>" /></a></div>
-<div class="manageText"><a href="anything-particular.html">Management</a></div>
+<div class="manageIcon"><a href="<?php echo base_url('course/index/management'); ?>"><img src="<?php echo base_url('assets/theme/images/1.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url('course/index/management'); ?>">Management</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/2.png'); ?>" /></a></div>
-<div class="manageText"><a href="anything-particular.html">Engineering</div>
+<div class="manageIcon"><a href="<?php echo base_url('course/index/engineering'); ?>"><img src="<?php echo base_url('assets/theme/images/2.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url('course/index/engineering'); ?>">Engineering</div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/3.png'); ?>" /></a></div>
-<div class="manageText"><a href="anything-particular.html">Architecture</a></div>
+<div class="manageIcon"><a href="<?php echo base_url('course/index/architecture'); ?>"><img src="<?php echo base_url('assets/theme/images/3.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url('course/index/architecture'); ?>">Architecture</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/4.png'); ?>" /></a></div>
-<div class="manageText"><a href="anything-particular.html">Medical</a></div>
+<div class="manageIcon"><a href="<?php echo base_url('course/index/medical'); ?>"><img src="<?php echo base_url('assets/theme/images/4.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url('course/index/medical'); ?>">Medical</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/5.png'); ?>" /></a></div>
-<div class="manageText"><a href="anything-particular.html">Dental</a></div>
+<div class="manageIcon"><a href="<?php echo base_url('course/index/dental'); ?>"><img src="<?php echo base_url('assets/theme/images/5.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url('course/index/dental'); ?>">Dental</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/6.png'); ?>" /></a></div>
-<div class="manageText"><a href="anything-particular.html">Pharmacy</a></div>
+<div class="manageIcon"><a href="<?php echo base_url('course/index/pharmacy'); ?>"><img src="<?php echo base_url('assets/theme/images/6.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url('course/index/pharmacy'); ?>">Pharmacy</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/7.png'); ?>" /></a></div>
-<div class="manageText"><a href="anything-particular.html">Paramedical</a></div>
+<div class="manageIcon"><a href="<?php echo base_url('course/index/paramedical'); ?>"><img src="<?php echo base_url('assets/theme/images/7.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url('course/index/paramedical'); ?>">Paramedical</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/8.png'); ?>" /></a></div>
-<div class="manageText"><a href="anything-particular.html">Hotel Management</a></div>
+<div class="manageIcon"><a href="<?php echo base_url('course/index/hotel_management'); ?>"><img src="<?php echo base_url('assets/theme/images/8.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url('course/index/hotel_management'); ?>">Hotel Management</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/9.png'); ?>" /></a></div>
-<div class="manageText"><a href="anything-particular.html">Law</a></div>
+<div class="manageIcon"><a href="<?php echo base_url('course/index/law'); ?>"><img src="<?php echo base_url('assets/theme/images/9.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url('course/index/law'); ?>">Law</a></div>
 </li>
 
 <li>
@@ -627,3 +636,18 @@ Noida-201307, India</p>
   </div>
 </div>
 <!-- team 4 Close -->
+
+<script language="javascript" type="text/javascript">
+function getExamByCourse(){
+	var course_name  = $("#stream_name").val();
+	$.ajax({
+		url: "<?php echo base_url(); ?>home/get_exam_list/"+course_name,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#exam_lists").html(html);
+		}
+	});
+}
+
+</script>

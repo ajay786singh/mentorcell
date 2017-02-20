@@ -198,7 +198,7 @@ header('Vary: Accept-Encoding');
 <div class="subMenubox">
 <h3>Submenu Heading 2</h3>
 <div class="links">
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
+<span class="sublinks"><a href="#">MBA/PGDM1</a></span>
 <span class="sublinks"><a href="#">BBA/BBM</a></span>
 <span class="sublinks"><a href="#">MBA/PGDM</a></span>
 <span class="sublinks"><a href="#">BBA/BBM</a></span>

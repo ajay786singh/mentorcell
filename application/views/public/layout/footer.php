@@ -347,6 +347,9 @@ Noida, UP<br>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/bootstrap.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.mCustomScrollbar.concat.min.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.bxslider.js'); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.fancybox.js'); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.fancybox-media.js'); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.fancybox-thumbs.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/custom.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/ajaxcalls.js'); ?>"></script>
 	

@@ -36,13 +36,18 @@ header('Vary: Accept-Encoding');
 			<link href="<?php echo base_url('assets/theme/css/jquery.mCustomScrollbar.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/bootstrap.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/jquery.bxslider.css'); ?>" rel="stylesheet" type="text/css" media="all" />
+			<link href="<?php echo base_url('assets/theme/css/jquery.fancybox.css'); ?>" rel="stylesheet" type="text/css" media="screen" />
+			<link href="<?php echo base_url('assets/theme/css/jquery.fancybox-thumbs.css'); ?>" rel="stylesheet" type="text/css" media="screen" />
 			<link href="<?php echo base_url('assets/theme/css/custom.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/customResponsive.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<script>
 			var base_url = '<?php echo base_url(); ?>';
 			var isPasswordRest = <?php echo isset($_GET['setpassword']) ? 1 : 0 ; ?>;
 			</script>
-			
+			<!--[if lt IE 9]>
+				<script src="<?php echo base_url('assets/theme/js/html5shiv.min.js'); ?>"></script>
+				<script src="<?php echo base_url('assets/theme/js/respond.min.js'); ?>"></script>
+			<![endif]-->
 		</head>
 <body>
 
@@ -1161,19 +1166,36 @@ header('Vary: Accept-Encoding');
 <i></i>
 </div>
 
-<div class="userNav">
-<ul>
-<?php
- if($user_login['id']){?>
-	<li class="userLogin"><?php echo $user_login['firstname']; ?></li>
-	<li class="userReg" ><a href="<?php echo site_url('home/logout'); ?>" >Logout</a></li>
-<?php }else{ ?>
-	<li class="userLogin" data-toggle="modal" data-target="#loginModal" onClick="document.getElementById('couponClicked').value=0" >Login</li>
-	<li class="userReg" data-toggle="modal" data-target="#registerModal">Register</li>
-<?php } ?>
-</ul>
+
+ <?php if($user_login['id']){?>
+	<div class="profileNav">
+	<h3><?php echo $user_login['firstname']; ?></h3>
+	<ul>
+		<li><a href="<?php echo site_url('user/profile'); ?>">Profile</a></li>
+		<li><a href="<?php echo site_url('user/logout'); ?>">Sign Out</a></li>
+	</ul>
+	</div>
+ 
+ <?php }else{ ?>
+	<div class="userNav">
+	<ul>
+		<li class="userLogin" data-toggle="modal" data-target="#loginModal" onClick="document.getElementById('couponClicked').value=0" >Login</li>
+		<li class="userReg" data-toggle="modal" data-target="#registerModal">Register</li>
+
+	</ul>
+	</div>
+ 
+ <?php } ?>
+
+
+
+
+
+
+
+
 </div>
-</div>
+
 </div>
 </div>	
 </header>

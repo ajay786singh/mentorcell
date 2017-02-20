@@ -18,58 +18,6 @@ $(document).ready(function(){
 
     });
 
-     $(window).scroll(function(){
-
-      if($(window).scrollTop() > 150){
-        $('.collegeSidenav').addClass('sticky');
-      }else{
-        $('.collegeSidenav').removeClass('sticky');
-      }
-
-     });
-
-
-     $('.fancybox-thumbs').fancybox({
-        loop: false,
-        prevEffect : 'none',
-        nextEffect : 'none',
-
-        closeBtn  : true,
-        arrows    : true,
-        nextClick : true,
-
-        helpers : {
-          thumbs : {
-            width  : 100,
-            height : 56
-          }
-        }
-      });
-
-     $('.fancybox-media')
-        .attr('rel', 'media-gallery')
-        .fancybox({
-          openEffect : 'none',
-          closeEffect : 'none',
-          prevEffect : 'none',
-          nextEffect : 'none',
-
-          arrows : true,
-          loop: false,
-          helpers : {
-            media : true,
-            buttons : true
-          }
-        });
-
-        $('#photoGallery').click(function(){
-          $('#galleryImg1').trigger('click');
-        });
-
-        $('#videoGallery').click(function(){
-          $('#galleryVideo1').trigger('click');
-        });
-
 $('.homeSlider .bxslider').bxSlider({
     auto: true,
     mode: 'fade',
@@ -89,15 +37,13 @@ $('.featureSlider .bxslider').bxSlider({
   });
 
 $('.collegeVideoSlide .bxslider').bxSlider({
-    auto: false,
+    auto: true,
     mode: 'horizontal',
     controls: true,
     pager:false,
     minSlides: 1,
     nextText: '',
     prevText: '',
-    infiniteLoop: false,
-    hideControlOnEnd: true,
   maxSlides: 3,
   moveSlides:1,
   slideWidth: 217,
@@ -163,64 +109,29 @@ $(this).parent().siblings().find('.toggleItems').slideUp('fast');
 });
 /**** filter toggle close ****/
 
-/* $('.couponHolder .regForm .inputRow input.go, .couponHolder .loginForm .inputRow input.go').click(function(){
+$('.couponHolder .regForm .inputRow input.go, .couponHolder .loginForm .inputRow input.go').click(function(){
 
 $('#couponTab2').addClass('active');
 $('#couponBox1').removeClass('active');
 $('#couponBox2').addClass('active');
 
-}); */
+});
 
-/* $('.iqTest .go').click(function(){
+$('.iqTest .go').click(function(){
 
 $('#couponTab3').addClass('active');
 $('#couponBox2').removeClass('active');
 $('#couponBox3').addClass('active');
 
-}); */
-
-$('.collegeSidenav ul li a').click(function(e){
-  e.preventDefault();
-var scrollTarget = $(this).attr('href'),
-    scrollPoint = $(scrollTarget).offset().top - 60; 
-$('html, body').animate({
-       scrollTop:  scrollPoint
-
-    });
-
 });
 
-/***this is for profile section start***/
 
-$('.profileTab ul li a').click(function(e){
-  e.preventDefault();
-   var sectionTarget = $(this).attr('href');
-   $(this).addClass('active').parent().siblings().find('.active').removeClass('active');
-   $(sectionTarget).addClass('active').siblings().removeClass('active');
-});
-
-$('.profileBox h3 .addEdit').click(function(){
-  var editForm = $(this).attr('form-target');
-  $(this).parent().parent().find('ul, .addButton').hide();
-  $('#'+editForm).show();
-});
-
-$('.profileBox .addButton').click(function(){
-  var addForm = $(this).attr('form-target');
-  $(this).hide();
-  $(this).parent().find('ul, .addEdit').hide();
-  $('#'+addForm).show();
-});
-/***this is for profile section close***/ 
-
-
-	
-	/*triggering the popup*/
+/*triggering the popup*/
     if(localStorage.getItem('popState') != 'shown'){
        $('#landingpage').modal('show');
         localStorage.setItem('popState','shown')
     }
-	/*triggering the popup*/
+/*triggering the popup*/
 	
 	if(isPasswordRest == 1){
 		 $('#forgotsetModal').modal('show');

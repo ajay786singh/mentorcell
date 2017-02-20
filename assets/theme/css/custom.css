@@ -18,7 +18,8 @@ a:hover {text-decoration: none;}
 .collegeResultBox .collegeMiddle, .collegeResultBox .collegeBottom, .pagination,
 .collegeHead .collegeQuick, .courceHead, .addmisionProcedure, .collegeReviewTop, .collegeReviewBox,
 .importantDates, .newsBox, .couponTabs, .couponHolder, .iqTest ol li, .iqTest ol li .iqAnsRow,
-.teamArea, .teamPopup {width: 100%; float: left; clear: both;}
+.teamArea, .teamPopup, .teamRow, .staticPage, .profileHead, .profileSection, .profileBox,
+.profileBox ul, .profileBox .detailForm, .profileBox .settingForm {width: 100%; float: left; clear: both;}
 
 header#header {background:#15202f; position:fixed; left: 0px; top:0px; z-index:20; height: 55px;}
 header#header .logo {padding: 10px 0px 0px 0px; width: 100%;}
@@ -389,9 +390,10 @@ header#header .logo img {max-width: 100%; height: auto;}
 .collegeRankRating .rankingCol .title {font-size: 13px; margin: 0px 0px 10px 0px; color: rgba(0,0,0,0.54); display: block;}
 .collegeRankRating .rankingCol .circle {width: 50px; font-size: 20px; font-family: 'ubuntumedium'; height: 50px; display: inline-block; line-height: 50px; color: #f77a52; border:1px solid #f77a52; border-radius: 100px;}
 
+.collegeSidenav.sticky {position: fixed; background: #fff; top: 55px;}
 .collegeSidenav h3 {margin: 0px 0px 10px 0px; font-size: 16px; font-family: 'ubuntumedium';}
-.collegeSidenav ul {margin: 0px 0px 20px 0px;}
-.collegeSidenav ul li {font-size: 14px; display: block; clear: both; float: left; margin: 0px 0px 8px 0px;}
+.collegeSidenav ul {margin: 0px 0px 15px 0px;}
+.collegeSidenav ul li {font-size: 14px; display: block; clear: both; float: left; margin: 0px 0px 6px 0px;}
 .collegeSidenav ul li a {color: rgba(0,0,0,0.54);}
 .collegeSidenav ul li a:hover, .collegeSidenav ul li a.active {color: rgba(0,0,0,0.87); font-family: 'ubuntumedium';}
 .collegeSidenav ul li .subMenu {padding: 5px 0px 0px 0px;}
@@ -589,7 +591,97 @@ header#header .logo img {max-width: 100%; height: auto;}
 .teamPopup .teamImg {width:170px; height: 170px; border: 1px solid rgba(0,0,0,0.20); margin: 0px 0px 10px 0px; display: inline-block; border-radius: 100%;}
 .teamPopup .teamImg img {width: 100%; height:100%; border:2px solid #fff; border-radius:100%;}
 .teamPopup h5 {font-size: 16px; text-align: center; margin: 0px 0px 10px 0px;}
-.teamPopup p {font-size: 14px; margin: 0px 0px 10px 0px; text-align: left; color: rgba(0,0,0,0.54);} 
+.teamPopup p {font-size: 14px; margin: 0px 0px 10px 0px; text-align: left; color: rgba(0,0,0,0.54);}
+
+.teamRow {margin: 0px 0px 15px 0px; padding: 15px; background: rgba(0,0,0,0.03); border-radius: 8px;}
+.teamRow .teamPic {float: left; margin: 0px 0px 15px 0px; width:170px; height: 170px; border: 1px solid rgba(0,0,0,0.20); border-radius: 100%;}
+.teamRow .teamPic img {width: 100%; height:100%; border:2px solid #fff; border-radius:100%;}
+.teamRow .teamDetail {float: left; width: calc(100% - 170px); padding: 10px 0px 0px 20px;}
+.teamRow .teamDetail h3 {font-family: 'ubuntumedium'; color: #000; font-size: 20px; margin: 0px 0px 10px 0px;}
+.teamRow .teamDetail h4 {font-size: 16px; display: block; padding: 0px 0px 10px 0px; margin: 0px 0px 10px 0px; border-bottom: 1px solid rgba(0,0,0,0.10);}
+.teamRow .teamDetail p {font-size: 14px; margin:0px 0pc 15px 0px; color: rgba(0,0,0,0.54); line-height: 20px;}
+
+.staticPage {margin: 0px 0px 15px 0px; padding: 15px; background: rgba(0,0,0,0.03); border-radius: 8px;}
+.staticPage .staticimg {width: 100%; text-align: center;}
+.staticPage .staticimg img {max-width: 100%; height: auto; display: inline-block;}
+.staticPage .staticContent p {margin: 0px 0px 12px 0px; font-size: 14px; color: rgba(0,0,0,0.84);}
+
+#photoGallery, #videoGallery {cursor: pointer; display: inline-block;}
+
+/******Profile section start******/
+.profileNav {position: relative; float: right; height: 55px; padding: 13px 0px 0px 0px;}
+.profileNav h3 {display: block; padding: 7px 10px; cursor: pointer; background: #f77a52; font-size: 13px; color: #fff;}
+.profileNav ul {width: 200px; transition: all ease-in-out 0.4s; transform: scale(0); -webkit-transform-origin: 100% 100%; transform-origin:100% 0; display: block; background: #15202f; padding:0px 10px; position: absolute; z-index: 1; right: 0px; top: 55px;}
+.profileNav ul li {display: block; float: left; clear: both; width: 100%;}
+.profileNav ul li a {color: #fff; font-size: 12px; text-decoration: none; display: block; padding:10px 0px; border-bottom: 1px solid rgba(255,255,255,0.20);}
+.profileNav:hover ul {transform: scale(1);}
+
+.profileHead {border-bottom: 1px solid rgba(0,0,0,0.15);}
+.profileHead .containerBox {padding-bottom: 0px;}
+.profileHead .profileThumb {background:#d8d8d8; border:1px solid #979797; margin: 0px 0px 20px 0px; min-height:90px; text-align: center;}
+.profileHead .profileThumb img {display: inline-block; max-width: 100%; height: auto;}
+
+.profileHead .profileQuick {margin: 0px 0px 15px 0px;}
+.profileHead .profileQuick h2 {font-size:22px; font-family: 'ubuntumedium'; display: block; margin: 0px 0px 8px 0px;}
+
+.profileHead .profileQuick h3 {font-size: 13px;  color: rgba(0,0,0,0.54); margin: 0px;}
+
+.profileTab {padding:5px 0px 0px 0px;}
+.profileTab ul li {display: inline-block; font-size: 16px;}
+.profileTab ul li a {display: block; color: rgba(0,0,0,0.54); padding: 5px 22px; border-bottom: 3px solid transparent; text-decoration: none;}
+.profileTab ul li a:hover, .profileTab ul li a.active {border-bottom: 3px solid #f77a52; color: #000;}
+
+.profileSection {}
+.profileHolder {display: none;}
+.profileHolder.active {display: block;}
+.profileBox {border:1px solid rgba(0,0,0,0.10); padding: 0px 0px 20px 0px; margin: 0px 0px 20px 0px;}
+.profileBox h3 {display: block; margin:0px; padding:12px 20px; text-transform: uppercase; font-size: 16px; background: #f1f1f1;}
+.profileBox h3 .addEdit {float: right; font-size: 13px; color: #0aa5b5; cursor: pointer; text-transform: capitalize;} 
+.profileBox ul {padding: 20px}
+.profileBox ul li {display: block; width: 100%; position: relative; padding: 15px 0px; float: left; clear: both; border-bottom: 1px solid rgba(0,0,0,0.15);}
+.profileBox ul li:last-child {border: none;}
+.profileBox ul li h4 {font-size: 14px; font-family: 'ubuntumedium';  padding: 0px 0px 0px 22px; color: rgba(0,0,0,0.87); margin: 0px 0px 10px 0px; display: block; position: relative;}
+.profileBox ul li h5 {font-size: 14px; color: rgba(0,0,0,0.54); padding: 0px 0px 0px 22px; margin: 0px; display: block; position: relative;}
+
+.profileBox ul li h4 i,
+.profileBox ul li h5 i {display:block; position: absolute; left: 0px; float: left; margin: 0px 10px 0px 0px; line-height: 1px;}
+
+.profileBox ul li h4 b,
+.profileBox ul li h5 b {color: rgba(0,0,0,0.87);}
+
+.profileBox .addButton {float: left; transition: all ease-in-out 0.4s; display: block; clear: both; background:#f77a52; color: #fff; cursor: pointer; padding:5px 10px; font-size: 13px; margin: 0px 0px 0px 20px; border-radius: 6px;}
+.profileBox .addButton span {float: left; display: block; font-size: 16px; line-height: 16px; margin: 0px 5px 0px 0px;}
+.profileBox .addButton:hover {background:#000;}
+
+.profileBox .detailForm {padding: 20px 5px; display: none;}
+.profileBox .detailForm hr {display: block; width: 100%; float: left; clear: both; background: none; border: none; height: 1px; overflow: hidden; border-bottom: 1px solid rgba(0,0,0,0.10); margin: 15px 0px 30px 0px;}
+.profileBox .detailForm .form-group {float: left; width: 100%; clear: both;}
+.profileBox .detailForm label {display: block; margin: 0px 0px 5px 0px; font-size: 14px; color: rgba(0,0,0,0.64);}
+.profileBox .detailForm label b {color: #ff0000;}
+.profileBox .detailForm input[type="text"],
+.profileBox .detailForm select,
+.profileBox .detailForm textarea {width: 100%; max-width: 280px; padding: 5px; height: 30px; border:1px solid rgba(0,0,0,0.20);}
+.profileBox .detailForm textarea {height: 100px; overflow: auto; resize: none;}
+.profileBox .detailForm .radioBut {font-size: 13px; float: left; line-height: 11px; padding: 2px 20px 2px 0px;}
+.profileBox .detailForm .radioBut input {float: left; margin: 0px 5px 0px 0px;}
+.profileBox .detailForm .fullWidth {width:100%; max-width: 100%;}
+.profileBox .detailForm .deleteEntry {float: right; display: block; clear: both; font-size: 12px; color:#ff0000; margin: 0px 15px 5px 0px; cursor: pointer;}
+.profileBox .detailForm .cancelButton {float: left; height: 35px; width: 100px; margin: 0px 15px 0px 0px; background: rgba(0,0,0,0.10); border-radius: 6px; border: 1px solid rgba(0,0,0,0.15); cursor: pointer;}
+.profileBox .detailForm .saveButton {float: left; height: 35px; color: #fff; width: 100px; margin: 0px 15px 0px 0px; background: #f77a52; border-radius: 6px; border: 1px solid rgba(0,0,0,0.15); cursor: pointer;}
+
+.profileBox .settingForm {padding: 20px 20px;}
+.profileBox .settingForm .form-group {float: left; width: 100%; clear: both;}
+.profileBox .settingForm label {font-size: 14px; color: rgba(0,0,0,0.64); display: block; float: left; width: 200px;}
+.profileBox .settingForm input[type="text"] {width: 100%; max-width: 280px; padding: 5px; height: 30px; border:1px solid rgba(0,0,0,0.20); float: left;}
+.profileBox .settingForm input[type="checkbox"] {float: left; margin: 4px 10px 0px 0px;}
+.profileBox .settingForm input[type="checkbox"] + label {width: auto;}
+.profileBox .settingForm .cancelButton {float: left; height: 35px; width: 100px; margin: 0px 15px 0px 0px; background: rgba(0,0,0,0.10); border-radius: 6px; border: 1px solid rgba(0,0,0,0.15); cursor: pointer;}
+.profileBox .settingForm .saveButton {float: left; height: 35px; color: #fff; width: 100px; margin: 0px 15px 0px 0px; background: #f77a52; border-radius: 6px; border: 1px solid rgba(0,0,0,0.15); cursor: pointer;}
+/******Profile section close******/
+
+.page404 {text-align: center; padding: 40px;}
+.page404 img {display: inline-block; max-width: 100%; height: auto;}
+
 /****new close****/
 
 .footerSection {background: #232440;}
@@ -608,6 +700,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .footerBottom .footerSocial a.fbBg:hover {background: #3b5998; color: #fff;}
 .footerBottom .footerSocial a.twBg:hover {background: #42c8f4; color: #fff;}
 .footerBottom .footerSocial a.inBg:hover {background: #006fa6; color: #fff;}
+
 
 
 /**/

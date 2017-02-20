@@ -161,8 +161,6 @@ class Home extends Public_Controller {
 			$response = array('status'=>true,'user_id'=>$user_id,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> You have successfully started your journey. </div>');
 			
 			
-			
-			
 			$sms_data = array(
             'src' => '+123456789', //The phone number to use as the caller id (with the country code). E.g. For USA 15671234567
             'dst' => '+91'.$phone, // The number to which the message needs to be send (regular phone numbers must be prefixed with country code but without the ‘+’ sign) E.g., For USA 15677654321.

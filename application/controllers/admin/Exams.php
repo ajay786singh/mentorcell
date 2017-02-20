@@ -63,10 +63,16 @@ class Exams extends Admin_Controller {
 			$this->data = array();
 			unset($_POST['submit']);
 			unset($_POST['id']);
+			$important_date = serialize($_POST['important_dates']);
+			$important_date_description = serialize($_POST['important_dates_description']);
+			$important_dates = $important_date."@@".$important_date_description;
+			unset($_POST['important_dates']);
+			unset($_POST['important_dates_description']);
 			$this->data = $this->input->post();
+			$this->data['impotant_dates'] = $important_dates;
 			$this->exam_model->insert($this->data,"mc_exams");
 			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
-			    $this->template->admin_render('admin/exams/index');
+			    redirect('admin/exams/index', 'refresh');
 		}else{
 			//$this->data = array();
 			$this->data['form_type'] = 'add';

@@ -1,5 +1,4 @@
-
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -18,7 +17,7 @@
     <section class="content">
       <div class="row">
         <!-- left column -->
-        <div class="col-md-6">
+        <div class="col-md-12">
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -28,7 +27,7 @@
             <!-- form start -->
             <?php 
 			
-			if(!$form_data){
+			if(!@$form_data){
 				$form_type =  "create";
 			}else{$form_type = "edit/".$form_data;}?>
             <form role="form" method="post" action="<?php echo base_url()."admin/exams/".$form_type;?>">
@@ -39,7 +38,11 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Exam Name</label>
-                  <input type="text"  class="form-control" name="exam_name" id="exam_name" value="<?php echo @$exams_list['exam_name']; ?>" placeholder="">
+                  <input type="text"  class="form-control" name="exam_name" id="exam_name" value="<?php echo @$exams_list['exam_name']; ?>" placeholder="" onBlur="return create_slug(this.value);">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Slug</label>
+                  <input type="text"  class="form-control" name="slug" id="slug" value="<?php echo @$exams_list['slug']; ?>" placeholder="">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Overview</label>
@@ -68,7 +71,22 @@
                 </div>
                   <div class="form-group">
                   <label for="exampleInputEmail1">Important Dates</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="impotant_dates" id="impotant_dates"><?php echo @$exams_list['impotant_dates']; ?></textarea>
+                  <label for="smashing-post-class"><a onclick="return important_dates();"> Add New</a></label>
+                  <div id="important_dates_field_reapeater">
+  <?php  
+  $important_date =$exams_list['impotant_dates'];
+  $imp_date_exp = explode("@@",$important_date);
+  $imp_date_name  = unserialize($imp_date_exp[0]);
+  $imp_date_content = unserialize($imp_date_exp[1]);
+  for( $bsi=0;$bsi<count($imp_date_name);$bsi++){?>
+  
+  <p id="important_dates_p_<?php echo $bsi+1; ?>" class="important_dates_class"><input type="text" id="datepicker" name="important_dates[]"   style="width:30%" placeholder="date" value="<?php echo $imp_date_name[$bsi]; ?>"> <input type="text" name="important_dates_description[]" placeholder="Link to the website" style="width:50%"   value="<?php echo @$imp_date_content[$bsi]; ?>" /> <a onclick = "return delete_field(<?php echo $bsi+1; ?>);" style="cursor:pointer">Delete</a></p>
+  
+  <?php  
+  }?>
+  
+  </div>
+  <p id="important_dates_limit_msg" style="color:red"></p>
                 </div>
                  <div class="form-group">
                   <label for="exampleInputEmail1">Results</label>
@@ -97,13 +115,61 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-<script src="<?php echo base_url();?>/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    //bootstrap WYSIHTML5 - text editor
-    $(".textarea").wysihtml5();
-  });
+
+
+
+<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>tinymce.init({
+  selector: 'textarea',
+  height: 500,
+  theme: 'modern',
+  plugins: [
+    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+    'searchreplace wordcount visualblocks visualchars code fullscreen',
+    'insertdatetime media nonbreaking save table contextmenu directionality',
+    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+  ],
+  toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+  toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+  image_advtab: true,
+  templates: [
+    { title: 'Test template 1', content: 'Test 1' },
+    { title: 'Test template 2', content: 'Test 2' }
+  ],
+  content_css: [
+    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+    '//www.tinymce.com/css/codepen.min.css'
+  ]
+ });</script>
+ 
+   <!-- /.content-wrapper -->
+ <script type="text/javascript" language="javascript">
+
+		var field_sr = 1;
+	function important_dates(){
+			field_sr++;
+			var numItems = jQuery('.important_dates_class').length;
+			if(numItems <10){
+			var field_html = '<p id="important_dates_p_'+field_sr+'"  class="important_dates_class"><input type="text"  id="datepicker" name="important_dates[]"  placeholder="date"  style="width:30%"> <input type="text" name="important_dates_description[]" placeholder="Content" style="width:50%" /> <a onclick = "return delete_field('+field_sr+');"  style="cursor:pointer">Delete</a></p>';
+			$("#important_dates_field_reapeater").append(field_html);
+			$("#important_dates_limit_msg").html("");
+			}else{
+				$("#important_dates_limit_msg").html("Max 9 important dates allowed.");
+			}
+		}
+		
+	function delete_field(pid){
+		$("#important_dates_p_"+pid).remove();
+		$("#important_dates_limit_msg").html("");
+	}
+
+ $('#datepicker').datepicker({
+      autoclose: true
+    });
+	
+	function create_slug(exam_name){
+		var slug_name  = exam_name.replace(" ","_");
+		$("#slug").val(slug_name);
+	}
+
 </script>

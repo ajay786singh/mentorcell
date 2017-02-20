@@ -40,6 +40,7 @@ header('Vary: Accept-Encoding');
 			<link href="<?php echo base_url('assets/theme/css/customResponsive.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<script>
 			var base_url = '<?php echo base_url(); ?>';
+			var isPasswordRest = <?php echo isset($_GET['setpassword']) ? 1 : 0 ; ?>;
 			</script>
 			
 		</head>
@@ -66,11 +67,11 @@ header('Vary: Accept-Encoding');
 	<ol>
 		<li class="active" menu-id="submenu1">Popular Courses</li>
 		<li menu-id="submenu2">About Course</li>
-		<li menu-id="submenu3">Counseling videos</li>
+		<!--<li menu-id="submenu3">Counseling videos</li>-->
 		<li menu-id="submenu4">College Search By</li>
 		<li menu-id="submenu5">Top colleges</li>
 		<li menu-id="submenu6">Exams</li>
-		<li menu-id="submenu7">Resource</li>
+		<!--<li menu-id="submenu7">Resource</li>-->
 	</ol>
 </div>
 <!--left menu category close-->
@@ -320,11 +321,11 @@ header('Vary: Accept-Encoding');
 <div class="subMenuCol subMenuLeft">
 	<ol>
 		<li class="active" menu-id="submenu8">About Course</li>
-		<li menu-id="submenu9">Counseling videos</li>
+		<!--<li menu-id="submenu9">Counseling videos</li>-->
 		<li menu-id="submenu10">College Search By</li>
 		<li menu-id="submenu11">Top colleges</li>
 		<li menu-id="submenu12">Exams</li>
-		<li menu-id="submenu13">Resource</li>
+		<!--<li menu-id="submenu13">Resource</li>-->
 	</ol>
 </div>
 <!--left menu category close-->
@@ -623,9 +624,8 @@ header('Vary: Accept-Encoding');
 <li><a href="#">Study Abroad</a>
 
 <!--submenu start-->
-<div class="subMenuArea">
+<!--<div class="subMenuArea">
 <div class="subMenuRow">
-<!--left menu category start-->
 <div class="subMenuCol subMenuLeft">
 	<ol>
 		<li class="active" menu-id="submenu19">College Search By</li>
@@ -634,9 +634,7 @@ header('Vary: Accept-Encoding');
 		<li menu-id="submenu22">Resource</li>
 	</ol>
 </div>
-<!--left menu category close-->
 
-<!--right menu start-->
 <div class="subMenuCol subMenuRight">
 <div class="subMenuHold active" id="submenu19">
 <div class="subMenubox">
@@ -728,20 +726,17 @@ header('Vary: Accept-Encoding');
 
 
 </div>
-<!--right menu close-->
 
 </div>
-</div>
+</div>-->
 <!--submenu close-->
 
 </li>
 
 <li><a href="#">Admission 2017</a>
 
-<!--submenu start-->
-<div class="subMenuArea">
+<!--<div class="subMenuArea">
 <div class="subMenuRow">
-<!--left menu category start-->
 <div class="subMenuCol subMenuLeft">
 	<ol>
 		<li class="active" menu-id="submenu23">About Course</li>
@@ -752,9 +747,7 @@ header('Vary: Accept-Encoding');
 		<li menu-id="submenu28">Resource</li>
 	</ol>
 </div>
-<!--left menu category close-->
 
-<!--right menu start-->
 <div class="subMenuCol subMenuRight">
 <div class="subMenuHold active" id="submenu23">
 <div class="subMenubox">
@@ -896,20 +889,17 @@ header('Vary: Accept-Encoding');
 
 
 </div>
-<!--right menu close-->
 
 </div>
-</div>
+</div>-->
 <!--submenu close-->
 
 </li>
 
 <li><a href="#">Counselling</a>
 
-<!--submenu start-->
-<div class="subMenuArea">
+<!--<div class="subMenuArea">
 <div class="subMenuRow">
-<!--left menu category start-->
 <div class="subMenuCol subMenuLeft">
 	<ol>
 		<li class="active" menu-id="submenu29">Counseling videos</li>
@@ -919,9 +909,7 @@ header('Vary: Accept-Encoding');
 		<li menu-id="submenu33">Resource</li>
 	</ol>
 </div>
-<!--left menu category close-->
 
-<!--right menu start-->
 <div class="subMenuCol subMenuRight">
 <div class="subMenuHold active" id="submenu29">
 <div class="subMenubox">
@@ -1038,11 +1026,9 @@ header('Vary: Accept-Encoding');
 
 
 </div>
-<!--right menu close-->
 
 </div>
-</div>
-<!--submenu close-->
+</div>-->
 
 </li>
 

@@ -17,7 +17,6 @@
 <select id="search_college"  data-placeholder="Choose a College" class="auto-choice" name="college">
 <option value="">Choose a College to Join</option>
 	<?php 
-		$colleges = $this->common_model->get_all("mc_colleges");
 			foreach($colleges as $college){
 				echo '<option value="'.$college['id'].'">'.$college['name'].'</option>';
 			}
@@ -33,7 +32,7 @@
 <!--<div class="formcol50">
 <select id="stream" style="width:200px;" class="auto-choice" multiple name="stream">
 	<?php 
-	$streams = $this->common_model->get_all_rows("mc_streams", 1,1);
+
 	foreach($streams as $stream){
 	  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
 	} ?>
@@ -43,7 +42,7 @@
 <div class="formcol50">
 <select id="type" style="width:200px;" class="auto-choice" multiple name="type">
 	<?php 
-	$types = $this->common_model->get_all_rows("mc_types", 1,1);
+
 	foreach($types as $type){
 	  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
   } ?>
@@ -53,7 +52,6 @@
 <div class="formcol50">
 <select id="course" style="width:200px;" class="auto-choice" multiple name="course"> 
 <?php 
-	$courses = $this->common_model->get_all_rows("mc_courses", 1,1);
 	foreach($courses as $course){
 		echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
 	} ?>
@@ -94,7 +92,7 @@
 <select id="search_course" class="auto-choice" name="course">
 <option value="">Choose a Course to Join</option>
 	<?php 
-		$courses = $this->common_model->get_all("mc_courses");
+		
 		foreach($courses as $course){
 			
 				echo '<option   value="'.$course['course_id'].'">'.$course['course_name'].'</option>';

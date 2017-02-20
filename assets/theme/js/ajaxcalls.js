@@ -8,14 +8,15 @@ $(document).ready(function() {
 			var lname = $("input#register_lname").val();
 			var email = $("input#register_email").val();
 			var phone = $("input#register_phone").val();
-			var interest = $("input#register_interest").val();
-			var course = $("input#register_course").val();
-			var city = $("input#register_city").val();
+			var interest = $("select#register_interest").val();
+			var course = $("select#register_course").val();
+			var state = $("select#register_state").val();
+			var city = $("select#register_city").val();
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/home/register",
 				dataType: 'json',
-				data: {first_name:fname,last_name:lname,email:email, phone:phone, interest:interest, course:course, city: city },
+				data: {first_name:fname,last_name:lname,email:email, phone:phone, interest:interest, course:course,state:state,city: city },
 				success: function(res) {
 					if (res)
 					{
@@ -48,7 +49,7 @@ $(document).ready(function() {
 						if(res.status==true){
 							$('#register_form').hide();
 							$('#otp_form').hide();
-							setTimeout(function(){window.location.reload(); }, 3000);
+							setTimeout(function(){window.location.reload(); }, 1500);
 							
 						}
 					}
@@ -83,7 +84,7 @@ $(document).ready(function() {
 								} else {
 									window.location.reload();
 								}
-							}, 3000);
+							}, 1500);
 							
 						}
 					}
@@ -92,6 +93,64 @@ $(document).ready(function() {
 		});
 	/*login*/
 
+	
+	
+	/*forgot password*/
+		$("#forgot_button").click(function(event) {
+			event.preventDefault();
+			var identity = $("input#forgot_email").val();
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/home/forgotpassword",
+				dataType: 'json',
+				data: {identity:identity},
+				success: function(res) {
+					if (res)
+					{
+						$('#forgot_response').html(res.message);
+						if(res.status==true){
+							setTimeout(function(){
+								//window.location.reload(); 
+								 $('#forgotModal').modal('hide');
+							}, 1500);
+							
+						}
+					}
+				}
+			});
+		});
+	/*forgot password*/
+	
+	/*forgot password*/
+		$("#forgotset_button").click(function(event) {
+			event.preventDefault();
+			var password = $("input#forgotset_password").val();
+			var cpassword = $("input#forgotset_cpassword").val();
+			var code = $("input#forgotset_code").val();
+			
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/home/setpassword",
+				dataType: 'json',
+				data: {password:password,cpassword:cpassword,code:code},
+				success: function(res) {
+					if (res)
+					{
+						$('#forgotset_response').html(res.message);
+						if(res.status==true){
+							setTimeout(function(){
+								window.location.href=base_url; 
+								 //$('#forgotsetModal').modal('hide');
+							}, 1500);
+							
+						}
+					}
+				}
+			});
+		});
+	/*forgot password*/
+	
+	
 	
 	/**/
 	/**/
@@ -172,6 +231,25 @@ $(document).ready(function() {
 			});
 		});
 		
+		
+		
+		
+		$("#search_college").chosen().change(function() {
+			var college_id = $(this).val();
+			
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/home/clgcity",
+				dataType: 'json',
+				data: {college_id:college_id},
+				success: function(res) {
+					console.log(res);
+					$("#register_city_location").val(res.city).trigger("chosen:updated").prop('disabled', true).trigger("chosen:updated");
+					
+					
+				}
+			});
+		});
 	
 	
 });

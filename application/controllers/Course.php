@@ -1,34 +1,35 @@
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Exam extends Public_Controller {
+class Course extends Public_Controller {
 
     public function __construct()
     {
         parent::__construct();
-		
 		$this->load->database();
         $this->load->config('common/dp_config');
         $this->load->config('common/dp_language');
         $this->load->library(array('form_validation', 'ion_auth', 'template', 'common/mobile_detect'));
         $this->load->helper(array('array', 'language', 'url'));
         $this->load->model('common/prefs_model');
-		$this->load->model('admin/exam_model');
+		$this->load->model('admin/course_detail_model');
 		$this->load->model('common/common_model');
 		/* college model */
     }
 
 
-	public function index($exam_name)
+	public function index($course_name)
 	{
 		if ($this->ion_auth->logged_in()){
 		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
 		}else{
 			$this->data['user_login'] = array('id'=>false);
 		}
-		$this->data['exam_data'] = $this->exam_model->get_single_row("mc_exams", "slug",$exam_name );
+		
+		$this->data['course_data'] = $this->course_detail_model->get_single_row("mc_course_description", "course_description_page_name",$course_name );
 		$this->load->view('public/layout/header', $this->data);
-		$this->load->view('public/exam', $this->data);
+		$this->load->view('public/course_detail', $this->data);
 		$this->load->view('public/layout/footer', $this->data);
 	}
 	

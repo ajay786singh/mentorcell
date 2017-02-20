@@ -14,9 +14,9 @@
 <div id="form1" class="searchForm active">
 <form action="search">
 <div class="formcol50">
-<select id="register_city" style="width:350px;" multiple class="auto-choice" name="college">
+<select id="search_college"  data-placeholder="Choose a College" class="auto-choice" name="college">
+<option value="">Choose a College to Join</option>
 	<?php 
-		$colleges = $this->common_model->get_all("mc_colleges");
 			foreach($colleges as $college){
 				echo '<option value="'.$college['id'].'">'.$college['name'].'</option>';
 			}
@@ -24,26 +24,15 @@
 </select>
 </div>
 <div class="formcol50">
-<select id="register_city" style="width:350px;" class="auto-choice" multiple name="location">
-	<?php 
-		$states = $this->common_model->get_all_rows("states", "country_id",101);
-		foreach($states as $stateeach){
-		//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
-		echo '<optgroup label="'.$stateeach['name'].'">';
-			$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
-			
-			foreach($cities as $city){
-				echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
-			}
-			echo  '</optgroup>';
-		} ?>
+<select id="register_city_location"  class="auto-choice" multiple name="location">
+	<?php echo $location; ?>
 			
 </select>
 </div>
-<div class="formcol50">
-<select id="stream" style="width:350px;" class="auto-choice" multiple name="stream">
+<!--<div class="formcol50">
+<select id="stream" style="width:200px;" class="auto-choice" multiple name="stream">
 	<?php 
-	$streams = $this->common_model->get_all_rows("mc_streams", 1,1);
+
 	foreach($streams as $stream){
 	  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
 	} ?>
@@ -51,9 +40,9 @@
 </select>
 </div>
 <div class="formcol50">
-<select id="type" style="width:350px;" class="auto-choice" multiple name="type">
+<select id="type" style="width:200px;" class="auto-choice" multiple name="type">
 	<?php 
-	$types = $this->common_model->get_all_rows("mc_types", 1,1);
+
 	foreach($types as $type){
 	  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
   } ?>
@@ -61,15 +50,14 @@
 </select>
 </div>
 <div class="formcol50">
-<select id="course" style="width:350px;" class="auto-choice" multiple name="course"> 
+<select id="course" style="width:200px;" class="auto-choice" multiple name="course"> 
 <?php 
-	$courses = $this->common_model->get_all_rows("mc_courses", 1,1);
 	foreach($courses as $course){
 		echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
 	} ?>
 			
 </select>
-</div>
+</div>-->
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 </div>
@@ -98,6 +86,10 @@ foreach($exam_search as $exam_search_data){
 
 </ul>
 </div>
+<select id="register_city_location"  class="auto-choice" multiple name="location">
+	<?php echo $location; ?>
+			
+</select>
 </div>
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
@@ -106,9 +98,10 @@ foreach($exam_search as $exam_search_data){
 <div id="form3" class="searchForm">
 <form action="search">
 <div class="formcol50">
-<select id="register_city" style="width:350px;" multiple class="auto-choice" name="course">
+<select id="search_course" class="auto-choice" name="course">
+<option value="">Choose a Course to Join</option>
 	<?php 
-		$courses = $this->common_model->get_all("mc_courses");
+		
 		foreach($courses as $course){
 			
 				echo '<option   value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
@@ -118,19 +111,8 @@ foreach($exam_search as $exam_search_data){
 </select>
 </div>
 <div class="formcol50">
-<select id="register_city" style="width:350px;" class="auto-choice" multiple name="location"><option>Current City</option>
-	<?php 
-		$states = $this->common_model->get_all_rows("states", "country_id",101);
-		foreach($states as $stateeach){
-		//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
-		echo '<optgroup label="'.$stateeach['name'].'">';
-			$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
-			
-			foreach($cities as $city){
-				echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
-			}
-			echo  '</optgroup>';
-		} ?>
+<select id="register_city_location"  class="auto-choice" multiple name="location">
+	<?php echo $location; ?>
 			
 </select>
 </div>
@@ -189,7 +171,9 @@ foreach($exam_search as $exam_search_data){
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="youTubePlayer">
-<img src="<?php echo base_url('assets/theme/images/youtubeplayer.jpg'); ?>">
+<video id="introductionVideo" controls preload=auto>
+<source src="https://s3.ap-south-1.amazonaws.com/assets.mentorcell/WhatIsMentorcell.mp4" type='video/mp4'/>
+</video>
 </div>
 </div>
 

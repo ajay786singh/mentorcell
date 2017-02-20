@@ -27,9 +27,30 @@ class Home extends Public_Controller {
 		}else{
 			$this->data['user_login'] = array('id'=>false);
 		}
-
+			
+		$cstates = $this->college_model->get_states();
+		$options = '';
+		foreach($cstates as $stateeach){
+				//echo '<option  value="'.$stateeach->id.'">'.$stateeach->name.'</option>';
+				$options.= '<optgroup label="'.$stateeach->name.'">';
+					$cities = $this->college_model->get_cities($stateeach->id);
+					foreach($cities as $city){
+						$options.= '<option value="'.$city->id.'">'.$city->name.'</option>';
+					}
+					$options.=  '</optgroup>';
+		} 
+		
+		
+		$this->data['location'] = $options;
 		$this->load->view('public/layout/header', $this->data);
+		
+		$this->data['colleges'] = $this->common_model->get_all("mc_colleges");
+		$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+		$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+		//$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		$this->data['courses'] = $this->common_model->get_all("mc_courses");
 		$this->load->view('public/home', $this->data);
+		
 		$this->load->view('public/layout/footer', $this->data);
 	}
 	
@@ -119,12 +140,19 @@ class Home extends Public_Controller {
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique['.$tables['users'].'.email]');
 		$this->form_validation->set_rules('phone', 'Phone', 'required');
+
 		//$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
 		
 		$phone = trim($this->input->post('phone'));
 		$activation_code = rand ( 1000 , 9999 );
 		$password  = $this->random_password(8);
 		$email = strtolower($this->input->post('email'));
+		
+		$interest = $this->input->post('interest');
+		$course = $this->input->post('course');
+		$state = $this->input->post('state');
+		$city = $this->input->post('city');
+		
 		
 		if ($this->form_validation->run() == TRUE)
 		{
@@ -144,10 +172,13 @@ class Home extends Public_Controller {
 		if ($this->form_validation->run() == TRUE )
 		{
 			$user_id = $this->ion_auth->register($username, $password, $email, $additional_data);
+			$this->ion_auth->set_user_meta($user_id, 'interest', $interest);
+			$this->ion_auth->set_user_meta($user_id, 'course', $course);
+			$this->ion_auth->set_user_meta($user_id, 'state', $state);
+			$this->ion_auth->set_user_meta($user_id, 'city', $city);
+			
+			
 			$response = array('status'=>true,'user_id'=>$user_id,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> You have successfully started your journey. </div>');
-			
-			
-			
 			
 			$sms_data = array(
             'src' => '+123456789', //The phone number to use as the caller id (with the country code). E.g. For USA 15671234567
@@ -166,9 +197,12 @@ class Home extends Public_Controller {
 			$email_data = array(
 								'subject'=>'Your Password for MentorCell',
 								'to' =>$email,
-								'message' => "Please use the password to login to MentorCell.\n Password:  ".$password."\n URL: ".site_url()."\n Team\n MentorCell"
+								'message' => "Please use these credentials to login to MentorCell.\n Username: ".$email."\n Password:  ".$password."\n URL: ".site_url()."\n Team\n MentorCell"
 							);
 			$response_array = $this->sendgridemail->send_email($email_data);
+			/*auto login*/
+			$this->ion_auth->login($email, $password, false);
+			
 			echo json_encode($response);die;
 			
 		}
@@ -214,6 +248,100 @@ class Home extends Public_Controller {
         
 	}
 	
+	
+	
+	function forgotpassword()
+	{
+       
+            $this->load->config('admin/dp_config');
+            $this->load->config('common/dp_config');
+			$this->load->library('sendgridemail');
+            /* Valid form */
+            $this->form_validation->set_rules('identity', 'Email', 'required');
+            
+            if ($this->form_validation->run() == TRUE)
+            {
+				$email = strtolower($this->input->post('identity'));
+				$forgotten = $this->ion_auth->forgotten_password($email);
+
+				if($forgotten['identity']==$email){
+					
+					$reseturl = site_url()."?setpassword=true&code=".$forgotten['forgotten_password_code'];
+					$email_data = array(
+								'subject'=>'Reset your Password for MentorCell',
+								'to' =>$email,
+								'message' => "Please follow link to set password for  MentorCell.\n URL: ".$reseturl."\n  Team\n MentorCell"
+							);
+						$response_array = $this->sendgridemail->send_email($email_data);
+					
+					$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Please check email for instruction.</div>');
+					echo json_encode($response);die;
+				}
+               
+            }
+            else
+            {
+				$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.(validation_errors()) ? validation_errors() : $this->session->flashdata('message').'</div>');
+				echo json_encode($response);
+				die;
+            }
+       
+    }
+	
+		function setpassword()
+	{
+       
+            $this->load->config('admin/dp_config');
+            $this->load->config('common/dp_config');
+			$this->load->library('sendgridemail');
+            /* Valid form */
+            //$this->form_validation->set_rules('identity', 'Email', 'required');
+
+			$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
+
+			$this->form_validation->set_rules('code', 'Code', 'required');
+			
+            if ($this->form_validation->run() == TRUE)
+            {
+				$code = $this->input->post('code');
+				$user = @$this->ion_auth->forgotten_password_complete($code);
+
+				if($user){
+					
+					$change = $this->ion_auth->reset_password($user['identity'], $this->input->post('password'));
+					
+					$email_data = array(
+								'subject'=>'Password updated for MentorCell',
+								'to' =>$user['identity'],
+								'message' => "Your password updated successfully for MentorCell.\n Team\n MentorCell"
+							);
+						$response_array = $this->sendgridemail->send_email($email_data);
+					
+					$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Password updated successfully.</div>');
+					echo json_encode($response);
+					
+					die;
+				}else{
+					
+					$response = array('status'=>false,'message'=>'<div class="alert alert-danger">Token is expired!</div>');
+					echo json_encode($response);
+					die;
+					
+				}
+            }
+            else
+            {
+				$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.(validation_errors()) ? validation_errors() : $this->session->flashdata('message').'</div>');
+				echo json_encode($response);
+				die;
+            }
+       
+    }
+	
+	
+	
+	
+	
 	function courses()
 	{
 		$stream = $this->input->get('stream');
@@ -257,7 +385,26 @@ class Home extends Public_Controller {
 		}
 		$this->load->view('public/layout/footer', $this->data);
 		
-	}	
+	}
+
+	public function city()
+	{
+		$state_id = $this->input->get('state_id');
+		$cities = $this->common_model->get_all_rows("cities", "state_id",$state_id);
+		$option = '';
+		foreach($cities as $city){
+			$option .= '<option value="'.$city['id'].'">'.$city['name'].'</option>';
+		}
+		$option .= '';
+		echo $option; die;
+	}
+	
+	public function clgcity()
+	{
+		$college_id = $this->input->get('college_id');
+		$college = $this->college_model->get_clgstate($college_id);
+		echo json_encode($college); die;
+	}
 	
 	
 	public function get_exam_list($course_name){

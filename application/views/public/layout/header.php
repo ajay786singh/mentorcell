@@ -40,6 +40,7 @@ header('Vary: Accept-Encoding');
 			<link href="<?php echo base_url('assets/theme/css/customResponsive.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<script>
 			var base_url = '<?php echo base_url(); ?>';
+			var isPasswordRest = <?php echo isset($_GET['setpassword']) ? 1 : 0 ; ?>;
 			</script>
 			
 		</head>
@@ -1155,17 +1156,23 @@ header('Vary: Accept-Encoding');
 <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2">
 
 <div class="couponTab icon-bookmark">
-<span><a href="coupon.html">C<br>o<br>u<br>p<br>o<br>n</a></span>
+<span>
+	<?php if($user_login['id']){?>	
+	<a href="<?php echo base_url()?>coupon/">C<br>o<br>u<br>p<br>o<br>n</a></span>
+	<?php }else{ ?>
+	<a href="javascript:void(0);" onClick="document.getElementById('couponClicked').value=1" data-toggle="modal" data-target="#loginModal">C<br>o<br>u<br>p<br>o<br>n</a>
+	<?php } ?>
 <i></i>
 </div>
 
 <div class="userNav">
 <ul>
-<?php if($user_login['id']){?>
-	<li class="userLogin"><?php echo $user_login['email']; ?></li>
+<?php
+ if($user_login['id']){?>
+	<li class="userLogin"><?php echo $user_login['firstname']; ?></li>
 	<li class="userReg" ><a href="<?php echo site_url('home/logout'); ?>" >Logout</a></li>
 <?php }else{ ?>
-	<li class="userLogin" data-toggle="modal" data-target="#loginModal">Login</li>
+	<li class="userLogin" data-toggle="modal" data-target="#loginModal" onClick="document.getElementById('couponClicked').value=0" >Login</li>
 	<li class="userReg" data-toggle="modal" data-target="#registerModal">Register</li>
 <?php } ?>
 </ul>

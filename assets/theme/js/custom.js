@@ -125,4 +125,17 @@ $('#couponBox3').addClass('active');
 
 });
 
+
+/*triggering the popup*/
+    if(localStorage.getItem('popState') != 'shown'){
+       $('#landingpage').modal('show');
+        localStorage.setItem('popState','shown')
+    }
+/*triggering the popup*/
+	
+	if(isPasswordRest == 1){
+		 $('#forgotsetModal').modal('show');
+	}
+
+
 });

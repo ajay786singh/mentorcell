@@ -104,8 +104,8 @@ Noida, UP<br>
       	</div>
 
       	<h4><input type="checkbox" id="login_remember" name=""> Keep me signed in.</h4>
-      	<h5><a href="#">Forgot password?</a></h5>
-
+      	<h5><a data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>
+		<input type='hidden' id="couponClicked" value='0'>
       	</form>
 
       </div>
@@ -119,23 +119,87 @@ Noida, UP<br>
 
 
 
+<!-- Forgot Password Modal Start -->
+<div id="forgotModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Forgot Password</h4>
+      </div>
+      <div class="modal-body">
+      <div class="loginForm">
+      	<h3>Enter Registered Email Address to Recieve Instructions.</h3>
+		<div id="forgot_response"></div>
+      	<form>
+      	<div class="inputRow">
+      		<input type="email" id="forgot_email" required='' placeholder="Email Address" name="">
+      		<i class="icon-email"></i>
+      	</div>
+    
+      	<div class="inputRow">
+      		<input type="submit" value="Submit" id="forgot_button" class="go" name="">
+      	</div>
+      	</form>
+
+      </div>
+      <div class="clearfix"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Forgot Password Modal Start -->
+
+
+
+<!-- Forgot Password Modal Start -->
+<div id="forgotsetModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Reset Password</h4>
+      </div>
+      <div class="modal-body">
+      <div class="loginForm">
+      	<h3>Enter New Password.</h3>
+		<div id="forgotset_response"></div>
+      	<form>
+      	<div class="inputRow">
+      		<input type="password" id="forgotset_password" required='' placeholder="Password" name="">
+      		<i class="icon-email"></i>
+      	</div>
+		<div class="inputRow">
+      		<input type="password" id="forgotset_cpassword" required='' placeholder="Confirm Password" name="">
+      		<i class="icon-email"></i>
+      	</div>
+		<input type="hidden" id="forgotset_code" required='' placeholder="Confirm Password" name="" value="<?php echo $_GET['code'];?>">
+      	<div class="inputRow">
+      		<input type="submit" value="Submit" id="forgotset_button" class="go" name="">
+      	</div>
+      	</form>
+
+      </div>
+      <div class="clearfix"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Forgot Password Modal Start -->
+
+
 <!-- Register Modal Start -->
 <div id="registerModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
-    <div class="regLeft">
-    <h3>Why Signup?</h3>
-    <ul>
-    	<li>Will get assistance from now till getting your placement.</li>
-    	<li>IQ test and redeem coupon</li>
-    	<li>Researched material and video of different courses.</li>
-    	<li>View College Brochures.</li>
-    	<li>Counseling video of different colleges.</li>
-    	<li>Ask Questions to Counselors</li>
-    </ul>
-    </div>
     <div class="regRight">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -181,13 +245,13 @@ Noida, UP<br>
       	</div>
 
       	<div class="inputRow">
-      		<select id="register_city"><option>Current City</option>
+      		<select id="register_state"><option>Current State</option>
 			<?php 
 
 				$states = $this->common_model->get_all_rows("states", "country_id",101);
 				foreach($states as $stateeach){
-				//echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
-				echo '<optgroup label="'.$stateeach['name'].'">';
+				echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
+				//echo '<optgroup label="'.$stateeach['name'].'">';
 					$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
 					
 					foreach($cities as $city){
@@ -195,6 +259,13 @@ Noida, UP<br>
 					}
 					echo  '</optgroup>';
 				}?>
+			
+			</select>
+			<i class="icon-city"></i>
+			</div>
+			<div class="inputRow">
+			<select id="register_city"><option>Current City</option>
+			
 			
 			</select>
       		<i class="icon-city"></i>
@@ -230,6 +301,42 @@ Noida, UP<br>
   </div>
 </div>
 <!-- Register Modal Close -->
+
+
+
+
+<!-- message -->
+<!-- Login Modal Start -->
+<div id="landingpage" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Coming Soon</h2>
+      </div>
+      <div class="modal-body">
+      <div class="loginForm">
+		<h3 style="background: #ff9978;
+    padding: 30px;">Dear Visitor! This website is under construction and a few features may not work. We are going to launch a national level marketing campaign from 20th February, 2017. By then, all features will be available to the user. Sorry for the inconvenience and thanks for your support! 
+		<br/> Team MentorCell</h3>
+
+      </div>
+      <div class="clearfix"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Login Modal Close -->
+
+
+
+
+
+<!-- message -->
+
 
 
 

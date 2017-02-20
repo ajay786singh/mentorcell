@@ -15,6 +15,7 @@ class Home extends Public_Controller {
         $this->load->model('common/prefs_model');
 		$this->load->model('common/college_model');
 		$this->load->model('common/common_model');
+		$this->load->model('admin/exam_model');
 		/* college model */
     }
 
@@ -257,5 +258,15 @@ class Home extends Public_Controller {
 		$this->load->view('public/layout/footer', $this->data);
 		
 	}	
+	
+	
+	public function get_exam_list($course_name){
+		$exams_name = $this->exam_model->get_exams_by_course($course_name);
+		if(count($exams_name) != '0'){
+			foreach($exams_name as $exam_data){
+				echo "<li>".$exam_data['exam_name']."</li>";
+			}
+		}
+	}
 	
 }

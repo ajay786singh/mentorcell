@@ -100,8 +100,13 @@ class Exams extends Admin_Controller {
 			$this->data = array();
 			unset($_POST['submit']);
 			unset($_POST['id']);
+			$important_date = serialize($_POST['important_dates']);
+			$important_date_description = serialize($_POST['important_dates_description']);
+			$important_dates = $important_date."@@".$important_date_description;
+			unset($_POST['important_dates']);
+			unset($_POST['important_dates_description']);
 			$this->data = $this->input->post();
-			
+			$this->data['impotant_dates'] = $important_dates;
 			$this->exam_model->update("mc_exams",$this->data, "id", $id);
 			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
 			  //$this->data['exam_lists'] = $this->exam_model->get_all("mc_exams");

@@ -68,5 +68,13 @@ class Exam_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('mc_exams');
     }
+	
+	public function get_exams_by_course($course_name){
+		$this->db->select('*');
+        $this->db->from("mc_exams");
+		$this->db->where("course_name",$course_name);
+        $row = $this->db->get()->result_array();
+        return $row;
+	}
     
 }

@@ -203,6 +203,7 @@ $(document).ready(function() {
 		$("#question_answer").click(function(event) {
 			event.preventDefault();
 			var question_ids	= 	$("#question_ids").val();
+			var course_id		= 	$("#course_id").val();
 			var a_answers		=	Array();
 			if(question_ids) {
 				a_question_ids	=	question_ids.split(",");
@@ -225,9 +226,9 @@ $(document).ready(function() {
 			
 			jQuery.ajax({
 				type: "POST",
-				url: base_url+"/coupon/question_answer_submitted",
+				url: base_url+"coupon/question_answer_submitted",
 				dataType: 'json',
-				data: {answers_val:answers},
+				data: {answers_val:answers,course_id:course_id},
 				success: function(res) {
 					if (res)
 					{

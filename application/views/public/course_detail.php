@@ -13,7 +13,7 @@
 <li><a href="#">Why management studies</a></li>
 <li><a href="#">Eligibility</a></li>
 <li><a href="#">Course</a></li>
-<li><a href="#">Exam –both</a></li>
+<li><a href="#">Exam</a></li>
 <li><a href="#">Famous MBA alumni</a></li>
 <li><a href="#">MBA placement trends</a></li>
 </ul>
@@ -76,35 +76,35 @@
 <div class="heading1">About management study</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-<div class="informationList">
+<div class="informationList" id="about_study">
 <h3>Why management studies</h3>
 <?php echo @$course_data['about_study']; ?>
 
 </div>
 
 
-<div class="informationList">
+<div class="informationList" id="eligibility">
 <h3>ELIGIBILITY</h3>
-<?php echo @$course_data['eligibility']; ?></div>
+<?php echo $course_data['eligibility']; ?></div>
 
-<div class="informationList">
+<div class="informationList" id="course">
 <h3>Course</h3>
-<?php echo @$course_data['course']; ?>
+<?php echo $course_data['course']; ?>
 </div>
 
-<div class="informationList">
+<div class="informationList" id="exam">
 <h3>Exam</h3>
-<?php echo @$course_data['exam']; ?>
+<?php echo $course_data['exam']; ?>
 </div>
 
-<div class="informationList">
+<div class="informationList" id="famous_alumni">
 <h3>Famous MBA alumni</h3>
-<?php echo @$course_data['famous_alumni']; ?>
+<?php echo $course_data['famous_alumni']; ?>
 </div>
 
-<div class="informationList">
+<div class="informationList" id="placement_trends">
 <h3>MBA placement trends</h3>
-<?php echo @$course_data['placement_trends']; ?>
+<?php echo $course_data['placement_trends']; ?>
 </div>
 
 
@@ -183,7 +183,7 @@
     <li><a href="#" class="active">Why management studies</a></li>
 <li><a href="#">Eligibility</a></li>
 <li><a href="#">Course</a></li>
-<li><a href="#">Exam –both</a></li>
+<li><a href="#">Exam</a></li>
 <li><a href="#">Famous MBA alumni</a></li>
 <li><a href="#">MBA placement trends</a></li>
   </ol>

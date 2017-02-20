@@ -203,7 +203,7 @@ header('Vary: Accept-Encoding');
 <div class="subMenubox">
 <h3>Submenu Heading 2</h3>
 <div class="links">
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
+<span class="sublinks"><a href="#">MBA/PGDM1</a></span>
 <span class="sublinks"><a href="#">BBA/BBM</a></span>
 <span class="sublinks"><a href="#">MBA/PGDM</a></span>
 <span class="sublinks"><a href="#">BBA/BBM</a></span>
@@ -1161,12 +1161,8 @@ header('Vary: Accept-Encoding');
 <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2">
 
 <div class="couponTab icon-bookmark">
-<span>
-	<?php if($user_login['id']){?>	
+<span>	
 	<a href="<?php echo base_url()?>coupon/">C<br>o<br>u<br>p<br>o<br>n</a></span>
-	<?php }else{ ?>
-	<a href="javascript:void(0);" onClick="document.getElementById('couponClicked').value=1" data-toggle="modal" data-target="#loginModal">C<br>o<br>u<br>p<br>o<br>n</a>
-	<?php } ?>
 <i></i>
 </div>
 

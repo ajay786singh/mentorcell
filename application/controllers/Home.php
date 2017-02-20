@@ -15,6 +15,7 @@ class Home extends Public_Controller {
         $this->load->model('common/prefs_model');
 		$this->load->model('common/college_model');
 		$this->load->model('common/common_model');
+		$this->load->model('admin/exam_model');
 		/* college model */
     }
 
@@ -53,6 +54,7 @@ class Home extends Public_Controller {
 		$this->load->view('public/layout/footer', $this->data);
 	}
 	
+
 	function search()
 	{
 		
@@ -88,6 +90,16 @@ class Home extends Public_Controller {
 		$college_id = $this->input->get('college_id');
 		$college = $this->college_model->get_clgstate($college_id);
 		echo json_encode($college); die;
+	}
+	
+	
+	public function get_exam_list($course_name){
+		$exams_name = $this->exam_model->get_exams_by_course($course_name);
+		if(count($exams_name) != '0'){
+			foreach($exams_name as $exam_data){
+				echo "<li>".$exam_data['exam_name']."</li>";
+			}
+		}
 	}
 	
 }

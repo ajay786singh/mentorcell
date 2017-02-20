@@ -127,7 +127,6 @@
 }
 .icon-tick:before {
   content: "\44";
-<<<<<<< HEAD
 }
 .icon-facebook:before {
   content: "\45";
@@ -137,6 +136,7 @@
 }
 .icon-linkedin:before {
   content: "\47";
-=======
->>>>>>> 500ba1afc92dee6c15ed3cbafc0b732da2e5f042
+}
+.icon-location:before {
+  content: "\48";
 }

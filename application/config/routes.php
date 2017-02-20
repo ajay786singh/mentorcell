@@ -55,9 +55,10 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['search'] = 'home/search';
 /*login register links*/
-$route['login'] = 'home/login';
-$route['register'] = 'home/register';
-$route['logout'] = 'home/logout';
+$route['login'] = 'user/login';
+$route['register'] = 'user/register';
+$route['logout'] = 'user/logout';
+$route['profile'] = 'user/profile';
 /*login register links*/
 
 

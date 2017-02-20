@@ -14,7 +14,7 @@ $(document).ready(function() {
 			var city = $("select#register_city").val();
 			jQuery.ajax({
 				type: "POST",
-				url: base_url+"index.php/home/register",
+				url: base_url+"index.php/user/register",
 				dataType: 'json',
 				data: {first_name:fname,last_name:lname,email:email, phone:phone, interest:interest, course:course,state:state,city: city },
 				success: function(res) {
@@ -39,7 +39,7 @@ $(document).ready(function() {
 			var user_id = $('#user_otp').val();
 			jQuery.ajax({
 				type: "POST",
-				url: base_url+"index.php/home/verify_otp",
+				url: base_url+"index.php/user/verify_otp",
 				dataType: 'json',
 				data: {otp:register_otp,user_id:user_id},
 				success: function(res) {
@@ -69,7 +69,7 @@ $(document).ready(function() {
 			
 			jQuery.ajax({
 				type: "POST",
-				url: base_url+"index.php/home/login",
+				url: base_url+"index.php/user/login",
 				dataType: 'json',
 				data: {identity:identity, password:password, remember:remember},
 				success: function(res) {
@@ -101,7 +101,7 @@ $(document).ready(function() {
 			var identity = $("input#forgot_email").val();
 			jQuery.ajax({
 				type: "POST",
-				url: base_url+"index.php/home/forgotpassword",
+				url: base_url+"index.php/user/forgotpassword",
 				dataType: 'json',
 				data: {identity:identity},
 				success: function(res) {
@@ -130,7 +130,7 @@ $(document).ready(function() {
 			
 			jQuery.ajax({
 				type: "POST",
-				url: base_url+"index.php/home/setpassword",
+				url: base_url+"index.php/user/setpassword",
 				dataType: 'json',
 				data: {password:password,cpassword:cpassword,code:code},
 				success: function(res) {
@@ -151,13 +151,44 @@ $(document).ready(function() {
 	/*forgot password*/
 	
 	
+	/*change new password*/
+		$("#change_password_save").click(function(event) {
+			event.preventDefault();
+			var curpassword = $("input#change_curpassword").val();
+			var password = $("input#change_password").val();
+			var cpassword = $("input#change_cpassword").val();
+			
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/user/changepassword",
+				dataType: 'json',
+				data: {curpassword:curpassword,password:password,cpassword:cpassword},
+				success: function(res) {
+					if (res)
+					{
+						$('#change_password_response').html(res.message);
+						if(res.status==true){
+							setTimeout(function(){
+								//window.location.href=base_url; 
+								 //$('#forgotsetModal').modal('hide');
+							}, 1500);
+							
+						}
+					}
+				}
+			});
+		});
+	/*change new password*/
+	
+	
+	
 	
 	/**/
 	/**/
 		$("#register_interest").change(function(){
 			jQuery.ajax({
 				type: "GET",
-				url: base_url+"index.php/home/courses",
+				url: base_url+"index.php/user/courses",
 				dataType: 'text',
 				data: {stream:$(this).val()},
 				success: function(res) {
@@ -221,7 +252,7 @@ $(document).ready(function() {
 			
 			jQuery.ajax({
 				type: "GET",
-				url: base_url+"index.php/home/city",
+				url: base_url+"index.php/user/city",
 				dataType: 'text',
 				data: {state_id:state_id},
 				success: function(res) {

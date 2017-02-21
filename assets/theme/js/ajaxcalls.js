@@ -168,11 +168,9 @@ $(document).ready(function() {
 					{
 						$('#change_password_response').html(res.message);
 						if(res.status==true){
-							setTimeout(function(){
-								//window.location.href=base_url; 
-								 //$('#forgotsetModal').modal('hide');
-							}, 1500);
-							
+							$("input#change_curpassword").val('');
+							$("input#change_password").val('');
+							$("input#change_cpassword").val('');
 						}
 					}
 				}

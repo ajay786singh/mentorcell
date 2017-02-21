@@ -411,4 +411,65 @@ class User extends Public_Controller {
 	}
 	
 	
+	public function savedoc(){
+		
+			$this->load->config('admin/dp_config');
+            $this->load->config('common/dp_config');
+			$this->load->library('sendgridemail');
+            
+			
+			if ($this->ion_auth->logged_in()){
+				$userdata  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+				
+			}else{
+				$this->data['user_login'] = array('id'=>false);
+			}
+			
+			$this->form_validation->set_rules('file', 'File', 'required'); 
+			
+            if ($_FILES['file']['size']>0)
+            {
+				$curpassword = $this->input->post('curpassword');
+				
+
+				if($userdata['id']){
+					
+					/*config to upload doc*/
+					$config['upload_path']      = './upload/document';
+					$config['allowed_types']    = 'jpg|png|doc|docx|pdf';
+					$config['file_ext_tolower'] = TRUE;
+					$this->load->library('upload', $config);
+					
+					$this->upload->do_upload('file');
+					$file = $this->upload->data();
+
+					$fname = $file['file_name'];
+					$this->ion_auth->set_user_meta($userdata['id'], 'registration_form', $fname);
+					/*config to upload doc*/
+					
+					$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Registration form uploaded.</div>');
+					echo json_encode($response);
+					
+					die;
+				}else{
+					
+					$response = array('status'=>false,'message'=>'<div class="alert alert-danger">Not a valid student!</div>');
+					echo json_encode($response);
+					die;
+					
+				}
+            }
+            else
+            {
+				$error = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+				
+				$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.$error.'</div>');
+				echo json_encode($response);
+				die;
+            }
+		
+		
+	}
+	
+	
 }

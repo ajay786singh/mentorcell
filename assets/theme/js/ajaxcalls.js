@@ -181,6 +181,42 @@ $(document).ready(function() {
 	/*change new password*/
 	
 	
+	/*upload file for student*/
+		$("#sacedoc_save").click(function(event) {
+			event.preventDefault();
+
+			var file_data = $('#input_savedoc').prop('files')[0];  
+			if(file_data=='' || typeof file_data == "undefined" ){$('#savedoc_response').html('Choose a file!');return false;}	
+			var form_data = new FormData();                  
+			form_data.append('file', file_data);
+		
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/user/savedoc",
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: form_data,
+				success: function(res) {
+					if (res)
+					{
+						$('#savedoc_response').html(res.message);
+						if(res.status==true){
+							$('#input_savedoc').val('');
+							//setTimeout(function(){
+								//window.location.href=base_url; 
+								 //$('#forgotsetModal').modal('hide');
+							//}, 1500);
+							
+						}
+					}
+				}
+			});
+		});
+	/*upload file for student*/
+	
+	
 	
 	
 	/**/

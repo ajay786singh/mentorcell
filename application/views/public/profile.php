@@ -523,14 +523,15 @@
 <div class="row">
 
 <h4 style="margin:15px 0px 5px 20px; font-size:16px;">Upload registration form</h4>
-<form class="settingForm">
+<form class="settingForm" enctype="multipart/form-data">
+<div id="savedoc_response"></div>
 <div class="form-group">
-<input type="file" name="">
+<input type="file" id="input_savedoc" name="">
 </div>
 
 <div class="form-group">
-<input type="button" value="Cancel" name="" class="cancelButton">
-<input type="submit" value="Save" name="" class="saveButton">
+<input type="button" value="Cancel" name=""  class="cancelButton">
+<input type="submit" value="Save" name="" id="sacedoc_save" class="saveButton">
 </div>
 
 </form>

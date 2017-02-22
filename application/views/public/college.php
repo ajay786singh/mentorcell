@@ -30,29 +30,6 @@
 <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
 
 <div class="sectionGap">
-<div class="heading1" id="counselling-video">Counselling Video(<?php echo count($videos); ?> Videos)</div>
-
-<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-<div class="youTubePlayer">
-<img src="images/youtubeplayer.jpg">
-</div>
-</div>
-
-<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-<div class="videoDiscription">
-<h4>Some topic of the Video</h4>
-<?php 
-		$descriptions = explode(';',$college->description);
-	   foreach($descriptions as $description){
-		  echo "<p>$description</p>";
-	  }
-?>
-</div>
-</div>
-
-</div>
-
-<div class="sectionGap">
 <div class="heading1" id="college-videos-photos">College Photos and Videos(<?php echo count($videos); ?> Videos, <?php echo count($images); ?> Photos)</div>
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -73,61 +50,57 @@
 <div class="sectionGap">
 <div class="heading1" id="courses-offered">Courses offered</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<div class="coursesOffer">
-<h3>Arts, Law, Languages and Teaching <span class="collegeClose"></span></h3>
-<h4 data-tab="collegetab1">Arts <span>(7)</span></h4> <h4 data-tab="collegetab2">Language Learning <span>(4)</span></h4> <h4 data-tab="collegetab3">Social Sciences <span>(1)</span></h4>
-
-<div class="subCourses">
-<ul id="collegetab1">
-<li><a href="#">M.A. in Economics (International Studies), </a> <span>2 Years</span></li>
-<li><a href="#">M.A. in Arts & Aesthetics, </a> <span>2 Years</span></li>
-<li><a href="#">M.Phil. in Life Sciences, </a> <span>1 Year</span></li>
-<li><a href="#">M.Phil. in Environmental Science, </a> <span>1 Year</span></li>
-<li><a href="#">M.Phil. in Social Science, </a> <span>1 Year</span></li>
-<li><a href="#">Ph.D. in Computational Biology and Bioinformatics, </a> <span>3 Years</span></li>
-<li><a href="#">Ph.D. in Social Science, </a> <span>3 Years</span></li>
-</ul>
-
-<ul id="collegetab2">
-<li><a href="#">M.A. in Linguistics, </a> <span>2 Years</span></li>
-<li><a href="#">M.A. in English, </a> <span>2 Years</span></li>
-<li><a href="#">M.A. in Urdu, </a> <span>2 Years</span></li>
-<li><a href="#">M.A. in Hindi, </a> <span>2 Years</span></li>
-</ul>
-
-<ul id="collegetab3">
-<li><a href="#">M.A. in Social Science, </a> <span>2 Years</span></li>
-</ul>
-
-</div>
-</div>
 
 
-<div class="coursesOffer">
-<h3>Science & Engineering <span class="collegeClose"></span></h3>
-<h4 data-tab="collegetab4">MSc <span>(3)</span></h4> <h4 data-tab="collegetab5">M.E / M.Tech <span>(2)</span></h4> <h4 data-tab="collegetab6">Phd<span>(2)</span></h4>
+<!--course loop-->
+<?php 
 
-<div class="subCourses">
-<ul id="collegetab4">
-<li><a href="#">M.Sc. in Biotechnology, </a> <span>2 Years</span></li>
-<li><a href="#">M.Sc. in Environmental Sciences, </a> <span>2 Years</span></li>
-<li><a href="#">M.Sc. in Life Sciences, </a> <span>2 Years</span></li>
-</ul>
+					foreach($streams as $stream){
+						if(in_array($stream['stream_id'],@$stream_id)){
+							  echo '<div class="coursesOffer"><h3> '.$stream['stream_name'].'<span class="collegeClose"></span></h3>';
+							  
+							  
+							  
+							  foreach($types as $type){
+											  if(in_array($type['type_id'],@$type_id)){
+											  echo '<h4 data-tab="collegetab'.$type['type_id'].'">'.$type['type_name'].'</h4>';
+											  
+											  
+											  echo  '<div class="subCourses">
+												<ul id="collegetab'.$type['type_id'].'" >';
+											  
+												foreach($course_id as $course){
+														echo '<li><a>'.$course->title.'</a></li>';
+														//echo '<p>'.$course->duration.'</p>';
+														//echo '<p>'.$course->recognition.'</p>';
+														//echo '<p>'.$course->fee.'</p>';
+														//echo '<p>'.$course->exam.'</p>';
+														//echo '<p>'.$course->procedure.'</p>';
+												}
+												
+											  
+											 echo  '</div>
+												</ul>'; 
+											  
+											  
+											  
+											  }
+											  
+											  
+											
+						     } 
+							  
+							echo "</div>";  
+							  
+						}
+											  
+					}
 
-<ul id="collegetab5">
-<li><a href="#">M.Tech., </a> <span>2 Years</span></li>
-<li><a href="#">M.Tech.in Computational and System Biology, </a> <span>2 Years</span></li>
-</ul>
-
-<ul id="collegetab6">
-<li><a href="#">Ph.D. in Computational Biology and Bioinformatics, </a> <span>3 Years</span></li>
-<li><a href="#">Ph.D. in Biotechnology, </a> <span>3 Years</span></li>
-</ul>
-
-</div>
-</div>
 
 
+
+				?>
+<!--course loop-->
 
 
 

@@ -37,13 +37,13 @@
 
 <div class="profileSection">
 <!--Profle tab1 start-->
-<div class="profileHolder" id="profileTab1">
+<div class="profileHolder active" id="profileTab1">
 
 	<div class="profileBox">
 	<h3>PERSONAL INFORMATION <span form-target="personal-information" class="addEdit">Edit</span></h3>
 	<ul>
-		<li><h5><i class="icon-phone-call"></i> 7011830860</h5></li>
- 		<li><h5><i class="icon-email"></i> sekhar_iit@yahoo.com</h5></li>
+		<li><h5><i class="icon-phone-call"></i><?php echo $user_login['phone']; ?></h5></li>
+ 		<li><h5><i class="icon-email"></i><?php echo $user_login['email']; ?></h5></li>
  		<li><h5><i class="icon-location"></i> Chandigarh, India</h5></li>
 	</ul>
 
@@ -52,19 +52,19 @@
 <div class="form-group">
 <div class="col-xs-6 col-sm-6">
 <label>First Name <b>*</b></label>
-<input type="text" name="" value="CHANDRA" placeholder="First Name">
+<input type="text" name="" value="<?php echo $user_login['firstname']; ?>" placeholder="First Name">
 </div>
 
 <div class="col-xs-6 col-sm-6">
 <label>Last Name <b>*</b></label>
-<input type="text" name="" value="SHEKHAR" placeholder="Last Name">
+<input type="text" name="" value="<?php echo $user_login['lastname']; ?>" placeholder="Last Name">
 </div>
 </div>
 
 <div class="form-group">
 <div class="col-xs-6 col-sm-6">
 <label>Email ID <b>*</b></label>
-<input type="text" name="" value="sekhar_iit@yahoo.com" readonly>
+<input type="text" name="" value="<?php echo $user_login['email']; ?>" readonly>
 </div>
 
 <div class="col-xs-6 col-sm-6">
@@ -81,7 +81,7 @@
 
 <div class="col-xs-6 col-sm-6">
 <label>Mobile No. <b>*</b></label>
-<input type="text" name="" value="7011830860">
+<input type="text" name="" value="<?php echo $user_login['phone']; ?>">
 </div>
 </div>
 
@@ -507,7 +507,7 @@
 <!--Profle tab1 close-->
 
 <!--Profle tab2 start-->
-<div class="profileHolder active" id="profileTab2">
+<div class="profileHolder" id="profileTab2">
 
 <div class="profileBox">
 <h3>ACTIVITY STATS</h3>

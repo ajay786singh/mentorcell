@@ -254,10 +254,10 @@ Noida, UP<br>
 				//echo '<optgroup label="'.$stateeach['name'].'">';
 					$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
 					
-					foreach($cities as $city){
-						echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
-					}
-					echo  '</optgroup>';
+					//foreach($cities as $city){
+					//	echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
+					//}
+					//echo  '</optgroup>';
 				}?>
 			
 			</select>

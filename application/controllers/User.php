@@ -325,7 +325,7 @@ class User extends Public_Controller {
 	public function city()
 	{
 		$state_id = $this->input->get('state_id');
-		$cities = $this->common_model->get_all_rows("cities", "state_id",$state_id);
+		$cities = $this->common_model->get_all_rows("districts", "state_id",$state_id);
 		$option = '';
 		foreach($cities as $city){
 			$option .= '<option value="'.$city['id'].'">'.$city['name'].'</option>';

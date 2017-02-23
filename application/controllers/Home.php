@@ -78,6 +78,16 @@ class Home extends Public_Controller {
 			$id = $this->college['college']->id;
 			$this->college['images'] = $this->college_model->get_images($id);
 			$this->college['videos'] = $this->college_model->get_videos($id);
+			
+			$this->college['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+			$this->college['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+			$this->college['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		
+		
+			$this->college['stream_id'] = $this->college_model->get_streams($id);
+			$this->college['type_id'] = $this->college_model->get_types($id);
+			$this->college['course_id'] = $this->college_model->get_courses_detail($id);
+			
 			$this->load->view('public/college', $this->college);
 			
 		}

@@ -330,7 +330,7 @@ class Colleges extends Admin_Controller {
 		
 		$this->data['stream_id'] = $this->college_model->get_streams($id);
 		$this->data['type_id'] = $this->college_model->get_types($id);
-		$this->data['course_id'] = $this->college_model->get_courses($id);
+		$this->data['course_id'] = $this->college_model->get_courses_detail($id);
 
         /* Load Template */
 		$this->template->admin_render('admin/colleges/college', $this->data);

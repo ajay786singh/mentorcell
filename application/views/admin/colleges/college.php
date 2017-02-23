@@ -127,12 +127,23 @@
 											  echo  '<div class="subCourses">
 												<ul id="collegetab1" style="display:block">';
 											  
-											   foreach($courses as $course){
-													  if(in_array($course['course_id'],@$course_id)){
+											   //foreach($courses as $course){
+												//	  if(in_array($course['course_id'],@$course_id['term_id'])){
 														  
-														echo '<li><a>'.$course['course_name'].'</a></li>';
-													  }
+													//	echo '<li><a>'.$course['course_name'].'</a></li>';
+													  //}
+												//}
+												
+												
+												foreach($course_id as $course){
+														echo '<li><a>'.$course->title.'</a></li>';
+														echo '<p>'.$course->duration.'</p>';
+														echo '<p>'.$course->recognition.'</p>';
+														echo '<p>'.$course->fee.'</p>';
+														echo '<p>'.$course->exam.'</p>';
+														echo '<p>'.$course->procedure.'</p>';
 												}
+												
 											  
 											 echo  '</div>
 												</ul>'; 

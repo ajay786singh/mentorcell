@@ -34,6 +34,18 @@ class College_model extends CI_Model {
 		return $result;
 	}
     
+	function get_courses_detail($id){
+		$this->db->select('cr.term_id,ca.*');
+		$this->db->from('mc_college_relations AS cr');
+		$this->db->join('mc_course_assignment AS ca', 'ca.course_id = cr.term_id', 'INNER');
+		$this->db->where('cr.college_id', $id);
+		$this->db->where('cr.term_name', "course");
+		$this->db->where('ca.college_id', $id);
+		//$result = $this->db->get()->result_array();
+		//$result = array_column($result, 'term_id');
+		$result = $this->db->get()->result_object();
+		return $result;
+	}
 	
 	function get_courseswithstream($id){
 		$this->db->select('courses.course_id, courses.course_name');

@@ -289,7 +289,6 @@ if(count($exam_menu)>0){
 <div class="links">
 <span class="sublinks"><a href="#">MBA/PGDM</a></span>
 <span class="sublinks"><a href="#">BBA/BBM</a></span>
-<span class="sublinks"><a href="#">MBA/PGDM</a></span>
 </div>
 </div>
 

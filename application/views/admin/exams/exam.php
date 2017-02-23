@@ -74,16 +74,19 @@
                   <label for="smashing-post-class"><a onclick="return important_dates();"> Add New</a></label>
                   <div id="important_dates_field_reapeater">
   <?php  
-  $important_date =$exams_list['impotant_dates'];
-  $imp_date_exp = explode("@@",$important_date);
-  $imp_date_name  = unserialize($imp_date_exp[0]);
-  $imp_date_content = unserialize($imp_date_exp[1]);
+  if(!@$form_data){?>
+  <p id="important_dates_p_1" class="important_dates_class"><input type="text" id="datepicker" name="important_dates[]"   style="width:30%" placeholder="date" value=""> <input type="text" name="important_dates_description[]" placeholder="Link to the website" style="width:50%"   value="" /> <a onclick = "return delete_field(1);" style="cursor:pointer">Delete</a></p>
+  <?php }else{
+ @$important_date =$exams_list['impotant_dates'];
+  @$imp_date_exp = explode("@@",$important_date);
+  @$imp_date_name  = unserialize($imp_date_exp[0]);
+  @$imp_date_content = unserialize($imp_date_exp[1]);
   for( $bsi=0;$bsi<count($imp_date_name);$bsi++){?>
   
-  <p id="important_dates_p_<?php echo $bsi+1; ?>" class="important_dates_class"><input type="text" id="datepicker" name="important_dates[]"   style="width:30%" placeholder="date" value="<?php echo $imp_date_name[$bsi]; ?>"> <input type="text" name="important_dates_description[]" placeholder="Link to the website" style="width:50%"   value="<?php echo @$imp_date_content[$bsi]; ?>" /> <a onclick = "return delete_field(<?php echo $bsi+1; ?>);" style="cursor:pointer">Delete</a></p>
+  <p id="important_dates_p_<?php echo @$bsi+1; ?>" class="important_dates_class"><input type="text" id="datepicker" name="important_dates[]"   style="width:30%" placeholder="date" value="<?php echo @$imp_date_name[$bsi]; ?>"> <input type="text" name="important_dates_description[]" placeholder="Link to the website" style="width:50%"   value="<?php echo @$imp_date_content[$bsi]; ?>" /> <a onclick = "return delete_field(<?php echo @$bsi+1; ?>);" style="cursor:pointer">Delete</a></p>
   
   <?php  
-  }?>
+  }}?>
   
   </div>
   <p id="important_dates_limit_msg" style="color:red"></p>
@@ -169,7 +172,8 @@
 	
 	function create_slug(exam_name){
 		var slug_name  = exam_name.replace(" ","_");
-		$("#slug").val(slug_name);
+		var final_slug_name = slug_name.toLowerCase();
+		$("#slug").val(final_slug_name);
 	}
 
 </script>

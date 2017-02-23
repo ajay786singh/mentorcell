@@ -35,7 +35,11 @@
               <div class="box-body">
               <div class="form-group">
                   <label for="exampleInputEmail1">Course Description Page Name</label>
-                  <input type="text"  class="form-control" name="course_description_page_name" id="course_description_page_name" value="<?php echo @$course_description_page_name_list['course_description_page_name']; ?>" placeholder="">
+                  <input type="text"  class="form-control" name="course_description_page_name" id="course_description_page_name" value="<?php echo @$course_description_page_name_list['course_description_page_name']; ?>" placeholder="" onBlur="return create_slug(this.value);">
+                </div>
+                 <div class="form-group">
+                  <label for="exampleInputEmail1">Slug</label>
+                  <input type="text"  class="form-control" name="slug" id="slug" value="<?php echo @$course_description_page_name_list['slug']; ?>" placeholder="">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">About Study</label>
@@ -118,4 +122,15 @@
     '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
     '//www.tinymce.com/css/codepen.min.css'
   ]
- });</script>
+ });
+ 
+ 
+ function create_slug(course_name){
+		var slug_name  = course_name.replace(" ","_");
+		var final_slug_name = slug_name.toLowerCase();
+		$("#slug").val(final_slug_name);
+	}
+ 
+ 
+ 
+ </script>

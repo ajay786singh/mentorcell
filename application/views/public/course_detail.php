@@ -8,14 +8,14 @@
 <div class="courcecol bigCol bgColor1">
 <i class="icon-users"></i>
 <div class="vertical">
-<h3>About management study</h3>
+<h3>About <?php echo @$course_data['course_description_page_name']; ?> study</h3>
 <ul>
-<li><a href="#">Why management studies</a></li>
-<li><a href="#">Eligibility</a></li>
-<li><a href="#">Course</a></li>
-<li><a href="#">Exam</a></li>
-<li><a href="#">Famous MBA alumni</a></li>
-<li><a href="#">MBA placement trends</a></li>
+<li><a href="#about_study">Why <?php echo @$course_data['course_description_page_name']; ?> studies</a></li>
+<li><a href="#eligibility">Eligibility</a></li>
+<li><a href="#course">Course</a></li>
+<li><a href="#exam">Exam</a></li>
+<li><a href="#famous_alumni">Famous MBA alumni</a></li>
+<li><a href="#placement_trends">MBA placement trends</a></li>
 </ul>
 </div>
 </div>
@@ -30,14 +30,14 @@
 <div class="courcecol bgColor3">
 <i class="icon-repo-push"></i>
 <div class="vertical">
-<h4><a href="#">Admission in management college 2017</a></h4>
+<h4><a href="#">Admission in <?php echo @$course_data['course_description_page_name']; ?> college 2017</a></h4>
 </div>
 </div>
 
 <div class="courcecol bgColor4">
 <i class="icon-bookmark"></i>
 <div class="vertical">
-<h4><a href="#">Value coupon to support education</a></h4>
+<h4><a href="#valid_coupon">Value coupon to support education</a></h4>
 </div>
 </div>
 
@@ -73,11 +73,11 @@
 
 
 <div class="sectionGap">
-<div class="heading1">About management study</div>
+<div class="heading1">About <?php echo @$course_data['course_description_page_name']; ?> study</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 <div class="informationList" id="about_study">
-<h3>Why management studies</h3>
+<h3>Why <?php echo @$course_data['course_description_page_name']; ?> studies</h3>
 <?php echo @$course_data['about_study']; ?>
 
 </div>
@@ -115,7 +115,7 @@
 
 
 
-<div class="sectionGap">
+<!--<div class="sectionGap">
 <div class="heading1">Counselling Video</div>
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="youTubePlayer">
@@ -130,29 +130,24 @@
 </div>
 </div>
 
-</div>
+</div>-->
 
 <div class="sectionGap">
-<div class="heading1">Admission in management college 2017</div>
+<div class="heading1">Admission in <?php echo @$course_data['course_description_page_name']; ?> college 2017</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<?php echo @$course_data['key_criteria_to_choose']; ?>
 
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing.</p>
 </div>
 </div>
 
-<div class="sectionGap">
+<div class="sectionGap" id="valid_coupon">
 <div class="heading1">Value coupon to support education</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing.</p>
+<?php echo @$course_data['value_coupon']; ?>
 </div>
 </div>
 
-<div class="sectionGap">
+<!--<div class="sectionGap">
 <div class="heading1">List of the colleges where coupon is valid</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
@@ -167,7 +162,7 @@
 </ul>
 
 </div>
-</div>
+</div>-->
 
 
 
@@ -177,23 +172,23 @@
 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
 <div class="collegeSidenav">
 <ul>
-<li><a href="#" class="active">About management study</a>
+<li><a href="#" class="active">About <?php echo @$course_data['course_description_page_name']; ?> study</a>
 <div class="subMenu">
   <ol>
-    <li><a href="#" class="active">Why management studies</a></li>
-<li><a href="#">Eligibility</a></li>
-<li><a href="#">Course</a></li>
-<li><a href="#">Exam</a></li>
-<li><a href="#">Famous MBA alumni</a></li>
-<li><a href="#">MBA placement trends</a></li>
+    <li><a href="#" class="active">Why <?php echo @$course_data['course_description_page_name']; ?> studies</a></li>
+<li><a href="#Eeligibility">Eligibility</a></li>
+<li><a href="#course">Course</a></li>
+<li><a href="#exam">Exam</a></li>
+<li><a href="#famous_alumni">Famous MBA alumni</a></li>
+<li><a href="#placement_trends">MBA placement trends</a></li>
   </ol>
   </div>
 </li>
 
-<li><a href="#">Top Management College in India</a></li>
+<li><a href="#">Top <?php echo @$course_data['course_description_page_name']; ?> College in India</a></li>
 <li><a href="#">Key criteria to choose right B-School</a></li>
-<li><a href="#">Admission in Management College</a></li>
-<li><a href="#">Value coupon for Management study</a></li>
+<li><a href="#">Admission in <?php echo @$course_data['course_description_page_name']; ?> College</a></li>
+<li><a href="#valid_coupon">Value coupon for <?php echo @$course_data['course_description_page_name']; ?> study</a></li>
 <li><a href="#">List of the colleges where coupon is valid</li>
 
 </ul>

@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script>
 		var base_url = '<?php echo base_url(); ?>';
 		</script>
-
+		<script src="<?php echo base_url($frameworks_dir . '/adminlte/js/custom.js'); ?>"></script>
     </head>
     <body class="hold-transition skin-blue fixed sidebar-mini">
 <?php if ($mobile === FALSE && $admin_prefs['transition_page'] == TRUE): ?>

@@ -55,7 +55,7 @@ class Coupon extends Public_Controller {
 				$this->data['couponBox3']	=	'';
 				//if(isset($_POST['coupon_course_submitted'])) {
 					$this->data['questionnaire_list'] 	=	$this->common_model->get_all_rows("mc_questionnaire",1,1,'RAND()', $this->questionsDisp);
-					$this->data['course_id'] 			=	$this->input->post('course_id');
+					$this->data['course_id'] 			=	0;//$this->input->post('course_id');
 					$this->load->view('public/coupon', $this->data);
 				//} else {
 				//	$this->data['courses']	=	$this->common_model->get_all("mc_courses");
@@ -72,7 +72,7 @@ class Coupon extends Public_Controller {
 			$tot_correct	=	0;
 			$course_id	 	= 	$this->input->post('course_id');
 		
-			if(empty($hasAnswerd) && $course_id) {
+			if(empty($hasAnswerd)) {
 				$this->data['couponBox1']	=	'';
 				$this->data['couponBox2']	=	'active';
 				$this->data['couponBox3']	=	'';

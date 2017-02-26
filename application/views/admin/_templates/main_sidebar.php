@@ -101,7 +101,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>
 						
-						<?php if($this->ion_auth->is_admin()){ ?>
+						<?php
+						if($this->ion_auth->in_group('college')) {
+						?>
+						<li class="<?=active_link_controller('coupons')?>">
+                            <a href="<?php echo site_url('admin/coupons/redeem'); ?>">
+                                <i class="fa fa-user"></i> <span>Redeem / Enquiry</span>
+                            </a>
+                        </li>
+						<?php
+						}
+						
+						if($this->ion_auth->is_admin()){ ?>
 						
 						<li class="<?=active_link_controller('streams')?>">
                             <a href="<?php echo site_url('admin/streams'); ?>">
@@ -123,10 +134,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						
 						<li class="header text-uppercase">Coupons and Questions</li>
 						<li class="<?=active_link_controller('coupons')?>">
+                            <a href="<?php echo site_url('admin/coupons/global_vals'); ?>">
+                                <i class="fa fa-user"></i> <span>Coupon Global Vals</span>
+                            </a>
+                        </li>
+						<li class="<?=active_link_controller('coupons')?>">
                             <a href="<?php echo site_url('admin/coupons'); ?>">
                                 <i class="fa fa-user"></i> <span>Coupons</span>
                             </a>
                         </li>
+					
 						<li class="<?=active_link_controller('coupons')?>">
                             <a href="<?php echo site_url('admin/questionnaire'); ?>">
                                 <i class="fa fa-user"></i> <span>Questionnaire</span>

@@ -41,9 +41,9 @@
                 <tbody>
                 <?php foreach($college_lists as $college_list){ ?>
                 <tr>
-				  <td><?php echo $college_list['id'];?></td>
+				  <td><a title="Edit" href="<?php echo base_url()."admin/colleges/view/".$college_list['id'];?>"><?php echo $college_list['id'];?></a></td>
 				  <td><img src="<?php echo base_url()."upload/".$college_list['logo'];?>" width="150px;" /></td>
-                  <td><?php echo $college_list['name'];?></td>
+                  <td><a title="Edit" href="<?php echo base_url()."admin/colleges/view/".$college_list['id'];?>"><?php echo $college_list['name'];?></a></td>
                   <td><?php echo $college_list['contact_person_name'];?>   </td>
                   <td><?php echo $college_list['email_id'];?></td>
                   <td><?php echo $college_list['address'];?><br/><?php

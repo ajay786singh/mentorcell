@@ -40,8 +40,11 @@ class Colleges extends Admin_Controller {
 
             /* Load Template */
 			$userId = $this->ion_auth->get_user_id();
+	
 			if($this->ion_auth->in_group('college')){
-				$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges", 'user_id',$userId);
+				$user   = $this->ion_auth->user($userId)->row();
+				//$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges", 'user_id',$userId);
+				$this->data['college_lists'] = $this->college_model->get_assigned_college($user->colleges);
 			}else{
 				$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
 			}
@@ -231,7 +234,7 @@ class Colleges extends Admin_Controller {
 				$data['code'] = $this->input->post('code');
 				$data['description'] = $this->input->post('description');
 				$data['contact_person_name'] = $this->input->post('contact_person_name');
-				$data['email_id'] = $this->input->post('email_id');
+				
 				$data['website'] = $this->input->post('website');
 				$data['phone'] = $this->input->post('phone');
 				$data['address'] = $this->input->post('address');

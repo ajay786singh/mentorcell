@@ -234,7 +234,7 @@ class Colleges extends Admin_Controller {
 				$data['code'] = $this->input->post('code');
 				$data['description'] = $this->input->post('description');
 				$data['contact_person_name'] = $this->input->post('contact_person_name');
-				
+				$data['email_id'] = $this->input->post('email_id');
 				$data['website'] = $this->input->post('website');
 				$data['phone'] = $this->input->post('phone');
 				$data['address'] = $this->input->post('address');

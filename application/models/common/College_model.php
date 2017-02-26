@@ -170,4 +170,13 @@ class College_model extends CI_Model {
 	/**/
 	
 	
+	/*for admin college view page*/
+	function get_assigned_college($colleges){
+		$colleges = json_decode($colleges);
+		$this->db->where_in('id', $colleges);
+        $result = $this->db->get('mc_colleges')->result_array();
+        return $result;
+	}	
+	/**/
+	
 }

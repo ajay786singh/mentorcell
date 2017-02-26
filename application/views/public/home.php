@@ -169,11 +169,16 @@ foreach($exam_search as $exam_search_data){
 </div>
 </div>
 
-<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<!--div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="youTubePlayer">
 <video id="introductionVideo" controls preload=auto>
 <source src="https://s3.ap-south-1.amazonaws.com/assets.mentorcell/WhatIsMentorcell.mp4" type='video/mp4'/>
 </video>
+</div>
+</div-->
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<div class="youTubePlayer1">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4YbMmXui48M" frameborder="0" allowfullscreen></iframe>
 </div>
 </div>
 

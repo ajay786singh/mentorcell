@@ -223,7 +223,7 @@ Noida, UP<br>
       		<i class="icon-email"></i>
       	</div>
       	<div class="inputRow">
-      		<input type="number" id="register_phone" required='' placeholder="Mobile Number" name="">
+      		<input type="tel" id="register_phone" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" required='' placeholder="Mobile Number" name="">
       		<i class="icon-phone-call"></i>
       	</div>
 

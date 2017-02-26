@@ -64,7 +64,7 @@
 <div class="form-group">
 <div class="col-xs-6 col-sm-6">
 <label>Email ID <b>*</b></label>
-<input type="text" name="" value="<?php echo $user_login['email']; ?>" readonly>
+<input type="text" readonly name="" value="<?php echo $user_login['email']; ?>" readonly>
 </div>
 
 <div class="col-xs-6 col-sm-6">
@@ -81,14 +81,18 @@
 
 <div class="col-xs-6 col-sm-6">
 <label>Mobile No. <b>*</b></label>
-<input type="text" name="" value="<?php echo $user_login['phone']; ?>">
+<input type="tel" name="" value="<?php echo $user_login['phone']; ?>" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
 </div>
 </div>
 
 <div class="form-group">
 <div class="col-xs-6 col-sm-6">
+<label>Resident State <b>*</b></label>
+<select required><option>New Delhi</option></select>
+</div>
+<div class="col-xs-6 col-sm-6">
 <label>Resident City <b>*</b></label>
-<select><option>New Delhi</option></select>
+<select required><option>New Delhi</option></select>
 </div>
 </div>
 

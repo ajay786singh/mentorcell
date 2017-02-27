@@ -47,6 +47,8 @@ class Coupon extends Public_Controller {
 				<h5>".$resultDisplay."</h5>
 				<div class='clearfix'></div>
 				<h6>Your Coupon code is : ".$coupon."</h6>";
+				if($resultDisplay<80)
+				$message = "<h6>Your Coupon code is : ".$coupon."</h6>";
 				$this->data['message']	=	$message;
 				$this->load->view('public/coupon', $this->data);
 			} else {

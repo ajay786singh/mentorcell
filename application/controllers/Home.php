@@ -111,5 +111,11 @@ class Home extends Public_Controller {
 			}
 		}
 	}
-	
+
+	public function feedback(){
+	if(isset($_POST["mail"])){
+
+	}
+
+	}
 }

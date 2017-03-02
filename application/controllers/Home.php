@@ -115,12 +115,14 @@ class Home extends Public_Controller {
 	
 	public function get_exam_list($course_name){
 		$exams_name = $this->exam_model->get_exams_by_course($course_name);
-		if(count($exams_name) != '0'){
+		
+		if(count($exams_name) > 0){
 		echo "<option value='0'>-- Select Exam --</option>";
 			foreach($exams_name as $exam_data){
 				echo "<option value='".$exam_data['slug']."'>".$exam_data['exam_name']."</option>";
 			}
 		}
+		die;
 	}
 
 	public function feedback(){

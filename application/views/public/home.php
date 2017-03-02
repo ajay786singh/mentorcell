@@ -634,17 +634,3 @@ Noida-201307, India</p>
 </div>
 <!-- team 4 Close -->
 
-<script language="javascript" type="text/javascript">
-function getExamByCourse(){
-	var course_name  = $("#stream_name").val();
-	$.ajax({
-		url: "<?php echo base_url(); ?>home/get_exam_list/"+course_name,
-		data:"",
-		async:false,
-		success: function(html){
-			$("#exam_lists").html(html);
-		}
-	});
-}
-
-</script>

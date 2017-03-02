@@ -14,8 +14,8 @@
 <li><a href="#eligibility">Eligibility</a></li>
 <li><a href="#course">Course</a></li>
 <li><a href="#exam">Exam</a></li>
-<li><a href="#famous_alumni">Famous MBA alumni</a></li>
-<li><a href="#placement_trends">MBA placement trends</a></li>
+<li><a href="#famous_alumni">Famous <?php echo @$course_data['course_description_page_name']; ?> alumni</a></li>
+<li><a href="#placement_trends"><?php echo @$course_data['course_description_page_name']; ?> placement trends</a></li>
 </ul>
 </div>
 </div>
@@ -98,12 +98,12 @@
 </div>
 
 <div class="informationList" id="famous_alumni">
-<h3>Famous MBA alumni</h3>
+<h3>Famous <?php echo @$course_data['course_description_page_name']; ?> alumni</h3>
 <?php echo $course_data['famous_alumni']; ?>
 </div>
 
 <div class="informationList" id="placement_trends">
-<h3>MBA placement trends</h3>
+<h3><?php echo @$course_data['course_description_page_name']; ?> placement trends</h3>
 <?php echo $course_data['placement_trends']; ?>
 </div>
 
@@ -179,8 +179,8 @@
 <li><a href="#Eeligibility">Eligibility</a></li>
 <li><a href="#course">Course</a></li>
 <li><a href="#exam">Exam</a></li>
-<li><a href="#famous_alumni">Famous MBA alumni</a></li>
-<li><a href="#placement_trends">MBA placement trends</a></li>
+<li><a href="#famous_alumni">Famous <?php echo @$course_data['course_description_page_name']; ?> alumni</a></li>
+<li><a href="#placement_trends"><?php echo @$course_data['course_description_page_name']; ?> placement trends</a></li>
   </ol>
   </div>
 </li>

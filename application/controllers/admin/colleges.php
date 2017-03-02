@@ -447,6 +447,7 @@ class Colleges extends Admin_Controller {
 		$duration = $this->input->post('duration');
 		$recognition = $this->input->post('recognition');
 		$fee = $this->input->post('fee');
+		$incentive = $this->input->post('incentive');
 		$exam = $this->input->post('exam');
 		$procedure = $this->input->post('procedure');
 		$eligibility = $this->input->post('eligibility');
@@ -461,6 +462,7 @@ class Colleges extends Admin_Controller {
 		$course['duration'] = $duration;
 		$course['recognition'] = $recognition;
 		$course['fee'] = $fee;
+		$course['incentive'] = $incentive;
 		$course['exam'] = $exam;
 		$course['procedure'] = $procedure;
 		$course['eligibility'] = $eligibility;

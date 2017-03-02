@@ -6,7 +6,11 @@ class Exam_model extends CI_Model {
         $row = $this->db->get($table)->result_array();
         return $row;
     }
-
+	function get_all_groupby($table) {
+        $this->db->group_by("course_name");
+        $row = $this->db->get($table)->result_array();
+        return $row;
+    }
     function coupons() {
         $this->db->select('*');
         $this->db->from("tbl_coupons");

@@ -25,8 +25,8 @@ header('Vary: Accept-Encoding');
 				<meta http-equiv="cleartype" content="on">
 		<?php endif; ?>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <meta property="og:title" content="HOME">
-        <meta property="og:type" content="article">
+        <meta property="og:title" content="Mentorcell::HOME">
+        <meta property="og:type" content="MentorCell::HOME">
         <meta property="og:image" content="">
         <meta property="og:url" content="">
         <meta property="og:site_name" content="MentorCell">
@@ -52,7 +52,7 @@ header('Vary: Accept-Encoding');
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-7 col-sm-7 col-md-2 col-lg-2">
-<div class="logo"><a href="<?php echo site_url(); ?>"><img src="<?php echo base_url('assets/theme/images/logo.jpg'); ?>" /></a></div>	
+<div class="logo"><a href="<?php echo site_url(); ?>"><img src="<?php echo base_url('assets/theme/images/logof-01.jpg'); ?>" /></a></div>	
 </div>
 
 <div class="col-xs-2 hidden-sm hidden-xs col-md-8 col-lg-8">

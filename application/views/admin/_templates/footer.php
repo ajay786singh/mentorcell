@@ -60,7 +60,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!------- WYSIWYG editor code---------------------------------->
 <script>
   $(function () {
-    $("#example1").DataTable();
+    $("#example1").DataTable(
+	
+	{
+        "processing": true,
+        "serverSide": true,
+        "ajax": base_url+"index.php/admin/colleges/ajaxindex"
+    }
+	
+	);
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,

@@ -88,6 +88,14 @@ class Home extends Public_Controller {
 			$this->college['type_id'] = $this->college_model->get_types($id);
 			$this->college['course_id'] = $this->college_model->get_courses_detail($id);
 			
+			/*course description*/
+			if(isset($_GET['course_main']) && !empty($_GET['course_main'])){
+				$this->college['course_detail'] = $this->college_model->get_single_courses_detail(intval($query['college']),intval($_GET['course_main']));
+				$this->load->view('public/college_course', $this->college);
+			}
+			
+			/*course description*/
+			
 			$this->load->view('public/college', $this->college);
 			
 		}

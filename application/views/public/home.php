@@ -29,35 +29,37 @@
 			
 </select>
 </div>
-<!--<div class="formcol50">
-<select id="stream" style="width:200px;" class="auto-choice" multiple name="stream">
-	<?php 
+		<div  class="extra_filters">
+			<div class="formcol00">
+			<select id="stream"  class="auto-choice"  name="stream">
+				<?php 
 
-	foreach($streams as $stream){
-	  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
-	} ?>
-			
-</select>
-</div>
-<div class="formcol50">
-<select id="type" style="width:200px;" class="auto-choice" multiple name="type">
-	<?php 
+				foreach($streams as $stream){
+				  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
+				} ?>
+						
+			</select>
+			</div>
+			<div class="formcol00">
+			<select id="type" class="auto-choice"  name="type">
+				<?php 
 
-	foreach($types as $type){
-	  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
-  } ?>
-			
-</select>
-</div>
-<div class="formcol50">
-<select id="course" style="width:200px;" class="auto-choice" multiple name="course"> 
-<?php 
-	foreach($courses as $course){
-		echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
-	} ?>
-			
-</select>
-</div>-->
+				foreach($types as $type){
+				  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
+			  } ?>
+						
+			</select>
+			</div>
+			<div class="formcol00">
+			<select id="course"  class="auto-choice"  name="course_main"> 
+			<?php 
+				foreach($courses as $course){
+					echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+				} ?>
+						
+			</select>
+			</div>
+		</div>	
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 </div>

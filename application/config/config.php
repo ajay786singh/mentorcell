@@ -18,8 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-
-$config['base_url'] = 'http://localhost/mentorcell/';
+$config['base_url'] =  'http://localhost/projects/develop-1.0/';
 
 
 /*

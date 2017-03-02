@@ -12,7 +12,7 @@ header('Vary: Accept-Encoding');
 <html>
         <head prefix="og: http://ogp.me/ns#">
         <meta charset="<?php echo $charset; ?>">
-        <title>MentorCell</title>
+        <title>Higher Education - MentorCell</title>
         <meta name="description" content="">
 		<?php if ($mobile === FALSE): ?>
 				<!--[if IE 8]>
@@ -36,8 +36,8 @@ header('Vary: Accept-Encoding');
 			<link href="<?php echo base_url('assets/theme/css/jquery.mCustomScrollbar.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/bootstrap.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/jquery.bxslider.css'); ?>" rel="stylesheet" type="text/css" media="all" />
-			<link href="<?php echo base_url('assets/theme/css/custom.css'); ?>" rel="stylesheet" type="text/css" media="all" />
-			<link href="<?php echo base_url('assets/theme/css/customResponsive.css'); ?>" rel="stylesheet" type="text/css" media="all" />
+			<link href="<?php echo base_url('assets/theme/css/custom.css?ver=1.0'); ?>" rel="stylesheet" type="text/css" media="all" />
+			<link href="<?php echo base_url('assets/theme/css/customResponsive.css?ver=1.0'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<script>
 			var base_url = '<?php echo base_url(); ?>';
 			var isPasswordRest = <?php echo isset($_GET['setpassword']) ? 1 : 0 ; ?>;

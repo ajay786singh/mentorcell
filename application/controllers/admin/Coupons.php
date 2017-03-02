@@ -150,20 +150,25 @@
 				$this->data['breadcrumb'] = $this->breadcrumbs->show();
 				
 				/* Validate form input */
+				
+				$college_id		=	$this->session->userdata('user_id');
+				
 				$this->form_validation->set_rules('course_id', 'Course', 'required');
 				$this->form_validation->set_rules('coupon', 'Coupon', 'trim|required|callback_coupon_validation');
-				$this->data['coupon']	=	"";				
-				$this->data['courses']	=	$this->common_model->get_all("mc_courses");
+				$this->data['coupon']		=	"";		
+				$this->data['course_id']	=	0;				
+				$this->data['courses']		=	$this->coupon_model->get_all_courses($college_id);
 				
 				if ($this->form_validation->run() == TRUE) {
 					$this->load->library('sendgridemail');
 					
 					$coupon			=	$this->input->post('coupon');
-					$course_id		=	$this->input->post('course_id');
-					$college_id		=	$this->session->userdata('user_id');
+					$str_course_id	=	$this->input->post('course_id');
+					list($course_id,$incentive)	=	explode("|",$str_course_id);
+					
 					$collegeName	=	$this->common_model->get_single_var('name', 'mc_colleges', 'id', $college_id);
 					$courseName		=	$this->common_model->get_single_var('course_name', 'mc_courses', 'course_id', $course_id);
-					$course_fee		=	50000;
+					$course_fee		=	$incentive;
 					$result			=	$this->coupon_model->is_valid_coupon($coupon);
 					if($result) {
 						$coupon_id		=	$result['coupon_id'];

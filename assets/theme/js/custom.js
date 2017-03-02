@@ -1,3 +1,14 @@
+function getExamByCourse(){
+	var course_name  = $("#stream_name").val();
+	$.ajax({
+		url: base_url+"index.php/home/get_exam_list/"+course_name,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#exam_lists").html(html);
+		}
+	});
+}
 $(document).ready(function(){
 
      $('.subMenuLeft ol li').mouseover(function(){

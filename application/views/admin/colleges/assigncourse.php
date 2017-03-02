@@ -70,6 +70,15 @@
 						  <input type="number" class="form-control" required="" name="fee" id="fee" value="" placeholder="Enter Course Fee">
 						  </div>
 						</div>
+						
+						<div class="form-group">
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Incentive</label>
+						  <div class="col-sm-10">
+						  <input type="number" class="form-control" required="" name="incentive" id="incentive" value="" placeholder="Enter Course Incentive">
+						  </div>
+						</div>
+						
+						
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College procedure</label>
 						  <div class="col-sm-10">

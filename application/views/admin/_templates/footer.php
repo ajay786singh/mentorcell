@@ -50,10 +50,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url();?>/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
   $( document ).ready(function() {
-
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    //bootstrap WYSIHTML5 - text editor
     $(".textarea").wysihtml5();
   });
 </script>
@@ -62,11 +58,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   $(function () {
     $("#example1").DataTable(
 	
-	{
+	/*{
         "processing": true,
         "serverSide": true,
         "ajax": base_url+"index.php/admin/colleges/ajaxindex"
-    }
+    }*/
 	
 	);
     $('#example2').DataTable({
@@ -161,6 +157,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			var duration = $("#duration").val();
 			var recognition = $("#recognition").val();
 			var fee = $("#fee").val();
+			var incentive = $("#incentive").val();
 			var exam = $("#exam").val();
 			var assigned_id = $("#assigned_id").val();
 			var procedure = $("#procedure").val();

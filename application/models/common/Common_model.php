@@ -63,6 +63,18 @@ class Common_model extends CI_Model {
         return $result;
     }
 	
+	function get_all_rows_inwhere($table, $where_col, $where_val, $order_by="", $limit="")
+    {
+        $this->db->where_in("$where_col",$where_val);
+		if($order_by) {
+			$this->db->order_by($order_by);
+		}
+		if($limit) {
+			$this->db->limit($limit);
+		}
+        $result = $this->db->get($table)->result_array();
+        return $result;
+    }
 	
 	/**
 	*@param tablename, column in where, value

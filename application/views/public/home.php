@@ -65,35 +65,25 @@
 </div>
 
 <div id="form2" class="searchForm">
-<form>
+<form  action="search">
 <div class="formcol50">
-<input type="text" name="stream" placeholder="Find Stream" id="stream_name" />
-<div class="autoComplete">
-<h4>Select Stream</h4>
-<ul>
-<?php 
-$exam_search = $this->exam_model->get_all("mc_exams");
-foreach($exam_search as $exam_search_data){
-?>
-<li><?php echo $exam_search_data['course_name']; ?></li>
-<?php }?>
-</ul>
-</div>
-</div>
-<div class="formcol50">
-<input type="text" name="" placeholder="Select Exam" onClick="return getExamByCourse();"/>
-<div class="autoComplete">
-<h4>Select Exam</h4>
-<ul id="exam_lists">
 
-</ul>
+<select id="stream_name"  data-placeholder="Stream" class="auto-choice" name="stream" onChange="return getExamByCourse(this.value);">
+<option value="">Find Stream</option>
+	<?php 
+			$exam_search = $this->exam_model->get_all_groupby("mc_exams");
+foreach($exam_search as $exam_search_data){
+				echo '<option value="'.$exam_search_data['course_name'].'">'.$exam_search_data['course_name'].'</option>';
+			}
+	?>	
+</select>
 </div>
-<select id="register_city_location"  class="auto-choice" multiple name="location">
-	<?php echo $location; ?>
+<div class="formcol50">
+<select id="exam_lists"  name="exam_lists">
 			
 </select>
 </div>
-<button class="go"><span class="glyphicon glyphicon-search"></span></button>
+<button class="go" onClick="return exam_button();"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 </div>
 

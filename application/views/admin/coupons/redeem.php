@@ -32,12 +32,12 @@
 								<option value="">Choose a Course to apply coupon</option>
 									<?php
 										if($courses) {
-											foreach($courses as $course){
+											foreach($courses as $k => $course){
 												$sel = '';
 												if($course_id	==	$course['course_id']) {
 													$sel = 'selected';
 												}
-												echo '<option value="'.$course['course_id'].'" '.$sel.'>'.$course['course_name'].'</option>';			
+												echo '<option value="'.$course['course_id']."|".$course['incentive'].'" '.$sel.'>'.$course['course_name'].'</option>';			
 											}
 										}
 									?>	
@@ -97,3 +97,9 @@
 		</div>
 	</section>
 </div>
+
+<script>
+	function showIncentive(e) {
+		alert(e);
+	}
+</script>

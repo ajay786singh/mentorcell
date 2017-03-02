@@ -27,7 +27,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 
 .mainMenu {text-align: center; position: relative;}
-.mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 13px; padding: 19px 0px; margin: 0px 10px;}
+.mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 13px; padding: 19px 12px; margin: 0px 10px;}
 .mainMenu ul > li:first-child {margin-left:0px;}
 .mainMenu ul > li:last-child {margin-right:0px;}
 .mainMenu ul li a {color: #fff; text-decoration: none;}

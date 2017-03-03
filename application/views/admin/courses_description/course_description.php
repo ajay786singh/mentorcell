@@ -47,32 +47,32 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Eligibility</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="eligibility" id="eligibility"><?php echo @$course_description_page_name_list['eligibility']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="eligibility" id="eligibility"><?php echo @$course_description_page_name_list['eligibility']; ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Course</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="course" id="course"><?php echo @$course_description_page_name_list['course']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="course" id="course"><?php echo @$course_description_page_name_list['course']; ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Exam</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="exam" id="exam"><?php echo @$course_description_page_name_list['exam']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="exam" id="exam"><?php echo @$course_description_page_name_list['exam']; ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Famous Alumni</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="famous_alumni" id="famous_alumni"><?php echo @$course_description_page_name_list['famous_alumni']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="famous_alumni" id="famous_alumni"><?php echo @$course_description_page_name_list['famous_alumni']; ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Placement Trends</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="placement_trends" id="placement_trends"><?php echo @$course_description_page_name_list['placement_trends']; ?></textarea>
+                  <textarea placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="placement_trends" id="placement_trends"><?php echo @$course_description_page_name_list['placement_trends']; ?></textarea>
                   
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Key criteria to choose right B-School</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="key_criteria_to_choose" id="key_criteria_to_choose"><?php echo @$course_description_page_name_list['key_criteria_to_choose']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="key_criteria_to_choose" id="key_criteria_to_choose"><?php echo @$course_description_page_name_list['key_criteria_to_choose']; ?></textarea>
                 </div>
                   <div class="form-group">
                   <label for="exampleInputEmail1">Value Coupon(s)</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="value_coupon" id="value_coupon"><?php echo @$course_description_page_name_list['value_coupon']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="value_coupon" id="value_coupon"><?php echo @$course_description_page_name_list['value_coupon']; ?></textarea>
                 </div>
               <div class="form-group">
                   <label for="exampleInputEmail1">Status</label>
@@ -98,39 +98,3 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-
-<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
-  <script>tinymce.init({
-  selector: 'textarea',
-  height: 500,
-  theme: 'modern',
-  plugins: [
-    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-    'searchreplace wordcount visualblocks visualchars code fullscreen',
-    'insertdatetime media nonbreaking save table contextmenu directionality',
-    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
-  ],
-  toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-  toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
-  image_advtab: true,
-  templates: [
-    { title: 'Test template 1', content: 'Test 1' },
-    { title: 'Test template 2', content: 'Test 2' }
-  ],
-  content_css: [
-    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-    '//www.tinymce.com/css/codepen.min.css'
-  ]
- });
- 
- 
- function create_slug(course_name){
-		var slug_name  = course_name.replace(" ","_");
-		var final_slug_name = slug_name.toLowerCase();
-		$("#slug").val(final_slug_name);
-	}
- 
- 
- 
- </script>

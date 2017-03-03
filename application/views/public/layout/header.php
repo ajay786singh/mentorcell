@@ -1069,7 +1069,7 @@ if(count($exam_menu)>0){
 <?php
  if($user_login['id']){?>
 	<li class="userLogin"><?php echo $user_login['firstname']; ?></li>
-	<li class="userReg" ><a href="<?php echo site_url('home/logout'); ?>" >Logout</a></li>
+	<li class="userReg" ><a href="<?php echo site_url('user/logout'); ?>" >Logout</a></li>
 <?php }else{ ?>
 	<li class="userLogin" data-toggle="modal" data-target="#loginModal" onClick="document.getElementById('couponClicked').value=0" >Login</li>
 	<li class="userReg" data-toggle="modal" data-target="#registerModal">Register</li>

@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['search'] = 'home/search';
+$route['admission-2017'] = 'home/admission';
 /*login register links*/
 $route['login'] = 'user/login';
 $route['register'] = 'user/register';

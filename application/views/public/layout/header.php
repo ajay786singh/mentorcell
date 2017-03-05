@@ -632,7 +632,7 @@ if(count($exam_menu)>0){
 
 </li>
 
-<li><a href="#">Admission 2017</a>
+<li><a href="<?php echo site_url(); ?>admission-2017">Admission 2017</a>
 
 <!--<div class="subMenuArea">
 <div class="subMenuRow">

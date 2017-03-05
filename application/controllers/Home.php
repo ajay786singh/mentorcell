@@ -105,6 +105,22 @@ class Home extends Public_Controller {
 		
 	}
 	
+	
+	function admission()
+	{ 
+		if ($this->ion_auth->logged_in()){
+		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		}else{
+			$this->data['user_login'] = array('id'=>false);
+		}
+		$query = '';
+		$this->college['colleges'] = $this->college_model->admission_result($query);
+		$this->load->view('public/layout/header', $this->data);
+		$this->load->view('public/admission', $this->college);
+		$this->load->view('public/layout/footer', $this->data);
+		
+	}	
+	
 	public function clgcity()
 	{
 		$college_id = $this->input->get('college_id');

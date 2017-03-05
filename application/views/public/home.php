@@ -14,7 +14,7 @@
 <div id="form1" class="searchForm active">
 <form action="search">
 <div class="formcol50">
-<select id="search_college"  data-placeholder="Choose a College" class="auto-choice" name="college">
+<select id="search_college" required='' data-placeholder="Choose a College" class="auto-choice" name="college">
 <option value="">Choose a College to Join</option>
 	<?php 
 			foreach($colleges as $college){
@@ -68,7 +68,7 @@
 <form  action="search">
 <div class="formcol50">
 
-<select id="stream_name"  data-placeholder="Stream" class="auto-choice" name="stream" onChange="return getExamByCourse(this.value);">
+<select id="stream_name" required='' data-placeholder="Stream" class="auto-choice" name="stream" onChange="return getExamByCourse(this.value);">
 <option value="">Find Stream</option>
 	<?php 
 			$exam_search = $this->exam_model->get_all_groupby("mc_exams");
@@ -90,7 +90,7 @@ foreach($exam_search as $exam_search_data){
 <div id="form3" class="searchForm">
 <form action="search">
 <div class="formcol50">
-<select id="search_course" class="auto-choice" name="course">
+<select id="search_course" required='' class="auto-choice" name="course">
 <option value="">Choose a Course to Join</option>
 	<?php 
 		

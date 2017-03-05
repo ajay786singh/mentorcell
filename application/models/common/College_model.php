@@ -178,6 +178,19 @@ class College_model extends CI_Model {
 	}	
 	
 	
+	function admission_result($query){
+		$this->db->select('ca.*,cl.*,cities.name as city, states.name as state, countries.name as country ');
+		$this->db->from('mc_course_assignment AS ca');// I use aliasing make joins easier
+		$this->db->join('mc_colleges AS cl', 'cl.id = ca.college_id', 'INNER');
+		$this->db->join('cities AS cities', 'cities.id = cl.city', 'LEFT');
+		$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
+		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');
+		/**/
+		$this->db->where('cl.status', '2');
+		$result = $this->db->get()->result_object();
+		return $result;
+	}	
+	
 	
 	/*for admin college view page*/
 	function get_college($id){

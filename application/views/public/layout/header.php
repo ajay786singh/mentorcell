@@ -1055,27 +1055,30 @@ if(count($exam_menu)>0){
 <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2">
 
 <div class="couponTab icon-bookmark">
-<span>
-	<?php if($user_login['id']){?>	
+<span>	
 	<a href="<?php echo base_url()?>coupon/">C<br>o<br>u<br>p<br>o<br>n</a></span>
-	<?php }else{ ?>
-	<a href="javascript:void(0);" onClick="document.getElementById('couponClicked').value=1" data-toggle="modal" data-target="#loginModal">C<br>o<br>u<br>p<br>o<br>n</a>
-	<?php } ?>
 <i></i>
 </div>
+ <?php if($user_login['id']){?>
+	<div class="profileNav">
+	<h3><?php echo $user_login['firstname']; ?></h3>
+	<ul>
+		<li><a href="<?php echo site_url('user/profile'); ?>">Profile</a></li>
+		<li><a href="<?php echo site_url('user/logout'); ?>">Sign Out</a></li>
+	</ul>
+	</div>
+ 
+ <?php }else{ ?>
+	<div class="userNav">
+	<ul>
+		<li class="userLogin" data-toggle="modal" data-target="#loginModal" onClick="document.getElementById('couponClicked').value=0" >Login</li>
+		<li class="userReg" data-toggle="modal" data-target="#registerModal">Register</li>
 
-<div class="userNav">
-<ul>
-<?php
- if($user_login['id']){?>
-	<li class="userLogin"><?php echo $user_login['firstname']; ?></li>
-	<li class="userReg" ><a href="<?php echo site_url('home/logout'); ?>" >Logout</a></li>
-<?php }else{ ?>
-	<li class="userLogin" data-toggle="modal" data-target="#loginModal" onClick="document.getElementById('couponClicked').value=0" >Login</li>
-	<li class="userReg" data-toggle="modal" data-target="#registerModal">Register</li>
-<?php } ?>
-</ul>
-</div>
+	</ul>
+	</div>
+ 
+ <?php } ?>
+
 </div>
 </div>
 </div>	

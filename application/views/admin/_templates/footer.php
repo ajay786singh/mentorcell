@@ -168,13 +168,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				type: "POST",
 				url: base_url+"index.php/admin/colleges/save_assigncourses",
 				dataType: 'text',
-				data: {clg_course_id:clg_course_id,college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,exam:exam,assigned_id:assigned_id,procedure:procedure,eligibility:eligibility},
+				data: {clg_course_id:clg_course_id,college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,incentive:incentive,exam:exam,assigned_id:assigned_id,procedure:procedure,eligibility:eligibility},
 				success: function(res) {
 					$("#message").show().html('<p>'+res+'</p>');
 					setTimeout(function(){
-								
 								location.reload();
-								
 							},1000);
 					
 				}

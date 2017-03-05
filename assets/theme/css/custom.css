@@ -27,7 +27,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 
 .mainMenu {text-align: center; position: relative;}
-.mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 13px; padding: 19px 0px; margin: 0px 10px;}
+.mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 13px; padding: 19px 12px; margin: 0px 10px;}
 .mainMenu ul > li:first-child {margin-left:0px;}
 .mainMenu ul > li:last-child {margin-right:0px;}
 .mainMenu ul li a {color: #fff; text-decoration: none;}
@@ -742,5 +742,3 @@ header#header .logo img {max-width: 100%; height: auto;}
 #forgotsetModal .loginForm .inputRow input.go:hover {background: #000;}
 /**/
 #introductionVideo,video{width:100%;}
-.extra_filters{ background: #fff;height: 50px; margin-top: 50px;position: absolute; width: calc(100% - 48px);}
-.homeSlider .searchArea .formHolder .formcol00{width: calc(33.3%);position: relative;float: left;border-right: 1px solid rgba(0,0,0,0.20);padding: 0px 10px;}

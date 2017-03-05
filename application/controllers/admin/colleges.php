@@ -41,10 +41,7 @@ class Colleges extends Admin_Controller {
             /* Load Template */
 			$userId = $this->ion_auth->get_user_id();
 			if($this->ion_auth->in_group('college')){
-		
-				$user   = $this->ion_auth->user($userId)->row();
-				//$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges", 'user_id',$userId);
-				$this->data['college_lists'] = $this->college_model->get_assigned_college($user->colleges);
+				$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges", 'user_id',$userId);
 			}else{
 				$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
 			}
@@ -54,43 +51,6 @@ class Colleges extends Admin_Controller {
         }
 	}
 
-	
-	public function ajaxindex()
-	{
-        if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
-        {
-            echo ""; die;
-        }
-        else
-        {
-            $list = $this->college_model->get_datatables();
-			$data = array();
-			$no = @$_POST['start'];
-			foreach ($list as $customers) {
-				$no++;
-				$row = array();
-				$row[] = $no;
-				$row[] = $customers->logo;
-				$row[] = $customers->contact_person_name;
-				$row[] = $customers->email_id;
-				$row[] = $customers->address;
-				//$row[] = $customers->city;
-				//$row[] = $customers->country;
-	 
-				$data[] = $row;
-			}
- 
-				$output = array(
-                        "draw" => @$_POST['draw'],
-                        "recordsTotal" => $this->college_model->count_all(),
-                        "recordsFiltered" => $this->college_model->count_filtered(),
-                        "data" => $data,
-                );
-			//output to json format
-			echo json_encode($output);
-        }
-	}
-	
 
 	public function create()
 	{
@@ -447,7 +407,6 @@ class Colleges extends Admin_Controller {
 		$duration = $this->input->post('duration');
 		$recognition = $this->input->post('recognition');
 		$fee = $this->input->post('fee');
-		$incentive = $this->input->post('incentive');
 		$exam = $this->input->post('exam');
 		$procedure = $this->input->post('procedure');
 		$eligibility = $this->input->post('eligibility');
@@ -462,7 +421,6 @@ class Colleges extends Admin_Controller {
 		$course['duration'] = $duration;
 		$course['recognition'] = $recognition;
 		$course['fee'] = $fee;
-		$course['incentive'] = $incentive;
 		$course['exam'] = $exam;
 		$course['procedure'] = $procedure;
 		$course['eligibility'] = $eligibility;

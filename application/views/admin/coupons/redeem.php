@@ -10,7 +10,7 @@
 			<div class="col-md-12">
 				 <div class="box">
 					<div class="box-header with-border">
-						<h3 class="box-title"><?php echo 'Add Global Coupon Minimum and Maximum Values'; ?></h3>
+						<h3 class="box-title"><?php echo 'View Redemption Value'; ?></h3>
 					</div>
 					<div class="box-body">
 						<?php 
@@ -25,11 +25,35 @@
 						<?php echo form_open_multipart(current_url(), array('method'=>'post', 'class' => 'form-horizontal', 'answer_id' => 'form-create_stream'));
 						?>
 						
+						
+						
+						<div class="form-group">
+							<label for="exampleInputEmail1" class="col-sm-2 control-label">Select College</label>
+							<div class="col-sm-5">	
+								<select class="form-control" id="redeem_college_id" name="college_id">
+									<option value="">Choose a College to apply coupon</option>
+									<?php
+										if($college_lists) {
+											foreach($college_lists as $k => $college_list){
+												$sel = '';
+												//if($course_id	==	$college_list['course_id']) {
+													//$sel = 'selected';
+												//}
+												echo '<option value="'.$college_list['id'].'">'.$college_list['name'].'</option>';			
+											}
+										}
+									?>	
+								</select>
+							</div>
+						</div>
+						
+						
+
 						<div class="form-group">
 							<label for="exampleInputEmail1" class="col-sm-2 control-label">Select Course</label>
 							<div class="col-sm-5">	
-								<select id="search_course" name="course_id">
-								<option value="">Choose a Course to apply coupon</option>
+								<select class="form-control" id="redeem_search_course" name="course_id">
+								
 									<?php
 										if($courses) {
 											foreach($courses as $k => $course){
@@ -63,7 +87,9 @@
 							<div class="col-sm-10">	
 								<?php
 									echo "<strong>Course Actual Fee:</strong> ".$course_fee;
-									echo "<input type='hidden' name='course_fee' value='$course_fee'>";
+									echo "<br>";
+									echo "<strong>Course Incentive Fee:</strong> ".$course_incentive;
+									echo "<input type='hidden' name='course_fee' value='$course_incentive'>";
 									echo "<br>";
 									echo "<strong>Discount given after coupon applied: </strong>".$total_disc;
 									echo "<input type='hidden' name='total_disc' value='$total_disc'>";

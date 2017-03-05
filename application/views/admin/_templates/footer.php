@@ -182,6 +182,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		/*save assigned courses*/
 		
 		
+		
+		/*get course dropdown*/
+		$("#redeem_college_id").change(function(){
+			var college_id = ($(this).val());
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/admin/coupons/courses/"+college_id,
+				dataType: 'text',
+				success: function(res) {
+					$("#redeem_search_course").html(res);
+				}
+			});
+			
+		});
+		/*get course dropdown*/
+		
+		
 	});	
 	/*otp verification*/
 </script>

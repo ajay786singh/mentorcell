@@ -119,17 +119,17 @@ class College_model extends CI_Model {
 	}
 	
 	
-	function get_single_courses_detail($course_id,$course_id){
+	function get_single_courses_detail($college_id,$course_id){
 		$this->db->select('cr.term_id,ca.*');
 		$this->db->from('mc_college_relations AS cr');
 		$this->db->join('mc_course_assignment AS ca', 'ca.course_id = cr.term_id', 'INNER');
-		$this->db->where('cr.college_id', $course_id);
+		$this->db->where('cr.college_id', $college_id);
 		$this->db->where('cr.term_name', "course");
-		$this->db->where('ca.college_id', $course_id);
+		$this->db->where('ca.college_id', $college_id);
 		$this->db->where('ca.course_id', $course_id);
 		//$result = $this->db->get()->result_array();
 		//$result = array_column($result, 'term_id');
-		$result = $this->db->get()->result_object();
+		$result = $this->db->get()->row_object();
 		return $result;
 	}
 	

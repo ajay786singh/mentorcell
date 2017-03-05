@@ -41,7 +41,9 @@ class Colleges extends Admin_Controller {
             /* Load Template */
 			$userId = $this->ion_auth->get_user_id();
 			if($this->ion_auth->in_group('college')){
-				$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges", 'user_id',$userId);
+				$user   = $this->ion_auth->user($userId)->row();
+				//$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges", 'user_id',$userId);
+				$this->data['college_lists'] = $this->college_model->get_assigned_college($user->colleges);
 			}else{
 				$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
 			}
@@ -407,6 +409,7 @@ class Colleges extends Admin_Controller {
 		$duration = $this->input->post('duration');
 		$recognition = $this->input->post('recognition');
 		$fee = $this->input->post('fee');
+		$incentive = $this->input->post('incentive');
 		$exam = $this->input->post('exam');
 		$procedure = $this->input->post('procedure');
 		$eligibility = $this->input->post('eligibility');

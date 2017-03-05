@@ -424,6 +424,7 @@ class Colleges extends Admin_Controller {
 		$course['duration'] = $duration;
 		$course['recognition'] = $recognition;
 		$course['fee'] = $fee;
+		$course['incentive'] = $incentive;
 		$course['exam'] = $exam;
 		$course['procedure'] = $procedure;
 		$course['eligibility'] = $eligibility;

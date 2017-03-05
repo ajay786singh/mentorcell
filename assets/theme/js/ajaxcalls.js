@@ -215,6 +215,40 @@ $(document).ready(function() {
 	/*upload file for student*/
 	
 	
+	/*profile personal informatio*/
+		$("#profile_update_button").click(function(event) {
+			event.preventDefault();
+			var fname = $("#personal-information #profile_fname").val();
+			var lname = $("#personal-information #profile_lname").val();
+			var email = $("#personal-information #profile_student_email").val();
+			var phone = $("#personal-information #profile_phone").val();
+			//var interest = $("select#register_interest").val();
+			//var course = $("select#register_course").val();
+			var state = $("#personal-information .profile_register_state").val();
+			var city = $("#personal-information .profile_register_city").val();
+			
+			var dob = $("#personal-information #profile_dob").val();
+			var aboutMe = $("#personal-information #profile_aboutme").val();
+			var bio = $("#personal-information #profile_bio").val();
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/user/profileupdate",
+				dataType: 'json',
+				data: {first_name:fname,last_name:lname,email:email, phone:phone, dob:dob, aboutme:aboutMe,bio:bio,state:state,city: city },
+				success: function(res) {
+					if (res)
+					{
+						$('#profile_response').html(res.message);
+						if(res.status==true){
+							console.log(res.user_id);
+						}
+					}
+				}
+			});
+		});
+	/*profile personal informatio*/
+	
+	
 	
 	
 	/**/
@@ -235,6 +269,8 @@ $(document).ready(function() {
 	
 	/*Question Answer Submit*/
 		$("#question_answer").click(function(event) {
+			var curbutton = $(this);
+			curbutton.prop('disabled', true);;
 			event.preventDefault();
 			var question_ids	= 	$("#question_ids").val();
 			var course_id		= 	$("#course_id").val();
@@ -250,6 +286,7 @@ $(document).ready(function() {
 			}
 			if(a_question_ids.length != a_answers.length) {
 				alert("Kindly answer all the questions!!");
+				curbutton.prop('disabled', false);
 				return false;
 			}
 			answers	=	"";
@@ -318,3 +355,5 @@ $(document).ready(function() {
 	
 	
 });
+
+

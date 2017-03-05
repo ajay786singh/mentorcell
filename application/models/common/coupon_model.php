@@ -64,4 +64,18 @@ class Coupon_model extends CI_Model {
 			return false;
 		}
 	}
+	
+	function get_all_courses($college_id) {
+		$this->db->select('a.course_id,a.course_name,incentive');
+		$this->db->join('mc_course_assignment b','a.course_id = b.course_id','inner');
+		$this->db->where('b.college_id',$college_id);
+		$this->db->group_by('a.course_id');
+		$result	=	$this->db->get('mc_courses a');
+		//echo $this->db->last_query();die;
+		if($result->num_rows() > 0) {
+			return $result->result_array();
+		} else {
+			return false;
+		}
+	}
 }

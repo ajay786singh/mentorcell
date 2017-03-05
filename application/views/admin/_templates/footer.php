@@ -50,17 +50,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url();?>/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
   $( document ).ready(function() {
-
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    //bootstrap WYSIHTML5 - text editor
     $(".textarea").wysihtml5();
   });
 </script>
 <!------- WYSIWYG editor code---------------------------------->
 <script>
   $(function () {
-    $("#example1").DataTable();
+    $("#example1").DataTable(
+	
+	/*{
+        "processing": true,
+        "serverSide": true,
+        "ajax": base_url+"index.php/admin/colleges/ajaxindex"
+    }*/
+	
+	);
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -153,6 +157,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			var duration = $("#duration").val();
 			var recognition = $("#recognition").val();
 			var fee = $("#fee").val();
+			var incentive = $("#incentive").val();
 			var exam = $("#exam").val();
 			var assigned_id = $("#assigned_id").val();
 			var procedure = $("#procedure").val();
@@ -163,13 +168,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				type: "POST",
 				url: base_url+"index.php/admin/colleges/save_assigncourses",
 				dataType: 'text',
-				data: {clg_course_id:clg_course_id,college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,exam:exam,assigned_id:assigned_id,procedure:procedure,eligibility:eligibility},
+				data: {clg_course_id:clg_course_id,college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,incentive:incentive,exam:exam,assigned_id:assigned_id,procedure:procedure,eligibility:eligibility},
 				success: function(res) {
 					$("#message").show().html('<p>'+res+'</p>');
 					setTimeout(function(){
-								
 								location.reload();
-								
 							},1000);
 					
 				}
@@ -179,8 +182,84 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		/*save assigned courses*/
 		
 		
+		
+		/*get course dropdown*/
+		$("#redeem_college_id").change(function(){
+			var college_id = ($(this).val());
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/admin/coupons/courses/"+college_id,
+				dataType: 'text',
+				success: function(res) {
+					$("#redeem_search_course").html(res);
+				}
+			});
+			
+		});
+		/*get course dropdown*/
+		
+		
 	});	
 	/*otp verification*/
 </script>
+
+
+<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>tinymce.init({
+  selector: 'textarea',
+  height: 500,
+  theme: 'modern',
+  plugins: [
+    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+    'searchreplace wordcount visualblocks visualchars code fullscreen',
+    'insertdatetime media nonbreaking save table contextmenu directionality',
+    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+  ],
+  toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+  toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+  image_advtab: true,
+  templates: [
+    { title: 'Test template 1', content: 'Test 1' },
+    { title: 'Test template 2', content: 'Test 2' }
+  ],
+  content_css: [
+    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+    '//www.tinymce.com/css/codepen.min.css'
+  ]
+ });</script>
+ 
+   <!-- /.content-wrapper -->
+ <script type="text/javascript" language="javascript">
+
+		var field_sr = 1;
+	function important_dates(){
+			field_sr++;
+			var numItems = jQuery('.important_dates_class').length;
+			if(numItems <10){
+			var field_html = '<p id="important_dates_p_'+field_sr+'"  class="important_dates_class"><input type="text"  id="datepicker" name="important_dates[]"  placeholder="date"  style="width:30%"> <input type="text" name="important_dates_description[]" placeholder="Content" style="width:50%" /> <a onclick = "return delete_field('+field_sr+');"  style="cursor:pointer">Delete</a></p>';
+			$("#important_dates_field_reapeater").append(field_html);
+			$("#important_dates_limit_msg").html("");
+			}else{
+				$("#important_dates_limit_msg").html("Max 9 important dates allowed.");
+			}
+		}
+		
+	function delete_field(pid){
+		$("#important_dates_p_"+pid).remove();
+		$("#important_dates_limit_msg").html("");
+	}
+
+ $('#datepicker').datepicker({
+      autoclose: true
+    });
+	
+	function create_slug(exam_name){
+		var slug_name  = exam_name.replace(" ","_");
+		var final_slug_name = slug_name.toLowerCase();
+		$("#slug").val(final_slug_name);
+	}
+
+</script>
+
     </body>
 </html>

@@ -673,6 +673,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .profileBox .settingForm .form-group {float: left; width: 100%; clear: both;}
 .profileBox .settingForm label {font-size: 14px; color: rgba(0,0,0,0.64); display: block; float: left; width: 200px;}
 .profileBox .settingForm input[type="text"] {width: 100%; max-width: 280px; padding: 5px; height: 30px; border:1px solid rgba(0,0,0,0.20); float: left;}
+.profileBox .settingForm input[type="password"] {width: 100%; max-width: 280px; padding: 5px; height: 30px; border:1px solid rgba(0,0,0,0.20); float: left;}
 .profileBox .settingForm input[type="checkbox"] {float: left; margin: 4px 10px 0px 0px;}
 .profileBox .settingForm input[type="checkbox"] + label {width: auto;}
 .profileBox .settingForm .cancelButton {float: left; height: 35px; width: 100px; margin: 0px 15px 0px 0px; background: rgba(0,0,0,0.10); border-radius: 6px; border: 1px solid rgba(0,0,0,0.15); cursor: pointer;}
@@ -742,3 +743,4 @@ header#header .logo img {max-width: 100%; height: auto;}
 #forgotsetModal .loginForm .inputRow input.go:hover {background: #000;}
 /**/
 #introductionVideo,video{width:100%;}
+#couponBox3{padding: 100px 0;}

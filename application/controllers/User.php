@@ -338,16 +338,49 @@ class User extends Public_Controller {
 	{
 		
 		if ($this->ion_auth->logged_in()){
-		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		$user  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		$this->data['user_login'] = $user;
 		}else{
 			$this->data['user_login'] = array('id'=>false);
 		}
+		
+		$city = $this->ion_auth->get_user_meta($user['id'], 'city');
+		$this->data['city_id'] = $city;
+		$this->data['city'] = $this->common_model->get_single_var('name', 'cities','id', $city);
+		$state = $this->ion_auth->get_user_meta($user['id'], 'state');
+		$this->data['state_id'] = $state;
+		$this->data['state'] = $this->common_model->get_single_var('name', 'states','id', $state);
+		
+		$this->data['dob'] = $this->ion_auth->get_user_meta($user['id'], 'dob');
+		$this->data['about_me'] = $this->ion_auth->get_user_meta($user['id'], 'about_me');
+		$this->data['bio'] = $this->ion_auth->get_user_meta($user['id'], 'bio');
+		
+		$this->data['coupon'] = $this->common_model->get_single_row('mc_coupons','user_id',$user['id']);
+
 		
 		$this->load->view('public/layout/header', $this->data);
 	
 		$this->load->view('public/profile', $this->data);
 		
 		$this->load->view('public/layout/footer', $this->data);
+	}
+	
+	function curpassword_validation($str) {
+			if ($this->ion_auth->logged_in()){
+				$userdata  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+				
+			}else{
+				$this->data['user_login'] = array('id'=>false);
+			}
+			$id = $userdata['id'];
+			$originalPassword = $this->input->post('curpassword');
+			if ($this->ion_auth->hash_password_db($id, $originalPassword) !== TRUE)
+			{
+				$this->form_validation->set_message("curpassword_validation", 'Please Enter Valid Current Password');
+				return FALSE;
+			}
+			
+			return TRUE;
 	}
 	
 	public function changepassword(){
@@ -364,11 +397,13 @@ class User extends Public_Controller {
 			}else{
 				$this->data['user_login'] = array('id'=>false);
 			}
+						
+			$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[cpassword]');
+			$this->form_validation->set_rules('cpassword','Confirm Password' , 'required');
+				
+			$this->form_validation->set_rules('curpassword', 'Current Password', 'required|callback_curpassword_validation');
 			
-			$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
 
-			$this->form_validation->set_rules('curpassword', 'Current Password', 'required');
-			
             if ($this->form_validation->run() == TRUE)
             {
 				$curpassword = $this->input->post('curpassword');
@@ -471,5 +506,83 @@ class User extends Public_Controller {
 		
 	}
 	
+	
+	/*profile update*/
+	
+	public function profileupdate(){
+		
+			$this->load->config('admin/dp_config');
+            $this->load->config('common/dp_config');
+			$this->load->library('sendgridemail');
+            /* Valid form */
+            //$this->form_validation->set_rules('identity', 'Email', 'required');
+			
+			if ($this->ion_auth->logged_in()){
+				$userdata  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+				
+			}else{
+				$this->data['user_login'] = array('id'=>false);
+			}
+			
+			
+			
+			$this->form_validation->set_rules('first_name', 'First Name', 'required');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'valid_email');
+			$this->form_validation->set_rules('phone', 'Phone', 'required');
+
+			
+			
+            if ($this->form_validation->run() == TRUE)
+            {
+				$first_name = $this->input->post('first_name');
+				$last_name = $this->input->post('last_name');
+				$email = $this->input->post('email');
+				$phone = $this->input->post('phone');
+				
+				$state = $this->input->post('state');
+				$city = $this->input->post('city');
+				$dob = $this->input->post('dob');
+				$aboutMe = $this->input->post('aboutme');
+				$bio = $this->input->post('bio');
+
+				if($userdata['id']){
+					$data['first_name'] = $first_name;
+					$data['last_name'] = $last_name;
+					$data['phone'] = $phone;
+					$this->ion_auth->update($userdata['id'], $data);
+					
+					$this->ion_auth->set_user_meta($userdata['id'], 'student_email', $email);
+					$this->ion_auth->set_user_meta($userdata['id'], 'state', $state );
+					$this->ion_auth->set_user_meta($userdata['id'], 'city', $city);
+					$this->ion_auth->set_user_meta($userdata['id'], 'dob', $dob);
+					$this->ion_auth->set_user_meta($userdata['id'], 'about_me', $aboutMe);
+					$this->ion_auth->set_user_meta($userdata['id'], 'bio', $bio);				
+					
+					$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong>Profile Updated Successfully!</div>');
+					echo json_encode($response);
+					
+					die;
+				}else{
+					
+					$response = array('status'=>false,'message'=>'<div class="alert alert-danger">Not a valid student!</div>');
+					echo json_encode($response);
+					die;
+					
+				}
+            }
+            else
+            {
+				$error = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+				
+				$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.$error.'</div>');
+				echo json_encode($response);
+				die;
+            }
+		
+		
+	}
+
+	/*profile update*/
 	
 }

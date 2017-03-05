@@ -29,69 +29,61 @@
 			
 </select>
 </div>
-<!--<div class="formcol50">
-<select id="stream" style="width:200px;" class="auto-choice" multiple name="stream">
-	<?php 
+		<div  class="extra_filters">
+			<div class="formcol00">
+			<select id="stream"  class="auto-choice"  name="stream">
+				<?php 
 
-	foreach($streams as $stream){
-	  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
-	} ?>
-			
-</select>
-</div>
-<div class="formcol50">
-<select id="type" style="width:200px;" class="auto-choice" multiple name="type">
-	<?php 
+				foreach($streams as $stream){
+				  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
+				} ?>
+						
+			</select>
+			</div>
+			<div class="formcol00">
+			<select id="type" class="auto-choice"  name="type">
+				<?php 
 
-	foreach($types as $type){
-	  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
-  } ?>
-			
-</select>
-</div>
-<div class="formcol50">
-<select id="course" style="width:200px;" class="auto-choice" multiple name="course"> 
-<?php 
-	foreach($courses as $course){
-		echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
-	} ?>
-			
-</select>
-</div>-->
+				foreach($types as $type){
+				  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
+			  } ?>
+						
+			</select>
+			</div>
+			<div class="formcol00">
+			<select id="course"  class="auto-choice"  name="course_main"> 
+			<?php 
+				foreach($courses as $course){
+					echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+				} ?>
+						
+			</select>
+			</div>
+		</div>	
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 </div>
 
 <div id="form2" class="searchForm">
-<form>
+<form  action="search">
 <div class="formcol50">
-<input type="text" name="stream" placeholder="Find Stream" id="stream_name" />
-<div class="autoComplete">
-<h4>Select Stream</h4>
-<ul>
-<?php 
-$exam_search = $this->exam_model->get_all("mc_exams");
-foreach($exam_search as $exam_search_data){
-?>
-<li><?php echo $exam_search_data['course_name']; ?></li>
-<?php }?>
-</ul>
-</div>
-</div>
-<div class="formcol50">
-<input type="text" name="" placeholder="Select Exam" onClick="return getExamByCourse();"/>
-<div class="autoComplete">
-<h4>Select Exam</h4>
-<ul id="exam_lists">
 
-</ul>
+<select id="stream_name"  data-placeholder="Stream" class="auto-choice" name="stream" onChange="return getExamByCourse(this.value);">
+<option value="">Find Stream</option>
+	<?php 
+			$exam_search = $this->exam_model->get_all_groupby("mc_exams");
+foreach($exam_search as $exam_search_data){
+				echo '<option value="'.$exam_search_data['course_name'].'">'.$exam_search_data['course_name'].'</option>';
+			}
+	?>	
+</select>
 </div>
-<select id="register_city_location"  class="auto-choice" multiple name="location">
-	<?php echo $location; ?>
+<div class="formcol50">
+<select id="exam_lists"  name="exam_lists">
 			
 </select>
 </div>
-<button class="go"><span class="glyphicon glyphicon-search"></span></button>
+<button class="go" onClick="return exam_button();"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 </div>
 
@@ -642,17 +634,3 @@ Noida-201307, India</p>
 </div>
 <!-- team 4 Close -->
 
-<script language="javascript" type="text/javascript">
-function getExamByCourse(){
-	var course_name  = $("#stream_name").val();
-	$.ajax({
-		url: "<?php echo base_url(); ?>home/get_exam_list/"+course_name,
-		data:"",
-		async:false,
-		success: function(html){
-			$("#exam_lists").html(html);
-		}
-	});
-}
-
-</script>

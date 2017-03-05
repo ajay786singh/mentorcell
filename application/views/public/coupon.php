@@ -153,7 +153,7 @@
 		</ol>
 		<input type="button" id='question_answer' value="Test Submit" class="go" name="">
 		<input type="hidden" id='question_ids' value="<?php echo $question_ids;?>">
-		<input type="hidden" id='course_id' value="<?php echo $course_id;?>">
+		<input type="hidden" id='course_id' value="<?php// echo $course_id;?>1">
 		</div>	
 	</div>
 

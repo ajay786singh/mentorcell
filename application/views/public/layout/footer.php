@@ -319,7 +319,7 @@ Noida, UP<br>
       <div class="modal-body">
       <div class="loginForm">
 		<h3 style="background: #ff9978;
-    padding: 30px;">Dear Visitor! This website is under construction and a few features may not work. We are going to launch a national level marketing campaign from 20th February, 2017. By then, all features will be available to the user. Sorry for the inconvenience and thanks for your support! 
+    padding: 30px;">Dear Visitor! This website is under construction and a few features may not work. We are going to launch a national level marketing campaign from 1st March, 2017. By then, all features will be available to the user. Sorry for the inconvenience and thanks for your support! 
 		<br/> Team MentorCell</h3>
 
       </div>

@@ -18,6 +18,7 @@
 <li><a href="#profileTab1" class="active">Profile</a></li>
 <li><a href="#profileTab2">Activity</a></li>
 <li><a href="#profileTab3">Account Settings</a></li>
+<li><a href="#profileTab4">Coupon Value</a></li>
 </ul>
 </div>
 </div>
@@ -44,20 +45,22 @@
 	<ul>
 		<li><h5><i class="icon-phone-call"></i><?php echo $user_login['phone']; ?></h5></li>
  		<li><h5><i class="icon-email"></i><?php echo $user_login['email']; ?></h5></li>
- 		<li><h5><i class="icon-location"></i> Chandigarh, India</h5></li>
+ 		<li><h5><i class="icon-location"></i> <?php echo $city." ".$state; ?>, India</h5></li>
 	</ul>
 
 <form class="detailForm" id="personal-information">
 
+<div id="profile_response" ></div>
+
 <div class="form-group">
 <div class="col-xs-6 col-sm-6">
 <label>First Name <b>*</b></label>
-<input type="text" name="" value="<?php echo $user_login['firstname']; ?>" placeholder="First Name">
+<input type="text" name="" id="profile_fname" value="<?php echo $user_login['firstname']; ?>" placeholder="First Name">
 </div>
 
 <div class="col-xs-6 col-sm-6">
 <label>Last Name <b>*</b></label>
-<input type="text" name="" value="<?php echo $user_login['lastname']; ?>" placeholder="Last Name">
+<input type="text" name="" id="profile_lname" value="<?php echo $user_login['lastname']; ?>" placeholder="Last Name">
 </div>
 </div>
 
@@ -69,7 +72,7 @@
 
 <div class="col-xs-6 col-sm-6">
 <label>Student Email ID</label>
-<input type="text" name="" placeholder="Email ID provided by your college">
+<input type="text" id="profile_student_email" name="" placeholder="Email ID provided by your college">
 </div>
 </div>
 
@@ -81,46 +84,54 @@
 
 <div class="col-xs-6 col-sm-6">
 <label>Mobile No. <b>*</b></label>
-<input type="tel" name="" value="<?php echo $user_login['phone']; ?>" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+<input type="tel" id="profile_phone" name="" value="<?php echo $user_login['phone']; ?>" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
 </div>
 </div>
 
 <div class="form-group">
 <div class="col-xs-6 col-sm-6">
 <label>Resident State <b>*</b></label>
-<select required><option>New Delhi</option></select>
+<select required id="register_state" class="profile_register_state">
+<?php 
+				$states = $this->common_model->get_all_rows("states", "country_id",101);
+				foreach($states as $stateeach){
+					if($stateeach['id']==$state_id){$selected = 'selected';}else{$selected = '';}
+				echo '<option  '.$selected.' value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
+				}?>
+</select>
 </div>
 <div class="col-xs-6 col-sm-6">
 <label>Resident City <b>*</b></label>
-<select required><option>New Delhi</option></select>
+<select id="register_city" class="profile_register_city"><option value="<?php echo $city_id; ?>"><?php echo $city; ?></option>
+</select>
 </div>
 </div>
 
 <div class="form-group">
 <div class="col-xs-6 col-sm-6">
 <label>Date Of Birth</label>
-<input type="text" name="" placeholder="DD-MM-YY">
+<input type="text" name="" placeholder="DD-MM-YY" value="<?php echo $dob; ?>" id="profile_dob">
 </div>
 </div>
 
 <div class="form-group">
 <div class="col-xs-12 col-sm-12">
 <label>About Me</label>
-<input class="fullWidth" type="text" name="" placeholder="Your brief introduction">
+<input class="fullWidth" type="text" name="" value="<?php echo $about_me; ?>" id="profile_aboutme" placeholder="Your brief introduction">
 </div>
 </div>
 
 <div class="form-group">
 <div class="col-xs-12 col-sm-12">
 <label>Bio</label>
-<textarea class="fullWidth" placeholder="Detailed information about you. You may write about your achievements in education, work and other areas"></textarea>
+<textarea class="fullWidth" id="profile_bio" placeholder="Detailed information about you. You may write about your achievements in education, work and other areas"><?php echo $bio; ?></textarea>
 </div>
 </div>
 
 <div class="form-group">
 <div class="col-xs-12 col-sm-12">
-<input type="button" value="Cancel" name="" class="cancelButton">
-<input type="submit" value="Save" name="" class="saveButton">
+<input type="button" value="Cancel" name=""  class="cancelButton">
+<input type="submit" value="Save" name="" id="profile_update_button" class="saveButton">
 </div>
 </div>
 
@@ -518,7 +529,20 @@
 <div class="col-xs-6">
 <div class="row">
 <ul>
-<li><h4>IQ test</h4> <h5>IQ test not given</h5></li>
+<li><h4>IQ test</h4> 
+
+		<?php 
+		if($coupon['coupon_id']){
+			echo "<h5>Your IQ score is ".$coupon['score']."</h5>";
+			echo "<div class='iqResult'><h6>Your Coupon code is : ".$coupon['coupon']."</h6></div>";
+	    }else{
+			echo "<h5>IQ test not given</h5>";
+		}
+		
+		?>
+
+
+</li>
 </ul>
 </div>
 </div>
@@ -557,15 +581,15 @@
 <div id="change_password_response"></div>
 
 <div class="form-group">
-<label>Current Password</label> <input type="text" id="change_curpassword" name="">
+<label>Current Password</label> <input type="password" id="change_curpassword" name="">
 </div>
 
 <div class="form-group">
-<label>New Password</label> <input type="text" id="change_password" name="">
+<label>New Password</label> <input type="password" id="change_password" name="">
 </div>
 
 <div class="form-group">
-<label>Re Type New Password</label> <input type="text" id="change_cpassword" name="">
+<label>Re Type New Password</label> <input type="password" id="change_cpassword" name="">
 </div>
 
 <div class="form-group">
@@ -596,6 +620,44 @@
 
 </div>
 <!--Profle tab3 close-->
+
+
+
+
+<!--Profle tab4 start-->
+<div class="profileHolder" id="profileTab4">
+
+<div class="profileBox">
+<h3>Check Coupon Value</h3>
+<form class="settingForm">
+<div id="change_password_response"></div>
+
+<div class="form-group">
+<label>Select College</label> <input type="text" id="change_curpassword" name="">
+</div>
+
+<div class="form-group">
+<label>Select Stream</label> <input type="text" id="change_password" name="">
+</div>
+
+<div class="form-group">
+<label>Select Course</label> <input type="text" id="change_cpassword" name="">
+</div>
+
+<div class="form-group">
+<input type="button" value="Cancel" name="" class="cancelButton">
+<input type="submit" value="Save" name="" id="change_password_save" class="saveButton">
+</div>
+
+
+</form>
+</div>
+
+
+</div>
+<!--Profle tab4 close-->
+
+
 
 </div>
 

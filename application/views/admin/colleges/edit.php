@@ -178,7 +178,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <select name="status">
 										  <option value="1" <?php if(@$status['value']==1){echo "selected";} ?>>Active</option>
 										  <option value="0" <?php if(@$status['value']==0){echo "selected";} ?>>De-active</option>
-										   <option value="0" <?php if(@$status['value']==2){echo "selected";} ?>>Tie Up</option>
+										   <option value="2" <?php if(@$status['value']==2){echo "selected";} ?>>Tie Up</option>
 										  </select>
 										  </div>
 										</div>

@@ -19,6 +19,7 @@
 			
 			/* college model */
 			$this->load->model('common/common_model');
+			$this->load->model('common/college_model');
 			$this->load->model('common/coupon_model');
 			
 			$this->load->library('paginationajax');
@@ -150,31 +151,54 @@
 				$this->data['breadcrumb'] = $this->breadcrumbs->show();
 				
 				/* Validate form input */
+				
+				//$college_id		=	$this->session->userdata('user_id');
+				$userId = $this->ion_auth->get_user_id();
+				if($this->ion_auth->in_group('college')){
+				 $user   = $this->ion_auth->user($userId)->row();
+				 $this->data['college_lists'] = $this->college_model->get_assigned_college($user->colleges);
+				}else{
+				 $this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
+				}
+				
 				$this->form_validation->set_rules('course_id', 'Course', 'required');
 				$this->form_validation->set_rules('coupon', 'Coupon', 'trim|required|callback_coupon_validation');
-				$this->data['coupon']	=	"";				
-				$this->data['courses']	=	$this->common_model->get_all("mc_courses");
+				$this->data['coupon']		=	"";		
+				$this->data['course_id']	=	0;				
+				//$this->data['courses']		=	$this->coupon_model->get_all_courses($college_id);
 				
 				if ($this->form_validation->run() == TRUE) {
 					$this->load->library('sendgridemail');
-					
+					$college_id		=	$this->input->post('college_id');
 					$coupon			=	$this->input->post('coupon');
-					$course_id		=	$this->input->post('course_id');
-					$college_id		=	$this->session->userdata('user_id');
+					$str_course_id	=	$this->input->post('course_id');
+					list($course_id,$incentive)	=	explode("|",$str_course_id);
+					
 					$collegeName	=	$this->common_model->get_single_var('name', 'mc_colleges', 'id', $college_id);
+					$coursedetails  =   $this->college_model->get_single_courses_detail($college_id,$course_id);
 					$courseName		=	$this->common_model->get_single_var('course_name', 'mc_courses', 'course_id', $course_id);
-					$course_fee		=	50000;
+					
+					$fee            =   $coursedetails->fee;
+					$incentive		=	$incentive;
 					$result			=	$this->coupon_model->is_valid_coupon($coupon);
+
+					if(!$incentive){
+						$this->form_validation->set_message("coupon_validation", 'Incentive is not mentioned');
+						$this->template->admin_render('admin/coupons/redeem', $this->data);
+						return FALSE;
+					}
+					
+					
 					if($result) {
 						$coupon_id		=	$result['coupon_id'];
 						$score			=	$result['score'];
 						
-						
-						$total_disc		=	($course_fee * $score) / 100;
-						$total_disc_fee	=	$course_fee - $total_disc;
+						$total_disc		=	($incentive * $score) / 100;
+						$total_disc_fee	=	$fee - $total_disc;
 						
 						$this->data['course_id']		=	$course_id;
-						$this->data['course_fee']		=	$course_fee;
+						$this->data['course_fee']		=   $fee;
+						$this->data['course_incentive']	=	$incentive;
 						$this->data['coupon']			=	$coupon;
 						$this->data['total_disc']		=	$total_disc;
 						$this->data['total_disc_fee']	=	$total_disc_fee;	
@@ -199,5 +223,29 @@
 				$this->template->admin_render('admin/coupons/redeem', $this->data);
 			}			
 		}
+		
+		
+		/*get courses*/
+		function courses($id) {
+			if ( ! $this->ion_auth->logged_in() )
+			{
+				redirect('auth/login', 'refresh');
+			}
+			else
+			{ 
+				$college_id = $id;
+				$courses = $this->coupon_model->get_all_courses($college_id);
+				echo '<option value="">Choose a Course to apply coupon</option>';
+				if($courses) {
+					foreach($courses as $k => $course){
+						
+						echo '<option value="'.$course['course_id']."|".$course['incentive'].'" >'.$course['course_name'].'</option>';			
+					}
+				}
+	
+			die;
+			}
+		}	
+		
 	}
 ?>

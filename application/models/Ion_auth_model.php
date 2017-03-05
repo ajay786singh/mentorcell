@@ -2257,16 +2257,44 @@ class Ion_auth_model extends CI_Model
 	
 	/*user meta*/
 	function set_user_meta($user_id, $meta_key, $meta_value){
+		if($meta_value=='')return false;
+		if($this->get_user_meta($user_id, $meta_key)){
+			
+			$data = array('meta_value'=>$meta_value);
+		    $this->db->where("user_id",$user_id);
+		    $this->db->where("meta_key",$meta_key);
+            $this->db->update("users_meta", $data);
+            return (isset($id)) ? $id : FALSE;
+			
+		}else{	 
+			$data = array('user_id'=>$user_id,'meta_key'=>$meta_key,'meta_value'=>$meta_value);
+			$this->db->insert('users_meta', $data);
+			$id = $this->db->insert_id();
+			return (isset($id)) ? $id : FALSE;
+		}
+		
+	}
+	
+	function update_user_meta($user_id, $meta_key, $meta_value){
 		 	 
-		$data = array('user_id'=>$user_id,'meta_key'=>$meta_key,'meta_value'=>$meta_value);
-		$this->db->insert('users_meta', $data);
-        $id = $this->db->insert_id();
+		if($this->get_user_meta($user_id, $meta_key)==false){	 
+		$data = array('meta_value'=>$meta_value);
+		$this->db->where("user_id",$user_id);
+		$this->db->where("meta_key",$meta_key);
+        $this->db->update("users_meta", $data);
         return (isset($id)) ? $id : FALSE;
+		}
 		
 	}
 	
 	function get_user_meta($user_id, $meta_key){
-		
+		$this->db->where("user_id",$user_id);
+		$this->db->where("meta_key",$meta_key);
+        $res= $this->db->get("users_meta")->row();
+		if($res){
+		$res=  $res->meta_value;
+        return (isset($res)) ? $res : FALSE;
+		} return false;
 	}
 	
 	/*user meta*/

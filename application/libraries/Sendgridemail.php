@@ -25,7 +25,7 @@ class Sendgridemail
 
         $this->api_key = $this->_ci->config->item('API_KEY');
 
-        $this->from_email = $this->_ci->config->item('FROM_EAIL');
+        $this->from_email = $this->_ci->config->item('FROM_EMAIL');
 		
 		$this->from_name = $this->_ci->config->item('FROM_NAME');
 

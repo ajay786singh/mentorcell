@@ -153,7 +153,7 @@
 				/* Validate form input */
 				
 				//$college_id		=	$this->session->userdata('user_id');
-				
+				$userId = $this->ion_auth->get_user_id();
 				if($this->ion_auth->in_group('college')){
 				 $user   = $this->ion_auth->user($userId)->row();
 				 $this->data['college_lists'] = $this->college_model->get_assigned_college($user->colleges);

@@ -269,6 +269,8 @@ $(document).ready(function() {
 	
 	/*Question Answer Submit*/
 		$("#question_answer").click(function(event) {
+			var curbutton = $(this);
+			curbutton.prop('disabled', true);;
 			event.preventDefault();
 			var question_ids	= 	$("#question_ids").val();
 			var course_id		= 	$("#course_id").val();
@@ -284,6 +286,7 @@ $(document).ready(function() {
 			}
 			if(a_question_ids.length != a_answers.length) {
 				alert("Kindly answer all the questions!!");
+				curbutton.prop('disabled', false);
 				return false;
 			}
 			answers	=	"";

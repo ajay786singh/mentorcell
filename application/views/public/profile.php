@@ -529,7 +529,20 @@
 <div class="col-xs-6">
 <div class="row">
 <ul>
-<li><h4>IQ test</h4> <h5>IQ test not given</h5></li>
+<li><h4>IQ test</h4> 
+
+		<?php 
+		if($coupon['coupon_id']){
+			echo "<h5>Your IQ score is ".$coupon['score']."</h5>";
+			echo "<div class='iqResult'><h6>Your Coupon code is : ".$coupon['coupon']."</h6></div>";
+	    }else{
+			echo "<h5>IQ test not given</h5>";
+		}
+		
+		?>
+
+
+</li>
 </ul>
 </div>
 </div>
@@ -568,15 +581,15 @@
 <div id="change_password_response"></div>
 
 <div class="form-group">
-<label>Current Password</label> <input type="text" id="change_curpassword" name="">
+<label>Current Password</label> <input type="password" id="change_curpassword" name="">
 </div>
 
 <div class="form-group">
-<label>New Password</label> <input type="text" id="change_password" name="">
+<label>New Password</label> <input type="password" id="change_password" name="">
 </div>
 
 <div class="form-group">
-<label>Re Type New Password</label> <input type="text" id="change_cpassword" name="">
+<label>Re Type New Password</label> <input type="password" id="change_cpassword" name="">
 </div>
 
 <div class="form-group">

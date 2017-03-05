@@ -354,6 +354,8 @@ class User extends Public_Controller {
 		$this->data['dob'] = $this->ion_auth->get_user_meta($user['id'], 'dob');
 		$this->data['about_me'] = $this->ion_auth->get_user_meta($user['id'], 'about_me');
 		$this->data['bio'] = $this->ion_auth->get_user_meta($user['id'], 'bio');
+		
+		$this->data['coupon'] = $this->common_model->get_single_row('mc_coupons','user_id',$user['id']);
 
 		
 		$this->load->view('public/layout/header', $this->data);
@@ -361,6 +363,24 @@ class User extends Public_Controller {
 		$this->load->view('public/profile', $this->data);
 		
 		$this->load->view('public/layout/footer', $this->data);
+	}
+	
+	function curpassword_validation($str) {
+			if ($this->ion_auth->logged_in()){
+				$userdata  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+				
+			}else{
+				$this->data['user_login'] = array('id'=>false);
+			}
+			$id = $userdata['id'];
+			$originalPassword = $this->input->post('curpassword');
+			if ($this->ion_auth->hash_password_db($id, $originalPassword) !== TRUE)
+			{
+				$this->form_validation->set_message("curpassword_validation", 'Please Enter Valid Current Password');
+				return FALSE;
+			}
+			
+			return TRUE;
 	}
 	
 	public function changepassword(){
@@ -377,11 +397,13 @@ class User extends Public_Controller {
 			}else{
 				$this->data['user_login'] = array('id'=>false);
 			}
+						
+			$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[cpassword]');
+			$this->form_validation->set_rules('cpassword','Confirm Password' , 'required');
+				
+			$this->form_validation->set_rules('curpassword', 'Current Password', 'required|callback_curpassword_validation');
 			
-			$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
 
-			$this->form_validation->set_rules('curpassword', 'Current Password', 'required');
-			
             if ($this->form_validation->run() == TRUE)
             {
 				$curpassword = $this->input->post('curpassword');

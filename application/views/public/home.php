@@ -29,7 +29,7 @@
 			
 </select>
 </div>
-		<div  class="extra_filters">
+		<div  class="extra_filters" style="display:none;">
 			<div class="formcol00">
 			<select id="stream"  class="auto-choice"  name="stream">
 				<?php 

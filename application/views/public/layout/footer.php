@@ -17,6 +17,8 @@ Noida, UP<br>
 <li><a href="<?php echo base_url()?>page/whatwedo">What we do</a></li>
 <li><a href="<?php echo base_url()?>page/testimonial">Testimonial</a></li>
 <li><a href="<?php echo base_url()?>page/team">Team</a></li>
+<li><a href="#" data-toggle="modal" data-target="#privacyModal">Privacy</a></li>
+<li><a href="#" data-toggle="modal" data-target="#termsModal">Terms & Conditions</a></li>
 </ul>
 </div>
 
@@ -270,7 +272,8 @@ Noida, UP<br>
 			</select>
       		<i class="icon-city"></i>
       	</div>
-
+		<p class="signup-msg">By clickingSubmit, you agree to MentorCell's <a href="#" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a> and 
+		<a href="#" data-toggle="modal" data-target="#termsModal">Terms & Conditions</a></p>
       	<div class="inputRow">
       		<input type="submit" value="Submit" id="register_button" class="go" name="">
       	</div>
@@ -337,7 +340,7 @@ Noida, UP<br>
 
 <!-- message -->
 
-
+<?php include(FCPATH.'application/views/public/static/termandcondition.php') ?>
 
 
 <!-- JAVASCRIPT FILES -->

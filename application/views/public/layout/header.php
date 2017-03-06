@@ -37,6 +37,7 @@ header('Vary: Accept-Encoding');
 			<link href="<?php echo base_url('assets/theme/css/bootstrap.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/jquery.bxslider.css'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/custom.css?ver=1.0'); ?>" rel="stylesheet" type="text/css" media="all" />
+			<link href="<?php echo base_url('assets/theme/css/mentorcell.css?ver=1.0'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/customResponsive.css?ver=1.0'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<script>
 			var base_url = '<?php echo base_url(); ?>';

@@ -351,6 +351,12 @@ $(document).ready(function() {
 					
 				}
 			});
+			
+			if(college_id != ''){
+				$(".extra_filters").show();
+				$(".extra_filters select").show();
+			}
+			
 		});
 	
 	

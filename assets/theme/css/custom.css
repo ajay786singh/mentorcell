@@ -27,7 +27,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 
 .mainMenu {text-align: center; position: relative;}
-.mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 13px; padding: 19px 12px; margin: 0px 10px;}
+.mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 13px; padding: 19px 0px; margin: 0px 10px;}
 .mainMenu ul > li:first-child {margin-left:0px;}
 .mainMenu ul > li:last-child {margin-right:0px;}
 .mainMenu ul li a {color: #fff; text-decoration: none;}
@@ -121,6 +121,8 @@ header#header .logo img {max-width: 100%; height: auto;}
 .bgGrey {background:#f3f3f6; width: 100%; float: left; clear: both;}
 .bgCourses {background: #ffa081;}
 .bgAbroad {background: url('../images/imgbg1.jpg') no-repeat; background-size: cover;}
+
+.bgCollege {background: url('../images/college-bg.jpg') no-repeat; background-size: cover;}
 
 
 .stepsRow {padding: 8px 0px; text-align: center;}
@@ -673,7 +675,6 @@ header#header .logo img {max-width: 100%; height: auto;}
 .profileBox .settingForm .form-group {float: left; width: 100%; clear: both;}
 .profileBox .settingForm label {font-size: 14px; color: rgba(0,0,0,0.64); display: block; float: left; width: 200px;}
 .profileBox .settingForm input[type="text"] {width: 100%; max-width: 280px; padding: 5px; height: 30px; border:1px solid rgba(0,0,0,0.20); float: left;}
-.profileBox .settingForm input[type="password"] {width: 100%; max-width: 280px; padding: 5px; height: 30px; border:1px solid rgba(0,0,0,0.20); float: left;}
 .profileBox .settingForm input[type="checkbox"] {float: left; margin: 4px 10px 0px 0px;}
 .profileBox .settingForm input[type="checkbox"] + label {width: auto;}
 .profileBox .settingForm .cancelButton {float: left; height: 35px; width: 100px; margin: 0px 15px 0px 0px; background: rgba(0,0,0,0.10); border-radius: 6px; border: 1px solid rgba(0,0,0,0.15); cursor: pointer;}
@@ -682,6 +683,31 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 .page404 {text-align: center; padding: 40px;}
 .page404 img {display: inline-block; max-width: 100%; height: auto;}
+
+.collegeLogin {background: #fff; margin: 55px auto; width: 400px; padding: 20px; border:1px solid rgba(0,0,0,0.20); border-radius: 10px;}
+.collegeLogin h3 {font-size: 18px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
+.collegeLogin h5 {font-size: 13px; margin:0px; color: #5792cc; display: block; text-align: center;}
+.collegeLogin h5 a {color: #5792cc;}
+.collegeLogin h5 a:hover {color: #000;}
+.collegeLogin .inputRow {margin: 0px 0px 10px 0px; position: relative;}
+.collegeLogin i {position: absolute; z-index: 2; top: 10px; left:18px; font-size: 19px; line-height: 1px; color:#bababa;}
+.collegeLogin .inputRow input {width: 100%; font-size: 13px; border:1px solid #c5c5c5; height: 40px; border-radius: 5px; padding: 0px 0px 0px 50px;}
+.collegeLogin .inputRow input:focus {border:1px solid #5792cc;}
+.collegeLogin .inputRow input:focus + i {color:#5792cc;}
+.collegeLogin .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
+.collegeLogin .inputRow input.go:hover {background: #000;}
+
+
+.privacyContent .modal-dialog {width: 800px; max-width: 100%;}
+.privacyContent h5 {font-size: 14px; font-family: 'ubuntubold'; margin: 0px 0px 10px 0px;}
+.privacyContent p {margin: 0px 0px 10px 0px; font-size: 13px; text-align: justify;}
+.privacyContent ul { margin: 0px 0px 22px 20px; }
+.privacyContent ul li {list-style-type: disc; font-size: 13px; margin: 0px 0px 10px 0px;}
+.privacyContent ul li ol {margin: 0px 0px 0px 30px;}
+.privacyContent ul li ol li {list-style-type: circle; }
+
+.privacyContent ol.lower-alpha {margin: 0px 0px 22px 25px;}
+.privacyContent ol.lower-alpha li {list-style-type: lower-alpha; font-size: 13px; margin: 0px 0px 10px 0px;}
 
 /****new close****/
 
@@ -701,48 +727,3 @@ header#header .logo img {max-width: 100%; height: auto;}
 .footerBottom .footerSocial a.fbBg:hover {background: #3b5998; color: #fff;}
 .footerBottom .footerSocial a.twBg:hover {background: #42c8f4; color: #fff;}
 .footerBottom .footerSocial a.inBg:hover {background: #006fa6; color: #fff;}
-
-
-
-/**/
-
-#forgotModal .modal-dialog {max-width: 400px;}
-#forgotModal .modal-body {padding-top: 0px;}
-#forgotModal .loginForm {padding:0px 5px;}
-#forgotModal .loginForm h3 {font-size: 14px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
-#forgotModal .loginForm h3 a {color: #5792cc;}
-#forgotModal .loginForm h3 a:hover {color: rgba(0,0,0,0.87);}
-#forgotModal .loginForm h4 {font-size: 13px; float: left; width: 100%; clear: both; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
-#forgotModal .loginForm h5 {font-size: 13px; margin:0px; color: #5792cc; display: block; text-align: center;}
-#forgotModal .loginForm h5 a {color: #5792cc;}
-#forgotModal .loginForm h5 a:hover {color: #000;}
-#forgotModal .loginForm .inputRow {margin: 0px 0px 10px 0px; position: relative;}
-#forgotModal .loginForm i {position: absolute; z-index: 2; top: 5px; left:18px; font-size: 19px; line-height: 1px; color:#bababa;}
-#forgotModal .loginForm .inputRow input {width: 100%; font-size: 13px; border:1px solid #c5c5c5; height: 30px; border-radius: 5px; padding: 0px 0px 0px 50px;}
-#forgotModal .loginForm .inputRow input:focus {border:1px solid #5792cc;}
-#forgotModal .loginForm .inputRow input:focus + i {color:#5792cc;}
-#forgotModal .loginForm .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
-#forgotModal .loginForm .inputRow input.go:hover {background: #000;}
-
-#forgotsetModal .modal-dialog {max-width: 400px;}
-#forgotsetModal .modal-body {padding-top: 0px;}
-#forgotsetModal .loginForm {padding:0px 5px;}
-#forgotsetModal .loginForm h3 {font-size: 14px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
-#forgotsetModal .loginForm h3 a {color: #5792cc;}
-#forgotsetModal .loginForm h3 a:hover {color: rgba(0,0,0,0.87);}
-#forgotsetModal .loginForm h4 {font-size: 13px; float: left; width: 100%; clear: both; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
-#forgotsetModal .loginForm h5 {font-size: 13px; margin:0px; color: #5792cc; display: block; text-align: center;}
-#forgotsetModal .loginForm h5 a {color: #5792cc;}
-#forgotsetModal .loginForm h5 a:hover {color: #000;}
-#forgotsetModal .loginForm .inputRow {margin: 0px 0px 10px 0px; position: relative;}
-#forgotsetModal .loginForm i {position: absolute; z-index: 2; top: 5px; left:18px; font-size: 19px; line-height: 1px; color:#bababa;}
-#forgotsetModal .loginForm .inputRow input {width: 100%; font-size: 13px; border:1px solid #c5c5c5; height: 30px; border-radius: 5px; padding: 0px 0px 0px 50px;}
-#forgotsetModal .loginForm .inputRow input:focus {border:1px solid #5792cc;}
-#forgotsetModal .loginForm .inputRow input:focus + i {color:#5792cc;}
-#forgotsetModal .loginForm .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
-#forgotsetModal .loginForm .inputRow input.go:hover {background: #000;}
-/**/
-#introductionVideo,video{width:100%;}
-.extra_filters{ background: #fff;height: 50px; margin-top: 50px;position: absolute; width: calc(100% - 48px);}
-.homeSlider .searchArea .formHolder .formcol00{width: calc(33.3%);position: relative;float: left;border-right: 1px solid rgba(0,0,0,0.20);padding: 0px 10px;}
-#couponBox3{padding: 100px 0;}

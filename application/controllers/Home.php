@@ -151,7 +151,7 @@ class Home extends Public_Controller {
 		
 		$email_data = array(
 								'subject'=>'New Enquiry Request from MentorCell',
-								'to' =>'rajanwildtech@gmail.com ',
+								'to' =>'dinesh@mentorcell.com',
 								'message' => "Please find information requested  from MentorCell.\n Name: ".$name."\n Email: ".$email."\n Phone: ".$phone."\n Message:  ".$message."\n URL: ".site_url()."\n Team\n MentorCell"
 							);
 			$response_array = $this->sendgridemail->send_email($email_data);

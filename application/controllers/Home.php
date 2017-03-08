@@ -147,4 +147,22 @@ class Home extends Public_Controller {
 	}
 
 	}
+	
+	
+	
+	/**/
+	public function underconstruction()
+	{
+		if ($this->ion_auth->logged_in()){
+		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		}else{
+			$this->data['user_login'] = array('id'=>false);
+		}
+		$this->load->view('public/layout/header', $this->data);
+		$this->load->view('public/404', $this->data);
+		$this->load->view('public/layout/footer', $this->data);
+	}
+	
+	/**/
+	
 }

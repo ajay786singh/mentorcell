@@ -500,13 +500,14 @@ Noida-201307, India</p>
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="contactForm">
-	<form>
+	<form id="_contact_form">
+	<div id="_contact_form_response"></div>
 	<ul>
-	    <li><input type="text" name="" placeholder="Full Name"> <i class="icon-name"></i></li>
-		<li><input type="email" name="" placeholder="Email Address"> <i class="icon-email"></i></li>
-		<li><input type="tel" name="" placeholder="Mobile Number"> <i class="icon-phone-call"></i></li>
-		<li><textarea placeholder="Message"></textarea></li>
-		<li><input type="submit" value="Send" class="go" name=""></li>
+	    <li><input id="_contact_form_name" required='' type="text" name="" placeholder="Full Name"> <i class="icon-name"></i></li>
+		<li><input id="_contact_form_email" required='' type="email" name="" placeholder="Email Address"> <i class="icon-email"></i></li>
+		<li><input id="_contact_form_phone" required='' type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" name="" placeholder="Mobile Number"> <i class="icon-phone-call"></i></li>
+		<li><textarea id="_contact_form_message" required='' placeholder="Message"></textarea></li>
+		<li><input id="_contact_form_send" type="submit" value="Send" class="go" name=""></li>
 		</ul>
 	</form>
 </div>

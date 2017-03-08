@@ -393,6 +393,7 @@ class Colleges extends Admin_Controller {
 		$this->data['message']= "Assign Courses and extra informtion";
 
 		$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		$this->data['exams'] = $this->common_model->get_all_rows("mc_exams", 1,1);
 		
 		$this->data['college_id'] = $id;
 		$this->data['course_id'] = $this->college_model->get_courses($id);

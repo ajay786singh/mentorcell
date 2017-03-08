@@ -94,7 +94,15 @@
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Exams</label>
 						  <div class="col-sm-10">
-						  <input type="text" class="form-control" required="" name="exam" id="exam" value="" placeholder="Enter Exams">
+							 <select  class="form-control basic-multiple" required="" name="exam" id="exam" multiple="multiple">
+							   <?php
+							   echo "<option value=''>Choose Exam</option>";
+							  foreach($exams as $exam){
+								echo "<option value='".$exam['id']."'>".$exam['exam_name']."</option>";
+							  }
+							  ?>
+							</select>
+		
 						  </div>
 						</div>
 										

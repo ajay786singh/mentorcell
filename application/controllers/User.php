@@ -237,10 +237,18 @@ class User extends Public_Controller {
 								'to' =>$email,
 								'message' => "Please follow link to set password for  MentorCell.\n URL: ".$reseturl."\n  Team\n MentorCell"
 							);
-						$response_array = $this->sendgridemail->send_email($email_data);
-					
-					$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Please check email for instruction.</div>');
+					$response_array = $this->sendgridemail->send_email($email_data);
+					if($response_array == 202){
+						$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Please check email for instruction.</div>');
+					}else{
+						$response = array('status'=>true,'message'=>'<div class="alert alert-danger"><strong>Registered!</strong> We are unable to deliver email.</div>');
+					}
 					echo json_encode($response);die;
+				}else{
+					
+					$response = array('status'=>false,'message'=>'<div class="alert alert-danger"><strong>You are not registered with Mentorcell.</div>');
+					echo json_encode($response);die;
+					
 				}
                
             }

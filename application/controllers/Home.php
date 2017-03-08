@@ -142,9 +142,26 @@ class Home extends Public_Controller {
 	}
 
 	public function feedback(){
-	if(isset($_POST["mail"])){
-
-	}
+		$this->load->library('sendgridemail');
+		
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$phone = $_POST['phone'];
+		$message = $_POST['message'];
+		
+		$email_data = array(
+								'subject'=>'New Enquiry Request from MentorCell',
+								'to' =>'rajanwildtech@gmail.com ',
+								'message' => "Please find information requested  from MentorCell.\n Name: ".$name."\n Email: ".$email."\n Phone: ".$phone."\n Message:  ".$message."\n URL: ".site_url()."\n Team\n MentorCell"
+							);
+			$response_array = $this->sendgridemail->send_email($email_data);
+			
+			if($response_array == 202){
+				$response = array('status'=>true,'message'=>'<div class="alert alert-success">We will reply you soon.</div>');
+			}else{
+				$response = array('status'=>false,'message'=>'<div class="alert alert-danger">We are unable to deliver email.</div>');
+			}
+			echo json_encode($response);die;
 
 	}
 	

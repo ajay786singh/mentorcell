@@ -53,6 +53,7 @@ class Sendgridemail
 		$response->statusCode();
 		$response->headers();
 		$response->body();
+		return $response->statusCode();
 		
     }
 

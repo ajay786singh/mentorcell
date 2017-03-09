@@ -15,6 +15,7 @@ class User extends Public_Controller {
         $this->load->model('common/prefs_model');
 		$this->load->model('common/college_model');
 		$this->load->model('common/common_model');
+		$this->load->model('common/coupon_model');
 		/* college model */
     }
 
@@ -364,6 +365,8 @@ class User extends Public_Controller {
 		$this->data['bio'] = $this->ion_auth->get_user_meta($user['id'], 'bio');
 		
 		$this->data['coupon'] = $this->common_model->get_single_row('mc_coupons','user_id',$user['id']);
+		
+		$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
 
 		
 		$this->load->view('public/layout/header', $this->data);
@@ -592,5 +595,93 @@ class User extends Public_Controller {
 	}
 
 	/*profile update*/
+	
+	/*courses to redeem*/
+		/*get courses*/
+		function college_courses($id) {
+				$college_id = $id;
+				$courses = $this->coupon_model->get_all_courses($college_id);
+				echo '<option value="">Choose a Course to apply coupon</option>';
+				if($courses) {
+					foreach($courses as $k => $course){
+						
+						echo '<option value="'.$course['course_id']."|".$course['incentive'].'" >'.$course['course_name'].'</option>';			
+					}
+				}
+	
+			die;
+		}
+
+
+
+	function redeem() {
+			if ( ! $this->ion_auth->logged_in() )
+			{
+				echo "<div class='alert alert-danger'>please login first</div>";
+			}
+			else
+			{ 
+				$userId = $this->ion_auth->get_user_id();
+				
+				$this->form_validation->set_rules('course', 'Course', 'required');
+				$this->form_validation->set_rules('college', 'College', 'required');
+			
+				
+				if ($this->form_validation->run() == TRUE) {
+					$this->load->library('sendgridemail');
+					$college_id		=	$this->input->post('college');
+					$coupon         =   $this->common_model->get_single_var('coupon','mc_coupons','user_id',$userId);
+					$str_course_id	=	$this->input->post('course');
+					list($course_id,$incentive)	=	explode("|",$str_course_id);
+					
+					$collegeName	=	$this->common_model->get_single_var('name', 'mc_colleges', 'id', $college_id);
+					$coursedetails  =   $this->college_model->get_single_courses_detail($college_id,$course_id);
+					$courseName		=	$this->common_model->get_single_var('course_name', 'mc_courses', 'course_id', $course_id);
+					
+					$fee            =   $coursedetails->fee;
+					$incentive		=	$incentive;
+					$result			=	$this->coupon_model->is_valid_coupon($coupon);
+
+					if(!$incentive){
+						$this->form_validation->set_message("coupon_validation", 'Incentive is not mentioned');
+						$this->template->admin_render('admin/coupons/redeem', $this->data);
+						return FALSE;
+					}
+					
+					
+					if($result) {
+						$coupon_id		=	$result['coupon_id'];
+						$score			=	$result['score'];
+						$total_disc		=	($incentive * $score) / 100;
+						$total_disc_fee	=	$fee - $total_disc;
+						
+						$email_data = array(
+							'subject'=>'Enquiry has been made on MentorCell by college '.$collegeName,
+							'to' =>'sanjeev.singh82@gmail.com',
+							'message' => "An enquiry has been made on MentorCell by <b>College:</b> ".$collegeName." for <b>Course:</b> ".$courseName." .\n Coupon: ".$coupon."\n URL: ".site_url()."\n Team\n MentorCell"
+						);
+						
+						$response_array = $this->sendgridemail->send_email($email_data);
+						
+						$message = '<div class="alert alert-success"><p>Fee: Rs. '.$fee.' </p><p>Discount: Rs. '.$total_disc.'</p><p>Fee after Discount: Rs. '.$total_disc_fee.'</p></div>';
+						$response = array('status'=>true,'message'=>$message);
+						echo json_encode($response);
+						die;
+					}else{
+						$response = array('status'=>false,'message'=>'<div class="alert alert-danger">Coupon not applicable.</div>');
+						echo json_encode($response);
+						die;
+					} 
+				}else{
+					$error = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+					
+					$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.$error.'</div>');
+					echo json_encode($response);
+					die;
+				}
+			}			
+		}		
+	
+	/*courses to redeem*/
 	
 }

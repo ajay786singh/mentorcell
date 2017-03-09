@@ -643,9 +643,9 @@ class User extends Public_Controller {
 					$result			=	$this->coupon_model->is_valid_coupon($coupon);
 
 					if(!$incentive){
-						$this->form_validation->set_message("coupon_validation", 'Incentive is not mentioned');
-						$this->template->admin_render('admin/coupons/redeem', $this->data);
-						return FALSE;
+						$response = array('status'=>false,'message'=>'<div class="alert alert-danger">No Discount for this College.</div>');
+					echo json_encode($response);
+					die;
 					}
 					
 					

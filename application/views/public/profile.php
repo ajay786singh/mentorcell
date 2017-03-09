@@ -630,23 +630,33 @@
 <div class="profileBox">
 <h3>Check Coupon Value</h3>
 <form class="settingForm">
-<div id="change_password_response"></div>
+<div id="redeem_result"></div>
 
 <div class="form-group">
-<label>Select College</label> <input type="text" id="change_curpassword" name="">
+<label>Select College</label>
+	<select id="redeem_college_id" name="college_id">
+		<option value="">Choose a College to apply coupon</option>
+		<?php
+			if($college_lists) {
+				foreach($college_lists as $k => $college_list){
+					echo '<option value="'.$college_list['id'].'">'.$college_list['name'].'</option>';			
+				}
+			}
+		?>	
+	</select>
 </div>
 
 <div class="form-group">
-<label>Select Stream</label> <input type="text" id="change_password" name="">
-</div>
+<label>Select Course</label> 
 
-<div class="form-group">
-<label>Select Course</label> <input type="text" id="change_cpassword" name="">
+	<select id="redeem_search_course" name="course_id">						
+		<option value="">Choose a course to apply coupon</option>
+	</select>
 </div>
 
 <div class="form-group">
 <input type="button" value="Cancel" name="" class="cancelButton">
-<input type="submit" value="Save" name="" id="change_password_save" class="saveButton">
+<input type="submit" value="Save" name="" id="show_coupon_value" class="saveButton">
 </div>
 
 

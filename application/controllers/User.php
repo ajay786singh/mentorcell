@@ -349,7 +349,7 @@ class User extends Public_Controller {
 		$user  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
 		$this->data['user_login'] = $user;
 		}else{
-			$this->data['user_login'] = array('id'=>false);
+			 redirect('/', 'refresh');
 		}
 		
 		$city = $this->ion_auth->get_user_meta($user['id'], 'city');

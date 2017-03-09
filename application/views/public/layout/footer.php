@@ -13,7 +13,7 @@ Noida, UP<br>
 <div class="footerWidget">
 <h3>About us</h3>
 <ul>
-<li><a href="<?php echo base_url()?>page/companyoverview">Company Overview</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Company Overview</a></li>
 <li><a href="<?php echo base_url()?>page/whatwedo">What we do</a></li>
 <li><a href="<?php echo base_url()?>page/testimonial">Testimonial</a></li>
 <li><a href="<?php echo base_url()?>page/team">Team</a></li>
@@ -25,12 +25,12 @@ Noida, UP<br>
 <div class="footerWidget">
 <h3>Services</h3>
 <ul>
-<li><a href="<?php echo base_url()?>pages/companyoverview">Admission 2017</a></li>
-<li><a href="<?php echo base_url()?>pages/companyoverview">Career Profiling test</a></li>
-<li><a href="<?php echo base_url()?>pages/companyoverview">Abroad Education</a></li>
-<li><a href="<?php echo base_url()?>pages/companyoverview">Counselling</a></li>
-<li><a href="<?php echo base_url()?>pages/companyoverview">Counselling Video</a></li>
-<li><a href="<?php echo base_url()?>pages/companyoverview">Placement</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Admission 2017</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Career Profiling test</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Abroad Education</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Counselling</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Counselling Video</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Placement</a></li>
 </ul>
 </div>
 
@@ -50,9 +50,9 @@ Noida, UP<br>
 <div class="footerWidget">
 <h3>Links</h3>
 <ul>
-<li><a href="<?php echo base_url()?>pages/companyoverview">Search step by step</a></li>
-<li><a href="<?php echo base_url()?>pages/companyoverview">Common Application Form</a></li>
-<li><a href="<?php echo base_url()?>pages/companyoverview">Value of redeem coupon</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Search step by step</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Common Application Form</a></li>
+<li><a href="<?php echo base_url()?>user/profile">Value of redeem coupon</a></li>
 <li><a href="#">Mobile Apps</a></li>
 </ul>
 </div>

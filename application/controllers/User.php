@@ -672,6 +672,12 @@ class User extends Public_Controller {
 						echo json_encode($response);
 						die;
 					} 
+				}else{
+					$error = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+					
+					$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.$error.'</div>');
+					echo json_encode($response);
+					die;
 				}
 			}			
 		}		

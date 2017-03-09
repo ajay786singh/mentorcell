@@ -386,7 +386,41 @@ $(document).ready(function() {
 			});
 		});		
 		/*Contact Form*/
-	
+		
+		
+		/*get course dropdown*/
+		$("#redeem_college_id").change(function(){
+			var college_id = ($(this).val());
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/user/college_courses/"+college_id,
+				dataType: 'text',
+				success: function(res) {
+					$("#redeem_search_course").html(res);
+				}
+			});
+			
+		});
+		/*get course dropdown*/
+		
+		/*get the coupon value*/
+		$("#show_coupon_value").click(function(event){
+			event.preventDefault();
+			var _coupon_college   = $("#redeem_college_id").val();
+			var _coupon_course    = $("#redeem_search_course").val();
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/user/redeem",
+				dataType: 'json',
+				data: {college:_coupon_college,course:_coupon_course},
+				success: function(res) {
+					$("#redeem_result").html(res.message);
+				}
+			});
+			
+		});
+		
+		/*get the coupon value*/
 	
 });
 

@@ -358,6 +358,34 @@ $(document).ready(function() {
 			}
 			
 		});
+		
+		
+		
+		/*Contact Form*/
+		$("#_contact_form_send").click(function(event) {
+			event.preventDefault();
+			var _contact_form_name    = $("input#_contact_form_name").val();
+			var _contact_form_email   = $("input#_contact_form_email").val();
+			var _contact_form_phone   = $("input#_contact_form_phone").val();
+			var _contact_form_message = $("#_contact_form_message").val();
+			
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/home/feedback",
+				dataType: 'json',
+				data: {name:_contact_form_name,email:_contact_form_email, phone:_contact_form_phone, message:_contact_form_message},
+				success: function(res) {
+					if (res)
+					{
+						$('#_contact_form_response').html(res.message);
+						if(res.status==true){
+							 $('#_contact_form')[0].reset();
+						}
+					}
+				}
+			});
+		});		
+		/*Contact Form*/
 	
 	
 });

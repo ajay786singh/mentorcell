@@ -158,7 +158,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			var recognition = $("#recognition").val();
 			var fee = $("#fee").val();
 			var incentive = $("#incentive").val();
-			var exam = $("#exam").val();
+			var exam = $("#exam").val().join();
 			var assigned_id = $("#assigned_id").val();
 			var procedure = $("#procedure").val();
 			var eligibility = $("#eligibility").val();

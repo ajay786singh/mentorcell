@@ -182,6 +182,10 @@ class College_model extends CI_Model {
 		$this->db->select('ca.*,cl.*,cities.name as city, states.name as state, countries.name as country ');
 		$this->db->from('mc_course_assignment AS ca');// I use aliasing make joins easier
 		$this->db->join('mc_colleges AS cl', 'cl.id = ca.college_id', 'INNER');
+		
+		$this->db->join('mc_colleges AS stream', 'cl.id = ca.college_id', 'INNER');
+		$this->db->join('mc_courses AS course', 'cl.id = ca.college_id', 'INNER');
+		
 		$this->db->join('cities AS cities', 'cities.id = cl.city', 'LEFT');
 		$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
 		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');

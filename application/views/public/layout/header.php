@@ -521,7 +521,7 @@ if(count($exam_menu)>0){
 
 </li>
 
-<li><a href="#">Study Abroad</a>
+<li><a href="<?php echo base_url('home/underconstruction'); ?>">Study Abroad</a>
 
 <!--submenu start-->
 <!--<div class="subMenuArea">
@@ -633,7 +633,9 @@ if(count($exam_menu)>0){
 
 </li>
 
-<li><a href="<?php echo site_url(); ?>admission-2017">Admission 2017</a>
+<!--<li><a href="<?php echo site_url(); ?>admission-2017">Admission 2017</a>-->
+<li><a href="<?php echo base_url('home/underconstruction'); ?>">Admission 2017</a>
+
 
 <!--<div class="subMenuArea">
 <div class="subMenuRow">
@@ -796,7 +798,7 @@ if(count($exam_menu)>0){
 
 </li>
 
-<li><a href="#">Counselling</a>
+<!--<li><a href="<?php echo base_url('home/underconstruction'); ?>">Counselling</a>-->
 
 <!--<div class="subMenuArea">
 <div class="subMenuRow">
@@ -932,7 +934,7 @@ if(count($exam_menu)>0){
 
 </li>
 
-<li><a href="#">Placements</a>
+<li><a href="<?php echo base_url('home/underconstruction'); ?>">Placements</a>
 
 <!--submenu start-->
 <div class="subMenuArea">

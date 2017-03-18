@@ -269,6 +269,8 @@ $(document).ready(function() {
 	
 	/*Question Answer Submit*/
 		$("#question_answer").click(function(event) {
+			var curbutton = $(this);
+			curbutton.prop('disabled', true);;
 			event.preventDefault();
 			var question_ids	= 	$("#question_ids").val();
 			var course_id		= 	$("#course_id").val();
@@ -284,6 +286,7 @@ $(document).ready(function() {
 			}
 			if(a_question_ids.length != a_answers.length) {
 				alert("Kindly answer all the questions!!");
+				curbutton.prop('disabled', false);
 				return false;
 			}
 			answers	=	"";
@@ -348,7 +351,77 @@ $(document).ready(function() {
 					
 				}
 			});
+			
+			if(college_id != ''){
+				$(".extra_filters").show();
+				$(".extra_filters select").show();
+			}
+			
 		});
-	
+		
+		
+		
+		/*Contact Form*/
+		$("#_contact_form_send").click(function(event) {
+			event.preventDefault();
+			var _contact_form_name    = $("input#_contact_form_name").val();
+			var _contact_form_email   = $("input#_contact_form_email").val();
+			var _contact_form_phone   = $("input#_contact_form_phone").val();
+			var _contact_form_message = $("#_contact_form_message").val();
+			
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/home/feedback",
+				dataType: 'json',
+				data: {name:_contact_form_name,email:_contact_form_email, phone:_contact_form_phone, message:_contact_form_message},
+				success: function(res) {
+					if (res)
+					{
+						$('#_contact_form_response').html(res.message);
+						if(res.status==true){
+							 $('#_contact_form')[0].reset();
+						}
+					}
+				}
+			});
+		});		
+		/*Contact Form*/
+		
+		
+		/*get course dropdown*/
+		$("#redeem_college_id").change(function(){
+			var college_id = ($(this).val());
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/user/college_courses/"+college_id,
+				dataType: 'text',
+				success: function(res) {
+					$("#redeem_search_course").html(res);
+				}
+			});
+			
+		});
+		/*get course dropdown*/
+		
+		/*get the coupon value*/
+		$("#show_coupon_value").click(function(event){
+			event.preventDefault();
+			var _coupon_college   = $("#redeem_college_id").val();
+			var _coupon_course    = $("#redeem_search_course").val();
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/user/redeem",
+				dataType: 'json',
+				data: {college:_coupon_college,course:_coupon_course},
+				success: function(res) {
+					$("#redeem_result").html(res.message);
+				}
+			});
+			
+		});
+		
+		/*get the coupon value*/
 	
 });
+
+

@@ -107,7 +107,7 @@ class Coupon extends Public_Controller {
 				//Calculating actual Score of the user
 				//Formula: When a student scores 10/20, his coupon value will be MIN + {(MAX - MIN)/ 20/10} i.e. 50 + 40/2 = 70%
 				//Formula: When a student scores 20/20, his coupon value will be by above formula: 50 + 40 = 90%
-				$minMaxResult		=	$this->common_model->get_all('mc_global_copupn_values');
+				$minMaxResult		=	$this->common_model->get_all('mc_global_coupon_values');
 				$minGlobalValue		=	$minMaxResult[0]['min'];
 				$maxGlobalValue		=	$minMaxResult[0]['max'];
 				if($tot_correct) {

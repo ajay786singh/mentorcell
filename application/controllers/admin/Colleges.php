@@ -41,7 +41,9 @@ class Colleges extends Admin_Controller {
             /* Load Template */
 			$userId = $this->ion_auth->get_user_id();
 			if($this->ion_auth->in_group('college')){
-				$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges", 'user_id',$userId);
+				$user   = $this->ion_auth->user($userId)->row();
+				//$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges", 'user_id',$userId);
+				$this->data['college_lists'] = $this->college_model->get_assigned_college($user->colleges);
 			}else{
 				$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
 			}
@@ -391,6 +393,7 @@ class Colleges extends Admin_Controller {
 		$this->data['message']= "Assign Courses and extra informtion";
 
 		$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		$this->data['exams'] = $this->common_model->get_all_rows("mc_exams", 1,1);
 		
 		$this->data['college_id'] = $id;
 		$this->data['course_id'] = $this->college_model->get_courses($id);
@@ -407,6 +410,7 @@ class Colleges extends Admin_Controller {
 		$duration = $this->input->post('duration');
 		$recognition = $this->input->post('recognition');
 		$fee = $this->input->post('fee');
+		$incentive = $this->input->post('incentive');
 		$exam = $this->input->post('exam');
 		$procedure = $this->input->post('procedure');
 		$eligibility = $this->input->post('eligibility');
@@ -421,6 +425,7 @@ class Colleges extends Admin_Controller {
 		$course['duration'] = $duration;
 		$course['recognition'] = $recognition;
 		$course['fee'] = $fee;
+		$course['incentive'] = $incentive;
 		$course['exam'] = $exam;
 		$course['procedure'] = $procedure;
 		$course['eligibility'] = $eligibility;

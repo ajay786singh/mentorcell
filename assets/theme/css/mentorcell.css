@@ -1,0 +1,45 @@
+.profileBox .settingForm input[type="password"] {width: 100%; max-width: 280px; padding: 5px; height: 30px; border:1px solid rgba(0,0,0,0.20); float: left;}
+/**/
+
+#forgotModal .modal-dialog {max-width: 400px;}
+#forgotModal .modal-body {padding-top: 0px;}
+#forgotModal .loginForm {padding:0px 5px;}
+#forgotModal .loginForm h3 {font-size: 14px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
+#forgotModal .loginForm h3 a {color: #5792cc;}
+#forgotModal .loginForm h3 a:hover {color: rgba(0,0,0,0.87);}
+#forgotModal .loginForm h4 {font-size: 13px; float: left; width: 100%; clear: both; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
+#forgotModal .loginForm h5 {font-size: 13px; margin:0px; color: #5792cc; display: block; text-align: center;}
+#forgotModal .loginForm h5 a {color: #5792cc;}
+#forgotModal .loginForm h5 a:hover {color: #000;}
+#forgotModal .loginForm .inputRow {margin: 0px 0px 10px 0px; position: relative;}
+#forgotModal .loginForm i {position: absolute; z-index: 2; top: 5px; left:18px; font-size: 19px; line-height: 1px; color:#bababa;}
+#forgotModal .loginForm .inputRow input {width: 100%; font-size: 13px; border:1px solid #c5c5c5; height: 30px; border-radius: 5px; padding: 0px 0px 0px 50px;}
+#forgotModal .loginForm .inputRow input:focus {border:1px solid #5792cc;}
+#forgotModal .loginForm .inputRow input:focus + i {color:#5792cc;}
+#forgotModal .loginForm .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
+#forgotModal .loginForm .inputRow input.go:hover {background: #000;}
+
+#forgotsetModal .modal-dialog {max-width: 400px;}
+#forgotsetModal .modal-body {padding-top: 0px;}
+#forgotsetModal .loginForm {padding:0px 5px;}
+#forgotsetModal .loginForm h3 {font-size: 14px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
+#forgotsetModal .loginForm h3 a {color: #5792cc;}
+#forgotsetModal .loginForm h3 a:hover {color: rgba(0,0,0,0.87);}
+#forgotsetModal .loginForm h4 {font-size: 13px; float: left; width: 100%; clear: both; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
+#forgotsetModal .loginForm h5 {font-size: 13px; margin:0px; color: #5792cc; display: block; text-align: center;}
+#forgotsetModal .loginForm h5 a {color: #5792cc;}
+#forgotsetModal .loginForm h5 a:hover {color: #000;}
+#forgotsetModal .loginForm .inputRow {margin: 0px 0px 10px 0px; position: relative;}
+#forgotsetModal .loginForm i {position: absolute; z-index: 2; top: 5px; left:18px; font-size: 19px; line-height: 1px; color:#bababa;}
+#forgotsetModal .loginForm .inputRow input {width: 100%; font-size: 13px; border:1px solid #c5c5c5; height: 30px; border-radius: 5px; padding: 0px 0px 0px 50px;}
+#forgotsetModal .loginForm .inputRow input:focus {border:1px solid #5792cc;}
+#forgotsetModal .loginForm .inputRow input:focus + i {color:#5792cc;}
+#forgotsetModal .loginForm .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
+#forgotsetModal .loginForm .inputRow input.go:hover {background: #000;}
+/**/
+#introductionVideo,video{width:100%;}
+.extra_filters{ background: #fff;height: 50px; margin-top: 50px;position: absolute; width: calc(100% - 48px);}
+.homeSlider .searchArea .formHolder .formcol00{width: calc(33.3%);position: relative;float: left;border-right: 1px solid rgba(0,0,0,0.20);padding: 0px 10px;}
+#couponBox3{padding: 100px 0;}
+
+#profileTab4 select{ width: 100%;max-width: 280px;padding: 5px;height: 30px; border: 1px solid rgba(0,0,0,0.20);}

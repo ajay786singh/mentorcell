@@ -529,7 +529,20 @@
 <div class="col-xs-6">
 <div class="row">
 <ul>
-<li><h4>IQ test</h4> <h5>IQ test not given</h5></li>
+<li><h4>IQ test</h4> 
+
+		<?php 
+		if($coupon['coupon_id']){
+			echo "<h5>Your IQ score is ".$coupon['score']."</h5>";
+			echo "<div class='iqResult'><h6>Your Coupon code is : ".$coupon['coupon']."</h6></div>";
+	    }else{
+			echo "<h5>IQ test not given</h5>";
+		}
+		
+		?>
+
+
+</li>
 </ul>
 </div>
 </div>
@@ -568,15 +581,15 @@
 <div id="change_password_response"></div>
 
 <div class="form-group">
-<label>Current Password</label> <input type="text" id="change_curpassword" name="">
+<label>Current Password</label> <input type="password" id="change_curpassword" name="">
 </div>
 
 <div class="form-group">
-<label>New Password</label> <input type="text" id="change_password" name="">
+<label>New Password</label> <input type="password" id="change_password" name="">
 </div>
 
 <div class="form-group">
-<label>Re Type New Password</label> <input type="text" id="change_cpassword" name="">
+<label>Re Type New Password</label> <input type="password" id="change_cpassword" name="">
 </div>
 
 <div class="form-group">
@@ -617,23 +630,33 @@
 <div class="profileBox">
 <h3>Check Coupon Value</h3>
 <form class="settingForm">
-<div id="change_password_response"></div>
+<div id="redeem_result"></div>
 
 <div class="form-group">
-<label>Select College</label> <input type="text" id="change_curpassword" name="">
+<label>Select College</label>
+	<select id="redeem_college_id" name="college_id">
+		<option value="">Choose a College to apply coupon</option>
+		<?php
+			if($college_lists) {
+				foreach($college_lists as $k => $college_list){
+					echo '<option value="'.$college_list['id'].'">'.$college_list['name'].'</option>';			
+				}
+			}
+		?>	
+	</select>
 </div>
 
 <div class="form-group">
-<label>Select Stream</label> <input type="text" id="change_password" name="">
-</div>
+<label>Select Course</label> 
 
-<div class="form-group">
-<label>Select Course</label> <input type="text" id="change_cpassword" name="">
+	<select id="redeem_search_course" name="course_id">						
+		<option value="">Choose a course to apply coupon</option>
+	</select>
 </div>
 
 <div class="form-group">
 <input type="button" value="Cancel" name="" class="cancelButton">
-<input type="submit" value="Save" name="" id="change_password_save" class="saveButton">
+<input type="submit" value="Save" name="" id="show_coupon_value" class="saveButton">
 </div>
 
 

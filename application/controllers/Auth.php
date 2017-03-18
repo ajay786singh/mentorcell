@@ -51,7 +51,8 @@ class Auth extends MY_Controller {
 
                 if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
                 {
-                    if ( ! $this->ion_auth->is_admin() || !$this->ion_auth->in_group('college'))
+					
+                    if ( ! $this->ion_auth->is_admin() && !$this->ion_auth->in_group('college'))
                     {
                         $this->session->set_flashdata('message', $this->ion_auth->messages());
                         redirect('/', 'refresh');
@@ -60,7 +61,7 @@ class Auth extends MY_Controller {
                     {
                         /* Data */
                         $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
+						
                         /* Load Template */
 						redirect('admin/dashboard', 'refresh');
                         //$this->template->auth_render('admin/dashboard', $this->data);

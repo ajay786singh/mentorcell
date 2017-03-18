@@ -15,6 +15,7 @@ class User extends Public_Controller {
         $this->load->model('common/prefs_model');
 		$this->load->model('common/college_model');
 		$this->load->model('common/common_model');
+		$this->load->model('common/coupon_model');
 		/* college model */
     }
 
@@ -237,10 +238,18 @@ class User extends Public_Controller {
 								'to' =>$email,
 								'message' => "Please follow link to set password for  MentorCell.\n URL: ".$reseturl."\n  Team\n MentorCell"
 							);
-						$response_array = $this->sendgridemail->send_email($email_data);
-					
-					$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Please check email for instruction.</div>');
+					$response_array = $this->sendgridemail->send_email($email_data);
+					if($response_array == 202){
+						$response = array('status'=>true,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> Please check email for instruction.</div>');
+					}else{
+						$response = array('status'=>true,'message'=>'<div class="alert alert-danger"><strong>Registered!</strong> We are unable to deliver email.</div>');
+					}
 					echo json_encode($response);die;
+				}else{
+					
+					$response = array('status'=>false,'message'=>'<div class="alert alert-danger"><strong>You are not registered with Mentorcell.</div>');
+					echo json_encode($response);die;
+					
 				}
                
             }
@@ -341,7 +350,7 @@ class User extends Public_Controller {
 		$user  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
 		$this->data['user_login'] = $user;
 		}else{
-			$this->data['user_login'] = array('id'=>false);
+			 redirect('/', 'refresh');
 		}
 		
 		$city = $this->ion_auth->get_user_meta($user['id'], 'city');
@@ -354,6 +363,10 @@ class User extends Public_Controller {
 		$this->data['dob'] = $this->ion_auth->get_user_meta($user['id'], 'dob');
 		$this->data['about_me'] = $this->ion_auth->get_user_meta($user['id'], 'about_me');
 		$this->data['bio'] = $this->ion_auth->get_user_meta($user['id'], 'bio');
+		
+		$this->data['coupon'] = $this->common_model->get_single_row('mc_coupons','user_id',$user['id']);
+		
+		$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
 
 		
 		$this->load->view('public/layout/header', $this->data);
@@ -361,6 +374,24 @@ class User extends Public_Controller {
 		$this->load->view('public/profile', $this->data);
 		
 		$this->load->view('public/layout/footer', $this->data);
+	}
+	
+	function curpassword_validation($str) {
+			if ($this->ion_auth->logged_in()){
+				$userdata  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+				
+			}else{
+				$this->data['user_login'] = array('id'=>false);
+			}
+			$id = $userdata['id'];
+			$originalPassword = $this->input->post('curpassword');
+			if ($this->ion_auth->hash_password_db($id, $originalPassword) !== TRUE)
+			{
+				$this->form_validation->set_message("curpassword_validation", 'Please Enter Valid Current Password');
+				return FALSE;
+			}
+			
+			return TRUE;
 	}
 	
 	public function changepassword(){
@@ -377,11 +408,13 @@ class User extends Public_Controller {
 			}else{
 				$this->data['user_login'] = array('id'=>false);
 			}
+						
+			$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[cpassword]');
+			$this->form_validation->set_rules('cpassword','Confirm Password' , 'required');
+				
+			$this->form_validation->set_rules('curpassword', 'Current Password', 'required|callback_curpassword_validation');
 			
-			$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
 
-			$this->form_validation->set_rules('curpassword', 'Current Password', 'required');
-			
             if ($this->form_validation->run() == TRUE)
             {
 				$curpassword = $this->input->post('curpassword');
@@ -562,5 +595,93 @@ class User extends Public_Controller {
 	}
 
 	/*profile update*/
+	
+	/*courses to redeem*/
+		/*get courses*/
+		function college_courses($id) {
+				$college_id = $id;
+				$courses = $this->coupon_model->get_all_courses($college_id);
+				echo '<option value="">Choose a Course to apply coupon</option>';
+				if($courses) {
+					foreach($courses as $k => $course){
+						
+						echo '<option value="'.$course['course_id']."|".$course['incentive'].'" >'.$course['course_name'].'</option>';			
+					}
+				}
+	
+			die;
+		}
+
+
+
+	function redeem() {
+			if ( ! $this->ion_auth->logged_in() )
+			{
+				echo "<div class='alert alert-danger'>please login first</div>";
+			}
+			else
+			{ 
+				$userId = $this->ion_auth->get_user_id();
+				
+				$this->form_validation->set_rules('course', 'Course', 'required');
+				$this->form_validation->set_rules('college', 'College', 'required');
+			
+				
+				if ($this->form_validation->run() == TRUE) {
+					$this->load->library('sendgridemail');
+					$college_id		=	$this->input->post('college');
+					$coupon         =   $this->common_model->get_single_var('coupon','mc_coupons','user_id',$userId);
+					$str_course_id	=	$this->input->post('course');
+					list($course_id,$incentive)	=	explode("|",$str_course_id);
+					
+					$collegeName	=	$this->common_model->get_single_var('name', 'mc_colleges', 'id', $college_id);
+					$coursedetails  =   $this->college_model->get_single_courses_detail($college_id,$course_id);
+					$courseName		=	$this->common_model->get_single_var('course_name', 'mc_courses', 'course_id', $course_id);
+					
+					$fee            =   $coursedetails->fee;
+					$incentive		=	$incentive;
+					$result			=	$this->coupon_model->is_valid_coupon($coupon);
+
+					if(!$incentive){
+						$response = array('status'=>false,'message'=>'<div class="alert alert-danger">No Discount for this College.</div>');
+					echo json_encode($response);
+					die;
+					}
+					
+					
+					if($result) {
+						$coupon_id		=	$result['coupon_id'];
+						$score			=	$result['score'];
+						$total_disc		=	($incentive * $score) / 100;
+						$total_disc_fee	=	$fee - $total_disc;
+						
+						$email_data = array(
+							'subject'=>'Enquiry has been made on MentorCell by college '.$collegeName,
+							'to' =>'sanjeev.singh82@gmail.com',
+							'message' => "An enquiry has been made on MentorCell by <b>College:</b> ".$collegeName." for <b>Course:</b> ".$courseName." .\n Coupon: ".$coupon."\n URL: ".site_url()."\n Team\n MentorCell"
+						);
+						
+						$response_array = $this->sendgridemail->send_email($email_data);
+						
+						$message = '<div class="alert alert-success"><p>Fee: Rs. '.$fee.' </p><p>Discount: Rs. '.$total_disc.'</p><p>Fee after Discount: Rs. '.$total_disc_fee.'</p></div>';
+						$response = array('status'=>true,'message'=>$message);
+						echo json_encode($response);
+						die;
+					}else{
+						$response = array('status'=>false,'message'=>'<div class="alert alert-danger">Coupon not applicable.</div>');
+						echo json_encode($response);
+						die;
+					} 
+				}else{
+					$error = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+					
+					$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.$error.'</div>');
+					echo json_encode($response);
+					die;
+				}
+			}			
+		}		
+	
+	/*courses to redeem*/
 	
 }

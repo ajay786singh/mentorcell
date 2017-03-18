@@ -94,16 +94,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>-->
 						
-						<?php } ?>
+						<?php } 
+						
+						if($this->ion_auth->in_group('college') || $this->ion_auth->is_admin()) {
+						
+						?>
 						<li class="<?=active_link_controller('colleges')?>">
                             <a href="<?php echo site_url('admin/colleges'); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Colleges'; ?></span>
                             </a>
                         </li>
 						
-						<?php
-						if($this->ion_auth->in_group('college')) {
-						?>
+						
 						<li class="<?=active_link_controller('coupons')?>">
                             <a href="<?php echo site_url('admin/coupons/redeem'); ?>">
                                 <i class="fa fa-user"></i> <span>Redeem / Enquiry</span>

@@ -1,7 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Coupon extends Public_Controller {
+require APPPATH . '/libraries/REST_Controller.php';
+// use namespace
+use Restserver\Libraries\REST_Controller;
+
+class Coupon extends REST_Controller {
 
     public function __construct() {
         parent::__construct();		
@@ -9,7 +13,7 @@ class Coupon extends Public_Controller {
         $this->load->config('common/dp_config');
         $this->load->config('common/dp_language');
         $this->load->library(array('form_validation', 'ion_auth', 'template', 'common/mobile_detect'));
-        $this->load->helper(array('array', 'language', 'url'));
+        $this->load->helper(array('array', 'language', 'url','jwt'));
 		$this->load->model('common/common_model');
 		
 		$this->questionsDisp	=	20;
@@ -19,16 +23,26 @@ class Coupon extends Public_Controller {
     }
 
 
-	public function index() {
+	public function index_get($key) {
+		
+		$userid = JWT::decode($key, $this->config->item('jwt_key'));
+		
 		$this->data['couponBox1']	=	'active';
 		$this->data['couponBox2']	=	'';
 		$this->data['couponBox3']	=	'';
-		$loggedIn					=	$this->ion_auth->logged_in();		
+		$loggedIn					=	$this->ion_auth->logged_in($userid);		
 		$this->data['loggedIn'] 	= 	$loggedIn;
 		if (!$loggedIn) {
 			$this->data['user_login'] 	= 	array('id'=>false);
 		} else {
-			$this->data['user_login']	=	$this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+			
+			if($userid){
+				$this->data['user_login']  = $this->prefs_model->user_info_login($userid);
+			}else{
+				$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+			}
+			
+			//$this->data['user_login']	=	$this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
 			$user_id					=	$this->data['user_login']['id'];
 		}
 
@@ -69,8 +83,11 @@ class Coupon extends Public_Controller {
 		}		
 
 	}
-	public function question_answer_submitted() {
-		$user_id		=	$this->session->userdata('user_id');
+	public function question_answer_submitted_post() {
+		//$user_id		=	$this->session->userdata('user_id');
+		$key = $this->input->post('key');
+		$user_id = JWT::decode($key, $this->config->item('jwt_key'));
+		
 		if($user_id) {
 			$hasAnswerd		=	$this->common_model->get_single_row('mc_coupons','user_id',$user_id);
 			$tot_correct	=	0;

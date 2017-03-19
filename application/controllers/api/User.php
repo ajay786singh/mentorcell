@@ -1,9 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-//require(APPPATH.'/libraries/REST_Controller.php');
+
+require APPPATH . '/libraries/REST_Controller.php';
+// use namespace
+use Restserver\Libraries\REST_Controller;
 
 
-class User extends Public_Controller {
+class User extends REST_Controller {
 
     public function __construct()
     {
@@ -13,7 +16,7 @@ class User extends Public_Controller {
         $this->load->config('common/dp_config');
         $this->load->config('common/dp_language');
         $this->load->library(array('form_validation', 'ion_auth', 'template', 'common/mobile_detect'));
-        $this->load->helper(array('array', 'language', 'url'));
+        $this->load->helper(array('array', 'language', 'url','jwt'));
         $this->load->model('common/prefs_model');
 		$this->load->model('common/college_model');
 		$this->load->model('common/common_model');
@@ -22,7 +25,7 @@ class User extends Public_Controller {
     }
 
 
-	 function login()
+	 function login_post()
 	{
         if ( ! $this->ion_auth->logged_in())
         {
@@ -49,11 +52,21 @@ class User extends Public_Controller {
                     if ( ! $this->ion_auth->is_admin())
                     {
                         $response = array('status'=>true,'message'=>'Congratulation! Logged In Successfully.');
+						
+						$user = $this->ion_auth->user()->row()->id;
+						$token = array();
+						$token = $user;
+						$response['key'] = JWT::encode($token, $this->config->item('jwt_key'));
+						
 						echo json_encode($response);die;
                     }
                     else
                     {
                         /* Data */
+						$user = $this->ion_auth->user()->row()->id;
+						$token = array();
+						$token = $user;
+						$response['key'] = JWT::encode($token, $this->config->item('jwt_key'));
                         $response = array('status'=>false,'message'=>'Please visit admin section.');
 						echo json_encode($response);
 						die;
@@ -81,9 +94,10 @@ class User extends Public_Controller {
    }
 	
 	
-	function logout($src = NULL)
+	function logout_get($key)
 	{
-        $logout = $this->ion_auth->logout();
+        $userid = JWT::decode($key, $this->config->item('jwt_key'));
+		$logout = $this->ion_auth->logout($userid);
 
         $this->session->set_flashdata('message', $this->ion_auth->messages());
 
@@ -92,7 +106,7 @@ class User extends Public_Controller {
 		die;
 	}
 	
-	public function register()
+	public function register_post()
 	{
 		/* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
@@ -186,7 +200,7 @@ class User extends Public_Controller {
     return $password;
 	}
 
-	function verify_otp()
+	function verify_otp_post()
 	{
 		$this->form_validation->set_rules('otp', 'OTP', 'required');
 		$user_id = $this->input->post('user_id');
@@ -213,7 +227,7 @@ class User extends Public_Controller {
 	
 	
 	
-	function forgotpassword()
+	function forgotpassword_post()
 	{
        
             $this->load->config('admin/dp_config');
@@ -259,7 +273,7 @@ class User extends Public_Controller {
        
     }
 	
-		function setpassword()
+		function setpassword_post()
 	{
        
             $this->load->config('admin/dp_config');
@@ -313,7 +327,7 @@ class User extends Public_Controller {
 	
 	
 	
-	function courses()
+	function courses_post()
 	{
 		$stream = $this->input->get('stream');
 		$courses = $this->college_model->get_courseswithstream($stream);
@@ -324,7 +338,7 @@ class User extends Public_Controller {
 	}
 
 	
-	public function city()
+	public function city_post()
 	{
 		$state_id = $this->input->get('state_id');
 		$cities = $this->common_model->get_all_rows("districts", "state_id",$state_id);
@@ -333,11 +347,17 @@ class User extends Public_Controller {
 		die;
 	}
 	
-	public function profile()
+	public function profile_get($key)
 	{
+		$userid = JWT::decode($key, $this->config->item('jwt_key'));
 		
-		if ($this->ion_auth->logged_in()){
-		$user  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		if ($this->ion_auth->logged_in($userid)){
+			if($userid){
+				$user  = $this->prefs_model->user_info_login($userid);
+			}else{
+				$user  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+			}
+		
 		$this->data['user_login'] = $user;
 		}else{
 			$response = array('status'=>false,'message'=>'No user');
@@ -354,25 +374,31 @@ class User extends Public_Controller {
 		
 		$this->data['dob'] = $this->ion_auth->get_user_meta($user['id'], 'dob');
 		$this->data['about_me'] = $this->ion_auth->get_user_meta($user['id'], 'about_me');
-		$this->data['bio'] = $this->ion_auth->get_user_meta($user['id'], 'bio');
-		
+		$this->data['bio'] = $this->ion_auth->get_user_meta($user['id'], 'bio');		
 		$this->data['coupon'] = $this->common_model->get_single_row('mc_coupons','user_id',$user['id']);
-		
-		$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
 
-		
-		$this->load->view('public/layout/header', $this->data);
-		
 		$response = array('status'=>false,'message'=>'User data','data'=>$this->data);
 		echo json_encode($response);
 		die;
-	
-
 	}
 	
-	function curpassword_validation($str) {
-			if ($this->ion_auth->logged_in()){
-				$userdata  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+	public function colleges_get()
+	{
+	
+	$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
+	
+	}
+	
+	function curpassword_validation_post() {
+			$key = $this->input->post('key');
+			$userid = JWT::decode($key, $this->config->item('jwt_key'));
+		
+			if ($this->ion_auth->logged_in($userid)){
+				if($userid){
+				$user  = $this->prefs_model->user_info_login($userid);
+				}else{
+				$user  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+				}
 				
 			}else{
 				$this->data['user_login'] = array('id'=>false);
@@ -388,16 +414,22 @@ class User extends Public_Controller {
 			return TRUE;
 	}
 	
-	public function changepassword(){
+	public function changepassword_post(){
 		
 			$this->load->config('admin/dp_config');
             $this->load->config('common/dp_config');
 			$this->load->library('sendgridemail');
             /* Valid form */
             //$this->form_validation->set_rules('identity', 'Email', 'required');
+			$key = $this->input->post('key');
+			$userid = JWT::decode($key, $this->config->item('jwt_key'));
 			
-			if ($this->ion_auth->logged_in()){
-				$userdata  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+			if ($this->ion_auth->logged_in($userid)){
+				if($userid){
+				$user  = $this->prefs_model->user_info_login($userid);
+				}else{
+				$user  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+				}
 				
 			}else{
 				$this->data['user_login'] = array('id'=>false);
@@ -451,15 +483,22 @@ class User extends Public_Controller {
 	}
 	
 	
-	public function savedoc(){
+	public function savedoc_post(){
 		
 			$this->load->config('admin/dp_config');
             $this->load->config('common/dp_config');
 			$this->load->library('sendgridemail');
             
 			
-			if ($this->ion_auth->logged_in()){
-				$userdata  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+			$key = $this->input->post('key');
+			$userid = JWT::decode($key, $this->config->item('jwt_key'));
+			
+			if ($this->ion_auth->logged_in($userid)){
+				if($userid){
+				$user  = $this->prefs_model->user_info_login($userid);
+				}else{
+				$user  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+				}
 				
 			}else{
 				$this->data['user_login'] = array('id'=>false);
@@ -514,22 +553,25 @@ class User extends Public_Controller {
 	
 	/*profile update*/
 	
-	public function profileupdate(){
+	public function profileupdate_post(){
 		
 			$this->load->config('admin/dp_config');
             $this->load->config('common/dp_config');
 			$this->load->library('sendgridemail');
-            /* Valid form */
-            //$this->form_validation->set_rules('identity', 'Email', 'required');
+            /* Valid form */			
+			$key = $this->input->post('key');
+			$userid = JWT::decode($key, $this->config->item('jwt_key'));
 			
-			if ($this->ion_auth->logged_in()){
-				$userdata  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+			if ($this->ion_auth->logged_in($userid)){
+				if($userid){
+				$user  = $this->prefs_model->user_info_login($userid);
+				}else{
+				$user  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+				}
 				
 			}else{
 				$this->data['user_login'] = array('id'=>false);
 			}
-			
-			
 			
 			$this->form_validation->set_rules('first_name', 'First Name', 'required');
 			$this->form_validation->set_rules('last_name', 'Last Name', 'required');
@@ -592,7 +634,7 @@ class User extends Public_Controller {
 	
 	/*courses to redeem*/
 		/*get courses*/
-		function college_courses($id) {
+		function college_courses_get($id) {
 				$college_id = $id;
 				$courses = $this->coupon_model->get_all_courses($college_id);
 				$response = array('status'=>true,'course'=>$courses);
@@ -602,8 +644,12 @@ class User extends Public_Controller {
 
 
 
-	function redeem() {
-			if ( ! $this->ion_auth->logged_in() )
+	function redeem_post() {
+		
+		$key = $this->input->post('key');
+		$userid = JWT::decode($key, $this->config->item('jwt_key'));
+		
+			if ( ! $this->ion_auth->logged_in($userid) )
 			{
 				$response = array('status'=>false,'message'=>'Please login first.');
 				echo json_encode($response);
@@ -611,7 +657,7 @@ class User extends Public_Controller {
 			}
 			else
 			{ 
-				$userId = $this->ion_auth->get_user_id();
+				//$userId = $this->ion_auth->get_user_id();
 				
 				$this->form_validation->set_rules('course', 'Course', 'required');
 				$this->form_validation->set_rules('college', 'College', 'required');

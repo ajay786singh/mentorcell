@@ -376,7 +376,7 @@ Noida, UP<br>
 		?>
 		<script>
 			$(document).ready(function(){
-				var c = 10;
+				var c = 20*60;
 				var t;
 				timedCount();
 				function timedCount() {

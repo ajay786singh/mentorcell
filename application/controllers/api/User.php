@@ -327,9 +327,8 @@ class User extends REST_Controller {
 	
 	
 	
-	function courses_post()
+	function courses_get($stream)
 	{
-		$stream = $this->input->get('stream');
 		$courses = $this->college_model->get_courseswithstream($stream);
 		$response = array('status'=>true,'course'=>$courses);
 		echo json_encode($response);
@@ -338,9 +337,8 @@ class User extends REST_Controller {
 	}
 
 	
-	public function city_post()
+	public function city_get($state_id)
 	{
-		$state_id = $this->input->get('state_id');
 		$cities = $this->common_model->get_all_rows("districts", "state_id",$state_id);
 		$response = array('status'=>true,'district'=>$cities);
 		echo json_encode($response);

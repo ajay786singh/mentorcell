@@ -10,11 +10,17 @@ class Coupon extends REST_Controller {
     public function __construct() {
         parent::__construct();		
 		$this->load->database();
-        $this->load->config('common/dp_config');
+		$this->load->config('common/dp_config');
         $this->load->config('common/dp_language');
         $this->load->library(array('form_validation', 'ion_auth', 'template', 'common/mobile_detect'));
         $this->load->helper(array('array', 'language', 'url','jwt'));
+        $this->load->model('common/prefs_model');
+		$this->load->model('common/college_model');
 		$this->load->model('common/common_model');
+		$this->load->model('common/coupon_model');
+		
+		
+		
 		
 		$this->questionsDisp	=	20;
 		$this->minValue			=	80;
@@ -23,8 +29,8 @@ class Coupon extends REST_Controller {
     }
 
 
-	public function index_get($key) {
-		
+	public function index_post() {
+		$key = $this->input->post('key');
 		$userid = JWT::decode($key, $this->config->item('jwt_key'));
 		
 		$this->data['couponBox1']	=	'active';
@@ -66,7 +72,12 @@ class Coupon extends REST_Controller {
 				if($resultDisplay<80)
 				$message = "<h6>Your Coupon code is : ".$coupon."</h6>";
 				$this->data['message']	=	$message;
-				$this->load->view('public/coupon', $this->data);
+				
+				$response = array('status'=>true,'message'=>'data','data'=>$this->data);
+				echo json_encode($response);
+				die;
+				
+
 			} else {
 				$this->data['couponBox1']	=	'';
 				$this->data['couponBox2']	=	'active';
@@ -75,7 +86,7 @@ class Coupon extends REST_Controller {
 					$this->data['questionnaire_list'] 	=	$this->common_model->get_all_rows("mc_questionnaire",1,1,'RAND()', $this->questionsDisp);
 					$this->data['course_id'] 			=	0;//$this->input->post('course_id');
 					
-					$response = array('status'=>true,'message'=>' Info! You are logged out successfully.','data'=>$this->data);
+					$response = array('status'=>true,'message'=>'data','data'=>$this->data);
 					echo json_encode($response);
 					die;
 				

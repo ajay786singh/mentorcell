@@ -371,5 +371,35 @@ Noida, UP<br>
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 	
+	<?php
+	if(isset($couponBox1)) {
+		?>
+		<script>
+			$(document).ready(function(){
+				var c = 10;
+				var t;
+				timedCount();
+				function timedCount() {
+					var hours = parseInt( c / 3600 ) % 24;
+					var minutes = parseInt( c / 60 ) % 60;
+					var seconds = c % 60;
+					var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+					$('#timer').html(result);
+					if(c == 0 ){ c = 60*60*60; }
+					c = c - 1;
+					if (c > 0 ) {
+						t = setTimeout(function(){ timedCount() }, 1000);
+					} else {
+						$('#question_answer').prop('disabled', true);
+						alert("Your time to submit the answers is up!!");
+						window.location.href = "<?php echo base_url()?>";
+					}
+				}
+			});
+		</script>
+		<?php
+	}
+?>
+	
 </body>
 </html>

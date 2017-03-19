@@ -30,7 +30,7 @@ class Home extends REST_Controller {
 			
 		$cstates = $this->college_model->get_states();
 
-		$this->data['location'] = $$cstates;
+		$this->data['location'] = $cstates;
 		$this->data['colleges'] = $this->common_model->get_all("mc_colleges");
 		$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
 		$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);

@@ -22,8 +22,11 @@ a:hover {text-decoration: none;}
 .profileBox ul, .profileBox .detailForm, .profileBox .settingForm {width: 100%; float: left; clear: both;}
 
 header#header {background:#15202f; position:fixed; left: 0px; top:0px; z-index:20; height: 55px;}
-header#header .logo {padding: 10px 0px 0px 0px; width: 100%;}
+header#header .logo {padding: 10px 0px 0px 0px; width: 100%; float: left;}
 header#header .logo img {max-width: 100%; height: auto;}
+
+.mobileIcon {color: #fff; font-size: 22px; width: 35px; height:55px; line-height:60px; overflow: hidden; cursor: pointer;}
+.mobileNavigation {width: 66.66666667%; position: relative; float: left;}
 
 
 .mainMenu {text-align: center; position: relative;}
@@ -215,7 +218,6 @@ header#header .logo img {max-width: 100%; height: auto;}
 #loginModal .loginForm .inputRow input.go:hover {background: #000;}
 
 
-#registerModal .modal-dialog {width:100%; max-width:400px; display: table;}
 #registerModal .modal-body {padding-top: 0px;}
 #registerModal .regForm {padding:0px 5px;}
 #registerModal .regForm h3 {font-size: 14px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
@@ -230,11 +232,10 @@ header#header .logo img {max-width: 100%; height: auto;}
 #registerModal .regForm .inputRow input.go:hover {background: #000;}
 
 
-#registerModal .modal-content {display: table-row;}
 #registerModal .regLeft {width:40%; padding: 20px 40px; display: table-cell; vertical-align: middle; background-image: linear-gradient(148deg, #ff9978, #f77a52);}
 #registerModal .regLeft h3 {color: #fff; font-size: 24px; margin: 0px 0px 20px 0px; text-align: center;}
 #registerModal .regLeft ul li {color: #fff; font-size: 15px; display: block; margin: 0px 0px 12px 0px; letter-spacing: 1px; font-weight: normal;}
-#registerModal .regRight {width:60%; display: table-cell; vertical-align: middle;}
+#registerModal .regRight {width:100%; vertical-align: middle;}
 
 
 .collegeHead {border-bottom: 1px solid rgba(0,0,0,0.15);}
@@ -511,7 +512,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 
 /****new start****/
-.couponTab {position: absolute; right: 20px; top: 55px; color: #fff; width: 40px; text-align: center;}
+.couponTab {position: absolute; right: 15px; top: 55px; color: #fff; width: 40px; text-align: center;}
 .couponTab:before {font-size:104px; position: absolute; left: -32px; line-height: 96px; color: #5ea81a;}
 .couponTab a {display: block; color: #fff;}
 .couponTab span {display: block; position: relative; z-index: 9; text-align: center; font-size: 10px; line-height:10px; padding:10px 0px;}
@@ -684,7 +685,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .page404 {text-align: center; padding: 40px;}
 .page404 img {display: inline-block; max-width: 100%; height: auto;}
 
-.collegeLogin {background: #fff; margin: 55px auto; width: 400px; padding: 20px; border:1px solid rgba(0,0,0,0.20); border-radius: 10px;}
+.collegeLogin {background: #fff; margin: 105px auto; width:calc(100% - 30px); max-width: 400px; padding: 20px; border:1px solid rgba(0,0,0,0.20); border-radius: 10px;}
 .collegeLogin h3 {font-size: 18px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block; text-align: center;}
 .collegeLogin h5 {font-size: 13px; margin:0px; color: #5792cc; display: block; text-align: center;}
 .collegeLogin h5 a {color: #5792cc;}
@@ -714,7 +715,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .footerSection {background: #232440;}
 .footerTop {padding:30px 0px; border-bottom: 1px solid #b0b0b0;}
 .footerTop .footerWidget {padding:0px; float: left; width: 20%; padding: 0px 15px;}
-.footerTop .footerWidget h3 {color: #fff; margin: 0px 0px 10px 0px; font-size:20px;}
+.footerTop .footerWidget h3 {color: #fff; margin: 0px 0px 10px 0px; font-size:20px; position: relative;}
 .footerTop .footerWidget p {margin: 0px 0px 8px 0px; font-size: 14px; line-height: 24px; color:#c0c0c0;}
 .footerTop .footerWidget ul li {font-size: 14px; display: block; margin: 0px 0px 9px 0px;}
 .footerTop .footerWidget ul li a {color:#c0c0c0;}

@@ -10,6 +10,12 @@ function getExamByCourse(){
 	});
 }
 $(document).ready(function(){
+	
+	  $('.footerTop .footerWidget h3').click(function(){
+		$(this).parent().addClass('active');
+		$(this).parent().siblings().find('.active').removeClass('active');
+	});
+	
 
      $('.subMenuLeft ol li').mouseover(function(){
         var menuId = $(this).attr('menu-id');

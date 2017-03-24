@@ -61,7 +61,7 @@ class CI_Paginationajax {
 	 * @access	public
 	 * @param	array	initialization parameters
 	 */
-	function CI_Paginationajax($params = array())
+	function __construct($params = array())
 	{
 		if (count($params) > 0)
 		{

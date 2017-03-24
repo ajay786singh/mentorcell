@@ -119,6 +119,9 @@
 	if($loggedIn) {
 	?>
 	<div class="couponRow <?php echo $couponBox2;?>" id="couponBox2">
+		<!-- Time Script-->
+			<center><h3 style="font-weight: bold;font-size: 2em;">Time left:  <span id="timer"></span></h3></center>
+		<!-- Time Script-->
 		<div class="iqTest">
 		<ol>
 			<?php

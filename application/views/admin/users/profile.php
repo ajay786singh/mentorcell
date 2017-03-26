@@ -115,7 +115,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </tr>
 											<tr>
                                                 <th><?php echo "Coupon"; ?></th>
-                                                <td><?php echo $coupon; ?></td>
+                                                <td><?php echo $coupon['coupon']; ?></td>
                                             </tr>
                                           
 

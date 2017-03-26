@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-md-12">
                              <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title"><?php echo anchor('admin/users/create', '<i class="fa fa-plus"></i> '. lang('users_create_user'), array('class' => 'btn btn-block btn-primary btn-flat')); ?></h3>
+                                    <?php echo anchor('admin/users/create', '<i class="fa fa-plus"></i> '. lang('users_create_user'), array('class' => 'btn  btn-primary btn-flat')); ?><?php echo anchor('admin/users/exports_data', '<i class="fa fa-plus"></i> Export to Excel', array('class' => 'btn  btn-primary btn-flat pull-right')); ?>
                                 </div>
                                 <div class="box-body">
                                     <table id="example1" class="table table-bordered table-striped">

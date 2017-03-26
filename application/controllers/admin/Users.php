@@ -472,11 +472,50 @@ class Users extends Admin_Controller {
         {
             $this->data['user_info'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
         }
+		
+		/*user extra data*/
+			$city = $this->ion_auth->get_user_meta($id, 'city');
+			$this->data['city_id'] = $city;
+			$this->data['city'] = $this->common_model->get_single_var('name', 'cities','id', $city);
+			$state = $this->ion_auth->get_user_meta($id, 'state');
+			$this->data['state_id'] = $state;
+			$this->data['state'] = $this->common_model->get_single_var('name', 'states','id', $state);
+			
+			$this->data['dob'] = $this->ion_auth->get_user_meta($id, 'dob');
+			$this->data['about_me'] = $this->ion_auth->get_user_meta($id, 'about_me');
+			$this->data['bio'] = $this->ion_auth->get_user_meta($id, 'bio');
+			$this->data['interest'] = $this->ion_auth->get_user_meta($id, 'interest');
+			$this->data['course'] = $this->ion_auth->get_user_meta($id, 'course');
+			$this->data['coupon'] = $this->common_model->get_single_row('mc_coupons','user_id',$id);
+		
+		/*user extra data*/
+		
 
         /* Load Template */
 		$this->template->admin_render('admin/users/profile', $this->data);
 	}
 
+	
+	
+	public function exports_data(){
+		
+			$data  = $this->common_model->export_user_data();
+            //$data[] = array('x'=> "rajan", 'y'=> "rajan", 'z'=> "rajan", 'a'=> "rajan");
+			//$data[] = array('x'=> "rajan1", 'y'=> "rajan1", 'z'=> "rajan1", 'a'=> "rajan1");
+             header("Content-type: application/csv");
+            header("Content-Disposition: attachment; filename=\"test".".csv\"");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+
+            $handle = fopen('php://output', 'w');
+
+            foreach ($data as $data) {
+                fputcsv($handle, $data);
+            }
+                fclose($handle);
+            exit;
+    }
+	
 
 	public function _get_csrf_nonce()
 	{

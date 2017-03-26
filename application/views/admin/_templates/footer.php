@@ -232,7 +232,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  <script type="text/javascript" language="javascript">
 
 		var field_sr = 1;
-	function important_dates(){
+		function important_dates(){
 			field_sr++;
 			var numItems = jQuery('.important_dates_class').length;
 			if(numItems <10){

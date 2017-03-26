@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-md-6">
                              <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">xxxx</h3>
+                                    <h3 class="box-title">Student's Detail</h3>
                                 </div>
                                 <div class="box-body">
                                     <table class="table table-striped table-hover">
@@ -78,10 +78,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-md-6">
                              <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">xxxx</h3>
+                                    <h3 class="box-title">Student's Extra Detail</h3>
                                 </div>
                                 <div class="box-body">
+									
+									       <table class="table table-striped table-hover">
+                                        <tbody>
 
+                                            <tr>
+                                                <th><?php echo "City"; ?></th>
+                                                <td><?php echo $city; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th><?php echo "State"; ?></th>
+                                                <td><?php echo $state; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th><?php echo "Date of Birth"; ?></th>
+                                                <td><?php echo date('d-m-Y', $dob); ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th><?php echo "About Me";; ?></th>
+                                                <td><?php echo $about_me; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th><?php echo "Bio"; ?></th>
+                                                <td><?php echo $bio; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th><?php echo "Interest";; ?></th>
+                                                <td><?php echo $interest; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th><?php echo "Course"; ?></th>
+                                                <td><?php echo $course; ?></td>
+                                            </tr>
+											<tr>
+                                                <th><?php echo "Coupon"; ?></th>
+                                                <td><?php echo $coupon; ?></td>
+                                            </tr>
+                                          
+
+                                        </tbody>
+                                    </table>
 
                                 </div>
                             </div>

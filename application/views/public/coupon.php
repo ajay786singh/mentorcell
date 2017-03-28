@@ -90,6 +90,21 @@
 					<input type="button" value="Submit"  id="register_button" class="go" name="">
 				</div>
 			</form>
+			
+			<form id="otp_form" style='display:none;'>
+			<h3>Please enter recieved OTP.</h3>
+			<div class="inputRow">
+				<input type="text" id="register_otp" placeholder="Please Enter OTP" name="">
+				<i class="icon-email"></i>
+			</div>
+			<div class="inputRow">
+				<input type="submit" value="Verify" id="register_button_otp" class="go" name="">
+			</div>
+			<input type="hidden" id="user_otp" name="user_otp" value="">
+			</form>
+			
+			
+			
 		</div>
 		
 		<div class="loginForm">
@@ -109,7 +124,7 @@
 					<input type="submit" value="Submit" id="login_button" class="go" name="">
 				</div>
 				<h4><input type="checkbox" id="login_remember" name=""> Keep me signed in.</h4>
-				<h5><a href="#">Forgot password?</a></h5>
+				<h5><a data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>
 				<input type='hidden' id="couponClicked" value='0'>
 			</form>
 		</div>

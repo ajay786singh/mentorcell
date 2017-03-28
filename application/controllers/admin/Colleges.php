@@ -45,7 +45,7 @@ class Colleges extends Admin_Controller {
 				//$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges", 'user_id',$userId);
 				$this->data['college_lists'] = $this->college_model->get_assigned_college($user->colleges);
 			}else{
-				$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
+				$this->data['college_lists'] = $this->common_model->get_all_rows("mc_colleges","status","2");
 			}
 			
 			

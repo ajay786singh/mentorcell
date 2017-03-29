@@ -40,6 +40,13 @@ class Common_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete($table);
     }
+	
+	public function delete_where($table,$field, $id)
+    {
+        $this->db->where($field, $id);
+        $this->db->delete($table);
+    }
+	
 	public function deletecolumn($table,$field,$id)
     {
         $this->db->where($field, $id);

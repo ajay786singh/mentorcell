@@ -111,7 +111,7 @@ class Streams extends Admin_Controller {
 			redirect('auth', 'refresh');
 		}
 		
-				if($this->common_model->delete("mc_streams",$id))
+				if($this->common_model->delete_where("mc_streams",'stream_id',$id))
 			    {
                     $this->session->set_flashdata('message', 'Stream Deleted!');
 					redirect('admin/streams', 'refresh');

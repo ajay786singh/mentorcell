@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Stream Description</label>
 										  <div class="col-sm-10">
-										  <textarea class="form-control" required="" name="stream_description" placeholder="Enter Stream Description"><?php echo @$stream_description['value']; ?></textarea>
+										  <textarea class="form-control"  name="stream_description" placeholder="Enter Stream Description"><?php echo @$stream_description['value']; ?></textarea>
 										  </div>
 										</div>
 										

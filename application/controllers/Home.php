@@ -44,11 +44,13 @@ class Home extends Public_Controller {
 		$this->data['location'] = $options;
 		$this->load->view('public/layout/header', $this->data);
 		
-		$this->data['colleges'] = $this->common_model->get_all("mc_colleges");
-		$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
-		$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+		$this->data['colleges'] 			= $this->common_model->get_all("mc_colleges");
+		$this->data['streams'] 				= $this->common_model->get_all_rows("mc_streams", 1,1);
+		$this->data['types'] 				= $this->common_model->get_all_rows("mc_types", 1,1);
 		//$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
-		$this->data['courses'] = $this->common_model->get_all("mc_courses");
+		$this->data['courses'] 				= $this->common_model->get_all("mc_courses");
+		$this->data['counselling_video'] 	=  array("zoHm5AXeYYQ","Qqn0ChMyOyc","axltjnTyHOc","OQzPfib7YyA","zoHm5AXeYYQ");
+		
 		$this->load->view('public/home', $this->data);
 		
 		$this->load->view('public/layout/footer', $this->data);

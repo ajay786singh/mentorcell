@@ -256,7 +256,8 @@ $('.profileBox .addButton').click(function(){
             autoSize    : false,
             closeClick  : false,
             openEffect  : 'none',
-            closeEffect : 'none'
+            closeEffect : 'none',
+			autoCenter  : true
         });
 
 

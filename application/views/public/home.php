@@ -244,7 +244,8 @@ $video_url_big = 'https://www.youtube.com/embed/'.$counselling_video[0].'?autopl
 <ul>
 <?php foreach($counselling_video as $video){
 	$video_image = 'https://img.youtube.com/vi/'.$video.'/default.jpg';
-	echo "<li><img src='".$video_image."'></li>";
+	$video_url = 'https://www.youtube.com/embed/'.$video.'?autoplay=1';
+	echo "<li><a class='various fancybox fancybox.iframe' href='".$video_url."'><img src='".$video_image."'></a></li>";
 }
 ?>
 </ul>

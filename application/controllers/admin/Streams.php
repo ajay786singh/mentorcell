@@ -62,7 +62,7 @@ class Streams extends Admin_Controller {
 		/* Validate form input */
 		$this->form_validation->set_rules('stream_name', 'Stream Name', 'required');
 		$this->form_validation->set_rules('stream_code', 'Stream Code', 'required');
-		$this->form_validation->set_rules('stream_description', 'Stream Description', 'required');
+		//$this->form_validation->set_rules('stream_description', 'Stream Description', 'required');
 		//$this->form_validation->set_rules('stream_logo', 'Stream Logo', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 		
@@ -111,7 +111,7 @@ class Streams extends Admin_Controller {
 			redirect('auth', 'refresh');
 		}
 		
-				if($this->common_model->delete("mc_streams",$id))
+				if($this->common_model->delete_where("mc_streams",'stream_id',$id))
 			    {
                     $this->session->set_flashdata('message', 'Stream Deleted!');
 					redirect('admin/streams', 'refresh');
@@ -149,7 +149,7 @@ class Streams extends Admin_Controller {
 		/* Validate form input */
 		$this->form_validation->set_rules('stream_name', 'Stream Name', 'required');
 		$this->form_validation->set_rules('stream_code', 'Stream Code', 'required');
-		$this->form_validation->set_rules('stream_description', 'Stream Description', 'required');
+		//$this->form_validation->set_rules('stream_description', 'Stream Description', 'required');
 		//$this->form_validation->set_rules('stream_logo', 'Stream Logo', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 

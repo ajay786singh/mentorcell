@@ -40,6 +40,13 @@ class Common_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete($table);
     }
+	
+	public function delete_where($table,$field, $id)
+    {
+        $this->db->where($field, $id);
+        $this->db->delete($table);
+    }
+	
 	public function deletecolumn($table,$field,$id)
     {
         $this->db->where($field, $id);
@@ -90,5 +97,30 @@ class Common_model extends CI_Model {
 		$result = $this->db->get()->result_array();
 		return $result;
     }
+	
+	
+	/*get user data to export*/
+	function export_user_data(){
+		$this->db->select('u.first_name, u.last_name,u.phone, u.email, courses.course_name as Course, stream.stream_name as Stream,coupon.coupon as CouponCode,district.name as city,state.name as State,dob.meta_value as DOB,about_me.meta_value as AboutMe,bio.meta_value as Bio');
+		$this->db->from('users as u ');
+		$this->db->join('users_meta as  city_id', 'u.id  = city_id.user_id and city_id.meta_key = "city"', 'LEFT');
+		$this->db->join('districts as  district', 'district.id =  city_id.meta_value', 'LEFT');
+		$this->db->join('users_meta as  state_id', 'u.id =  state_id.user_id and state_id.meta_key = "state"', 'LEFT');
+		$this->db->join('states as  state', 'state.id =  state_id.meta_value', 'LEFT');
+		$this->db->join('users_meta as  dob', 'u.id =  dob.user_id and dob.meta_key = "dob"', 'LEFT');
+		$this->db->join('users_meta as  about_me', 'u.id =  about_me.user_id and about_me.meta_key = "about_me"', 'LEFT');
+		$this->db->join('users_meta as  bio', 'u.id =  bio.user_id and and bio.meta_key = "bio"', 'LEFT');
+		$this->db->join('mc_coupons as  coupon', 'u.id =  coupon.user_id', 'LEFT');
+		$this->db->join('users_meta as  interest', 'u.id =  interest.user_id and interest.meta_key = "interest"', 'LEFT');
+		$this->db->join('mc_streams as  stream', 'stream.stream_id =  interest.meta_value', 'LEFT');
+		$this->db->join('users_meta as  course', 'u.id =  course.user_id and course.meta_key = "course"', 'LEFT');
+		$this->db->join('mc_courses as  courses', 'courses.course_id =  course.meta_value', 'LEFT');
+		
+		$result = $this->db->get()->result_array();
+
+		return $result;
+		
+	}	
+	/*get user data to export*/
     
 }

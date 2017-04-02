@@ -222,7 +222,13 @@ foreach($exam_search as $exam_search_data){
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="youTubePlayer">
-<img src="<?php echo base_url('assets/theme/images/youtubeplayer.jpg'); ?>">
+<?php 
+$video_image_big = 'https://img.youtube.com/vi/'.$counselling_video[0].'/hqdefault.jpg';
+$video_url_big = 'https://www.youtube.com/embed/'.$counselling_video[0].'?autoplay=1';
+?>
+<a class="various fancybox fancybox.iframe" href="<?php echo $video_url_big; ?>">
+<img src="<?php echo $video_image_big; ?>">
+</a>
 </div>
 </div>
 
@@ -236,12 +242,12 @@ foreach($exam_search as $exam_search_data){
 <div class="youtubeThumb">
 <a href="#" class="viewAll">View All Videos</a>
 <ul>
-<li><img src="<?php echo base_url('assets/theme/images/youtubeplayer.jpg'); ?>"></li>
-<li><img src="<?php echo base_url('assets/theme/images/youtubeplayer.jpg'); ?>"></li>
-<li><img src="<?php echo base_url('assets/theme/images/youtubeplayer.jpg'); ?>"></li>
-<li><img src="<?php echo base_url('assets/theme/images/youtubeplayer.jpg'); ?>"></li>
-<li><img src="<?php echo base_url('assets/theme/images/youtubeplayer.jpg'); ?>"></li>
-<li><img src="<?php echo base_url('assets/theme/images/youtubeplayer.jpg'); ?>"></li>
+<?php foreach($counselling_video as $video){
+	$video_image = 'https://img.youtube.com/vi/'.$video.'/default.jpg';
+	$video_url = 'https://www.youtube.com/embed/'.$video.'?autoplay=1';
+	echo "<li><a class='various fancybox fancybox.iframe' href='".$video_url."'><img src='".$video_image."'></a></li>";
+}
+?>
 </ul>
 </div>
 

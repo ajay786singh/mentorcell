@@ -39,6 +39,8 @@ header('Vary: Accept-Encoding');
 			<link href="<?php echo base_url('assets/theme/css/custom.css?ver=1.0'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/mentorcell.css?ver=1.0'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/customResponsive.css?ver=1.0'); ?>" rel="stylesheet" type="text/css" media="all" />
+			<link href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" media="all" />
+			
 			<script>
 			var base_url = '<?php echo base_url(); ?>';
 			var isPasswordRest = <?php echo isset($_GET['setpassword']) ? 1 : 0 ; ?>;
@@ -1067,9 +1069,9 @@ if(count($exam_menu)>0){
 	<a href="<?php echo base_url()?>coupon/">C<br>o<br>u<br>p<br>o<br>n</a></span>
 <i></i>
 </div>
- <?php if(isset($user_login['id'])){?>
+ <?php if(isset($user_login['id'])){ ?>
 	<div class="profileNav">
-	<h3><?php echo $user_login['firstname']; ?></h3>
+	<h3><?php echo (isset($user_login['firstname']))? $user_login['firstname'] :" "; ?></h3>
 	<ul>
 		<li><a href="<?php echo site_url('user/profile'); ?>">Profile</a></li>
 		<li><a href="<?php echo site_url('user/logout'); ?>">Sign Out</a></li>
@@ -1081,7 +1083,6 @@ if(count($exam_menu)>0){
 	<ul>
 		<li class="userLogin" data-toggle="modal" data-target="#loginModal" onClick="document.getElementById('couponClicked').value=0" >Login</li>
 		<li class="userReg" data-toggle="modal" data-target="#registerModal">Register</li>
-
 	</ul>
 	</div>
  

@@ -53,10 +53,15 @@ header('Vary: Accept-Encoding');
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-7 col-sm-7 col-md-2 col-lg-2">
-<div class="logo"><a href="<?php echo site_url(); ?>"><img src="<?php echo base_url('assets/theme/images/logo.jpg'); ?>" /></a></div>	
+<div class="mobileIcon hidden-xs hidden-sm hidden-lg hidden-md pull-left"><i class="icon-bars"></i></div>
+<div class="logo">
+	<a href="<?php echo site_url(); ?>">
+	<img src="<?php echo base_url('assets/theme/images/logo.jpg'); ?>" />
+	</a>
+</div>	
 </div>
 
-<div class="col-xs-2 hidden-sm hidden-xs col-md-8 col-lg-8">
+<div class="mobileNavigation">
 <nav class="mainMenu">
 <ul>
 <li><a href="#">Management</a>
@@ -1062,7 +1067,7 @@ if(count($exam_menu)>0){
 	<a href="<?php echo base_url()?>coupon/">C<br>o<br>u<br>p<br>o<br>n</a></span>
 <i></i>
 </div>
- <?php if($user_login['id']){?>
+ <?php if(isset($user_login['id'])){?>
 	<div class="profileNav">
 	<h3><?php echo $user_login['firstname']; ?></h3>
 	<ul>

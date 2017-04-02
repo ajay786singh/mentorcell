@@ -1,16 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Coupon extends Public_Controller {
+require APPPATH . '/libraries/REST_Controller.php';
+// use namespace
+use Restserver\Libraries\REST_Controller;
+
+class Coupon extends REST_Controller {
 
     public function __construct() {
         parent::__construct();		
 		$this->load->database();
-        $this->load->config('common/dp_config');
+		$this->load->config('common/dp_config');
         $this->load->config('common/dp_language');
         $this->load->library(array('form_validation', 'ion_auth', 'template', 'common/mobile_detect'));
-        $this->load->helper(array('array', 'language', 'url'));
+        $this->load->helper(array('array', 'language', 'url','jwt'));
+        $this->load->model('common/prefs_model');
+		$this->load->model('common/college_model');
 		$this->load->model('common/common_model');
+		$this->load->model('common/coupon_model');
+		
+		
+		
 		
 		$this->questionsDisp	=	20;
 		$this->minValue			=	80;
@@ -19,24 +29,35 @@ class Coupon extends Public_Controller {
     }
 
 
-	public function index() {
+	public function index_post() {
+		$key = $this->input->post('key');
+		$userid = JWT::decode($key, $this->config->item('jwt_key'));
+		
 		$this->data['couponBox1']	=	'active';
 		$this->data['couponBox2']	=	'';
 		$this->data['couponBox3']	=	'';
-		$loggedIn					=	$this->ion_auth->logged_in();		
+		$loggedIn					=	$this->ion_auth->logged_in($userid);		
 		$this->data['loggedIn'] 	= 	$loggedIn;
 		if (!$loggedIn) {
 			$this->data['user_login'] 	= 	array('id'=>false);
 		} else {
-			$this->data['user_login']	=	$this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+			
+			if($userid){
+				$this->data['user_login']  = $this->prefs_model->user_info_login($userid);
+			}else{
+				$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+			}
+			
+			//$this->data['user_login']	=	$this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
 			$user_id					=	$this->data['user_login']['id'];
 		}
-		$this->load->view('public/layout/header', $this->data);
+
 		if (!$loggedIn) {
-			$this->load->view('public/coupon', $this->data);
+			$response = array('status'=>false,'message'=>' Info! You are not loggedin.');
+			echo json_encode($response);
+			die;
 		} else {
 			$hasAnswerd					=	$this->common_model->get_single_row('mc_coupons','user_id',$user_id);
-			$this->data['hasAnswerd']	=	$hasAnswerd;
 			if($hasAnswerd) {
 				$resultDisplay				=	$hasAnswerd['resultDisplay'];
 				$coupon						=	$hasAnswerd['coupon'];
@@ -51,25 +72,33 @@ class Coupon extends Public_Controller {
 				if($resultDisplay<80)
 				$message = "<h6>Your Coupon code is : ".$coupon."</h6>";
 				$this->data['message']	=	$message;
-				$this->load->view('public/coupon', $this->data);
+				
+				$response = array('status'=>true,'message'=>'data','data'=>$this->data);
+				echo json_encode($response);
+				die;
+				
+
 			} else {
 				$this->data['couponBox1']	=	'';
 				$this->data['couponBox2']	=	'active';
 				$this->data['couponBox3']	=	'';
-				//if(isset($_POST['coupon_course_submitted'])) {
+
 					$this->data['questionnaire_list'] 	=	$this->common_model->get_all_rows("mc_questionnaire",1,1,'RAND()', $this->questionsDisp);
 					$this->data['course_id'] 			=	0;//$this->input->post('course_id');
-					$this->load->view('public/coupon', $this->data);
-				//} else {
-				//	$this->data['courses']	=	$this->common_model->get_all("mc_courses");
-				//	$this->load->view('public/coupon_course', $this->data);
-				//}
+					
+					$response = array('status'=>true,'message'=>'data','data'=>$this->data);
+					echo json_encode($response);
+					die;
+				
 			}
 		}		
-		$this->load->view('public/layout/footer', $this->data);
+
 	}
-	public function question_answer_submitted() {
-		$user_id		=	$this->session->userdata('user_id');
+	public function question_answer_submitted_post() {
+		//$user_id		=	$this->session->userdata('user_id');
+		$key = $this->input->post('key');
+		$user_id = JWT::decode($key, $this->config->item('jwt_key'));
+		
 		if($user_id) {
 			$hasAnswerd		=	$this->common_model->get_single_row('mc_coupons','user_id',$user_id);
 			$tot_correct	=	0;
@@ -82,7 +111,6 @@ class Coupon extends Public_Controller {
 				
 				$answers_val 	= 	$this->input->post('answers_val');
 				$a_answers_val	=	explode(",",$answers_val);
-				// pr($a_answers_val);die;
 				
 				//Generating Coupon Code
 				$coupon				=	coupon_generator(8);
@@ -93,20 +121,19 @@ class Coupon extends Public_Controller {
 				$this->common_model->insert($c_data, "mc_coupons");
 				$coupon_id	=	$this->db->insert_id();
 				
-				if(isset($a_answers_val[0]) && !empty($a_answers_val[0])) {
-					foreach($a_answers_val as $val) {
-						$a_values	=	explode(":",$val);
-						$data['question_id']		=	$a_values[0];
-						list($answer_id,$correct)	=	explode("|",$a_values[1]);
-						$data['answer_id']			=	$answer_id;
-						$data['user_id']			=	$user_id;
-						$data['coupon_id']			=	$coupon_id;
-						$this->common_model->insert($data, "mc_qa_result");
-						if($correct) {
-							$tot_correct++;
-						}
+				foreach($a_answers_val as $val) {
+					$a_values	=	explode(":",$val);
+					$data['question_id']		=	$a_values[0];
+					list($answer_id,$correct)	=	explode("|",$a_values[1]);
+					$data['answer_id']			=	$answer_id;
+					$data['user_id']			=	$user_id;
+					$data['coupon_id']			=	$coupon_id;
+					$this->common_model->insert($data, "mc_qa_result");
+					if($correct) {
+						$tot_correct++;
 					}
 				}
+				
 				//Calculating actual Score of the user
 				//Formula: When a student scores 10/20, his coupon value will be MIN + {(MAX - MIN)/ 20/10} i.e. 50 + 40/2 = 70%
 				//Formula: When a student scores 20/20, his coupon value will be by above formula: 50 + 40 = 90%
@@ -165,11 +192,11 @@ class Coupon extends Public_Controller {
 								);
 				$response_array = $this->sendgridemail->send_email($email_data);
 				
-				
-				$response 		= 	array('status'=>true,'message'=>$message);
+				$data = array('score' =>$resultDisplay,'coupon'=>$coupon);
+				$response 		= 	array('status'=>true,'message'=>$message,'data'=>$data);
 				echo json_encode($response);die;
 			} else {
-				$response 		= 	array('status'=>true,'message'=>'<div class="alert alert-warning"><strong>Sorry!</strong> You have already submitted the answers.</div>');
+				$response 		= 	array('status'=>true,'message'=>'Sorry! You have already submitted the answers.');
 				echo json_encode($response);die;
 			}
 		}

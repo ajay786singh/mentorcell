@@ -170,7 +170,7 @@ foreach($exam_search as $exam_search_data){
 </div-->
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="youTubePlayer1">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4YbMmXui48M" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/4YbMmXui48M" frameborder="0" allowfullscreen></iframe>
 </div>
 </div>
 

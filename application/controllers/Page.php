@@ -10,8 +10,12 @@ class Page extends Public_Controller {
 		$this->load->database();
         $this->load->config('common/dp_config');
         $this->load->config('common/dp_language');
-        $this->load->library(array('form_validation', 'ion_auth', 'template', 'common/mobile_detect'));
+       
+		$this->load->library(array('form_validation', 'ion_auth', 'template', 'common/mobile_detect'));
         $this->load->helper(array('array', 'language', 'url'));
+        $this->load->model('common/prefs_model');
+		$this->load->model('common/college_model');
+		$this->load->model('common/common_model');
       
     }
 	

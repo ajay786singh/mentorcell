@@ -1067,7 +1067,7 @@ if(count($exam_menu)>0){
 	<a href="<?php echo base_url()?>coupon/">C<br>o<br>u<br>p<br>o<br>n</a></span>
 <i></i>
 </div>
- <?php if($user_login['id']){?>
+ <?php if(isset($user_login['id'])){?>
 	<div class="profileNav">
 	<h3><?php echo $user_login['firstname']; ?></h3>
 	<ul>

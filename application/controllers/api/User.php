@@ -57,7 +57,7 @@ class User extends REST_Controller {
 						$token = array();
 						$token = $user;
 						$response['key'] = JWT::encode($token, $this->config->item('jwt_key'));
-						
+						$response['userdata'] = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
 						echo json_encode($response);die;
                     }
                     else
@@ -68,6 +68,7 @@ class User extends REST_Controller {
 						$token = $user;
                         $response = array('status'=>false,'message'=>'Please visit admin section.');
 						$response['key'] = JWT::encode($token, $this->config->item('jwt_key'));
+						$response['userdata'] = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
 						echo json_encode($response);
 						die;
                     }
@@ -96,8 +97,8 @@ class User extends REST_Controller {
 	
 	function logout_get($key)
 	{
-        $userid = JWT::decode($key, $this->config->item('jwt_key'));
-		$logout = $this->ion_auth->logout($userid);
+        //$userid = JWT::decode($key, $this->config->item('jwt_key'));
+		$logout = $this->ion_auth->logout(1);
 
         $this->session->set_flashdata('message', $this->ion_auth->messages());
 

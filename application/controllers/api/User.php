@@ -97,8 +97,8 @@ class User extends REST_Controller {
 	
 	function logout_get($key)
 	{
-        //$userid = JWT::decode($key, $this->config->item('jwt_key'));
-		$logout = $this->ion_auth->logout(1);
+        $userid = JWT::decode($key, $this->config->item('jwt_key'));
+		$logout = $this->ion_auth->logout($userid);
 
         $this->session->set_flashdata('message', $this->ion_auth->messages());
 

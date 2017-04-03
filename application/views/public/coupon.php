@@ -86,6 +86,8 @@
 					<i class="icon-city"></i>
 				</div>
 
+				<input type="hidden" value="<?php echo $referral_key;?>"  id="register_refer-key"  name="">
+
 				<div class="inputRow">
 					<input type="button" value="Submit"  id="register_button" class="go" name="">
 				</div>

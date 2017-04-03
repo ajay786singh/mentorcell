@@ -12,11 +12,12 @@ $(document).ready(function() {
 			var course = $("select#register_course").val();
 			var state = $("select#register_state").val();
 			var city = $("select#register_city").val();
+			var refer_key = $("#register_refer-key").val();
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/user/register",
 				dataType: 'json',
-				data: {first_name:fname,last_name:lname,email:email, phone:phone, interest:interest, course:course,state:state,city: city },
+				data: {first_name:fname,last_name:lname,email:email, phone:phone, interest:interest, course:course,state:state,city: city,refer_key:refer_key },
 				success: function(res) {
 					if (res)
 					{

@@ -47,8 +47,8 @@
 					<i class="icon-phone-call"></i>
 				</div>
 				<div class="inputRow">
-					<select id="register_interest"><option>Education Interests</option>
-					<?php 
+					<select id="register_interest" class="register_interest"><option>Education Interests</option>
+					<?php
 					$streams = $this->common_model->get_all_rows("mc_streams", 1,1);
 					foreach($streams as $stream){
 							echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
@@ -59,38 +59,40 @@
 				</div>
 
 				<div class="inputRow">
-					<select id="register_course"><option>Desired Courses</option></select>
+					<select id="register_course" class="register_course"><option>Desired Courses</option></select>
 					<i class="icon-course"></i>
 				</div>
 
 				<div class="inputRow">
-					<select id="register_state"><option>Current State</option>
-					<?php 
+					<select id="register_state" class="register_state"><option>Current State</option>
+					<?php
 					$states = $this->common_model->get_all_rows("states", "country_id",101);
 					foreach($states as $stateeach){
 					echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
 					//echo '<optgroup label="'.$stateeach['name'].'">';
 						$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
-						
+
 						//foreach($cities as $city){
 							//echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
 						//}
 						//echo  '</optgroup>';
 					} ?>
-				
+
 				</select>
 				<i class="icon-city"></i>
 				</div>
 				<div class="inputRow">
-					<select id="register_city"><option>Current City</option></select>
+					<select id="register_city" class="register_city"><option>Current City</option></select>
 					<i class="icon-city"></i>
 				</div>
+
 				<input type="hidden" value="<?php echo $referral_key;?>"  id="register_refer-key"  name="">
+
 				<div class="inputRow">
 					<input type="button" value="Submit"  id="register_button" class="go" name="">
 				</div>
 			</form>
-			
+
 			<form id="otp_form" style='display:none;'>
 			<h3>Please enter recieved OTP.</h3>
 			<div class="inputRow">
@@ -102,11 +104,11 @@
 			</div>
 			<input type="hidden" id="user_otp" name="user_otp" value="">
 			</form>
-			
-			
-			
+
+
+
 		</div>
-		
+
 		<div class="loginForm">
 			<h3>Already have an account?</h3>
 			<div id="login_response"></div>
@@ -118,13 +120,14 @@
 				<div class="inputRow">
 
 					<input type="password" id="login_password" required='' placeholder="Password" name="">
+					<i class="icon-key"></i>
 				</div>
 
 				<div class="inputRow">
 					<input type="submit" value="Submit" id="login_button" class="go" name="">
 				</div>
 				<h4><input type="checkbox" id="login_remember" name=""> Keep me signed in.</h4>
-				<h5><a data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>
+				<h5><a href='#' data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>
 				<input type='hidden' id="couponClicked" value='0'>
 			</form>
 		</div>
@@ -172,7 +175,7 @@
 		<input type="button" id='question_answer' value="Test Submit" class="go" name="">
 		<input type="hidden" id='question_ids' value="<?php echo $question_ids;?>">
 		<input type="hidden" id='course_id' value="<?php echo $course_id;?>">
-		</div>	
+		</div>
 	</div>
 
 	<div class="couponRow <?php echo $couponBox3;?>" id="couponBox3">

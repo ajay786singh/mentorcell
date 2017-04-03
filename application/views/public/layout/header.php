@@ -40,12 +40,31 @@ header('Vary: Accept-Encoding');
 			<link href="<?php echo base_url('assets/theme/css/mentorcell.css?ver=1.0'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="<?php echo base_url('assets/theme/css/customResponsive.css?ver=1.0'); ?>" rel="stylesheet" type="text/css" media="all" />
 			<link href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" media="all" />
-			
+
 			<script>
 			var base_url = '<?php echo base_url(); ?>';
 			var isPasswordRest = <?php echo isset($_GET['setpassword']) ? 1 : 0 ; ?>;
 			</script>
-			
+			<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-18112004-20', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!--Start of Zendesk Chat Script-->
+<script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){
+z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+$.src='https://v2.zopim.com/?4dSSDJndx2wY40w5e54EyssOPbZJHirO';z.t=+new Date;$.
+type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+</script>
+<!--End of Zendesk Chat Script-->
 		</head>
 <body>
 
@@ -60,7 +79,7 @@ header('Vary: Accept-Encoding');
 	<a href="<?php echo site_url(); ?>">
 	<img src="<?php echo base_url('assets/theme/images/logo.jpg'); ?>" />
 	</a>
-</div>	
+</div>
 </div>
 
 <div class="mobileNavigation">
@@ -134,7 +153,7 @@ header('Vary: Accept-Encoding');
 
 <div class="subMenuHold" id="submenu4">
 <div class="subMenubox">
-<h3>colleges by Location</h3>
+<h3>Colleges by Location</h3>
 <div class="links">
 <span class="sublinks"><a href="#">MBA Colleges in India</a></span>
 <span class="sublinks"><a href="#">MBA Colleges in Bangalore</a></span>
@@ -941,7 +960,7 @@ if(count($exam_menu)>0){
 
 </li>
 
-<li><a href="<?php echo base_url('home/underconstruction'); ?>">Placements</a>
+<li><a href="<?php echo base_url('page/counselling'); ?>">Counselling</a>
 
 <!--submenu start-->
 <div class="subMenuArea">
@@ -1065,11 +1084,11 @@ if(count($exam_menu)>0){
 <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2">
 
 <div class="couponTab icon-bookmark">
-<span>	
+<span>
 	<a href="<?php echo base_url()?>coupon/">C<br>o<br>u<br>p<br>o<br>n</a></span>
 <i></i>
 </div>
- <?php if(isset($user_login['id'])){ ?>
+ <?php if(isset($user_login['id']) && ((int)$user_login['id'])>0){ ?>
 	<div class="profileNav">
 	<h3><?php echo (isset($user_login['firstname']))? $user_login['firstname'] :" "; ?></h3>
 	<ul>
@@ -1077,7 +1096,7 @@ if(count($exam_menu)>0){
 		<li><a href="<?php echo site_url('user/logout'); ?>">Sign Out</a></li>
 	</ul>
 	</div>
- 
+
  <?php }else{ ?>
 	<div class="userNav">
 	<ul>
@@ -1085,11 +1104,11 @@ if(count($exam_menu)>0){
 		<li class="userReg" data-toggle="modal" data-target="#registerModal">Register</li>
 	</ul>
 	</div>
- 
+
  <?php } ?>
 
 </div>
 </div>
-</div>	
+</div>
 </header>
 <!-- header close -->

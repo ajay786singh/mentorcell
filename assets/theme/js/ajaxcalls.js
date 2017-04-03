@@ -1,6 +1,6 @@
 /*containw the ajax requests*/
 $(document).ready(function() {
-	
+
 	/*registration*/
 		$("#register_button").click(function(event) {
 			event.preventDefault();
@@ -51,14 +51,14 @@ $(document).ready(function() {
 							$('#register_form').hide();
 							$('#otp_form').hide();
 							setTimeout(function(){window.location.reload(); }, 1500);
-							
+
 						}
 					}
 				}
 			});
 		});
 	/*otp verification*/
-	
+
 	/*login*/
 		$("#login_button").click(function(event) {
 			event.preventDefault();
@@ -67,7 +67,7 @@ $(document).ready(function() {
 			var couponClicked 	= $("#couponClicked").val();
 			var remember = 0;
 			if($("input#login_remember").is(':checked')){remember=1;}else{remember=0;}
-			
+
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/user/login",
@@ -86,7 +86,7 @@ $(document).ready(function() {
 									window.location.reload();
 								}
 							}, 1500);
-							
+
 						}
 					}
 				}
@@ -94,8 +94,8 @@ $(document).ready(function() {
 		});
 	/*login*/
 
-	
-	
+
+
 	/*forgot password*/
 		$("#forgot_button").click(function(event) {
 			event.preventDefault();
@@ -111,24 +111,24 @@ $(document).ready(function() {
 						$('#forgot_response').html(res.message);
 						if(res.status==true){
 							setTimeout(function(){
-								//window.location.reload(); 
+								//window.location.reload();
 								 $('#forgotModal').modal('hide');
 							}, 1500);
-							
+
 						}
 					}
 				}
 			});
 		});
 	/*forgot password*/
-	
+
 	/*forgot password*/
 		$("#forgotset_button").click(function(event) {
 			event.preventDefault();
 			var password = $("input#forgotset_password").val();
 			var cpassword = $("input#forgotset_cpassword").val();
 			var code = $("input#forgotset_code").val();
-			
+
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/user/setpassword",
@@ -140,25 +140,25 @@ $(document).ready(function() {
 						$('#forgotset_response').html(res.message);
 						if(res.status==true){
 							setTimeout(function(){
-								window.location.href=base_url; 
+								window.location.href=base_url;
 								 //$('#forgotsetModal').modal('hide');
 							}, 1500);
-							
+
 						}
 					}
 				}
 			});
 		});
 	/*forgot password*/
-	
-	
+
+
 	/*change new password*/
 		$("#change_password_save").click(function(event) {
 			event.preventDefault();
 			var curpassword = $("input#change_curpassword").val();
 			var password = $("input#change_password").val();
 			var cpassword = $("input#change_cpassword").val();
-			
+
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/user/changepassword",
@@ -178,17 +178,17 @@ $(document).ready(function() {
 			});
 		});
 	/*change new password*/
-	
-	
+
+
 	/*upload file for student*/
 		$("#sacedoc_save").click(function(event) {
 			event.preventDefault();
 
-			var file_data = $('#input_savedoc').prop('files')[0];  
-			if(file_data=='' || typeof file_data == "undefined" ){$('#savedoc_response').html('Choose a file!');return false;}	
-			var form_data = new FormData();                  
+			var file_data = $('#input_savedoc').prop('files')[0];
+			if(file_data=='' || typeof file_data == "undefined" ){$('#savedoc_response').html('Choose a file!');return false;}
+			var form_data = new FormData();
 			form_data.append('file', file_data);
-		
+
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/user/savedoc",
@@ -204,18 +204,18 @@ $(document).ready(function() {
 						if(res.status==true){
 							$('#input_savedoc').val('');
 							//setTimeout(function(){
-								//window.location.href=base_url; 
+								//window.location.href=base_url;
 								 //$('#forgotsetModal').modal('hide');
 							//}, 1500);
-							
+
 						}
 					}
 				}
 			});
 		});
 	/*upload file for student*/
-	
-	
+
+
 	/*profile personal informatio*/
 		$("#profile_update_button").click(function(event) {
 			event.preventDefault();
@@ -227,7 +227,7 @@ $(document).ready(function() {
 			//var course = $("select#register_course").val();
 			var state = $("#personal-information .profile_register_state").val();
 			var city = $("#personal-information .profile_register_city").val();
-			
+
 			var dob = $("#personal-information #profile_dob").val();
 			var aboutMe = $("#personal-information #profile_aboutme").val();
 			var bio = $("#personal-information #profile_bio").val();
@@ -248,26 +248,27 @@ $(document).ready(function() {
 			});
 		});
 	/*profile personal informatio*/
-	
-	
-	
-	
+
+
+
+
 	/**/
 	/**/
-		$("#register_interest").change(function(){
+		$(".register_interest").change(function(){
+			objectEle=$(this).closest("form");
 			jQuery.ajax({
 				type: "GET",
 				url: base_url+"index.php/user/courses",
 				dataType: 'text',
 				data: {stream:$(this).val()},
 				success: function(res) {
-					$("#register_course").html(res);
+					(objectEle).find(".register_course").html(res);
 				}
 			});
 		});
-	
+
 	/**/
-	
+
 	/*Question Answer Submit*/
 		$("#question_answer").click(function(event) {
 			var curbutton = $(this);
@@ -294,13 +295,13 @@ $(document).ready(function() {
 					return false;
 				}
 			}
-			
+
 			answers	=	"";
 			if(a_answers) {
 				var answers	=	a_answers.join(",");
 			}
-			// 
-			
+			//
+
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"coupon/question_answer_submitted",
@@ -321,30 +322,30 @@ $(document).ready(function() {
 			});
 		});
 	/*login*/
-	
-	
-	
-	$("#register_state").change(function(event) {
-			
+
+
+
+	$(".register_state").change(function(event) {
+
 			var state_id = $(this).val();
-			
+			objectEle=$(this).closest("form");
 			jQuery.ajax({
 				type: "GET",
 				url: base_url+"index.php/user/city",
 				dataType: 'text',
 				data: {state_id:state_id},
 				success: function(res) {
-					$("#register_city").html(res);
+					(objectEle).find(".register_city").html(res);
 				}
 			});
 		});
-		
-		
-		
-		
+
+
+
+
 		$("#search_college").chosen().change(function() {
 			var college_id = $(this).val();
-			
+
 			jQuery.ajax({
 				type: "GET",
 				url: base_url+"index.php/home/clgcity",
@@ -353,28 +354,28 @@ $(document).ready(function() {
 				success: function(res) {
 					console.log(res);
 					$("#register_city_location").val(res.city).trigger("chosen:updated").prop('disabled', true).trigger("chosen:updated");
-					
-					
+
+
 				}
 			});
-			
+
 			if(college_id != ''){
 				$(".extra_filters").show();
 				$(".extra_filters select").show();
 			}
-			
+
 		});
-		
-		
-		
+
+
+
 		/*Contact Form*/
-		$("#_contact_form_send").click(function(event) {
+		$("#_contact_form").submit(function(event) {
 			event.preventDefault();
 			var _contact_form_name    = $("input#_contact_form_name").val();
 			var _contact_form_email   = $("input#_contact_form_email").val();
 			var _contact_form_phone   = $("input#_contact_form_phone").val();
 			var _contact_form_message = $("#_contact_form_message").val();
-			
+
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/home/feedback",
@@ -390,10 +391,10 @@ $(document).ready(function() {
 					}
 				}
 			});
-		});		
+		});
 		/*Contact Form*/
-		
-		
+
+
 		/*get course dropdown*/
 		$("#redeem_college_id").change(function(){
 			var college_id = ($(this).val());
@@ -405,10 +406,10 @@ $(document).ready(function() {
 					$("#redeem_search_course").html(res);
 				}
 			});
-			
+
 		});
 		/*get course dropdown*/
-		
+
 		/*get the coupon value*/
 		$("#show_coupon_value").click(function(event){
 			event.preventDefault();
@@ -423,11 +424,9 @@ $(document).ready(function() {
 					$("#redeem_result").html(res.message);
 				}
 			});
-			
+
 		});
-		
+
 		/*get the coupon value*/
-	
+
 });
-
-

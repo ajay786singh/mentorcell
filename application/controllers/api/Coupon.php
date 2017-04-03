@@ -64,16 +64,12 @@ class Coupon extends REST_Controller {
 				$this->data['couponBox1']	=	'';
 				$this->data['couponBox2']	=	'';
 				$this->data['couponBox3']	=	'active';
-				$message	=	"
-				<h4>Your IQ is</h4>
-				<h5>".$resultDisplay."</h5>
-				<div class='clearfix'></div>
-				<h6>Your Coupon code is : ".$coupon."</h6>";
+				$message	= $resultDisplay.$coupon;
 				if($resultDisplay<80)
-				$message = "<h6>Your Coupon code is : ".$coupon."</h6>";
+				$message = $coupon;
 				$this->data['message']	=	$message;
 				
-				$response = array('status'=>true,'message'=>'data','data'=>$this->data);
+				$response = array('status'=>true,'message'=>'data','data'=>$this->data,'coupon'=>$coupon,'score'=>$resultDisplay);
 				echo json_encode($response);
 				die;
 				

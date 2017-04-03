@@ -16,50 +16,50 @@
 <div class="formcol50">
 <select id="search_college" required='' data-placeholder="Choose a College" class="auto-choice" name="college">
 <option value="">Choose a College to Join</option>
-	<?php 
+	<?php
 			foreach($colleges as $college){
 				echo '<option value="'.$college['id'].'">'.$college['name'].'</option>';
 			}
-	?>	
+	?>
 </select>
 </div>
 <div class="formcol50">
 <select id="register_city_location"  class="auto-choice" multiple name="location">
 	<?php echo $location; ?>
-			
+
 </select>
 </div>
 		<div  class="extra_filters" style="display:none;">
 			<div class="formcol00">
 			<select id="stream"  class="auto-choice"  name="stream">
-				<?php 
+				<?php
 
 				foreach($streams as $stream){
 				  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
 				} ?>
-						
+
 			</select>
 			</div>
 			<div class="formcol00">
 			<select id="type" class="auto-choice"  name="type">
-				<?php 
+				<?php
 
 				foreach($types as $type){
 				  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
 			  } ?>
-						
+
 			</select>
 			</div>
 			<div class="formcol00">
-			<select id="course"  class="auto-choice"  name="course_main"> 
-			<?php 
+			<select id="course"  class="auto-choice"  name="course_main">
+			<?php
 				foreach($courses as $course){
 					echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
 				} ?>
-						
+
 			</select>
 			</div>
-		</div>	
+		</div>
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
 </div>
@@ -70,17 +70,17 @@
 
 <select id="stream_name" required='' data-placeholder="Stream" class="auto-choice" name="stream" onChange="return getExamByCourse(this.value);">
 <option value="">Find Stream</option>
-	<?php 
+	<?php
 			$exam_search = $this->exam_model->get_all_groupby("mc_exams");
 foreach($exam_search as $exam_search_data){
 				echo '<option value="'.$exam_search_data['course_name'].'">'.$exam_search_data['course_name'].'</option>';
 			}
-	?>	
+	?>
 </select>
 </div>
 <div class="formcol50">
 <select id="exam_lists"  name="exam_lists">
-			
+
 </select>
 </div>
 <button class="go" onClick="return exam_button();"><span class="glyphicon glyphicon-search"></span></button>
@@ -92,20 +92,20 @@ foreach($exam_search as $exam_search_data){
 <div class="formcol50">
 <select id="search_course" required='' class="auto-choice" name="course">
 <option value="">Choose a Course to Join</option>
-	<?php 
-		
+	<?php
+
 		foreach($courses as $course){
-			
+
 				echo '<option   value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
-			
+
 		}
-	?>	
+	?>
 </select>
 </div>
 <div class="formcol50">
 <select id="register_city_location"  class="auto-choice" multiple name="location">
 	<?php echo $location; ?>
-			
+
 </select>
 </div>
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
@@ -188,7 +188,9 @@ foreach($exam_search as $exam_search_data){
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 <div class="stepsRow">
 	<div class="stepIcon"><img src="<?php echo base_url('assets/theme/images/step1.jpg'); ?>" /></div>
-	<div class="stepText"><h3><span>1</span> Step 1</h3> <p>Register and generate coupon.</p> <a href="#" class="stepButton">Register</a></div>
+	<div class="stepText"><h3><span>1</span> Step 1</h3> <p>Register and generate coupon.</p>
+		<a href="#" data-toggle="modal" data-target="#registerModal" class="stepButton">Register</a>
+	</div>
 </div>
 </div>
 
@@ -202,7 +204,9 @@ foreach($exam_search as $exam_search_data){
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 <div class="stepsRow">
 	<div class="stepIcon"><img src="<?php echo base_url('assets/theme/images/step3.jpg'); ?>" /></div>
-	<div class="stepText"><h3><span>3</span> Step 3</h3> <p>Take Admission & Redeem Coupon</p> <a href="#" class="stepButton">Generate coupon</a></div>
+	<div class="stepText"><h3><span>3</span> Step 3</h3> <p>Take Admission & Redeem Coupon</p>
+		<a href="<?php echo base_url()?>coupon/" class="stepButton">Generate coupon</a>
+	</div>
 </div>
 </div>
 
@@ -222,7 +226,7 @@ foreach($exam_search as $exam_search_data){
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="youTubePlayer">
-<?php 
+<?php
 $video_image_big = 'https://img.youtube.com/vi/'.$counselling_video[0].'/hqdefault.jpg';
 $video_url_big = 'https://www.youtube.com/embed/'.$counselling_video[0].'?autoplay=1';
 ?>
@@ -509,11 +513,11 @@ Noida-201307, India</p>
 	<form id="_contact_form">
 	<div id="_contact_form_response"></div>
 	<ul>
-	    <li><input id="_contact_form_name" required='' type="text" name="" placeholder="Full Name"> <i class="icon-name"></i></li>
-		<li><input id="_contact_form_email" required='' type="email" name="" placeholder="Email Address"> <i class="icon-email"></i></li>
-		<li><input id="_contact_form_phone" required='' type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" name="" placeholder="Mobile Number"> <i class="icon-phone-call"></i></li>
-		<li><textarea id="_contact_form_message" required='' placeholder="Message"></textarea></li>
-		<li><input id="_contact_form_send" type="submit" value="Send" class="go" name=""></li>
+	    <li><input id="_contact_form_name" required="required" type="text" name="" placeholder="Full Name"> <i class="icon-name"></i></li>
+		<li><input id="_contact_form_email" required="required" type="email" name="" placeholder="Email Address"> <i class="icon-email"></i></li>
+		<li><input id="_contact_form_phone" required="required" type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" name="" placeholder="Mobile Number"> <i class="icon-phone-call"></i></li>
+		<li><textarea id="_contact_form_message" required="required" placeholder="Message"></textarea></li>
+		<li><input id="_contact_form_send" type="submit" value="Send" class="go" name="go"></li>
 		</ul>
 	</form>
 </div>
@@ -640,4 +644,3 @@ Noida-201307, India</p>
   </div>
 </div>
 <!-- team 4 Close -->
-

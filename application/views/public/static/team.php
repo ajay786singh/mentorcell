@@ -5,7 +5,7 @@
 <div class="sectionHeading">Our Management Team</div>
 
 <div class="teamRow">
-<div class="teamPic"><img src="images/ak-gupta.jpg"></div>
+<div class="teamPic"><img src="<?php echo base_url('assets/theme/images/ak-gupta.jpg')?>"></div>
 <div class="teamDetail">
 <h3>Amit Kumar Gupta</h3>
 <h4>Co-Founder</h4>
@@ -14,7 +14,7 @@
 </div>
 
 <div class="teamRow">
-<div class="teamPic"><img src="images/sanjeev-singh.jpg" /></div>
+<div class="teamPic"><img src="<?php echo base_url('assets/theme/images/sanjeev-singh.jpg')?>" /></div>
 <div class="teamDetail">
 <h3>Sanjeev Singh</h3>
 <h4>Co-Founder</h4>
@@ -23,7 +23,7 @@
 </div>
 
 <div class="teamRow">
-<div class="teamPic"><img src="images/p-chaudhuri.jpg" /></div>
+<div class="teamPic"><img src="<?php echo base_url('assets/theme/images/p-chaudhuri.jpg')?>" /></div>
 <div class="teamDetail">
 <h3>Pranab Chaudhuri</h3>
 <h4>Co-Founder</h4>
@@ -32,7 +32,7 @@
 </div>
 
 <div class="teamRow">
-<div class="teamPic"><img src="images/d-mishra.jpg" /></div>
+<div class="teamPic"><img src="<?php echo base_url('assets/theme/images/d-mishra.jpg')?>" /></div>
 <div class="teamDetail">
 <h3>Dinesh Mishra</h3>
 <h4>Co-Founder</h4>

@@ -13,7 +13,7 @@ Noida, UP<br>
 <div class="footerWidget">
 <h3>About us</h3>
 <ul>
-<li><a href="<?php echo base_url()?>home/underconstruction">Company Overview</a></li>
+<li><a href="<?php echo base_url()?>page/companyoverview">Company Overview</a></li>
 <li><a href="<?php echo base_url()?>page/whatwedo">What we do</a></li>
 <li><a href="<?php echo base_url()?>page/testimonial">Testimonial</a></li>
 <li><a href="<?php echo base_url()?>page/team">Team</a></li>
@@ -63,9 +63,9 @@ Noida, UP<br>
 <section class="footerBottom">
 <p>Copyright © 2017 mentorcell.com. All Rights Reserved</p>
 <div class="footerSocial">
-<a href="#" class="fbBg"><i class="icon-facebook"></i></a>
-<a href="#" class="twBg"><i class="icon-twitter"></i></a>
-<a href="#" class="inBg"><i class="icon-linkedin"></i></a>
+<a href="https://www.facebook.com/MentorCell/" target="_new" class="fbBg"><i class="icon-facebook"></i></a>
+<a href="#" target="_new" class="twBg"><i class="icon-twitter"></i></a>
+<a href="https://www.linkedin.com/in/mentor-cell-4ba355139/" target="_new" class="inBg"><i class="icon-linkedin"></i></a>
 </div>
 </section>
 </div>
@@ -97,16 +97,16 @@ Noida, UP<br>
       		<i class="icon-email"></i>
       	</div>
       	<div class="inputRow">
-
-      		<input type="password" id="login_password" required='' placeholder="Password" name="">
-      	</div>
+          <input type="password" id="login_password" required='' placeholder="Password" name="">
+          <i class="icon-key"></i>
+        </div>
 
       	<div class="inputRow">
       		<input type="submit" value="Submit" id="login_button" class="go" name="">
       	</div>
 
       	<h4><input type="checkbox" id="login_remember" name=""> Keep me signed in.</h4>
-      	<h5><a data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>
+      	<h5><a data-toggle="modal" href='#' data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>
 		<input type='hidden' id="couponClicked" value='0'>
       	</form>
 
@@ -140,7 +140,7 @@ Noida, UP<br>
       		<input type="email" id="forgot_email" required='' placeholder="Email Address" name="">
       		<i class="icon-email"></i>
       	</div>
-    
+
       	<div class="inputRow">
       		<input type="submit" value="Submit" id="forgot_button" class="go" name="">
       	</div>
@@ -230,57 +230,57 @@ Noida, UP<br>
       	</div>
 
       	<div class="inputRow">
-      		<select id="register_interest"><option>Education Interests</option>
-				<?php 
+      		<select id="register_interest" class='register_interest'><option>Education Interests</option>
+				<?php
 				$streams = $this->common_model->get_all_rows("mc_streams", 1,1);
 				foreach($streams as $stream){
 						echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
 				} ?>
-			
+
 			</select>
       		<i class="icon-education"></i>
       	</div>
 
       	<div class="inputRow">
-      		<select id="register_course"><option>Desired Courses</option></select>
+      		<select id="register_course" class='register_course'><option>Desired Courses</option></select>
       		<i class="icon-course"></i>
       	</div>
 
       	<div class="inputRow">
-      		<select id="register_state"><option>Current State</option>
-			<?php 
+      		<select id="register_state" class="register_state"><option>Current State</option>
+			<?php
 
 				$states = $this->common_model->get_all_rows("states", "country_id",101);
 				foreach($states as $stateeach){
 				echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
 				//echo '<optgroup label="'.$stateeach['name'].'">';
 					$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
-					
+
 					//foreach($cities as $city){
 					//	echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
 					//}
 					//echo  '</optgroup>';
 				}?>
-			
+
 			</select>
 			<i class="icon-city"></i>
 			</div>
 			<div class="inputRow">
-			<select id="register_city"><option>Current City</option>
-			
-			
+			<select id="register_city" class="register_city"><option>Current City</option>
+
+
 			</select>
       		<i class="icon-city"></i>
       	</div>
-		<p class="signup-msg">By clickingSubmit, you agree to MentorCell's <a href="#" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a> and 
-		<a href="#" data-toggle="modal" data-target="#termsModal">Terms & Conditions</a></p>
+		<p class="signup-msg">By clicking Submit, you agree to MentorCell's <a href="#" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a> and
+		<a href="#" data-toggle="modal" data-target="#termsModal"> Terms & Conditions</a></p>
       	<div class="inputRow">
       		<input type="submit" value="Submit" id="register_button" class="go" name="">
       	</div>
 
       	</form>
-		
-		
+
+
 		<form id="otp_form" style='display:none;'>
 		<h3>Please enter recieved OTP.</h3>
       	<div class="inputRow">
@@ -322,7 +322,7 @@ Noida, UP<br>
       <div class="modal-body">
       <div class="loginForm">
 		<h3 style="background: #ff9978;
-    padding: 30px;">Dear Visitor! This website is under construction and a few features may not work. We are going to launch a national level marketing campaign from 20th February, 2017. By then, all features will be available to the user. Sorry for the inconvenience and thanks for your support! 
+    padding: 30px;">Dear Visitor! This website is under construction and a few features may not work. We are going to launch a national level marketing campaign from 20th February, 2017. By then, all features will be available to the user. Sorry for the inconvenience and thanks for your support!
 		<br/> Team MentorCell</h3>
 
       </div>
@@ -355,7 +355,7 @@ Noida, UP<br>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.fancybox-thumbs.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/custom.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/ajaxcalls.js'); ?>"></script>
-	
+
 	<link href="<?php echo base_url('assets/theme/css/chosen.min.css'); ?>" rel="stylesheet" />
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/chosen.jquery.min.js'); ?>"></script>
 	<script type="text/javascript">
@@ -370,7 +370,7 @@ Noida, UP<br>
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
-	
+
 	<?php
 	if(isset($couponBox1)) {
 		?>
@@ -400,6 +400,6 @@ Noida, UP<br>
 		<?php
 	}
 ?>
-	
+
 </body>
 </html>

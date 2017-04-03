@@ -66,8 +66,8 @@ class User extends REST_Controller {
 						$user = $this->ion_auth->user()->row()->id;
 						$token = array();
 						$token = $user;
-						$response['key'] = JWT::encode($token, $this->config->item('jwt_key'));
                         $response = array('status'=>false,'message'=>'Please visit admin section.');
+						$response['key'] = JWT::encode($token, $this->config->item('jwt_key'));
 						echo json_encode($response);
 						die;
                     }

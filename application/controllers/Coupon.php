@@ -33,6 +33,16 @@ class Coupon extends Public_Controller {
 		}
 		$this->load->view('public/layout/header', $this->data);
 		if (!$loggedIn) {
+				/*get sharing id*/
+				$key = $this->input->get('referral-key');
+				if(isset($key)){
+				$referkey = @explode('-',base64_decode($key));
+				$refer_key  = (is_array($referkey))? $referkey[1] : 0;
+					$this->data['referral_key'] 			=	$refer_key;
+				}else{
+					$this->data['referral_key'] 			= 0;
+				}
+				/**/
 			$this->load->view('public/coupon', $this->data);
 		} else {
 			$hasAnswerd					=	$this->common_model->get_single_row('mc_coupons','user_id',$user_id);
@@ -56,6 +66,8 @@ class Coupon extends Public_Controller {
 				$this->data['couponBox1']	=	'';
 				$this->data['couponBox2']	=	'active';
 				$this->data['couponBox3']	=	'';
+	
+				
 				//if(isset($_POST['coupon_course_submitted'])) {
 					$this->data['questionnaire_list'] 	=	$this->common_model->get_all_rows("mc_questionnaire",1,1,'RAND()', $this->questionsDisp);
 					$this->data['course_id'] 			=	0;//$this->input->post('course_id');

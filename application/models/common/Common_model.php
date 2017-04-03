@@ -122,5 +122,20 @@ class Common_model extends CI_Model {
 		
 	}	
 	/*get user data to export*/
+	
+	/**
+	*@param tablename, column in where, value
+	*result as array
+	*/
+	function save_point($id)
+    {
+		
+		$this->db->set('points', 'points+1', FALSE);
+		$this->db->where('id', $id);
+		$this->db->update('users');
+		
+    }
+	
+	
     
 }

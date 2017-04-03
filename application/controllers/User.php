@@ -118,6 +118,7 @@ class User extends Public_Controller {
 		$course = $this->input->post('course');
 		$state = $this->input->post('state');
 		$city = $this->input->post('city');
+		$refer_key = $this->input->post('refer_key');
 		
 		
 		if ($this->form_validation->run() == TRUE)
@@ -137,6 +138,8 @@ class User extends Public_Controller {
 		
 		if ($this->form_validation->run() == TRUE )
 		{
+			$this->common_model->save_point($refer_key);
+			
 			$user_id = $this->ion_auth->register($username, $password, $email, $additional_data);
 			$this->ion_auth->set_user_meta($user_id, 'interest', $interest);
 			$this->ion_auth->set_user_meta($user_id, 'course', $course);

@@ -12,43 +12,40 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-                 <h3 class="box-title"><?php echo anchor('admin/courses/create', '<i class="fa fa-plus"></i> Add New Course', array('class' => 'btn btn-block btn-primary btn-flat')); ?></h3>
+                 <h3 class="box-title"><?php echo anchor('admin/specialization/create', '<i class="fa fa-plus"></i> Add New Specialization', array('class' => 'btn btn-block btn-primary btn-flat')); ?></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-				  <th>Course ID</th>
-				  <th>Course Stream</th>
-				  <th>Course Name</th>
-				  <th>Course Duration</th>
+				  <th>ID</th>
+				  <th>Course</th>
+				  <th>Specialization</th>
                   <th>Status</th>
                   <th>Manage</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($courses_list as $courses){ ?>
+                <?php foreach($specialization_list as $specialization){ ?>
                 <tr>
-				  <td><?php echo $courses['course_id'];?></td>
+				  <td><?php echo $specialization['specialization_id'];?></td>
 				  <td><?php
-							$course_id = $this->common_model->get_single_row("mc_streams", "stream_id",$courses['stream_id']);
-						echo $course_id['stream_name'];
+							$course_id = $this->common_model->get_single_row("mc_courses", "	course_id",$specialization['course_id']);
+						echo $course_id['course_name'];
 				  ?>
 				  </td>
-				  <td><?php echo $courses['course_name'];?></td>
-				  <td><?php echo $courses['course_duration'];?></td>
-                  <td><?php echo ($courses['status']==1)?"Active":"Inactive";?>   </td>
-                  <td><a href="<?php echo base_url()."admin/courses/edit/".$courses['course_id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/courses/delete/".$courses['course_id'];?>">Delete</a></td>
+				  <td><?php echo $specialization['specialization_name'];?></td>
+                  <td><?php echo ($specialization['status']==1)?"Active":"Inactive";?>   </td>
+                  <td><a href="<?php echo base_url()."admin/specialization/edit/".$specialization['specialization_id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/specialization/delete/".$specialization['specialization_id'];?>">Delete</a></td>
                </tr>
                <?php }?>
                 </tbody>
                 <tfoot>
                 <tr>
-				  <th>Course ID</th>
-				  <th>Course Type</th>
-				  <th>Course Name</th>
-				  <th>Course Duration</th>
+				  <th>ID</th>
+				  <th>Course</th>
+				  <th>Specialization</th>
                   <th>Status</th>
                   <th>Manage</th>
                 </tr>

@@ -79,9 +79,18 @@ class Coupon extends REST_Controller {
 				$this->data['couponBox2']	=	'active';
 				$this->data['couponBox3']	=	'';
 
-					$this->data['questionnaire_list'] 	=	$this->common_model->get_all_rows("mc_questionnaire",1,1,'RAND()', $this->questionsDisp);
+					$questionnaire_list 	=	$this->common_model->get_all_rows("mc_questionnaire",1,1,'RAND()', $this->questionsDisp);
 					$this->data['course_id'] 			=	0;//$this->input->post('course_id');
+
+					foreach($questionnaire_list as $k => $ques) {
+						$question_id		=	$ques['question_id'];
+						$a_question_ids[]	=	$question_id;
+						$questionnaire_list[$k]['answer']	= 	$this->common_model->get_all_rows("mc_answers",'question_id',$question_id,'answer_id asc');
 					
+					}
+					
+					$this->data['questions'] = $questionnaire_list;
+	
 					$response = array('status'=>true,'message'=>'data','data'=>$this->data);
 					echo json_encode($response);
 					die;

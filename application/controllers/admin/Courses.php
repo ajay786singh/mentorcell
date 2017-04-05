@@ -60,9 +60,9 @@ class Courses extends Admin_Controller {
 		$this->load->library('upload', $config);
 
 		/* Validate form input */
-		$this->form_validation->set_rules('type_id', 'Course Type', 'required');
+		$this->form_validation->set_rules('stream_id', 'Course Stream', 'required');
 		$this->form_validation->set_rules('course_name', 'Course Name', 'required');
-		$this->form_validation->set_rules('course_code', 'Course Code', 'required');
+		//$this->form_validation->set_rules('course_code', 'Course Code', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 		
 		
@@ -80,14 +80,14 @@ class Courses extends Admin_Controller {
 		{
             $this->data['message'] =  (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
-			$this->data['type_id']['value'] = $this->form_validation->set_value('type_id');
+			$this->data['stream_id']['value'] = $this->form_validation->set_value('stream_id');
 			$this->data['course_name']['value'] = $this->form_validation->set_value('course_name');
-			$this->data['course_code']['value'] = $this->form_validation->set_value('course_code');
+			//$this->data['course_code']['value'] = $this->form_validation->set_value('course_code');
 			$this->data['course_duration']['value'] = $this->form_validation->set_value('course_duration');
 			
 			$this->data['status']['value'] = $this->form_validation->set_value('status');
-			
-			$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+			$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+			//$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
             /* Load Template */
             $this->template->admin_render('admin/courses/create', $this->data);
         }
@@ -106,7 +106,7 @@ class Courses extends Admin_Controller {
 			redirect('auth', 'refresh');
 		}
 		
-				if($this->common_model->delete("mc_courses",$id))
+					if($this->common_model->delete_where("mc_courses",'course_id',$id))
 			    {
                     $this->session->set_flashdata('message', 'Course Deleted!');
 					redirect('admin/courses', 'refresh');
@@ -141,9 +141,9 @@ class Courses extends Admin_Controller {
 		$courses = $this->common_model->get_single_row("mc_courses", "course_id", $id);
 		
 		/* Validate form input */
-		$this->form_validation->set_rules('type_id', 'Course Type', 'required');
+		$this->form_validation->set_rules('stream_id', 'Course Stream', 'required');
 		$this->form_validation->set_rules('course_name', 'Course Name', 'required');
-		$this->form_validation->set_rules('course_code', 'Course Code', 'required');
+		//$this->form_validation->set_rules('course_code', 'Course Code', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 
 		if (isset($_POST) && ! empty($_POST))
@@ -155,9 +155,9 @@ class Courses extends Admin_Controller {
 
 			if ($this->form_validation->run() == TRUE)
 			{
-				$data['type_id'] = $this->input->post('type_id');
+				$data['stream_id'] = $this->input->post('stream_id');
 				$data['course_name'] = $this->input->post('course_name');
-				$data['course_code'] = $this->input->post('course_code');
+				//$data['course_code'] = $this->input->post('course_code');
 				$data['course_duration'] = $this->input->post('course_duration');
 				
 				$data['status'] = $this->input->post('status');
@@ -183,12 +183,13 @@ class Courses extends Admin_Controller {
 		// set the flash data error message if there is one
 		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
-			$this->data['type_id']['value'] = $this->form_validation->set_value('type_id',$courses['type_id']);
+			$this->data['stream_id']['value'] = $this->form_validation->set_value('stream_id',$courses['stream_id']);
 			$this->data['course_name']['value'] = $this->form_validation->set_value('course_name',$courses['course_name']);
-			$this->data['course_code']['value'] = $this->form_validation->set_value('course_code',$courses['course_code']);
+			//$this->data['course_code']['value'] = $this->form_validation->set_value('course_code',$courses['course_code']);
 			$this->data['status']['value'] = $this->form_validation->set_value('status',$courses['status']);
 			$this->data['course_duration']['value'] = $this->form_validation->set_value('course_duration',$courses['course_duration']);
-			$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+			$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+			//$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
         /* Load Template */
 		$this->template->admin_render('admin/courses/edit', $this->data);
 	}

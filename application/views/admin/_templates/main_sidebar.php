@@ -122,17 +122,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>
 						
-						<li class="<?=active_link_controller('types')?>">
+						<!--<li class="<?=active_link_controller('types')?>">
                             <a href="<?php echo site_url('admin/types'); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Course Type'; ?></span>
                             </a>
-                        </li>
+                        </li>-->
 						
 						<li class="<?=active_link_controller('courses')?>">
                             <a href="<?php echo site_url('admin/courses '); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Courses '; ?></span>
                             </a>
                         </li>
+						
+						<li class="<?=active_link_controller('specialization')?>">
+                            <a href="<?php echo site_url('admin/specialization '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Specialization '; ?></span>
+                            </a>
+                        </li>
+						
 						
 						<li class="header text-uppercase">Coupons and Questions</li>
 						<li class="<?=active_link_controller('coupons')?>">

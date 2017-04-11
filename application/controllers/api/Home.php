@@ -36,6 +36,7 @@ class Home extends REST_Controller {
 		$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
 		//$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
 		$this->data['courses'] = $this->common_model->get_all("mc_courses");
+		$this->data['caller'] = $this->common_model->get_all("mc_caller,1,1");
 		echo json_encode($this->data); die;
 	}
 	

@@ -121,6 +121,7 @@ class User extends Public_Controller {
 		$state = $this->input->post('state');
 		$city = $this->input->post('city');
 		$refer_key = $this->input->post('refer_key');
+		$register_caller = $this->input->post('register_caller');
 		if ($this->form_validation->run() == TRUE)
 		{
 			//$username = strtolower($this->input->post('first_name')) . ' ' . strtolower($this->input->post('last_name'));
@@ -145,6 +146,7 @@ class User extends Public_Controller {
 			$this->ion_auth->set_user_meta($user_id, 'course', $course);
 			$this->ion_auth->set_user_meta($user_id, 'state', $state);
 			$this->ion_auth->set_user_meta($user_id, 'city', $city);
+			$this->ion_auth->set_user_meta($user_id, 'register_caller', $register_caller);
 
 
 			$response = array('status'=>true,'user_id'=>$user_id,'message'=>'<div class="alert alert-success"><strong>Congratulation!</strong> You have successfully started your journey. </div>');

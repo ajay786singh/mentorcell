@@ -136,8 +136,8 @@ class College_model extends CI_Model {
 	function get_courseswithstream($id){
 		$this->db->select('courses.course_id, courses.course_name');
 		$this->db->from('mc_courses AS courses');// I use aliasing make joins easier
-		$this->db->join('mc_types AS types', 'types.type_id = courses.type_id', 'INNER');
-		$this->db->join('mc_streams AS streams', 'streams.stream_id = types.stream_id', 'INNER');
+		//$this->db->join('mc_types AS types', 'types.type_id = courses.type_id', 'INNER');
+		$this->db->join('mc_streams AS streams', 'streams.stream_id = courses.stream_id', 'INNER');
 		/**/
 		$this->db->where('streams.stream_id',$id);
 		$result = $this->db->get()->result_object();

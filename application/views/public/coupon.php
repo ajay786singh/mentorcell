@@ -88,6 +88,15 @@
 
 				<input type="hidden" value="<?php echo $referral_key;?>"  id="register_refer-key"  name="">
 
+				<select id="register_caller" class="register_caller"><option value="0">Other</option>
+				<?php
+					$callers = $this->common_model->get_all_rows("mc_caller", 1,1);
+					foreach($callers as $caller){
+					echo '<option  value="'.$caller['id'].'">'.$caller['name'].'</option>';
+					}
+				?>
+				</select>
+				
 				<div class="inputRow">
 					<input type="button" value="Submit"  id="register_button" class="go" name="">
 				</div>

@@ -154,7 +154,7 @@ class User extends REST_Controller {
 			$this->ion_auth->set_user_meta($user_id, 'course', $course);
 			$this->ion_auth->set_user_meta($user_id, 'state', $state);
 			$this->ion_auth->set_user_meta($user_id, 'city', $city);
-			
+			$this->ion_auth->set_user_meta($user_id, 'register_caller', $register_caller);
 			
 			$response = array('status'=>true,'user_id'=>$user_id,'message'=>'Congratulation! You have successfully started your journey.');
 			

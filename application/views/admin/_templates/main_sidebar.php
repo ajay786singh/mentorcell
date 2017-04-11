@@ -168,7 +168,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <a href="<?php echo site_url('admin/course_detail '); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Courses Detail '; ?></span>
                             </a>
-                        </li>	
+                        </li>
+
+						<li class="<?=active_link_controller('caller')?>">
+                            <a href="<?php echo site_url('admin/caller'); ?>">
+                                <i class="fa fa-user"></i> <span><?php echo 'Caller'; ?></span>
+                            </a>
+                        </li>						
 
 						<?php } ?>	
                     </ul>

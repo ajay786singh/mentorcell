@@ -117,7 +117,7 @@
 
 
 		</div>
-
+<?php if(!$loggedIn) { ?>
 		<div class="loginForm">
 			<h3>Already have an account?</h3>
 			<div id="login_response"></div>
@@ -140,15 +140,18 @@
 				<input type='hidden' id="couponClicked" value='0'>
 			</form>
 		</div>
+		<?php } ?>
 	</div>
 
 	<?php
 	if($loggedIn) {
 	?>
+	<?php if(!empty($questionnaire_list)){ ?>
 	<div class="couponRow <?php echo $couponBox2;?>" id="couponBox2">
 		<!-- Time Script-->
 			<center><h3 style="font-weight: bold;font-size: 2em;">Time left:  <span id="timer"></span></h3></center>
 		<!-- Time Script-->
+		
 		<div class="iqTest">
 		<ol>
 			<?php
@@ -185,8 +188,9 @@
 		<input type="hidden" id='question_ids' value="<?php echo $question_ids;?>">
 		<input type="hidden" id='course_id' value="<?php echo $course_id;?>">
 		</div>
+	
 	</div>
-
+	<?php } ?>
 	<div class="couponRow <?php echo $couponBox3;?>" id="couponBox3">
 		<div class="iqResult">
 		<?php

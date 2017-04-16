@@ -70,13 +70,16 @@ class Home extends Public_Controller {
 		$this->load->view('public/layout/header', $this->data);
 
 		$query = array();
+		//print_r($_GET);die;
 		if(isset($_GET['course'])){
 			$query['course'] = $_GET['course'];
 			$this->college['colleges'] = $this->college_model->search_result_course($query);
+			//print_r($this->college);die;
 			$this->load->view('public/search', $this->college);
 		}else if(isset($_GET['college'])){
 			$query['college'] = $_GET['college'];
 			$this->college['college'] = $this->college_model->search_result_college($query);
+		//print_r($this->college);die;
 			$id = $this->college['college']->id;
 			$this->college['images'] = $this->college_model->get_images($id);
 			$this->college['videos'] = $this->college_model->get_videos($id);
@@ -101,6 +104,7 @@ class Home extends Public_Controller {
 			$this->load->view('public/college', $this->college);
 
 		}elseif(isset($_GET['stream'])){
+			//print_r($_GET['exam_lists']);die;
 			redirect('/exam/index/'.$_GET['exam_lists'], 'refresh'); die;
 		}
 		$this->load->view('public/layout/footer', $this->data);
@@ -137,7 +141,8 @@ class Home extends Public_Controller {
 		if(count($exams_name) > 0){
 		echo "<option value='0'>-- Select Exam --</option>";
 			foreach($exams_name as $exam_data){
-				echo "<option value='".$exam_data['slug']."'>".$exam_data['exam_name']."</option>";
+				//echo "<option value='".$exam_data['slug']."'>".$exam_data['exam_name']."</option>";
+				echo "<option value='".$exam_data['id']."'>".$exam_data['exam_name']."</option>";
 			}
 		}
 		die;

@@ -58,6 +58,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <input type="text" class="form-control" required="" name="course_code" id="course_code" value="<?php echo @$course_code['value']; ?>" placeholder="Enter Course Code or same as name">
 										  </div>
 										</div>-->
+										 
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Course Type</label>
+										  <div class="col-sm-10">
+										  <select multiple  class="form-control" required="" name="stream_id" id="stream_id" >
+										  <option value="">Select Type</option>
+										 <?php foreach($collage_list as $collagedata){
+											  echo '<option value="'.$collagedata['id'].'">'.$collagedata['name'].'</option>';
+										  } ?>
+										  </select>
+											</div>
+										</div>
 										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course Duration</label>

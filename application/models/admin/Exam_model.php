@@ -34,9 +34,10 @@ class Exam_model extends CI_Model {
 
     function get_single_row($table, $where_col, $where_val)
     {
-        $this->db->where("$where_col",$where_val);
+		
+       $this->db->where("id",$where_val);
+	   
         $res= $this->db->get($table)->row_array();
-//            $res= $this->db->get($table)->result_array();
         return $res;
     }
 

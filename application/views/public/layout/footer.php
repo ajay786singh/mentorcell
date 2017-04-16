@@ -26,19 +26,21 @@ Noida, UP<br>
 <h3>Services</h3>
 <ul>
 <li><a href="<?php echo base_url()?>home/underconstruction">Admission 2017</a></li>
-<li><a href="<?php echo base_url()?>home/underconstruction">Career Profiling test</a></li>
+<!--<li><a href="<?php echo base_url()?>home/underconstruction">Career Profiling test</a></li>-->
 <li><a href="<?php echo base_url()?>home/underconstruction">Abroad Education</a></li>
-<li><a href="<?php echo base_url()?>home/underconstruction">Counselling</a></li>
+<li><a href="<?php echo base_url()?>page/counselling">Counselling</a></li>
 <li><a href="<?php echo base_url()?>home/underconstruction">Counselling Video</a></li>
-<li><a href="<?php echo base_url()?>home/underconstruction">Placement</a></li>
+<!--<li><a href="<?php echo base_url()?>home/underconstruction">Placement</a></li>-->
 </ul>
 </div>
 
 <div class="footerWidget">
 <h3>Connect with us</h3>
 <ul>
-<li><a href="#">Login | Register</a></li>
-<li><a href="#">College Login</a></li>
+<?php if(empty($user_login['id'])) { ?>
+<li><a style="cursor: pointer;" data-toggle="modal" data-target="#loginModal">Login</a> | <a data-toggle="modal" style="cursor: pointer;" data-target="#registerModal">Register</a></li>
+<li><a style="cursor: pointer;" data-toggle="modal" data-target="#loginModal">College Login</a></li>
+<?php } ?>
 <li><a href="#">Chat</a></li>
 <li><a href="<?php echo base_url()?>blog">Blog</a></li>
 <li><a href="#">News</a></li>
@@ -50,9 +52,9 @@ Noida, UP<br>
 <div class="footerWidget">
 <h3>Links</h3>
 <ul>
-<li><a href="<?php echo base_url()?>home/underconstruction">Search step by step</a></li>
-<li><a href="<?php echo base_url()?>home/underconstruction">Common Application Form</a></li>
-<li><a href="<?php echo base_url()?>user/profile">Value of redeem coupon</a></li>
+<!--<li><a href="<?php echo base_url()?>home/underconstruction">Search step by step</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Common Application Form</a></li>-->
+<li><a href="<?php echo base_url()?>coupon/">Value of redeem coupon</a></li>
 <li><a href="#">Mobile Apps</a></li>
 </ul>
 </div>

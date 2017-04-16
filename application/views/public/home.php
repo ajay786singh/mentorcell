@@ -103,7 +103,7 @@ foreach($exam_search as $exam_search_data){
 </select>
 </div>
 <div class="formcol50">
-<select id="register_city_location"  class="auto-choice" multiple name="location">
+<select id="register_city_location"  class="auto-choice"  name="location">
 	<?php echo $location; ?>
 
 </select>

@@ -66,8 +66,16 @@ class Common_model extends CI_Model {
 		if($limit) {
 			$this->db->limit($limit);
 		}
+		
         $result = $this->db->get($table)->result_array();
         return $result;
+    }
+	
+	function get_all_collage($table) {
+		$this->db->where("status",1);
+        $row = $this->db->get($table)->result_array();
+		
+        return $row;
     }
 	
 	function get_all_rows_inwhere($table, $where_col, $where_val, $order_by="", $limit="")

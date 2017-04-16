@@ -384,10 +384,10 @@ class User extends REST_Controller {
 		die;
 	}
 	
-	public function colleges_get()
+	public function colleges_get($page)
 	{
-	
-		$college_lists = $this->common_model->get_all("mc_colleges");
+	   $offset = ($page-1)*10;
+		$college_lists = $this->common_model->get_all("mc_colleges", $offset);
 		$response = array('status'=>false,'message'=>'college data','data'=>$college_lists);
 		echo json_encode($response);
 		die;

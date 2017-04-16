@@ -105,7 +105,7 @@ class User extends Public_Controller {
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique['.$tables['users'].'.email]');
-		$this->form_validation->set_rules('phone', 'Phone', 'required|is_unique['.$tables['users'].'.phone]',
+		$this->form_validation->set_rules('phone', 'Phone', 'required|regex_match[/^[0-9]{10}$/]|is_unique['.$tables['users'].'.phone]',
         array('is_unique' => 'Mobile number is already registered'));
     //$this->form_validation->set_rules('phone', 'Phone', 'required');
     $this->form_validation->set_message('is_unique', 'The %s id is already registered with us');

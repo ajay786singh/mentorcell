@@ -117,9 +117,12 @@ class User extends REST_Controller {
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique['.$tables['users'].'.email]');
-		$this->form_validation->set_rules('phone', 'Phone', 'required');
+		//$this->form_validation->set_rules('phone', 'Phone', 'required');
 
-		//$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
+		$this->form_validation->set_rules('phone', 'Phone', 'required|regex_match[/^[0-9]{10}$/]|is_unique['.$tables['users'].'.phone]',
+        array('is_unique' => 'Mobile number is already registered'));
+		//$this->form_validation->set_rules('phone', 'Phone', 'required');
+		$this->form_validation->set_message('is_unique', 'The %s id is already registered with us');
 		
 		$phone = trim($this->input->post('phone'));
 		$activation_code = rand ( 1000 , 9999 );
@@ -384,7 +387,10 @@ class User extends REST_Controller {
 	public function colleges_get()
 	{
 	
-	$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
+		$college_lists = $this->common_model->get_all("mc_colleges");
+		$response = array('status'=>false,'message'=>'college data','data'=>$college_lists);
+		echo json_encode($response);
+		die;
 	
 	}
 	

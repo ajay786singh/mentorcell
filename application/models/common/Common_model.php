@@ -2,7 +2,10 @@
 
 class Common_model extends CI_Model {
 
-    function get_all($table) {
+    function get_all($table,$offset=0,$limit=10) {
+		if($offset) {
+			$this->db->limit($offset,$limit);
+		}
         $row = $this->db->get($table)->result_array();
         return $row;
     }

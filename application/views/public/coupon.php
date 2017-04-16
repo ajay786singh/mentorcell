@@ -43,7 +43,7 @@
 					<i class="icon-email"></i>
 				</div>
 				<div class="inputRow">
-					<input type="number" id="register_phone" required='' placeholder="Mobile Number" name="">
+					<input type="number" id="register_phone" pattern="/(7|8|9)\d{9}/" required='' placeholder="Mobile Number" name="">
 					<i class="icon-phone-call"></i>
 				</div>
 				<div class="inputRow">

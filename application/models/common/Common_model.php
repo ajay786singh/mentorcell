@@ -123,7 +123,7 @@ class Common_model extends CI_Model {
 	
 	/*get user data to export*/
 	function export_user_data(){
-		$this->db->select('u.first_name, u.last_name,u.phone, u.email, courses.course_name as Course, stream.stream_name as Stream,coupon.coupon as CouponCode,district.name as city,state.name as State,dob.meta_value as DOB,about_me.meta_value as AboutMe,bio.meta_value as Bio');
+		$this->db->select('u.first_name, u.last_name,u.phone, u.email, courses.course_name as Course,coupon.coupon as CouponCode, tot_correct as Total_correct,resultDisplay as Result,score as Score,date_time as Date,district.name as city,state.name as State,dob.meta_value as DOB,about_me.meta_value as AboutMe,bio.meta_value as Bio');
 		$this->db->from('users as u ');
 		$this->db->join('users_meta as  city_id', 'u.id  = city_id.user_id and city_id.meta_key = "city"', 'LEFT');
 		$this->db->join('districts as  district', 'district.id =  city_id.meta_value', 'LEFT');

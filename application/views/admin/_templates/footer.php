@@ -94,6 +94,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			});
 		});
 		
+		$("#clg_course_id").change(function(event) {
+			
+			var specialization_id = $(this).val();
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/admin/colleges/specialization",
+				dataType: 'text',
+				data: {specialization_id:specialization_id},
+				success: function(res) {
+					$("#clg_specialization1").html(res);
+				}
+			});
+		});
+		
+		$("#streams").change(function(event) {
+			var stream_id = $(this).val();
+			jQuery.ajax({
+				type: "GET",
+				url: base_url+"index.php/admin/colleges/course_data",
+				dataType: 'text',
+				data: {stream_id:stream_id},
+				success: function(res) {
+					$("#clg_course_id").html(res);
+				}
+			});
+		});
+		
 		
 		
 		/**/
@@ -152,7 +179,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$("#assign_courses").click(function(e){
 			e.preventDefault();
 			var college_id = $("#college_id").val();
+			var clg_streams_id = $("#streams").val();
 			var clg_course_id = $("#clg_course_id").val();
+			var clg_specialization = $("#clg_specialization").val();
 			var title = $("#title").val();
 			var duration = $("#duration").val();
 			var recognition = $("#recognition").val();
@@ -168,7 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				type: "POST",
 				url: base_url+"index.php/admin/colleges/save_assigncourses",
 				dataType: 'text',
-				data: {clg_course_id:clg_course_id,college_id:college_id,title:title,duration:duration,recognition:recognition,fee:fee,incentive:incentive,exam:exam,assigned_id:assigned_id,procedure:procedure,eligibility:eligibility},
+				data: {clg_course_id:clg_course_id,clg_streams_id:clg_streams_id,college_id:college_id,clg_specialization:clg_specialization,title:title,duration:duration,recognition:recognition,fee:fee,incentive:incentive,exam:exam,assigned_id:assigned_id,procedure:procedure,eligibility:eligibility},
 				success: function(res) {
 					$("#message").show().html('<p>'+res+'</p>');
 					setTimeout(function(){

@@ -2,10 +2,7 @@
 
 class Common_model extends CI_Model {
 
-    function get_all($table,$offset=false,$limit=10) {
-		if($offset!==false) {
-			$this->db->limit($limit,$offset);
-		}
+    function get_all($table) {
         $row = $this->db->get($table)->result_array();
         return $row;
     }
@@ -27,6 +24,7 @@ class Common_model extends CI_Model {
 
     public function insert($data, $table)
     {
+		//print_r($data);die;
         $this->db->insert($table, $data);
         $id = $this->db->insert_id();
         return (isset($id)) ? $id : FALSE;
@@ -74,8 +72,21 @@ class Common_model extends CI_Model {
         return $result;
     }
 	
-	function get_all_collage($table) {
-		$this->db->where("status",1);
+	function get_all_specialization($table, $where_col, $where_val) {
+		$this->db->where("$where_col",$where_val);
+        $row = $this->db->get($table)->result_array();
+		
+        return $row;
+    }
+	function get_all_stream($table, $where_col, $where_val) {
+		$this->db->where("$where_col",$where_val);
+        $row = $this->db->get($table)->result_array();
+		
+        return $row;
+    }
+	
+		function get_stream($table, $where_val) {
+		//$this->db->where("status",1);
         $row = $this->db->get($table)->result_array();
 		
         return $row;

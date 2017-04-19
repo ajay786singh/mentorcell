@@ -59,17 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  </div>
 										</div>-->
 										 
-										<div class="form-group">
-										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Course Type</label>
-										  <div class="col-sm-10">
-										  <select multiple  class="form-control" required="" name="stream_id" id="stream_id" >
-										  <option value="">Select Type</option>
-										 <?php foreach($collage_list as $collagedata){
-											  echo '<option value="'.$collagedata['id'].'">'.$collagedata['name'].'</option>';
-										  } ?>
-										  </select>
-											</div>
-										</div>
+										
 										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course Duration</label>

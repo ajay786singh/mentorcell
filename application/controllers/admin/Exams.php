@@ -78,6 +78,8 @@ class Exams extends Admin_Controller {
 			$this->data['form_type'] = 'add';
 		}
 	           $this->data['exams_list'] = $this->exam_model->get_all("mc_exams");
+			   			$this->data['streams'] = $this->exam_model->get_all_rows("mc_streams", 1,1);
+
 			    $this->template->admin_render('admin/exams/exam', $this->data);
         }
 	
@@ -118,6 +120,8 @@ class Exams extends Admin_Controller {
 			//$this->data['form_type'] = 'add';
 		}
 	    $this->data['form_data'] = $id;
+		$this->data['streams'] = $this->exam_model->get_all_rows("mc_streams", 1,1);
+		//$this->data['courses'] = $this->exam_model->get_all_rows("mc_courses", 1,1);
 		$this->data['exams_list'] = $this->exam_model->get_single_row("mc_exams","id", $id);
 		$this->template->admin_render('admin/exams/exam', $this->data);
         /* Load Template */

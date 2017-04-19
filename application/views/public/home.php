@@ -14,7 +14,7 @@
 <div id="form1" class="searchForm active">
 <form action="search">
 <div class="formcol50">
-<select id="search_college" required='' data-placeholder="Choose a College" class="auto-choice" name="college">
+<select id="search_college" required='' data-placeholder="Choose a College" class="auto-choice search_college" name="college">
 <option value="">Choose a College to Join</option>
 	<?php
 			foreach($colleges as $college){
@@ -41,21 +41,23 @@
 			</select>
 			</div>
 			<div class="formcol00">
-			<select id="type" class="auto-choice"  name="type">
+			<select id="type" required="" class="auto-choice"  name="type">
+			<option value='0'>-- Select Type --</option>
 				<?php
 
-				foreach($types as $type){
+				/*foreach($types as $type){
 				  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
-			  } ?>
+			  } */?>
 
 			</select>
 			</div>
 			<div class="formcol00">
-			<select id="course"  class="auto-choice"  name="course_main">
+			<select id="course" required=""  class="auto-choice"  name="course_main">
+			<option value='0'>-- Select Course --</option>
 			<?php
-				foreach($courses as $course){
+				/*foreach($courses as $course){
 					echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
-				} ?>
+				}*/ ?>
 
 			</select>
 			</div>
@@ -71,15 +73,15 @@
 <select id="stream_name" required='' data-placeholder="Stream" class="auto-choice" name="stream" onChange="return getExamByCourse(this.value);">
 <option value="">Find Stream</option>
 	<?php
-			$exam_search = $this->exam_model->get_all_groupby("mc_exams");
+			$exam_search = $this->college_model->get_all_stream();
 foreach($exam_search as $exam_search_data){
-				echo '<option value="'.$exam_search_data['course_name'].'">'.$exam_search_data['course_name'].'</option>';
+				echo '<option value="'.$exam_search_data['stream_id'].'">'.$exam_search_data['stream_name'].'</option>';
 			}
 	?>
 </select>
 </div>
 <div class="formcol50">
-<select id="exam_lists"  name="exam_lists">
+<select id="exam_lists" required=""  name="exam_lists">
 
 </select>
 </div>
@@ -103,13 +105,14 @@ foreach($exam_search as $exam_search_data){
 </select>
 </div>
 <div class="formcol50">
-<select id="register_city_location"  class="auto-choice"  name="location">
-	<?php echo $location; ?>
+<select id="city_loc"  class="auto-choice"  name="location">
+	<?php //echo $location; ?>
 
 </select>
 </div>
 <button class="go"><span class="glyphicon glyphicon-search"></span></button>
 </form>
+
 </div>
 
 </div>
@@ -131,16 +134,12 @@ foreach($exam_search as $exam_search_data){
 <div class="row">
 <div class="featureHeading"></div>
 <ul class="bxslider">
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
-<li><div class="featureLogo"><img src="<?php echo base_url('assets/theme/images/feture-logo1.png'); ?>"></div> <div class="featureText"><h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p></div></li>
+<?php $home_logo = $this->college_model->get_all_home_logo();
+foreach($home_logo as $logo){
+	$logos = $logo['logo'];
+?>
+<li><a href="<?php if(!empty($logo['college_url'])){ ?>http://<?php echo $logo['college_url']; }?>" target="_blank"><div class="featureLogo"><img src="<?php echo base_url('upload/'.$logos); ?>"></div> <div class="featureText"><!--<h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p>--></div></a></li>
+<?php } ?>
 </ul>
 </div>
 </div>
@@ -643,4 +642,5 @@ Noida-201307, India</p>
 
   </div>
 </div>
+
 <!-- team 4 Close -->

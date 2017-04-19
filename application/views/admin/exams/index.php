@@ -32,7 +32,9 @@
                 <tbody>
                 <?php foreach($exam_lists as $exam_list){ ?>
                 <tr>
-                  <td><?php echo $exam_list['course_name'];?></td>
+				<?php $streamname = $this->exam_model->get_exam_name($exam_list['course_name']); 
+				?>
+                  <td><?php echo $streamname[0]['stream_name']?></td>
                   <td><?php echo $exam_list['exam_name'];?></td>
                   <td><a href="<?php echo base_url()."admin/exams/edit/".$exam_list['id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/exams/delete/".$exam_list['id'];?>">Delete</a></td>
                </tr>

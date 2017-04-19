@@ -52,6 +52,25 @@ class Colleges extends Admin_Controller {
             $this->template->admin_render('admin/colleges/index', $this->data);
         }
 	}
+	
+	public function logo()
+	{
+        if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('logo')))
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+				$this->data['logo_lists'] = $this->common_model->get_all_rows("mc_logo_slider","status","1");
+			
+			
+            $this->template->admin_render('admin/colleges/logo', $this->data);
+        }
+	}
 
 
 	public function create()
@@ -144,6 +163,74 @@ class Colleges extends Admin_Controller {
 
     }
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		public function createlogo()
+	{
+		/* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/colleges/createlogo');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Variables */
+		$tables = $this->config->item('tables', 'ion_auth');
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		$config['allowed_types']    = 'gif|jpg|png';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+
+		/* Validate form input */
+		$this->form_validation->set_rules('college_name', 'College Name', 'required');
+		$this->form_validation->set_rules('college_url', 'College URL', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+		
+		
+		if ($this->form_validation->run() == TRUE)
+		{	
+	
+			$this->upload->do_upload('logo');
+			$logo = $this->upload->data();
+		    
+			$this->data = array();
+			$this->data = $this->input->post();
+			$this->data['logo'] = $logo['file_name'];
+			
+		}
+
+		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data," mc_logo_slider"))
+		{
+            $this->session->set_flashdata('message', 'Logo added successfully!');
+			redirect('admin/colleges/logo', 'refresh');
+		}
+		else
+		{
+            $this->data['message'] =  (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+			$this->data['college_name']['value'] = $this->form_validation->set_value('college_name');
+			$this->data['college_url']['value'] = $this->form_validation->set_value('college_url');
+			$this->data['status']['value'] = $this->form_validation->set_value('status');
+		
+            /* Load Template */
+			  $this->data['collages'] = $this->common_model->get_all_rows("mc_colleges","status","2");
+            $this->template->admin_render('admin/colleges/createlogo', $this->data);
+        }
+
+    }
+	
+	
+	
+	
+	
+	
+	
 
 
 	public function delete($id)
@@ -165,6 +252,28 @@ class Colleges extends Admin_Controller {
 			    {
 					$this->session->set_flashdata('message', 'No college found.');
 					redirect('admin/colleges', 'refresh');
+				}
+	}
+	
+	public function deletelogo($id)
+	{
+        /* Load Template */
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+				if($this->common_model->delete("mc_logo_slider",$id))
+			    {
+                    $this->session->set_flashdata('message', 'Logo Deleted!');
+					redirect('admin/colleges/logo', 'refresh');
+			    }
+			    else
+			    {
+					$this->session->set_flashdata('message', 'No Logo found.');
+					redirect('admin/colleges/logo', 'refresh');
 				}
 	}
 
@@ -309,6 +418,91 @@ class Colleges extends Admin_Controller {
 		   $this->template->admin_render('admin/colleges/edit', $this->data);
 	}
 
+	
+	
+	public function editlogo($id)
+	{
+        $id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		$config['allowed_types']    = 'gif|jpg|png';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+        /* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/colleges/edit');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Data */
+		$logoslide = $this->common_model->get_single_row("mc_logo_slider", "id", $id);
+		
+		/* Validate form input */
+		/* Validate form input */
+		$this->form_validation->set_rules('college_name', 'College Name', 'required');
+		$this->form_validation->set_rules('college_url', 'College URL', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+
+		if (isset($_POST) && ! empty($_POST))
+		{
+            /*if ($this->_valid_csrf_nonce() === FALSE OR $id != $this->input->post('id'))
+			{	
+				show_error('There is something wrong with security.');
+			}*/
+
+			if ($this->form_validation->run() == TRUE)
+			{
+				
+				$this->upload->do_upload('logo');
+				$logo = $this->upload->data();
+				//print_r($logo['file_name']);die;
+				if(!empty($logo['file_name'])){
+				$data['logo'] = $logo['file_name'];
+				}else{
+					$data['logo'] = $logoslide['logo'];
+				}
+				
+				$data['college_name'] = $this->input->post('college_name');
+				$data['college_url'] = $this->input->post('college_url');
+				$data['status'] = $this->input->post('status');
+				
+                if($this->common_model->update("mc_logo_slider", $data, "id", $logoslide['id']))
+			    {
+                    $this->session->set_flashdata('message', 'Logo data Updated!');
+					redirect('admin/colleges/logo', 'refresh');
+			    }
+			    else
+			    {
+                    $this->session->set_flashdata('message', $this->ion_auth->errors());
+
+				    
+						redirect('admin/colleges/logo', 'refresh');
+					
+			    }
+			}
+		}
+
+		// display the edit user form
+		$this->data['csrf'] = $this->_get_csrf_nonce();
+		$this->data['logoslide'] = $logoslide;
+
+		// set the flash data error message if there is one
+		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+		
+			$this->data['college_name']['value'] = $this->form_validation->set_value('college_name',$logoslide['college_name']);
+			$this->data['college_url']['value'] = $this->form_validation->set_value('college_url',$logoslide['college_url']);
+			$this->data['logo']['value'] = $this->form_validation->set_value('logo',$logoslide['logo']);
+			
+			$this->data['status']['value'] = $this->form_validation->set_value('status',$logoslide['status']);
+			$this->data['collages'] = $this->common_model->get_all_rows("mc_colleges","status","2");
+        /* Load Template */
+		$this->template->admin_render('admin/colleges/editlogo', $this->data);
+	}
 
 	
 
@@ -375,6 +569,9 @@ class Colleges extends Admin_Controller {
 		$this->data['stream_id'] = $this->college_model->get_streams($id);
 		$this->data['type_id'] = $this->college_model->get_types($id);
 		$this->data['course_id'] = $this->college_model->get_courses($id);
+		$this->data['coursedata'] = $this->college_model->get_course_relation($id);
+		$this->data['streamdata'] = $this->college_model->get_stream_relation($id);
+		$this->data['specializedata'] = $this->college_model->get_specialize_relation($id);
 		/* Load Template */
 		$this->template->admin_render('admin/colleges/course', $this->data);
 	}
@@ -382,6 +579,7 @@ class Colleges extends Admin_Controller {
 	/*assign courses to colleges*/
 		public function assigncourse($id)
 	{
+		
         /* Load Template */
 		$id = (int) $id;
 
@@ -389,23 +587,26 @@ class Colleges extends Admin_Controller {
 		{
 			redirect('auth', 'refresh');
 		}
-		
+
 		$this->data['message']= "Assign Courses and extra informtion";
 
 		$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		$this->data['streams'] = $this->common_model->get_stream("mc_streams", 1);
 		$this->data['exams'] = $this->common_model->get_all_rows("mc_exams", 1,1);
 		
 		$this->data['college_id'] = $id;
 		$this->data['course_id'] = $this->college_model->get_courses($id);
+		
 		/* Load Template */
 		$this->template->admin_render('admin/colleges/assigncourse', $this->data);
 	}
 	
 	public function save_assigncourses()
 	{
+		$stream_id = $this->input->post('clg_streams_id');
 		$college_id = $this->input->post('college_id');
+		$specialization_id = $this->input->post('clg_specialization');
 		$clg_course_id = $this->input->post('clg_course_id');
-		
 		$title = $this->input->post('title');
 		$duration = $this->input->post('duration');
 		$recognition = $this->input->post('recognition');
@@ -414,13 +615,12 @@ class Colleges extends Admin_Controller {
 		$exam = $this->input->post('exam');
 		$procedure = $this->input->post('procedure');
 		$eligibility = $this->input->post('eligibility');
-		
-		
-		
 		$assigned_id = $this->input->post('assigned_id');
 		
 		$course['college_id'] = $college_id;
+		$course['stream_id'] = $stream_id;
 		$course['course_id'] = $clg_course_id;
+		$course['specialization_id'] = $specialization_id;
 		$course['title'] = $title;
 		$course['duration'] = $duration;
 		$course['recognition'] = $recognition;
@@ -432,8 +632,8 @@ class Colleges extends Admin_Controller {
 		
         $this->common_model->insert($course,"mc_course_assignment");
 		
-	echo "Updated Successfully.";
-	exit;
+	//echo "Updated Successfully.";
+	//exit;
 	}
 	/*assign courses to colleges*/
 	
@@ -472,6 +672,30 @@ class Colleges extends Admin_Controller {
 		}
 		$option .= '</select>';
 		echo $option; die;
+	}
+	
+		public function specialization()
+	{
+		$specialization_id = $this->input->get('specialization_id');
+		$specialization = $this->common_model->get_all_specialization("mc_specialization", "course_id",$specialization_id);
+		echo '<select  class="form-control" name="clg_specialization" id="clg_specialization" >
+		<option value="">Select Specialization</option>';
+		foreach($specialization as $special){
+			echo '<option value="'.$special['specialization_id'].'">'.$special['specialization_name'].'</option>';
+		}
+		echo '</select>';
+		exit;
+	}
+	
+	public function course_data()
+	{
+		$stream_id = $this->input->get('stream_id');
+		$course_data = $this->common_model->get_all_stream("mc_courses", "stream_id",$stream_id);
+		echo '<option value="">Select Course</option>';
+		foreach($course_data as $course){
+			echo '<option value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+		}
+		exit;
 	}
 	
 	

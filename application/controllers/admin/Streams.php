@@ -44,6 +44,22 @@ class Streams extends Admin_Controller {
         }
 	}
 
+	public function counseling_video()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['counceling_video'] = $this->common_model->get_all("mc_counceling_video");
+            $this->template->admin_render('admin/streams/counseling_video', $this->data);
+        }
+	}
 
 	public function create()
 	{
@@ -95,6 +111,56 @@ class Streams extends Admin_Controller {
 		
             /* Load Template */
             $this->template->admin_render('admin/streams/create', $this->data);
+        }
+
+    }
+	
+	
+	public function create_counseling_video()
+	{
+		/* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/streams/create_counseling_video');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Variables */
+		$tables = $this->config->item('tables', 'ion_auth');
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		$config['allowed_types']    = 'gif|jpg|png|avi|flv|wmv|mp3|mp4';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+
+		/* Validate form input */
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+		
+		
+		if ($this->form_validation->run() == TRUE)
+		{	
+	
+			$this->upload->do_upload('video');
+			$logo = $this->upload->data();
+		    
+			$this->data = array();
+			$this->data = $this->input->post();
+			$this->data['video'] = $logo['file_name'];
+			
+		}
+
+		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data," mc_counceling_video"))
+		{
+            $this->session->set_flashdata('message', 'Counseling Video added successfully!');
+			redirect('admin/streams/counseling_video', 'refresh');
+		}
+		else
+		{
+            $this->data['message'] =  (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+			$this->data['stream_name']['title'] = $this->form_validation->set_value('title');
+		$this->data['status']['value'] = $this->form_validation->set_value('status');
+		
+            /* Load Template */
+            $this->template->admin_render('admin/streams/create_counseling_video', $this->data);
         }
 
     }

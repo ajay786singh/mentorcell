@@ -73,13 +73,18 @@ class Home extends Public_Controller {
 		//print_r($_GET);die;
 		if(isset($_GET['course'])){
 			$query['course'] = $_GET['course'];
+			if(empty($_GET['location'])){
+				$query['location'] = 0;
+			}else{
+				$query['location'] = $_GET['location'];
+			}
+			$this->college['coursename'] = $query['course'];
 			$this->college['colleges'] = $this->college_model->search_result_course($query);
-			//print_r($this->college);die;
+			$this->college['count_res'] = $this->college_model->search_result_cont($query);
 			$this->load->view('public/search', $this->college);
 		}else if(isset($_GET['college'])){
 			$query['college'] = $_GET['college'];
 			$this->college['college'] = $this->college_model->search_result_college($query);
-		//print_r($this->college);die;
 			$id = $this->college['college']->id;
 			$this->college['images'] = $this->college_model->get_images($id);
 			$this->college['videos'] = $this->college_model->get_videos($id);
@@ -94,10 +99,10 @@ class Home extends Public_Controller {
 			$this->college['course_id'] = $this->college_model->get_courses_detail($id);
 
 			/*course description*/
-			if(isset($_GET['course_main']) && !empty($_GET['course_main'])){
+			//if(isset($_GET['course_main']) && !empty($_GET['course_main'])){
 				$this->college['course_detail'] = $this->college_model->get_single_courses_detail(intval($query['college']),intval($_GET['course_main']));
-				$this->load->view('public/college_course', $this->college);
-			}
+				//$this->load->view('public/college_course', $this->college);
+			//}
 
 			/*course description*/
 
@@ -139,10 +144,58 @@ class Home extends Public_Controller {
 		$exams_name = $this->exam_model->get_exams_by_course($course_name);
 
 		if(count($exams_name) > 0){
-		echo "<option value='0'>-- Select Exam --</option>";
+		echo "<option value=''>-- Select Exam --</option>";
 			foreach($exams_name as $exam_data){
 				//echo "<option value='".$exam_data['slug']."'>".$exam_data['exam_name']."</option>";
 				echo "<option value='".$exam_data['id']."'>".$exam_data['exam_name']."</option>";
+			}
+		}else{
+			echo "<option value='0'>-- Select Exam --</option>";
+		}
+		die;
+	}
+	
+	public function get_coursetype_list_by_stream($stream_name){
+		$stream_name = $this->exam_model->get_colltype_by_stream($stream_name);
+
+		if(count($stream_name) > 0){
+		echo "<option value=''>-- Select Type --</option>";
+			foreach($stream_name as $exam_data){
+				$course_name = $this->exam_model->get_coursetype_name($exam_data['course_id']);
+				echo "<option value='".$exam_data['course_id']."'>".$course_name->course_name."</option>";
+			}
+		}else{
+			echo "<option value='0'>-- Select Type --</option>";
+		}
+		die;
+	}
+	
+	public function get_specialize_list_by_course($course){
+		$course_name = $this->exam_model->get_speltype_by_course($course);
+
+		if(count($course_name) > 0){
+		echo "<option value=''>-- Select Course --</option>";
+			foreach($course_name as $exam_data){
+				$special_name = $this->college_model->get_spel_data($exam_data['specialization_id']);
+				echo "<option value='".$exam_data['specialization_id']."'>".$special_name->specialization_name."</option>";
+			}
+		}else{
+			echo "<option value='0'>-- Select Course --</option>";
+		}
+		die;
+	}
+	
+	public function get_location_list($course_name){
+		 $collage_id = $this->college_model->get_collageid($course_name);
+		//$exams_name = $this->exam_model->get_exams_by_course($course_name);
+
+		if(count($collage_id) > 0){
+		echo "<option value='0'>-- Select Location --</option>";
+			foreach($collage_id as $collageid){
+				$location_id = $this->college_model->get_location($collageid['college_id']);
+            $city_name = $this->college_model->get_city_name($location_id[0]['city']);
+				//echo "<option value='".$exam_data['slug']."'>".$exam_data['exam_name']."</option>";
+				echo "<option value='".$location_id[0]['city']."'>".$city_name->name."</option>";
 			}
 		}
 		die;

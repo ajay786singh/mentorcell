@@ -227,7 +227,7 @@ Noida, UP<br>
       		<i class="icon-email"></i>
       	</div>
       	<div class="inputRow">
-      		<input type="tel" id="register_phone" pattern="/(7|8|9)\d{9}/" required='' placeholder="Mobile Number" name="">
+      		<input type="tel" id="register_phone" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" required='' placeholder="Mobile Number" name="">
       		<i class="icon-phone-call"></i>
       	</div>
 
@@ -418,6 +418,46 @@ Noida, UP<br>
 		<?php
 	}
 ?>
+<script>
+$(document).ready(function(){
+	$("#search_course").change(function(){
+	var course_name  = $("#search_course").val();
+		$.ajax({
+		url: base_url+"index.php/home/get_location_list/"+course_name,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#city_loc").css('display','block');
+			$("#city_loc_chosen").css('display','none');
+			$("#city_loc").html(html);
+		}
+	});
+});
 
+	$("#stream").change(function(){
+	var stream_name  = $("#stream").val();
+		$.ajax({
+		url: base_url+"index.php/home/get_coursetype_list_by_stream/"+stream_name,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#type").html(html);
+		}
+	});
+});
+
+$("#type").change(function(){
+	var course  = $("#type").val();
+		$.ajax({
+		url: base_url+"index.php/home/get_specialize_list_by_course/"+course,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#course").html(html);
+		}
+	});
+});
+});
+</script>
 </body>
 </html>

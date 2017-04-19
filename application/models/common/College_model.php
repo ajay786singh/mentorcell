@@ -82,6 +82,137 @@ class College_model extends CI_Model {
 		$result = array_column($result, 'term_id');
 		return $result;
 	}
+	
+	function get_course_relation($id){
+		$this->db->distinct();
+		$this->db->select('course_id');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $id);
+		//$this->db->where('term_name', "stream");
+		$result = $this->db->get()->result_array();
+		//$result = array_column($result, 'term_id');
+		return $result;
+	}
+	
+	function get_stream_relation($id){
+		$this->db->distinct();
+		$this->db->select('stream_id');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $id);
+		//$this->db->where('term_name', "stream");
+		$result = $this->db->get()->result_array();
+		//$result = array_column($result, 'term_id');
+		return $result;
+	}
+	
+	function get_specialize_relation($id){
+		$this->db->select('specialization_id');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $id);
+		//$this->db->where('term_name', "stream");
+		$result = $this->db->get()->result_array();
+		//$result = array_column($result, 'term_id');
+		return $result;
+	}
+	
+	    function get_spel_data($id)
+    {
+			$this->db->select('specialization_name');
+		$this->db->from('mc_specialization');
+		$this->db->where('specialization_id', $id);
+        $res= $this->db->get()->row();
+        return $res;
+    }
+	
+	   function get_strem_data($id)
+    {
+			$this->db->select('stream_name');
+		$this->db->from('mc_streams');
+		$this->db->where('stream_id', $id);
+        $res= $this->db->get()->row();
+        return $res;
+    }
+	
+	   function get_exam_data($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_exams');
+		$this->db->where('course_name', $id);
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
+	
+	   function get_collageid($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('course_id', $id);
+		$this->db->group_by('college_id');
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
+	
+	   function get_feedata($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('course_id', $id);
+		$this->db->group_by('fee');
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
+	
+	  function get_all_stream()
+    {
+			$this->db->select('*');
+		$this->db->from('mc_streams');
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
+	   function get_specialata($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_specialization');
+		$this->db->where('course_id', $id);
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
+	 function get_recognize($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('course_id', $id);
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
+
+	
+	 function get_location($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_colleges');
+		$this->db->where('id', $id);
+		$this->db->group_by('city');
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
+	 function get_city_name($id)
+    {
+			$this->db->select('*');
+		$this->db->from('cities');
+		$this->db->where('id', $id);
+        $res= $this->db->get()->row();
+        return $res;
+    }
+	
+	 function get_course_data($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_courses');
+		$this->db->where('course_id', $id);
+        $res= $this->db->get()->row();
+        return $res;
+    }
 
 	
 	function get_types($id){
@@ -144,20 +275,57 @@ class College_model extends CI_Model {
 		return $result;
 	}
 	
-	function search_result_course($query){
-		/**/
+	/*function search_result_course($query){
+		
 		$this->db->select('ca.*,cl.*,cities.name as city, states.name as state, countries.name as country ');
 		$this->db->from('mc_course_assignment AS ca');// I use aliasing make joins easier
 		$this->db->join('mc_colleges AS cl', 'cl.id = ca.college_id', 'INNER');
 		$this->db->join('cities AS cities', 'cities.id = cl.city', 'LEFT');
 		$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
 		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');
-		/**/
+		
 		$this->db->where('ca.course_id', $query['course']);
 		$result = $this->db->get()->result_object();
 		return $result;
-	}
+	}*/
+	//select * FROM mc_colleges INNER JOIN mc_course_assignment ON mc_colleges.id =  mc_course_assignment.college_id WHERE mc_colleges.city = '176' OR mc_course_assignment.course_id = '41'
 
+	function search_result_course($query){
+
+		$loation = $query['location'];
+		$course = $query['course'];
+		$this->db->select('*');
+		$this->db->from('mc_colleges');
+		$this->db->join('mc_course_assignment', 'mc_colleges.id = mc_course_assignment.college_id');
+		if($loation==0){
+		$where = "mc_course_assignment.course_id = $course";
+		}else{
+		$where = "mc_colleges.city = $loation OR mc_course_assignment.course_id = $course";	
+		}
+		
+        $this->db->where($where);
+		$this->db->group_by('mc_colleges.id');
+		$result = $this->db->get()->result_object();
+		return $result;
+	}
+	
+	function search_result_cont($query){
+		//print_r($query);
+		$this->db->distinct();
+		$loation = $query['location'];
+		$course = $query['course'];
+		$this->db->select('*');
+		$this->db->from('mc_colleges');
+		$this->db->join('mc_course_assignment', 'mc_colleges.id = mc_course_assignment.college_id');
+		$where = "mc_colleges.city = $loation OR mc_course_assignment.course_id = $course";
+        $this->db->where($where);
+		$this->db->group_by('mc_colleges.id');
+		$result = $this->db->get();
+		$rowcount = $result->num_rows();
+		return $rowcount;
+	}
+	
+	
 	function search_result_college($query){
 		/**/
 		/*$this->db->select('cl.*,ca.* ,cities.name as city, states.name as state, countries.name as country ');
@@ -167,12 +335,12 @@ class College_model extends CI_Model {
 		$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
 		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');*/
 		/**/
-		$this->db->select('cl.*,cities.name as city, states.name as state, countries.name as country ');
-		$this->db->from('mc_colleges AS cl');// I use aliasing make joins easier
-		$this->db->join('cities AS cities', 'cities.id = cl.city', 'LEFT');
-		$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
-		$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');
-		$this->db->where('cl.id', $query['college']);
+		$this->db->select('*');
+		$this->db->from('mc_colleges');// I use aliasing make joins easier
+		//$this->db->join('cities AS cities', 'cities.id = cl.city', 'LEFT');
+		//$this->db->join('states AS  states', 'states.id = cl.state', 'LEFT');
+		//$this->db->join('countries AS countries', 'countries.id = cl.country', 'LEFT');
+		$this->db->where('id', $query['college']);
 		$result = $this->db->get()->row_object();
 		return $result;
 	}	
@@ -272,6 +440,13 @@ class College_model extends CI_Model {
 	}	
 	/**/
 	
+	function get_all_home_logo(){
+		$this->db->select('*');
+		$this->db->from('mc_logo_slider');
+		$this->db->where('status', 1);
+		$result = $this->db->get()->result_array();
+		return $result;
+	}
 	
 	/*for admin college view page*/
 	function get_assigned_college($colleges){

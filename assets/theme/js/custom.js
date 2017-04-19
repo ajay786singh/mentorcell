@@ -9,6 +9,8 @@ function getExamByCourse(){
 		}
 	});
 }
+
+
 $(document).ready(function(){
 	
 	  $('.footerTop .footerWidget h3').click(function(){

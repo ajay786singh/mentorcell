@@ -28,6 +28,24 @@
 					<?php echo form_open_multipart(current_url(), array('class' => 'form-horizontal', 'id' => 'form-create_stream'));
 					
 					?>
+					
+					<div class="form-group">
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Streams</label>
+						  <div class="col-sm-10">
+						  
+						  <select  class="form-control clg_stream_id" required="" name="clg_streams_id" id="streams" >
+						  <?php 
+						 
+						   echo '<option  value="">Select Streams</option>';
+						  foreach($streams as $stream){
+							  //print_r($course);
+											//  if(in_array($course['course_id'],@$course_id)){
+												  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>'; 
+											//  }
+											 
+						   } ?></select>
+						  </div>
+						</div>
 						
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Courses</label>
@@ -38,11 +56,22 @@
 						 
 						   echo '<option  value="">Select Course</option>';
 						  foreach($courses as $course){
-											  if(in_array($course['course_id'],@$course_id)){
+							  //print_r($course);
+											//  if(in_array($course['course_id'],@$course_id)){
 												  echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>'; 
-											  }
+											//  }
 											 
 						   } ?></select>
+						  </div>
+						</div>
+						
+						<div class="form-group">
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Specialization </label>
+						  <div id="clg_specialization1" class="col-sm-10">
+						  
+						  <select  class="form-control "  name="clg_specialization" id="clg_specialization" >
+						  <option  value="">Select Specialization </option>
+						   </select>
 						  </div>
 						</div>
 						

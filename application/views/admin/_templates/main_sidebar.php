@@ -111,14 +111,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-user"></i> <span>Redeem / Enquiry</span>
                             </a>
                         </li>
+						
 						<?php
 						}
 						
 						if($this->ion_auth->is_admin()){ ?>
 						
+						<li class="<?=active_link_controller('logo')?>">
+                            <a href="<?php echo site_url('admin/colleges/logo'); ?>">
+                                <i class="fa fa-shield"></i> <span>Collage Logo</span>
+                            </a>
+                        </li>
 						<li class="<?=active_link_controller('streams')?>">
                             <a href="<?php echo site_url('admin/streams'); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Streams'; ?></span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('counseling_video')?>">
+                            <a href="<?php echo site_url('admin/streams/counseling_video'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Counseling Video'; ?></span>
                             </a>
                         </li>
 						

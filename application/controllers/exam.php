@@ -21,14 +21,13 @@ class Exam extends Public_Controller {
 
 	public function index($exam_name)
 	{
-		//print_r($exam_name);die;
+	
 		if ($this->ion_auth->logged_in()){
 		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
 		}else{
 			$this->data['user_login'] = array('id'=>false);
 		}
 		$this->data['exam_data'] = $this->exam_model->get_single_row("mc_exams", "slug",$exam_name );
-		//print_r($this->data);die;
 		$this->load->view('public/layout/header', $this->data);
 		$this->load->view('public/exam', $this->data);
 		$this->load->view('public/layout/footer', $this->data);
@@ -195,7 +194,6 @@ class Exam extends Public_Controller {
 			$this->data['user_login'] = array('id'=>false);
 		}
 		$query = array();
-		
 		//$this->college['colleges'] = $this->college_model->search_result_course($query);
 		
 		$this->college['college'] = $this->college_model->search_result_college($query);

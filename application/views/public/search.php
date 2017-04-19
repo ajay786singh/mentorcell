@@ -1,5 +1,8 @@
 <link href="<?php echo base_url('assets/theme/css/jquery.mCustomScrollbar.css');?>" rel="stylesheet" type="text/css" media="all" />
+<?php
+$cad = $this->college_model->get_course_data($coursename);
 
+?>
 <section class="bgWhite collegeHead">
 <div class="container">
 <div class="row">
@@ -7,7 +10,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="collegeSearch">
 <form>
-<input type="text" name="" value="Engineering" placeholder="">
+<input type="text" name="" value="<?=$cad->course_name;?>" placeholder="">
 <input type="submit" name="" value="Search">
 </form>
 </div>
@@ -17,8 +20,8 @@
 <div class="collegeNav">
 <ul>
 <li><a href="#" class="active">College</a></li>
-<li><a href="#">Specialization</a></li>
-<li><a href="#">Course</a></li>
+<!--<li><a href="#">Specialization</a></li>
+<li><a href="#">Course</a></li>-->
 </ul>
 </div>
 </div>
@@ -35,7 +38,7 @@
 <div class="row">
 <div class="containerBox">
 <div class="col-xs-6">
-<div class="collegeSearchCount"><strong>3124</strong> result for <strong>"Engineering"</strong></div>
+<div class="collegeSearchCount"><strong><?=$count_res;?></strong> result for <strong>"<?=$cad->course_name;?>"</strong></div>
 </div>
 <div class="col-xs-6">
 <div class="collegeSort pull-right">
@@ -44,9 +47,7 @@
 <i class="icon-down"></i>
 <select>
 <option>Lowest Fees First</option>
-<option>Lowest Fees First</option>
-<option>Lowest Fees First</option>
-<option>Lowest Fees First</option>
+<option>Highest Fees First</option>
 </select>
 </div>
 </div>
@@ -66,91 +67,90 @@
 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
 <div class="collegeFilter">
 <h3>Filters</h3>
-
+<?php $exam_data = $this->college_model->get_exam_data($cad->stream_id);
+ if(!empty($exam_data)){?>
 <div class="collegeFilterBox">
-<h4>Exam Accepted <span><i class="icon-cw"></i> Reset</span></h4>
+<h4>Exam Accepted <span><i class="icon-cw"></i> <!--Reset--></span></h4>
 <div class="filterItems">
-
 <ul>
-<li><input type="checkbox" name="" id="check1"> <label for="check1">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check2"> <label for="check2">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check3"> <label for="check3">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check4"> <label for="check4">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check5"> <label for="check5">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check6"> <label for="check6">Delhi/NCR</label></li>
-
-<li><input type="checkbox" name="" id="check7"> <label for="check7">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check8"> <label for="check8">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check9"> <label for="check9">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check10"> <label for="check10">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check11"> <label for="check11">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check12"> <label for="check12">Delhi/NCR</label></li>
-
-<li><input type="checkbox" name="" id="check13"> <label for="check13">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check14"> <label for="check14">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check15"> <label for="check15">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check16"> <label for="check16">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check17"> <label for="check17">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check18"> <label for="check18">Delhi/NCR</label></li>
+<?php foreach($exam_data as $examsearch){ ?>
+<li><input type="checkbox" name="check1<?=$examsearch['id']?>" id="check1<?=$examsearch['id']?>"> <label for="check1<?=$examsearch['id']?>"><?=$examsearch['exam_name']?></label></li>
+<?php } ?>
 </ul>
 
 </div>
 </div>
-
+ <?php } ?>
+ <?php $collage_id = $this->college_model->get_collageid($cad->course_id);
+ if(!empty($collage_id)){?>
 <div class="collegeFilterBox">
 <h4>Location <span><i class="icon-cw"></i> Reset</span></h4>
-<div class="locationSearch">
+<!--<div class="locationSearch">
 <form>
 <input type="text" name="">
 <input type="submit" name="" value="">
 </form>
-</div>
+</div>-->
 <div class="filterItems">
 
 <ul>
-<li><input type="checkbox" name="" id="check19"> <label for="check19">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check20"> <label for="check20">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check21"> <label for="check21">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check22"> <label for="check22">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check23"> <label for="check23">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check24"> <label for="check24">Delhi/NCR</label></li>
+<?php foreach($collage_id as $collageid){
+$location_id = $this->college_model->get_location($collageid['college_id']);
+$city_name = $this->college_model->get_city_name($location_id[0]['city']);
+
+	?>
+<li><input type="checkbox" name="check19<?=$collageid['college_id']?>" id="check19<?=$collageid['college_id']?>"> <label for="check19<?=$collageid['college_id']?>"><?=$city_name->name;?></label></li>
+<?php } ?>
 </ul>
 
 </div>
 </div>
-
+ <?php } ?>
+ <?php $feedata = $this->college_model->get_feedata($cad->course_id);
+ if(!empty($feedata)){?>
 <div class="collegeFilterBox">
 <h4>Total Fee(in Rs.) <span><i class="icon-cw"></i> Reset</span></h4>
 <div class="filterItems">
-
 <ul>
-<li><input type="checkbox" name="" id="check25"> <label for="check25">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check26"> <label for="check26">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check27"> <label for="check27">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check28"> <label for="check28">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check29"> <label for="check29">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check30"> <label for="check30">Delhi/NCR</label></li>
+<?php foreach($feedata as $fee_data){ ?>
+<li><input type="checkbox" name="check25<?=$fee_data['assigned_id'];?>" id="check25<?=$fee_data['assigned_id'];?>"> <label for="check25<?=$fee_data['assigned_id'];?>"><?=$fee_data['fee'];?></label></li>
+ <?php } ?>
 </ul>
 
 </div>
 </div>
-
+ <?php } ?>
+  <?php $spealata = $this->college_model->get_specialata($cad->course_id);
+ if(!empty($spealata)){?>
 <div class="collegeFilterBox">
-<h4>Exam Accepted <span><i class="icon-cw"></i> Reset</span></h4>
+<h4>Specialization <span><i class="icon-cw"></i> Reset</span></h4>
 <div class="filterItems">
 
 <ul>
-<li><input type="checkbox" name="" id="check31"> <label for="check31">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check32"> <label for="check32">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check33"> <label for="check33">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check34"> <label for="check34">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check35"> <label for="check35">Delhi/NCR</label></li>
-<li><input type="checkbox" name="" id="check36"> <label for="check36">Delhi/NCR</label></li>
+<?php  foreach($spealata as $spealdata){ ?>
+<li><input type="checkbox" name="" id="check31"> <label for="check31"><?=$spealdata['specialization_name'];?></label></li>
+<?php } ?>
 </ul>
-
 </div>
 </div>
-
+ <?php } ?>
+ 
+ 
+ 
+  <?php $recogniata = $this->college_model->get_recognize($cad->course_id);
+ if(!empty($recogniata)){?>
+<div class="collegeFilterBox">
+<h4>Recognition <span><i class="icon-cw"></i> Reset</span></h4>
+<div class="filterItems">
+<ul>
+<?php  foreach($recogniata as $recogdata){ ?>
+<li><input type="checkbox" name="" id="check31"> <label for="check31"><?=$recogdata['recognition'];?></label></li>
+<?php } ?>
+</ul>
+</div>
+</div>
+ <?php } ?>
+ 
 </div>
 </div>
 <!--college filter close-->
@@ -161,10 +161,12 @@
 
 
 <?php foreach($colleges as $college){ 
+//echo "<pre>";
+//print_r($college);
 ?>
 		<div class="collegeResultBox">
 		<div class="collegeTop">
-		<div class="collegeThumb"><img src="<?php echo base_url('assets/theme/images/college_thumb.jpg'); ?>" /></div>
+		<div class="collegeThumb"><img src="<?php echo base_url('upload/'.$college->logo); ?>" /></div>
 		<div class="collegeName">
 		<h3><?php echo $college->name; echo $college->college_id;?></h3>
 		<h4><?php echo $college->address; ?></h4>
@@ -174,8 +176,11 @@
 
 		<div class="collegeMiddle">
 		<div class="col-xs-8">
-		<h3><?php echo $college->title; ?><span>37 Reviews</span></h3>
-		<h4><?php echo $college->duration; ?>
+		<?php $cad1 = $this->college_model->get_course_data($college->course_id);
+ ?>
+		<h3><?=$cad1->course_name;?><span>0 Reviews</span></h3>
+		<h4><?php
+		echo $college->duration; ?>
 					&bull; <?php echo $college->recognition; ?></h4>
 		<ul>
 		<li><span>Total Fees(Rs.)</span> <?php echo $college->fee; ?></li>
@@ -206,7 +211,7 @@
 <!--loop box close-->
 
 
-<div class="pagination">
+<!--<div class="pagination">
 <ul>
 <li><span class="active">1</span></li>
 <li><a href="#">2</a></li>
@@ -218,7 +223,7 @@
 <li><a href="#">8</a></li>
 <li><a href="#">9</a></li>
 </ul>
-</div>
+</div>-->
 
 </div>
 <!--college result panel close-->

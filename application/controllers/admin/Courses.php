@@ -87,7 +87,6 @@ class Courses extends Admin_Controller {
 			
 			$this->data['status']['value'] = $this->form_validation->set_value('status');
 			$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
-			$this->data['collage_list'] = $this->common_model->get_all_collage("mc_colleges");
 			//$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
             /* Load Template */
             $this->template->admin_render('admin/courses/create', $this->data);

@@ -32,10 +32,20 @@
 			}else{$form_type = "edit/".$form_data;}?>
             <form role="form" method="post" action="<?php echo base_url()."admin/exams/".$form_type;?>">
               <div class="box-body">
-              <div class="form-group">
+              <!--<div class="form-group">
                   <label for="exampleInputEmail1">Course Name</label>
                   <input type="text"  class="form-control" name="course_name" id="course_name" value="<?php echo @$exams_list['course_name']; ?>" placeholder="">
-                </div>
+                </div>-->
+				<div class="form-group">
+										  <label for="exampleInputEmail1">Course Name</label>
+										  <select  class="form-control" required="" name="course_name" id="course_name" >
+										  <option value="">Select Course</option>
+										  <?php foreach($streams as $type){
+											  if($type['stream_id']==@$exams_list['course_name']){$type_id_seleted="selected";}else{$type_id_seleted="";}
+											  echo '<option '.$type_id_seleted.' value="'.$type['stream_id'].'">'.$type['stream_name'].'</option>';
+										  } ?>
+										  </select>
+										</div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Exam Name</label>
                   <input type="text"  class="form-control" name="exam_name" id="exam_name" value="<?php echo @$exams_list['exam_name']; ?>" placeholder="" onBlur="return create_slug(this.value);">

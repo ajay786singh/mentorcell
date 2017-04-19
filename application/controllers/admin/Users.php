@@ -509,6 +509,10 @@ class Users extends Admin_Controller {
 
             $handle = fopen('php://output', 'w');
 
+			$headerarray = array('first_name' => 'First Name','last_name' => 'Last Name','phone' => 'Phone','email' => 'Email','Course' => 'Course','CouponCode' => 'CouponCode' ,'Total_correct' =>'Total Correct'
+			,'Result' => 'Result','Score' => 'Score','Date' => 'Date','city' => 'city','State' => 'State','DOB' => 'DOB','AboutMe' => 'AboutMe','Bio' => 'Bio');
+
+			fputcsv($handle, $headerarray);
             foreach ($data as $data) {
                 fputcsv($handle, $data);
             }

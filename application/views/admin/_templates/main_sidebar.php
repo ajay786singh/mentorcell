@@ -119,7 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						
 						<li class="<?=active_link_controller('logo')?>">
                             <a href="<?php echo site_url('admin/colleges/logo'); ?>">
-                                <i class="fa fa-shield"></i> <span>Collage Logo</span>
+                                <i class="fa fa-shield"></i> <span>Collage Featured</span>
                             </a>
                         </li>
 						<li class="<?=active_link_controller('streams')?>">
@@ -143,6 +143,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<li class="<?=active_link_controller('courses')?>">
                             <a href="<?php echo site_url('admin/courses '); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Courses '; ?></span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('courses')?>">
+                            <a href="<?php echo site_url('admin/courses/courses_status'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Course Status '; ?></span>
                             </a>
                         </li>
 						

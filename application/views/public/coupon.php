@@ -4,20 +4,34 @@
 <div class="containerBox">
 <div class="sectionHeading">Get Coupon</div>
 
+<style>
+.couponHolder .regForm .inputRow {
+    margin: 0px 0px 20px 0px;
+    }
+
+.couponHolder .regForm .inputRow input.go {
+
+margin:28px 0px 5px 0px;
+}
+.couponHolder .loginForm {
+	margin:23px 15px;
+}
+</style>
+
 <div class="couponTabs">
 <ul>
 <li class="<?php echo $couponBox1;?>" id="couponTab1">
-<h3><i class="icon-tick"></i> <img src="<?php echo base_url()?>assets/theme/images/manage-icon.jpg" /></h3>
+<h3><i class="icon-tick"></i> <img src="<?php echo base_url()?>assets/theme/images/login.png" /></h3>
 <h4>Login/Registration</h4>
 </li>
 
 <li class="<?php echo $couponBox2;?>" id="couponTab2">
-<h3><i class="icon-tick"></i> <img src="<?php echo base_url()?>assets/theme/images/manage-icon.jpg" /></h3>
+<h3><i class="icon-tick"></i> <img src="<?php echo base_url()?>assets/theme/images/test1.png" /></h3>
 <h4>IQ test</h4>
 </li>
 
 <li class="<?php echo $couponBox3;?>" id="couponTab3">
-<h3><i class="icon-tick"></i> <img src="<?php echo base_url()?>assets/theme/images/manage-icon.jpg" /></h3>
+<h3><i class="icon-tick"></i> <img src="<?php echo base_url()?>assets/theme/images/coupon.png" /></h3>
 <h4>Get Coupon</h4>
 </li>
 </ul>
@@ -32,11 +46,11 @@
 			<form id="register_form">
 				<div class="inputRow">
 					<input type="text" id="register_fname" required='' placeholder="First Name" name="">
-					<i class="icon-email"></i>
+					<i class="icon-name"></i>
 				</div>
 				<div class="inputRow">
 					<input type="text" id="register_lname" required='' placeholder="Last Name" name="">
-					<i class="icon-email"></i>
+					<i class="icon-name"></i>
 				</div>
 				<div class="inputRow">
 					<input type="email" id="register_email" required='' placeholder="Email Address" name="">

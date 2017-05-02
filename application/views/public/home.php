@@ -41,7 +41,7 @@
 			</select>
 			</div>
 			<div class="formcol00">
-			<select id="type" required="" class="auto-choice"  name="type">
+			<select id="type" required class="auto-choice"  name="type">
 			<option value='0'>-- Select Type --</option>
 				<?php
 
@@ -52,7 +52,7 @@
 			</select>
 			</div>
 			<div class="formcol00">
-			<select id="course" required=""  class="auto-choice"  name="course_main">
+			<select id="course" required  class="auto-choice"  name="course_main">
 			<option value='0'>-- Select Course --</option>
 			<?php
 				/*foreach($courses as $course){
@@ -62,7 +62,7 @@
 			</select>
 			</div>
 		</div>
-<button class="go"><span class="glyphicon glyphicon-search"></span></button>
+<button class="go">Search</button>
 </form>
 </div>
 
@@ -81,7 +81,7 @@ foreach($exam_search as $exam_search_data){
 </select>
 </div>
 <div class="formcol50">
-<select id="exam_lists" required=""  name="exam_lists">
+<select id="exam_lists" required  name="exam_lists">
 
 </select>
 </div>
@@ -136,20 +136,20 @@ foreach($exam_search as $exam_search_data){
 <ul class="bxslider">
 <?php $home_logo = $this->college_model->get_all_home_logo();
 foreach($home_logo as $logo){
-	$logos = $logo['logo'];
-?>
-<li><a href="<?php if(!empty($logo['college_url'])){ ?>http://<?php echo $logo['college_url']; }?>" target="_blank"><div class="featureLogo"><img src="<?php echo base_url('upload/'.$logos); ?>"></div> <div class="featureText"><!--<h3>IIBA</h3> <p>Bangalore, Noida, Kolkata</p>--></div></a></li>
+	$location_id = $this->college_model->get_location($logo['college_name']);
+	?>
+<li><a href="<?php echo base_url('home/search?college='.$logo["college_name"]); ?>" target="_blank"> <div class="featureText"><h3 style="font-size:15px;"><?=$location_id[0]['name']?></h3> <p><?=$logo['college_url']?>,</br> <?=$logo['college_detail']?></p></div></a></li>
 <?php } ?>
 </ul>
 </div>
 </div>
 </section>
 
-<section class="bgGrey">
+<section class="bgGrey" style="padding:40px 0;">
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading">About us</div>
+<div class="sectionHeading"><span>About</span> us</div>
 
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <div class="careerCol">
@@ -178,11 +178,11 @@ foreach($home_logo as $logo){
 </div>
 </section>
 
-<section class="bgWhite">
+<section class="bgWhite" style="padding:40px 0;">
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading">How it works?</div>
+<div class="sectionHeading"><span>How it</span> works?</div>
 
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 <div class="stepsRow">
@@ -217,105 +217,109 @@ foreach($home_logo as $logo){
 </section>
 
 
-<section class="bgGrey">
+<section class="bgGrey" style="padding:40px 0; background:url('<?php echo base_url('assets/theme/images/bg-1.jpg'); ?>') center fixed no-repeat; background-size:cover;">
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading">Career counseling video</div>
-
-<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-<div class="youTubePlayer">
-<?php
-$video_image_big = 'https://img.youtube.com/vi/'.$counselling_video[0].'/hqdefault.jpg';
-$video_url_big = 'https://www.youtube.com/embed/'.$counselling_video[0].'?autoplay=1';
-?>
-<a class="various fancybox fancybox.iframe" href="<?php echo $video_url_big; ?>">
-<img src="<?php echo $video_image_big; ?>">
-</a>
-</div>
-</div>
-
-<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<div class="sectionHeading whiteColor">Career counseling video</div>
+<div class="col-xs-12 col-sm-12 col-md-12 text-center col-lg-12">
 <div class="careerCol">
-<p>We are providing career counseling to students through researched content and videos. We have provided here researched and precise video content on courses, career choices etc which is simple and quick to understand. To make the process simpler, we have also put up counseling videos made by experts and educational institutions.</p>
-<!--<a href="#" class="counsButton">Get counselling</a>-->
+<p class="whiteColor" style="color: #fff;">We are providing career counseling to students through researched content and videos. We have provided here researched and precise video content on courses, career choices etc which is simple and quick to understand. To make the process simpler, we have also put up counseling videos made by experts and educational institutions.</p>
 </div>
 </div>
 
+<div class="col-xs-12 col-sm-12 col-md-12 text-center col-lg-12">
 <div class="youtubeThumb">
-<a href="#" class="viewAll">View All Videos</a>
 <ul>
+<div class="owl-carousel owl-theme">
 <?php foreach($counselling_video as $video){
 	$video_image = 'https://img.youtube.com/vi/'.$video.'/default.jpg';
 	$video_url = 'https://www.youtube.com/embed/'.$video.'?autoplay=1';
-	echo "<li><a class='various fancybox fancybox.iframe' href='".$video_url."'><img src='".$video_image."'></a></li>";
+	echo "<li class='item'><a class='various fancybox fancybox.iframe' href='".$video_url."'><img src='".$video_image."'> <img class='play-img' src='assets/theme/images/video-p.png'></a><p style='text-align:left; font-size:12px; color:#fff; margin:5px 5px;'>Video Title</p></li>";
 }
 ?>
+</div>
 </ul>
 </div>
+</div>
+<style>
+img.play-img {
+    position: absolute;
+    top: 20%;
+    width: 60px !important;
+    left: 35%;
+}
+	</style>
+<div class="col-xs-12 col-sm-12 text-center col-md-12 text-center col-lg-12" style="margin-top: 30px;">
+<div class="careerCol">
+<a href="<?php echo base_url()?>home/gallery" class="counsButton">View More</a>
+</div>
+</div>
+
+
 
 </div>
 </div>
 </div>
 </section>
 
-<section class="bgWhite">
+<section class="bgWhite" style="padding: 40px 0;">
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading">Anything particular?</div>
+<div class="sectionHeading"><span>Anything</span> particular?</div>
 
 <div class="col-xs-12 col-sm-12">
 <div class="managementArea">
 <ul>
 <li>
-<div class="manageIcon"><a href="<?php echo base_url('course/index/management'); ?>"><img src="<?php echo base_url('assets/theme/images/1.png'); ?>" /></a></div>
-<div class="manageText"><a href="<?php echo base_url('course/index/management'); ?>">Management</a></div>
+<div class="manageIcon"><a href="<?php echo base_url()?>index.php/page/management/3"><img src="<?php echo base_url('assets/theme/images/1.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url()?>index.php/page/management/3">Management</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="<?php echo base_url('course/index/engineering'); ?>"><img src="<?php echo base_url('assets/theme/images/2.png'); ?>" /></a></div>
-<div class="manageText"><a href="<?php echo base_url('course/index/engineering'); ?>">Engineering</div>
+<div class="manageIcon"><a href="<?php echo base_url()?>index.php/page/management/4"><img src="<?php echo base_url('assets/theme/images/2.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url()?>index.php/page/management/4">Engineering</div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="<?php echo base_url('course/index/architecture'); ?>"><img src="<?php echo base_url('assets/theme/images/3.png'); ?>" /></a></div>
-<div class="manageText"><a href="<?php echo base_url('course/index/architecture'); ?>">Architecture</a></div>
+<div class="manageIcon"><a href="<?php echo base_url()?>index.php/page/management/5"><img src="<?php echo base_url('assets/theme/images/3.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url()?>index.php/page/management/5">Architecture</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="<?php echo base_url('course/index/medical'); ?>"><img src="<?php echo base_url('assets/theme/images/4.png'); ?>" /></a></div>
-<div class="manageText"><a href="<?php echo base_url('course/index/medical'); ?>">Medical</a></div>
+<div class="manageIcon"><a href="<?php echo base_url()?>index.php/page/management/6"><img src="<?php echo base_url('assets/theme/images/4.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url()?>index.php/page/management/6">Medical</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="<?php echo base_url('course/index/dental'); ?>"><img src="<?php echo base_url('assets/theme/images/5.png'); ?>" /></a></div>
-<div class="manageText"><a href="<?php echo base_url('course/index/dental'); ?>">Dental</a></div>
+<div class="manageIcon"><a href="<?php echo base_url()?>index.php/page/management/7"><img src="<?php echo base_url('assets/theme/images/5.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url()?>index.php/page/management/7">Dental</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="<?php echo base_url('course/index/pharmacy'); ?>"><img src="<?php echo base_url('assets/theme/images/6.png'); ?>" /></a></div>
-<div class="manageText"><a href="<?php echo base_url('course/index/pharmacy'); ?>">Pharmacy</a></div>
+<div class="manageIcon"><a href="<?php echo base_url()?>index.php/page/management/8"><img src="<?php echo base_url('assets/theme/images/6.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url()?>index.php/page/management/8">Pharmacy</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="<?php echo base_url('course/index/paramedical'); ?>"><img src="<?php echo base_url('assets/theme/images/7.png'); ?>" /></a></div>
-<div class="manageText"><a href="<?php echo base_url('course/index/paramedical'); ?>">Paramedical</a></div>
+<div class="manageIcon"><a href="<?php echo base_url()?>index.php/page/management/9"><img src="<?php echo base_url('assets/theme/images/7.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url()?>index.php/page/management/9">Paramedical</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="<?php echo base_url('course/index/hotel_management'); ?>"><img src="<?php echo base_url('assets/theme/images/8.png'); ?>" /></a></div>
-<div class="manageText"><a href="<?php echo base_url('course/index/hotel_management'); ?>">Hotel Management</a></div>
+<div class="manageIcon"><a href="<?php echo base_url()?>index.php/page/management/10"><img src="<?php echo base_url('assets/theme/images/8.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url()?>index.php/page/management/10">Hotel Management</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="<?php echo base_url('course/index/law'); ?>"><img src="<?php echo base_url('assets/theme/images/9.png'); ?>" /></a></div>
-<div class="manageText"><a href="<?php echo base_url('course/index/law'); ?>">Law</a></div>
+<div class="manageIcon"><a href="<?php echo base_url()?>index.php/page/management/11"><img src="<?php echo base_url('assets/theme/images/9.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url()?>index.php/page/management/11">Law</a></div>
 </li>
 
 <li>
-<div class="manageIcon"><a href="anything-particular.html"><img src="<?php echo base_url('assets/theme/images/10.png'); ?>" /></a></div>
-<div class="manageText"><a href="anything-particular.html">Computer Application</a></div>
+<div class="manageIcon"><a href="<?php echo base_url()?>index.php/page/management/12"><img src="<?php echo base_url('assets/theme/images/10.png'); ?>" /></a></div>
+<div class="manageText"><a href="<?php echo base_url()?>index.php/page/management/12">Computer Application</a></div>
 </li>
 
 </ul>
@@ -339,27 +343,25 @@ $video_url_big = 'https://www.youtube.com/embed/'.$counselling_video[0].'?autopl
 <div class="col-xs-12 col-sm-12">
 <div class="popularCourses">
 <ul>
-<li>MBA</li>
-<li>BBA</li>
-<li>B.E/B.Tech</li>
-<li>M.E/M.Tech</li>
-<li>MBBS</li>
-<li>BDS</li>
-<li>B.Com</li>
-<li>BCA</li>
-<li>MCA</li>
-<li>BHM</li>
-<li>B.Sc (Nursing)</li>
-<li>B.Pharma</li>
-<li>B.Sc</li>
-<li>B.Arch</li>
-<li>B.Sc (Aviation)</li>
-<li>B.Sc (Computers)</li>
-<li>B.Des.</li>
-<li>LLB</li>
-<li>Bachelor of Physiotherapy (BPT)</li>
-<li>BAMS</li>
-<li>BHMS</li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=41">MBA</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=147">BBA</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=70">B.E/B.Tech</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=71">M.E/M.Tech</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=218">MBBS</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=149">B.Com</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=146">BCA</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=145">MCA</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=192">B.Sc (Nursing)</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=216">B.Pharma</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=243">B.Sc</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=199">B.Arch</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=175">B.Sc (Animation)</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=361">B.Sc (Computers)</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=260">B.Des.</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=115">LLB</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=270">Bachelor of Physiotherapy (BPT)</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=43">PGDM</a></li>
+<li><a style="color:#eee;" href="<?php echo base_url()?>home/search?course=231">MD</a></li>
 </ul>
 
 </div>
@@ -372,7 +374,7 @@ $video_url_big = 'https://www.youtube.com/embed/'.$counselling_video[0].'?autopl
 </section>
 
 
-<section class="bgWhite">
+<section class="bgWhite" style="padding: 40px 0;">
 <div class="container">
 <div class="row">
 <div class="containerBox">
@@ -464,59 +466,29 @@ $video_url_big = 'https://www.youtube.com/embed/'.$counselling_video[0].'?autopl
 </section>
 
 
-<section class="bgWhite">
+<section class="bgWhite" style="padding:40px 0px;">
 <div class="container">
 <div class="row">
 <div class="containerBox">
 <div class="sectionHeading">Contact us</div>
 
-<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-<div class="quickContact">
-<h3>GET IN TOUCH</h3>
-<p>Mon - Sat: 09 AM - 06 PM</p>
 
-<ul>
-<li>
-<span class="contactIcon"></span>
-<span class="contactText">
-<h4>ADDRESS</h4>
-<p>G-130, Sec-63,<br>
-Noida-201307, India</p>
-</span>
-</li>
 
-<li>
-<span class="contactIcon"></span>
-<span class="contactText">
-<h4>CALL US</h4>
-<p>+91 9953862807 / +91 7042387480</p>
-</span>
-</li>
-
-<li>
-<span class="contactIcon"></span>
-<span class="contactText">
-<h4>E-MAIL</h4>
-<p><a href="mailto:info@mentorcell.com">info@mentorcell.com</a> / <a href="mailto:dinesh@mentorcell.com">dinesh@mentorcell.com</a></p>
-</span>
-</li>
-
-</ul>
-
-<a href="#" class="quickButton">Get a call back</a>
-</div>
-</div>
-
-<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="contactForm">
 	<form id="_contact_form">
 	<div id="_contact_form_response"></div>
 	<ul>
-	    <li><input id="_contact_form_name" required="required" type="text" name="" placeholder="Full Name"> <i class="icon-name"></i></li>
+	   <div class="col-xs-6"> <li><input id="_contact_form_name" required="required" type="text" name="" placeholder="Full Name"> <i class="icon-name"></i></li>
 		<li><input id="_contact_form_email" required="required" type="email" name="" placeholder="Email Address"> <i class="icon-email"></i></li>
 		<li><input id="_contact_form_phone" required="required" type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" name="" placeholder="Mobile Number"> <i class="icon-phone-call"></i></li>
-		<li><textarea id="_contact_form_message" required="required" placeholder="Message"></textarea></li>
-		<li><input id="_contact_form_send" type="submit" value="Send" class="go" name="go"></li>
+		</div>
+        <div class="col-xs-6">
+        <li><textarea id="_contact_form_message" required placeholder="Message"></textarea></li>
+        </div>
+        <div class="col-xs-12 text-center">
+		<li><input id="_contact_form_send" type="submit" value="Send" class="go pull-right" name="go"></li>
+        </div>
 		</ul>
 	</form>
 </div>

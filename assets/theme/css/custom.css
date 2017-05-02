@@ -1,4 +1,4 @@
-body {background: #b9b9b9; font-family: 'ubunturegular'; padding: 55px 0px 0px 0px;}
+body {background: #b9b9b9; font-family: 'ubunturegular'; font-family: 'Open Sans', sans-serif; padding: 105px 0px 0px 0px;}
 
 h1, h2, h3, h4, h5, h6, ol, ul, li, form, label, strong {margin: 0px; padding: 0px; list-style-type: none; font-weight: normal;}
 a, input, button, *:focus {outline: none;}
@@ -20,8 +20,8 @@ a:hover {text-decoration: none;}
 .importantDates, .newsBox, .couponTabs, .couponHolder, .iqTest ol li, .iqTest ol li .iqAnsRow,
 .teamArea, .teamPopup, .teamRow, .staticPage, .profileHead, .profileSection, .profileBox,
 .profileBox ul, .profileBox .detailForm, .profileBox .settingForm {width: 100%; float: left; clear: both;}
-
-header#header {background:#15202f; position:fixed; left: 0px; top:0px; z-index:20; height: 55px;}
+header#header-top {background:#172031; position:fixed; left: 0px; top:0px; width:100%; z-index:20; height: 35px; padding:0;}
+header#header {background:#fcfcfc; position:fixed; left: 0px; top:34px; z-index:1; height: 70px; padding: 10px 0;}
 header#header .logo {padding: 10px 0px 0px 0px; width: 100%; float: left;}
 header#header .logo img {max-width: 100%; height: auto;}
 
@@ -30,10 +30,10 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 
 .mainMenu {text-align: center; position: relative;}
-.mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 13px; padding: 19px 0px; margin: 0px 10px;}
+.mainMenu ul > li {display: inline-block; cursor: pointer; vertical-align: middle; font-size: 13px; padding: 18px 0px; margin: 0px 15px;}
 .mainMenu ul > li:first-child {margin-left:0px;}
 .mainMenu ul > li:last-child {margin-right:0px;}
-.mainMenu ul li a {color: #fff; text-decoration: none;}
+.mainMenu ul li a {font-weight: 600; font-size: 14px; color: #000; text-decoration: none; text-transform: uppercase;}
 
 .mainMenu .subMenuArea {display:none; background:#f9f9f9; position: absolute; text-align: left; width: 100%; left: 0px; top:54px;}
 .mainMenu ul > li:hover .subMenuArea {display:table;}
@@ -51,16 +51,16 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 .mainMenu .subMenuArea .subMenuHold {display: none;}
 .mainMenu .subMenuArea .subMenuHold.active {display:block;}
-.mainMenu .subMenuArea .subMenubox {width: 33.33%; float: left; padding: 15px;}
+.mainMenu .subMenuArea .subMenubox {width: 49.33%; float: left; padding: 15px;}
 .mainMenu .subMenuArea .subMenubox h3 {font-size:12px; font-weight: bold; color: #333; display: block; margin:0px 0px 10px 0px;}
 .mainMenu .subMenuArea .subMenubox .sublinks {display: block; margin: 0px 0px 4px 0px; font-size: 11px;}
-.mainMenu .subMenuArea .subMenubox .sublinks a {color:#828282;}
+.mainMenu .subMenuArea .subMenubox .sublinks a {color:#828282;font-size: 11px !important;font-weight: normal !important;}
 .mainMenu .subMenuArea .subMenubox .sublinks a:hover {color:#000;}
 
 
-.userNav {float: right; padding:13px 0px 0px 0px;}
-.userNav ul li {display: block; float: left; cursor: pointer; width: 60px; text-align: center; background: #ff9978; color: #fff; font-size: 12px; padding: 5px;}
-.userNav ul li.userReg {background: #f77a52;}
+.userNav {float: right; padding:3px 0px 0px 0px;}
+.userNav ul li {display: block; float: left; z-index: 9999 !important; cursor: pointer; width: 60px; text-align: center; background: #fff; color: #000; font-size: 12px; padding: 5px;}
+.userNav ul li.userReg {background: transparent; color:#fff;}
 
 .homeSlider {position: relative;}
 .homeSlider ul li {width: 100%;}
@@ -75,7 +75,14 @@ header#header .logo img {max-width: 100%; height: auto;}
 .homeSlider .mobileAppIcons a img {border-radius: 5px;}
 
 .homeSlider .searchArea {position: absolute; z-index: 12; width: 65%; top: 50%; left: 50%; transform: translate(-50%, -80px); transition: all ease-in-out 1s;}
-.homeSlider .searchArea h3 {font-size: 22px; color: #fff; margin: 0px 0px 10px 0px;}
+.homeSlider .searchArea h3 {
+    font-size: 36px;
+    color: #fff;
+    margin: 0px 0px 10px 0px;
+    text-align: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+	font-weight: 600;}
 .homeSlider .searchArea .searchNav ul li {float: left; width: 118px; transition: all ease-in-out 0.3s; text-align: center; cursor: pointer; background: #f77a52; border-right: 2px solid #fff; padding:15px 5px; color: #fff;}
 .homeSlider .searchArea .searchNav ul li.active {background: #15202f;}
 .homeSlider .searchArea .searchNav ul li:last-child {border:none;}
@@ -85,10 +92,10 @@ header#header .logo img {max-width: 100%; height: auto;}
 .homeSlider .searchArea .searchForm.active {z-index: 2; opacity:1; height:48px; }
 .homeSlider .searchArea .formHolder input,
 .homeSlider .searchArea .formHolder select {width: 100%; border:none; background: none; height: 48px;}
-.homeSlider .searchArea .formHolder .go {background: #15202f; position: relative; cursor: pointer; width: 48px; height: 48px; border:none; color: #fff; overflow: hidden; text-align: center; font-size: 20px;}
+.homeSlider .searchArea .formHolder .go {background: #15202f; position: relative; cursor: pointer; width: 108px; height: 48px; border:none; color: #fff; overflow: hidden; text-align: center; font-size: 20px;}
 
 
-.homeSlider .searchArea .formHolder .formcol50 {width:calc(50% - 24px); position: relative; float: left; border-right: 1px solid rgba(0,0,0,0.20); padding: 0px 10px;}
+.homeSlider .searchArea .formHolder .formcol50 {width:calc(50% - 54px); position: relative; float: left; border-right: 1px solid rgba(0,0,0,0.20); padding: 0px 10px;}
 .homeSlider .searchArea .formHolder .formcol100 {width: calc(100% - 48px); position: relative; float: left; border-right: 1px solid rgba(0,0,0,0.20); padding: 0px 10px;}
 
 .homeSlider .searchArea .formHolder .autoComplete {position: absolute; z-index: 5; display: none; max-height: 200px; overflow: auto; border-top: 1px solid rgba(0,0,0,0.20); width: 100%; left: 0px; top: 48px; padding: 10px; background: #fff;}
@@ -97,33 +104,40 @@ header#header .logo img {max-width: 100%; height: auto;}
 .homeSlider .searchArea .formHolder .autoComplete ul li {display: block; cursor: pointer; font-size: 13px; color: rgba(0,0,0,0.54); padding: 6px 4px;}
 .homeSlider .searchArea .formHolder .autoComplete ul li:hover {background: rgba(0,0,0,0.05);}
 
-.featureSlider {background:#e4e9f3; padding:0px; position: relative; z-index: 2;}
+.featureSlider {background:#e4e9f3; padding:0px; position: relative; z-index: 2; height:91px; overflow:hidden;}
 .featureSlider .row {position: relative; padding: 15px 50px 15px 40px;}
-.featureSlider .featureHeading {position: absolute; top:0px; left: 0px; width: 40px; height: 100%; z-index: 10; background: #fff; font-size: 15px; color: rgba(0,0,0,0.87);}
+.featureSlider .featureHeading {position: absolute; top:0px; left: 0px; width: 40px; height: 100%; z-index: 10; background: #f77a52; font-size: 15px; color:#fff;}
 .featureSlider .featureHeading:before {content: 'Featured'; display: block; transform: rotate(-90deg) translate(-45px, 0px);}
-.featureSlider .featureLogo {width: 60px; display: inline-block; margin: 0px 10px 0px 0px; vertical-align: middle;}
-.featureSlider .featureLogo img {max-width: 100%; height: auto;}
+.featureSlider .featureLogo {width: 100%; display: inline-block; margin: 0px 10px 0px 0px; vertical-align: middle;}
+.featureSlider .featureLogo img{width:auto; height:65px;}
 .featureSlider .featureText {width: calc(100% - 75px); display: inline-block; vertical-align: middle;}
 .featureSlider .featureText h3 {font-size: 21px; margin: 0px 0px 3px 0px; color: rgba(0,0,0,0.87);}
 .featureSlider .featureText p {margin: 0px; line-height: normal; color:rgba(0,0,0,0.54); font-size: 15px;}
 
-.featureSlider .bx-wrapper .bx-controls-direction a {width: 50px; height: 90px; right:-50px; margin: 0px; top:-15px; color: rgba(0,0,0,0.54); background: #d7dce8;}
+.featureSlider .bx-wrapper .bx-controls-direction a {width: 50px; height: 90px; right:-50px; margin: 0px; top:-15px; color:#fff; background: #15202f;}
 .featureSlider .bx-wrapper .bx-prev {display: none!important;}
 .featureSlider .bx-wrapper .bx-next:after {content: '>'; font-size: 20px; text-indent: 1px; right: 0px; top:0px; line-height:55px; text-align: center; display: block;}
 .featureSlider .bx-wrapper .bx-next:hover {color: rgba(0,0,0,0.54); text-decoration: none;}
 
 .containerBox {padding: 20px 70px;}
 
-.sectionHeading {font-size:24px; display: block; position: relative; text-align: center; margin: 0px 0px 40px 0px;}
-.sectionHeading:before {content: ''; position: absolute; bottom:-10px; left: 50%; transform: translateX(-50%); width: 115px; height:3px; background: #80868e;}
-
+.sectionHeading {text-transform: capitalize; font-size: 24px; display: block; position: relative; text-align: center; margin: 0px 0px 40px 0px; color: #15202f; font-weight: 600; margin-bottom: 65px;}
+.sectionHeading span{color:#f77a52;}
+.sectionHeading:before {content: url('http://ec2-35-154-95-127.ap-south-1.compute.amazonaws.com/assets/theme/images/line.png'); position: absolute; bottom:10px; left: 46%; transform: translateX(-50%); width: 115px; height:3px; }
+.whiteColor {color:#fff;}
 .sectionHeading.whiteColor {color:#fff;}
-.sectionHeading.whiteColor:before {background: #fff;}
+.sectionHeading.whiteColor:before {content: url('http://ec2-35-154-95-127.ap-south-1.compute.amazonaws.com/assets/theme/images/line.png');}
 
 .bgWhite {background: #fff; width: 100%; float: left; clear: both;}
 .bgGrey {background:#f3f3f6; width: 100%; float: left; clear: both;}
-.bgCourses {background: #ffa081;}
-.bgAbroad {background: url('../images/imgbg1.jpg') no-repeat; background-size: cover;}
+.bgCourses {background: #15202f; padding: 70px 0; float: left; width: 100%;}
+.bgAbroad {
+    float: left;
+    background: url(../images/bg3.jpg) center fixed no-repeat;
+    background-size: cover;
+    width: 100%;
+    padding: 40px 0;
+}
 
 .bgCollege {background: url('../images/college-bg.jpg') no-repeat; background-size: cover;}
 
@@ -150,13 +164,14 @@ header#header .logo img {max-width: 100%; height: auto;}
 .youtubeThumb {padding: 30px 0px 0px 0px; position: relative; text-align: center; font-size: 0px;}
 .youtubeThumb .viewAll {position: absolute; z-index: 6; top: -30px; right: 15px; font-size: 15px; color:#003e8c;}
 .youtubeThumb .viewAll:hover {color:#f77a52;}
-.youtubeThumb ul li {display: inline-block; width:16.52%; padding: 0px 10px; text-align: center; vertical-align: top;}
+.youtubeThumb ul li {display: inline-block; width:100%; padding: 0px 10px; text-align: center; vertical-align: top;}
 .youtubeThumb ul li img {max-width: 100%; height: auto;}
 
 
 .managementArea {font-size: 0px; text-align: center;}
 .managementArea ul li {display: inline-block; transition: all ease-in-out 0.4s; border: 1px solid rgba(0,0,0,0.15); border-radius: 10px; padding: 10px; text-align:  center; width:calc(20% - 20px); margin: 10px;}
-.managementArea ul li:hover {background: #ffa081;}
+.managementArea ul li:hover {background:#15202f;}
+.managementArea ul li:hover img{filter:brightness(0) invert(1);}
 .managementArea ul li .manageIcon {width: 100%; height: 80px;}
 .managementArea ul li .manageIcon img {max-width: 100%; max-height:100%; width: auto; height: auto; border-radius: 5px;}
 .managementArea ul li .manageText {width: 100%; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; color: rgba(0,0,0,0.87); padding: 10px 0px 5px 0px; overflow:hidden;}
@@ -258,7 +273,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .collegeHead .collegeQuick h2 .reviewRating {display: inline-block; padding: 0px 0px 0px 10px; font-size:15px; letter-spacing: normal; color: #4d4d4d; font-weight: normal;}
 .collegeHead .collegeQuick h2 .reviewRating b {font-weight: normal; color: #f77a52;}
 .collegeHead .collegeQuick h3 {font-size: 15px; font-family: 'ubuntumedium'; color: rgba(0,0,0,0.54); margin: 0px;}
-
+.careerCol a{width: 15%; margin: 0 41%; }
 .collegeHead .collegeQuick h4 {font-size:20px; color: rgba(0,0,0,0.54); font-family: 'ubuntumedium'; display: block; margin: 0px 0px 10px 0px;}
 .collegeHead .collegeQuick h4 .reviewRating {display: inline-block; padding: 0px 0px 0px 10px; font-size:18px; letter-spacing: normal; color: #4d4d4d; font-weight: normal;}
 .collegeHead .collegeQuick h4 .reviewRating b {font-weight: normal; color: #f77a52;}
@@ -393,7 +408,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .collegeRankRating .rankingCol .title {font-size: 13px; margin: 0px 0px 10px 0px; color: rgba(0,0,0,0.54); display: block;}
 .collegeRankRating .rankingCol .circle {width: 50px; font-size: 20px; font-family: 'ubuntumedium'; height: 50px; display: inline-block; line-height: 50px; color: #f77a52; border:1px solid #f77a52; border-radius: 100px;}
 
-.collegeSidenav.sticky {position: fixed; background: #fff; top: 55px;}
+.collegeSidenav.sticky {position: fixed; background: #fff; top: 105px; width: 15%;}
 .collegeSidenav h3 {margin: 0px 0px 10px 0px; font-size: 16px; font-family: 'ubuntumedium';}
 .collegeSidenav ul {margin: 0px 0px 15px 0px;}
 .collegeSidenav ul li {font-size: 14px; display: block; clear: both; float: left; margin: 0px 0px 6px 0px;}
@@ -532,12 +547,12 @@ header#header .logo img {max-width: 100%; height: auto;}
 .couponHolder .couponRow {display: none;}
 .couponHolder .couponRow.active {display: block;}
 
-.couponHolder .regForm {padding:20px; vertical-align: top; margin: 0px 15px; background: rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.10); border-radius: 10px; display: inline-block; width: calc(50% - 40px);}
+.couponHolder .regForm {padding:20px; vertical-align: top; margin: 24px 15px; background: rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.10); border-radius: 10px; display: inline-block; width: calc(50% - 40px);}
 .couponHolder .regForm h3 {font-size: 20px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block;}
 .couponHolder .regForm h3 a {color: #5792cc;}
 .couponHolder .regForm h3 a:hover {color: rgba(0,0,0,0.87);}
 .couponHolder .regForm .inputRow {margin: 0px 0px 10px 0px; position: relative;}
-.couponHolder .regForm i {position: absolute; z-index: 2; top: 8px; left:18px; font-size: 23px; line-height: 1px; color:#bababa;}
+.couponHolder .regForm i {position: absolute;  top: 8px; left:18px; font-size: 23px; line-height: 1px; color:#bababa;}
 .couponHolder .regForm .inputRow input, .couponHolder .regForm .inputRow select {width: 100%; font-size: 14px; letter-spacing: 1px; border:1px solid #c5c5c5; height: 40px; border-radius: 5px; padding: 0px 0px 0px 60px;}
 .couponHolder .regForm .inputRow input:focus, .couponHolder .regForm .inputRow select:focus {border:1px solid #5792cc;}
 .couponHolder .regForm .inputRow input:focus + i, .couponHolder .regForm .inputRow select:focus + i {color:#5792cc;}
@@ -550,7 +565,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .couponHolder .loginForm h3 a:hover {color: rgba(0,0,0,0.87);}
 .couponHolder .loginForm h4 {font-size: 16px; margin: 0px 0px 30px 0px; color: rgba(0,0,0,0.87); display: block;}
 .couponHolder .loginForm h5 {font-size: 16px; margin:0px; color: #5792cc; display: block;}
-.couponHolder .loginForm h5 a {color: #5792cc;}
+.couponHolder .loginForm h5 a {color: #262626;}
 .couponHolder .loginForm h5 a:hover {color: #000;}
 .couponHolder .loginForm .inputRow {margin: 0px 0px 20px 0px; position: relative;}
 .couponHolder .loginForm i {position: absolute; z-index: 2; top: 12px; left:18px; font-size: 23px; line-height: 1px; color:#bababa;}
@@ -580,16 +595,32 @@ header#header .logo img {max-width: 100%; height: auto;}
 .iqResult h6 {background: green; display: inline-block; color: #fff; padding: 5px 15px; font-size: 14px;}
 
 .teamArea {text-align: center;}
-.teamArea ul li {display:block; transition: all ease-in-out 0.4s; float: left;  padding: 10px 15px; text-align:  center; width:25%;}
-.teamArea ul li .teamIcon {width:170px; height: 170px; border: 1px solid rgba(0,0,0,0.20); margin: 0 auto; border-radius: 100%;}
+.teamArea ul li {
+    border: solid 1px #e8e8e8;
+    display: block;
+    transition: all ease-in-out 0.4s;
+    float: left;
+    padding: 30px 10px;
+    text-align: center;
+    width: 24%;
+    margin: 0 .5%;
+}
+.teamArea ul li:hover {
+   background:#15202f;
+    color:#fff;
+}
+
+.teamArea ul li .teamIcon {width:80px; height:80px; border: 1px solid rgba(0,0,0,0.20); margin: 0 auto; border-radius: 100%;}
 .teamArea ul li .teamIcon img {width: 100%; height:100%; border:2px solid #fff; border-radius:100%;}
 .teamArea ul li .teamText {width: 100%; padding: 10px 0px 5px 0px;}
-.teamArea ul li .teamText h3 {font-family: 'ubuntumedium'; color: #000; font-size: 20px; margin: 0px 0px 10px 0px;}
-.teamArea ul li .teamText h4 {font-size: 16px; margin: 0px 0px 10px 0px;}
-.teamArea ul li .teamText p {font-size: 14px; margin:0px 0pc 15px 0px; color: rgba(0,0,0,0.54); line-height: 20px;}
+.teamArea ul li .teamText h3 {font-family: 'ubuntumedium'; color: #000; font-size: 16px; margin: 0px 0px 10px 0px;}
+.teamArea ul li .teamText h4 {font-size: 14px; margin: 0px 0px 10px 0px;}
+.teamArea ul li .teamText p {font-size: 13px; margin:0px 0pc 15px 0px; color: rgba(0,0,0,0.54); line-height: 20px;}
 .teamArea ul li .teamText a.teamDetail {display: inline-block; font-size: 14px; transition: all ease-in-out 0.3s; color: #fff; border-radius: 5px; background:#f66132; padding: 6px 15px;}
 .teamArea ul li .teamText a.teamDetail:hover { background:#303a47;}
-
+.teamArea ul li:hover .teamText h3{color: #fff; }
+.teamArea ul li:hover .teamText h4{color: #fff; }
+.teamArea ul li:hover .teamText p{color: #fff; }
 .teamPopup {padding:0px 10px; text-align: center;}
 .teamPopup .teamImg {width:170px; height: 170px; border: 1px solid rgba(0,0,0,0.20); margin: 0px 0px 10px 0px; display: inline-block; border-radius: 100%;}
 .teamPopup .teamImg img {width: 100%; height:100%; border:2px solid #fff; border-radius:100%;}
@@ -612,9 +643,9 @@ header#header .logo img {max-width: 100%; height: auto;}
 #photoGallery, #videoGallery {cursor: pointer; display: inline-block;}
 
 /******Profile section start******/
-.profileNav {position: relative; float: right; height: 55px; padding: 13px 0px 0px 0px;}
+.profileNav {position: relative; float: right; height: 55px; padding: 3px 0px 0px 0px;}
 .profileNav h3 {display: block; padding: 7px 10px; cursor: pointer; background: #f77a52; font-size: 13px; color: #fff;}
-.profileNav ul {width: 200px; transition: all ease-in-out 0.4s; transform: scale(0); -webkit-transform-origin: 100% 100%; transform-origin:100% 0; display: block; background: #15202f; padding:0px 10px; position: absolute; z-index: 1; right: 0px; top: 55px;}
+.profileNav ul {width: 200px; transition: all ease-in-out 0.4s; transform: scale(0); -webkit-transform-origin: 100% 100%; transform-origin:100% 0; display: block; background: #15202f; padding:0px 10px; position: absolute; z-index: 1; right: 0px; top: 37px;}
 .profileNav ul li {display: block; float: left; clear: both; width: 100%;}
 .profileNav ul li a {color: #fff; font-size: 12px; text-decoration: none; display: block; padding:10px 0px; border-bottom: 1px solid rgba(255,255,255,0.20);}
 .profileNav:hover ul {transform: scale(1);}
@@ -712,7 +743,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 /****new close****/
 
-.footerSection {background: #232440;}
+.footerSection {background:url(../images/footer-background.jpg) center fixed no-repeat; background-size: cover;}
 .footerTop {padding:30px 0px; border-bottom: 1px solid #b0b0b0;}
 .footerTop .footerWidget {padding:0px; float: left; width: 20%; padding: 0px 15px;}
 .footerTop .footerWidget h3 {color: #fff; margin: 0px 0px 10px 0px; font-size:20px; position: relative;}

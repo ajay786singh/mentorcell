@@ -39,7 +39,7 @@ class Home extends Public_Controller {
 					}
 					$options.=  '</optgroup>';
 		}
-
+		
 
 		$this->data['location'] = $options;
 		$this->load->view('public/layout/header', $this->data);
@@ -52,6 +52,37 @@ class Home extends Public_Controller {
 		$this->data['counselling_video'] 	=  array("zoHm5AXeYYQ","Qqn0ChMyOyc","axltjnTyHOc","OQzPfib7YyA","zoHm5AXeYYQ");
 
 		$this->load->view('public/home', $this->data);
+
+		$this->load->view('public/layout/footer', $this->data);
+	}
+	
+	public function gallery()
+	{
+		if ($this->ion_auth->logged_in()){
+		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		}else{
+			$this->data['user_login'] = array('id'=>false);
+		}
+
+		$cstates = $this->college_model->get_states();
+		$options = '';
+		foreach($cstates as $stateeach){
+				//echo '<option  value="'.$stateeach->id.'">'.$stateeach->name.'</option>';
+				$options.= '<optgroup label="'.$stateeach->name.'">';
+					$cities = $this->college_model->get_cities($stateeach->id);
+					foreach($cities as $city){
+						$options.= '<option value="'.$city->id.'">'.$city->name.'</option>';
+					}
+					$options.=  '</optgroup>';
+		}
+		
+
+		$this->data['location'] = $options;
+		$this->load->view('public/layout/header', $this->data);
+
+		$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+		$this->data['counceling_video'] = $this->common_model->get_all_rows("mc_counceling_video", "status",1);
+		$this->load->view('public/gallery', $this->data);
 
 		$this->load->view('public/layout/footer', $this->data);
 	}
@@ -83,7 +114,13 @@ class Home extends Public_Controller {
 			$this->college['count_res'] = $this->college_model->search_result_cont($query);
 			$this->load->view('public/search', $this->college);
 		}else if(isset($_GET['college'])){
+			
+
+			/*course description*/
+		if(isset($_GET['course_main']) && !empty($_GET['course_main'])){
+			$course_name = $_GET['stream'];
 			$query['college'] = $_GET['college'];
+			$collegeid = $_GET['college'];
 			$this->college['college'] = $this->college_model->search_result_college($query);
 			$id = $this->college['college']->id;
 			$this->college['images'] = $this->college_model->get_images($id);
@@ -97,16 +134,35 @@ class Home extends Public_Controller {
 			$this->college['stream_id'] = $this->college_model->get_streams($id);
 			$this->college['type_id'] = $this->college_model->get_types($id);
 			$this->college['course_id'] = $this->college_model->get_courses_detail($id);
-
+            $this->college['exams_name'] = $this->exam_model->get_exams_by_course($course_name);
+			$this->college['fees'] = $this->college_model->get_fees_by_collage($collegeid);
+		$this->college['course_detail'] = $this->college_model->get_single_courses_detail(intval($query['college']),intval($_GET['course_main']));
+				 
+				//print_r($this->college['course_detail']);die;
+				$this->load->view('public/college_course', $this->college);
+				//echo"<pre>";
+				//print_r($this->college);die;
+				
+			}else{
+				
 			/*course description*/
-			//if(isset($_GET['course_main']) && !empty($_GET['course_main'])){
-				$this->college['course_detail'] = $this->college_model->get_single_courses_detail(intval($query['college']),intval($_GET['course_main']));
-				//$this->load->view('public/college_course', $this->college);
-			//}
+            $query['college'] = $_GET['college'];
+			$this->college['college'] = $this->college_model->search_result_college($query);
+			$id = $this->college['college']->id;
+			$this->college['images'] = $this->college_model->get_images($id);
+			$this->college['videos'] = $this->college_model->get_videos($id);
 
-			/*course description*/
+			$this->college['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+			$this->college['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+			$this->college['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
 
+
+			$this->college['stream_id'] = $this->college_model->get_streams($id);
+			$this->college['type_id'] = $this->college_model->get_types($id);
+			$this->college['course_id'] = $this->college_model->get_courses_detail($id);
 			$this->load->view('public/college', $this->college);
+			}
+
 
 		}elseif(isset($_GET['stream'])){
 			//print_r($_GET['exam_lists']);die;
@@ -126,6 +182,8 @@ class Home extends Public_Controller {
 		}
 		$query = '';
 		$this->college['colleges'] = $this->college_model->admission_result($query);
+		///$this->college['colleges'] = $this->common_model->get_all_rows("mc_colleges","status","1");
+		//print_r($this->college['colleges']);die;
 		$this->load->view('public/layout/header', $this->data);
 		$this->load->view('public/admission', $this->college);
 		$this->load->view('public/layout/footer', $this->data);

@@ -3,10 +3,8 @@
 <section class="footerTop">
 
 <div class="footerWidget">
-<h3>Website Name</h3>
-<p>G-130, Sec-63,<br>
-Noida, UP<br>
-201301</p>
+<h3>MentorCell.com</h3>
+
 <p>info@mentorcell.com</p>
 </div>
 

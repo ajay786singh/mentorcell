@@ -23,8 +23,9 @@ $(document).ready(function() {
 						$('#register_response').html(res.message);
 						if(res.status==true){
 							$('#register_form').hide();
-							$('#otp_form').show();
+							//$('#otp_form').show();
 							$('#otp_form #user_otp').val(res.user_id);
+							setTimeout(function(){window.location.reload(); }, 1500);
 							console.log(res.user_id);
 						}
 					}

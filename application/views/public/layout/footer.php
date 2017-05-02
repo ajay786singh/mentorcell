@@ -11,7 +11,7 @@
 <div class="footerWidget">
 <h3>About us</h3>
 <ul>
-<li><a href="<?php echo base_url()?>home/underconstruction">Company Overview</a></li>
+<li><a href="<?php echo base_url()?>page/companyoverview">Company Overview</a></li>
 <li><a href="<?php echo base_url()?>page/whatwedo">What we do</a></li>
 <li><a href="<?php echo base_url()?>page/testimonial">Testimonial</a></li>
 <li><a href="<?php echo base_url()?>page/team">Team</a></li>
@@ -24,19 +24,21 @@
 <h3>Services</h3>
 <ul>
 <li><a href="<?php echo base_url()?>home/underconstruction">Admission 2017</a></li>
-<li><a href="<?php echo base_url()?>home/underconstruction">Career Profiling test</a></li>
+<!--<li><a href="<?php echo base_url()?>home/underconstruction">Career Profiling test</a></li>-->
 <li><a href="<?php echo base_url()?>home/underconstruction">Abroad Education</a></li>
-<li><a href="<?php echo base_url()?>home/underconstruction">Counselling</a></li>
+<li><a href="<?php echo base_url()?>page/counselling">Counselling</a></li>
 <li><a href="<?php echo base_url()?>home/underconstruction">Counselling Video</a></li>
-<li><a href="<?php echo base_url()?>home/underconstruction">Placement</a></li>
+<!--<li><a href="<?php echo base_url()?>home/underconstruction">Placement</a></li>-->
 </ul>
 </div>
 
 <div class="footerWidget">
 <h3>Connect with us</h3>
 <ul>
-<li><a href="#">Login | Register</a></li>
-<li><a href="#">College Login</a></li>
+<?php if(empty($user_login['id'])) { ?>
+<li><a style="cursor: pointer;" data-toggle="modal" data-target="#loginModal">Login</a> | <a data-toggle="modal" style="cursor: pointer;" data-target="#registerModal">Register</a></li>
+<li><a style="cursor: pointer;" data-toggle="modal" data-target="#loginModal">College Login</a></li>
+<?php } ?>
 <li><a href="#">Chat</a></li>
 <li><a href="<?php echo base_url()?>blog">Blog</a></li>
 <li><a href="#">News</a></li>
@@ -48,9 +50,9 @@
 <div class="footerWidget">
 <h3>Links</h3>
 <ul>
-<li><a href="<?php echo base_url()?>home/underconstruction">Search step by step</a></li>
-<li><a href="<?php echo base_url()?>home/underconstruction">Common Application Form</a></li>
-<li><a href="<?php echo base_url()?>user/profile">Value of redeem coupon</a></li>
+<!--<li><a href="<?php echo base_url()?>home/underconstruction">Search step by step</a></li>
+<li><a href="<?php echo base_url()?>home/underconstruction">Common Application Form</a></li>-->
+<li><a href="<?php echo base_url()?>coupon/">Value of redeem coupon</a></li>
 <li><a href="#">Mobile Apps</a></li>
 </ul>
 </div>
@@ -61,9 +63,9 @@
 <section class="footerBottom">
 <p>Copyright © 2017 mentorcell.com. All Rights Reserved</p>
 <div class="footerSocial">
-<a href="#" class="fbBg"><i class="icon-facebook"></i></a>
-<a href="#" class="twBg"><i class="icon-twitter"></i></a>
-<a href="#" class="inBg"><i class="icon-linkedin"></i></a>
+<a href="https://www.facebook.com/MentorCell/" target="_new" class="fbBg"><i class="icon-facebook"></i></a>
+<a href="#" target="_new" class="twBg"><i class="icon-twitter"></i></a>
+<a href="https://www.linkedin.com/in/mentor-cell-4ba355139/" target="_new" class="inBg"><i class="icon-linkedin"></i></a>
 </div>
 </section>
 </div>
@@ -95,16 +97,16 @@
       		<i class="icon-email"></i>
       	</div>
       	<div class="inputRow">
-
-      		<input type="password" id="login_password" required='' placeholder="Password" name="">
-      	</div>
+          <input type="password" id="login_password" required='' placeholder="Password" name="">
+          <i class="icon-key"></i>
+        </div>
 
       	<div class="inputRow">
       		<input type="submit" value="Submit" id="login_button" class="go" name="">
       	</div>
 
       	<h4><input type="checkbox" id="login_remember" name=""> Keep me signed in.</h4>
-      	<h5><a data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>
+      	<h5><a data-toggle="modal" href='#' data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>
 		<input type='hidden' id="couponClicked" value='0'>
       	</form>
 
@@ -138,7 +140,7 @@
       		<input type="email" id="forgot_email" required='' placeholder="Email Address" name="">
       		<i class="icon-email"></i>
       	</div>
-    
+
       	<div class="inputRow">
       		<input type="submit" value="Submit" id="forgot_button" class="go" name="">
       	</div>
@@ -228,57 +230,73 @@
       	</div>
 
       	<div class="inputRow">
-      		<select id="register_interest"><option>Education Interests</option>
-				<?php 
+      		<select id="register_interest" class='register_interest'><option>Education Interests</option>
+				<?php
 				$streams = $this->common_model->get_all_rows("mc_streams", 1,1);
 				foreach($streams as $stream){
 						echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
 				} ?>
-			
+
 			</select>
       		<i class="icon-education"></i>
       	</div>
 
       	<div class="inputRow">
-      		<select id="register_course"><option>Desired Courses</option></select>
+      		<select id="register_course" class='register_course'><option>Desired Courses</option></select>
       		<i class="icon-course"></i>
       	</div>
 
       	<div class="inputRow">
-      		<select id="register_state"><option>Current State</option>
-			<?php 
+      		<select id="register_state" class="register_state"><option>Current State</option>
+			<?php
 
 				$states = $this->common_model->get_all_rows("states", "country_id",101);
 				foreach($states as $stateeach){
 				echo '<option  value="'.$stateeach['id'].'">'.$stateeach['name'].'</option>';
 				//echo '<optgroup label="'.$stateeach['name'].'">';
 					$cities = $this->common_model->get_all_rows("cities", "state_id",$stateeach['id']);
-					
+
 					//foreach($cities as $city){
 					//	echo '<option value="'.$city['id'].'">'.$city['name'].'</option>';
 					//}
 					//echo  '</optgroup>';
 				}?>
-			
+
 			</select>
 			<i class="icon-city"></i>
 			</div>
 			<div class="inputRow">
-			<select id="register_city"><option>Current City</option>
+			<select id="register_city" class="register_city"><option>Current City</option>
+
+
+			</select>
+      		<i class="icon-city"></i>
+			</div>
 			
+			
+			<div class="inputRow">
+			<select id="register_caller" class="register_caller"><option value="0">Counsellor</option>
+			<?php
+				$callers = $this->common_model->get_all_rows("mc_caller", 1,1);
+				foreach($callers as $caller){
+				echo '<option  value="'.$caller['id'].'">'.$caller['name'].'</option>';
+				}
+			?>
 			
 			</select>
       		<i class="icon-city"></i>
-      	</div>
-		<p class="signup-msg">By clickingSubmit, you agree to MentorCell's <a href="#" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a> and 
-		<a href="#" data-toggle="modal" data-target="#termsModal">Terms & Conditions</a></p>
+			</div>
+			
+			
+		<p class="signup-msg">By clicking Submit, you agree to MentorCell's <a href="#" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a> and
+		<a href="#" data-toggle="modal" data-target="#termsModal"> Terms & Conditions</a></p>
       	<div class="inputRow">
       		<input type="submit" value="Submit" id="register_button" class="go" name="">
       	</div>
 
       	</form>
-		
-		
+
+
 		<form id="otp_form" style='display:none;'>
 		<h3>Please enter recieved OTP.</h3>
       	<div class="inputRow">
@@ -351,11 +369,61 @@
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.fancybox.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.fancybox-media.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/jquery.fancybox-thumbs.js'); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/owl.carousel.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/custom.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/ajaxcalls.js'); ?>"></script>
-	
+
 	<link href="<?php echo base_url('assets/theme/css/chosen.min.css'); ?>" rel="stylesheet" />
 	<script type="text/javascript" src="<?php echo base_url('assets/theme/js/chosen.jquery.min.js'); ?>"></script>
+ <style>
+	 .owl-nav{display:block !important;}
+
+	 .owl-prev {
+    font-size: 29px;
+    background: #15202f;
+	color:#fff;	 
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 39%;
+    left: -29px;
+	line-height: 29px;}
+	 
+	 .owl-next {
+    font-size: 29px;
+    background: #15202f;
+	color:#fff;	 
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 39%;
+    right: -29px;
+	line-height: 29px;}
+
+	
+	 
+</style>
+   <script>
+     $('.owl-carousel').owlCarousel({
+    loop:true,
+    navText:['<', '>' ],
+    margin:10,
+    nav:true,
+		 
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+       
+   </script>
 	<script type="text/javascript">
 	$(".auto-choice").chosen();
 	</script>
@@ -368,7 +436,7 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
-	
+
 	<?php
 	if(isset($couponBox1)) {
 		?>
@@ -398,6 +466,46 @@
 		<?php
 	}
 ?>
-	
+<script>
+$(document).ready(function(){
+	$("#search_course").change(function(){
+	var course_name  = $("#search_course").val();
+		$.ajax({
+		url: base_url+"index.php/home/get_location_list/"+course_name,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#city_loc").css('display','block');
+			$("#city_loc_chosen").css('display','none');
+			$("#city_loc").html(html);
+		}
+	});
+});
+
+	$("#stream").change(function(){
+	var stream_name  = $("#stream").val();
+		$.ajax({
+		url: base_url+"index.php/home/get_coursetype_list_by_stream/"+stream_name,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#type").html(html);
+		}
+	});
+});
+
+$("#type").change(function(){
+	var course  = $("#type").val();
+		$.ajax({
+		url: base_url+"index.php/home/get_specialize_list_by_course/"+course,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#course").html(html);
+		}
+	});
+});
+});
+</script>
 </body>
 </html>

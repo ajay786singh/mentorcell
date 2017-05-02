@@ -1,0 +1,53 @@
+@media only screen and (max-width:1200px){
+.containerBox {padding: 20px 0px;}
+.mainMenu ul > li {margin: 0 3px;}
+
+}
+
+@media only screen and (max-width:991px){
+.studyAbroad {padding: 0px;}
+.youTubePlayer {margin: 0px 0px 20px 0px;}
+.youtubeThumb ul li {width: 33.33%; padding: 10px;}
+.managementArea ul li {width: 20%;}
+.studyAbroad ul li {width: 140px;}
+
+.homeSlider .searchArea h3 {font-size: 18px;}
+.homeSlider .searchArea .formHolder {width: 120%;}
+.homeSlider .searchArea .formHolder input, .homeSlider .searchArea .formHolder select {font-size: 12px;}
+.homeSlider .searchArea .formHolder .autoComplete h4 {font-size: 14px;}
+.homeSlider .searchArea .formHolder .autoComplete ul li {font-size: 12px;}
+.homeSlider .mobileAppIcons {right: 30px; bottom: 20px;}
+
+.homeSlider .searchArea .searchForm.active, .homeSlider .searchArea .formHolder input, .homeSlider .searchArea .formHolder select,
+.homeSlider .searchArea .formHolder .go {height: 38px;}
+.homeSlider .searchArea .formHolder .autoComplete {top: 38px;}
+
+.sectionHeading {font-size: 18px;}
+
+.collegeResultBox .collegeTop .collegeThumb {width: 120px;}
+.collegeResultBox .collegeTop .viewCollege {width: 90px; font-size: 11px;}
+.collegeResultBox .collegeTop .collegeName {width: calc(100% - 228px); padding: 5px 10px;}
+.collegeResultBox .collegeTop .collegeName h3 {font-size: 13px; margin: 0px 0px 5px 0px;}
+.collegeResultBox .collegeTop .collegeName h4 {font-size: 12px;}
+.collegeResultBox .collegeMiddle ul li {clear: both; padding:5px 0px; border: none; border-top: 1px solid rgba(0,0,0,0.20);;}
+.collegeResultBox .collegeMiddle ol li {font-size: 11px;}
+
+.importantDates .dateBox {width: calc(50% - 10px);}
+
+}
+
+
+
+
+@media only screen and (max-width:767px){
+.youtubeThumb ul li {width: 50%;}
+.managementArea ul li {width: 42%;}
+.userNav ul li {width: auto; padding: 5px;}
+.homeSlider .bx-wrapper .bx-pager {display: none;}
+
+.homeSlider .searchArea {width: calc(100% - 30px); left: 15px; transform: translate(0px, -55px);}
+.homeSlider .searchArea .searchNav ul li {font-size: 13px; padding: 6px 5px; width: 88px;}
+.homeSlider .searchArea .formHolder {width: 100%;}
+
+.studyAbroad ul li {width: 115px;}
+}

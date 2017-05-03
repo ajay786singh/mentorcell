@@ -472,18 +472,13 @@ foreach($exam_search as $exam_search_data){
 <ul>
 <li>
 <span class="contactIcon"></span>
-<span class="contactText">
-<h4>ADDRESS</h4>
-<p>G-130, Sec-63,<br>
-Noida-201307, India</p>
-</span>
 </li>
 
 <li>
 <span class="contactIcon"></span>
 <span class="contactText">
 <h4>CALL US</h4>
-<p>+91 9953862807 / +91 7042387480</p>
+<p>+91 9953862807</p>
 </span>
 </li>
 

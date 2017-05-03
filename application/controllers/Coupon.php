@@ -33,9 +33,20 @@ class Coupon extends Public_Controller {
 		}
 		$this->load->view('public/layout/header', $this->data);
 		if (!$loggedIn) {
+				/*get sharing id*/
+				$key = $this->input->get('referral-key');
+				if(isset($key)){
+				$referkey = @explode('-',base64_decode($key));
+				$refer_key  = (is_array($referkey))? $referkey[1] : 0;
+					$this->data['referral_key'] 			=	$refer_key;
+				}else{
+					$this->data['referral_key'] 			= 0;
+				}
+				/**/
 			$this->load->view('public/coupon', $this->data);
 		} else {
 			$hasAnswerd					=	$this->common_model->get_single_row('mc_coupons','user_id',$user_id);
+			$this->data['hasAnswerd']	=	$hasAnswerd;
 			if($hasAnswerd) {
 				$resultDisplay				=	$hasAnswerd['resultDisplay'];
 				$coupon						=	$hasAnswerd['coupon'];
@@ -47,12 +58,16 @@ class Coupon extends Public_Controller {
 				<h5>".$resultDisplay."</h5>
 				<div class='clearfix'></div>
 				<h6>Your Coupon code is : ".$coupon."</h6>";
+				if($resultDisplay<80)
+				$message = "<h6>Your Coupon code is : ".$coupon."</h6>";
 				$this->data['message']	=	$message;
 				$this->load->view('public/coupon', $this->data);
 			} else {
 				$this->data['couponBox1']	=	'';
 				$this->data['couponBox2']	=	'active';
 				$this->data['couponBox3']	=	'';
+	
+				
 				//if(isset($_POST['coupon_course_submitted'])) {
 					$this->data['questionnaire_list'] 	=	$this->common_model->get_all_rows("mc_questionnaire",1,1,'RAND()', $this->questionsDisp);
 					$this->data['course_id'] 			=	0;//$this->input->post('course_id');
@@ -79,6 +94,7 @@ class Coupon extends Public_Controller {
 				
 				$answers_val 	= 	$this->input->post('answers_val');
 				$a_answers_val	=	explode(",",$answers_val);
+				// pr($a_answers_val);die;
 				
 				//Generating Coupon Code
 				$coupon				=	coupon_generator(8);
@@ -89,23 +105,24 @@ class Coupon extends Public_Controller {
 				$this->common_model->insert($c_data, "mc_coupons");
 				$coupon_id	=	$this->db->insert_id();
 				
-				foreach($a_answers_val as $val) {
-					$a_values	=	explode(":",$val);
-					$data['question_id']		=	$a_values[0];
-					list($answer_id,$correct)	=	explode("|",$a_values[1]);
-					$data['answer_id']			=	$answer_id;
-					$data['user_id']			=	$user_id;
-					$data['coupon_id']			=	$coupon_id;
-					$this->common_model->insert($data, "mc_qa_result");
-					if($correct) {
-						$tot_correct++;
+				if(isset($a_answers_val[0]) && !empty($a_answers_val[0])) {
+					foreach($a_answers_val as $val) {
+						$a_values	=	explode(":",$val);
+						$data['question_id']		=	$a_values[0];
+						list($answer_id,$correct)	=	explode("|",$a_values[1]);
+						$data['answer_id']			=	$answer_id;
+						$data['user_id']			=	$user_id;
+						$data['coupon_id']			=	$coupon_id;
+						$this->common_model->insert($data, "mc_qa_result");
+						if($correct) {
+							$tot_correct++;
+						}
 					}
 				}
-				
 				//Calculating actual Score of the user
 				//Formula: When a student scores 10/20, his coupon value will be MIN + {(MAX - MIN)/ 20/10} i.e. 50 + 40/2 = 70%
 				//Formula: When a student scores 20/20, his coupon value will be by above formula: 50 + 40 = 90%
-				$minMaxResult		=	$this->common_model->get_all('mc_global_copupn_values');
+				$minMaxResult		=	$this->common_model->get_all('mc_global_coupon_values');
 				$minGlobalValue		=	$minMaxResult[0]['min'];
 				$maxGlobalValue		=	$minMaxResult[0]['max'];
 				if($tot_correct) {

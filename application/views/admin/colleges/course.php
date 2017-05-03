@@ -29,45 +29,44 @@
 					
 					?>
 
-					
 						<div class="form-group">
-						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Stream</label>
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Stream</label>
 						  <div class="col-sm-10">
-						  <select  class="form-control basic-multiple" required="" name="clg_stream_id" id="clg_stream_id" multiple="multiple">
-						  <?php foreach($streams as $stream){
-											  if(in_array($stream['stream_id'],@$stream_id)){$stream_id_seleted="selected";}else{$stream_id_seleted="";}
-											  echo '<option '.$stream_id_seleted.' value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
-						   } ?>
-						  </select>
+						   <input type="text" value="<?php foreach($streamdata as $stream){
+							  if(!empty($stream['stream_id'])){
+								  $strem = $this->college_model->get_strem_data($stream['stream_id']);
+								 
+							if(!empty($strem->stream_name)){  echo $strem->stream_name; ?>,&nbsp;<?php
+							  } } } ?>" class="form-control basic-multiple">
+
 							</div>
 						</div>
 						<div class="form-group">
-						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Course Type</label>
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course</label>
 						  <div class="col-sm-10">
-						 <select  class="form-control basic-multiple" required="" name="clg_type_id" id="clg_type_id" multiple="multiple">
-						 <?php foreach($types as $type){
-											  if(in_array($type['type_id'],@$type_id)){$type_id_seleted="selected";}else{$type_id_seleted="";}
-											  echo '<option '.$type_id_seleted.' value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
-						   } ?>
-						 </select>
+						  <input type="text" value="<?php foreach($coursedata as $ca){
+							  if(!empty($ca['course_id'])){
+								  $cad = $this->college_model->get_course_data($ca['course_id']);
+							  if(!empty($cad->course_name)){echo $cad->course_name; ?>,&nbsp;<?php
+							  } }  } ?>" class="form-control basic-multiple">
+
 						  </div>
 						</div>
 						
 						<div class="form-group">
-						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Courses</label>
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Specialization</label>
 						  <div class="col-sm-10">
-						  
-						  <select  class="form-control basic-multiple" required="" name="clg_course_id" id="clg_course_id" multiple="multiple">
-						  <?php foreach($courses as $course){
-											  if(in_array($course['course_id'],@$course_id)){$course_id_seleted="selected";}else{$course_id_seleted="";}
-											  echo '<option '.$course_id_seleted.' value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
-						   } ?></select>
+						  <input type="text" value="<?php foreach($specializedata as $specialize){
+							  if(!empty($specialize['specialization_id'])){
+								  $spel = $this->college_model->get_spel_data($specialize['specialization_id']);
+							if(!empty($spel->specialization_name)){  echo $spel->specialization_name; ?>,&nbsp;<?php
+							  } }  } ?>" class="form-control basic-multiple">
 						  </div>
 						</div>
 						
 						
 						
-						<div class="form-group">
+						<!--<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="btn-group">
 									<input type="hidden" value="<?php echo $college_id; ?>" id="college_id">
@@ -80,7 +79,7 @@
 								</div>
 								
 							</div>
-						</div>
+						</div>-->
 					<?php echo form_close();?>
 				</div>
             <!-- /.box-body -->

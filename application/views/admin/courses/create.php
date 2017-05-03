@@ -36,11 +36,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Course Type</label>
 										  <div class="col-sm-10">
-										  <select  class="form-control" required="" name="type_id" id="type_id" >
+										  <select  class="form-control" required="" name="stream_id" id="stream_id" >
 										  <option value="">Select Type</option>
-										  <?php foreach($types as $type){
-											  if($type['type_id']==@$type_id['value']){$type_id_seleted="selected";}else{$type_id_seleted="";}
-											  echo '<option '.$type_id_seleted.' value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
+										  <?php foreach($streams as $type){
+											  if($type['stream_id']==@$stream_id['value']){$type_id_seleted="selected";}else{$type_id_seleted="";}
+											  echo '<option '.$type_id_seleted.' value="'.$type['stream_id'].'">'.$type['stream_name'].'</option>';
 										  } ?>
 										  </select>
 											</div>
@@ -53,19 +53,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 										
 										<div class="form-group">
-										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course Code</label>
-										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" name="course_code" id="course_code" value="<?php echo @$course_code['value']; ?>" placeholder="Enter Course Code or same as name">
-										  </div>
-										</div>
-										
-										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course Duration</label>
 										  <div class="col-sm-10">
 										  <input type="text" class="form-control" required="" name="course_duration" id="course_duration" value="<?php echo @$course_duration['value']; ?>" placeholder="Enter Course Duration i.e. 2 Years or 4 Months">
 										  </div>
 										</div>
 										
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Popular Courses</label>
+										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Main Courses</label>
+										  <div class="col-sm-10">
+										  <input type="radio"  required="" name="popular_courses" id="popular_courses" value="1">Yes
+										   <input type="radio"  required="" name="popular_courses" id="popular_courses" value="0">No
+										  </div>
+										
+										</div>
 										
 										
 										<div class="form-group">
@@ -74,6 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <select name="status">
 										  <option value="1" <?php if(@$status['value']==1){echo "selected";} ?>>Active</option>
 										  <option value="0" <?php if(@$status['value']==0){echo "selected";} ?>>De-active</option>
+										  <option value="2" <?php if(@$status['value']==2){echo "selected";} ?>>Tie Up</option>
 										  </select>
 										  </div>
 										</div>

@@ -94,43 +94,70 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>-->
 						
-						<?php } ?>
+						<?php } 
+						
+						if($this->ion_auth->in_group('college') || $this->ion_auth->is_admin()) {
+						
+						?>
 						<li class="<?=active_link_controller('colleges')?>">
                             <a href="<?php echo site_url('admin/colleges'); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Colleges'; ?></span>
                             </a>
                         </li>
 						
-						<?php
-						if($this->ion_auth->in_group('college')) {
-						?>
+						
 						<li class="<?=active_link_controller('coupons')?>">
                             <a href="<?php echo site_url('admin/coupons/redeem'); ?>">
                                 <i class="fa fa-user"></i> <span>Redeem / Enquiry</span>
                             </a>
                         </li>
+						
 						<?php
 						}
 						
 						if($this->ion_auth->is_admin()){ ?>
 						
+						<li class="<?=active_link_controller('logo')?>">
+                            <a href="<?php echo site_url('admin/colleges/logo'); ?>">
+                                <i class="fa fa-shield"></i> <span>Collage Featured</span>
+                            </a>
+                        </li>
 						<li class="<?=active_link_controller('streams')?>">
                             <a href="<?php echo site_url('admin/streams'); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Streams'; ?></span>
                             </a>
                         </li>
 						
-						<li class="<?=active_link_controller('types')?>">
+						<li class="<?=active_link_controller('counseling_video')?>">
+                            <a href="<?php echo site_url('admin/streams/counseling_video'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Counseling Video'; ?></span>
+                            </a>
+                        </li>
+						
+						<!--<li class="<?=active_link_controller('types')?>">
                             <a href="<?php echo site_url('admin/types'); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Course Type'; ?></span>
                             </a>
-                        </li>
+                        </li>-->
 						
 						<li class="<?=active_link_controller('courses')?>">
                             <a href="<?php echo site_url('admin/courses '); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Courses '; ?></span>
                             </a>
                         </li>
+						
+						<li class="<?=active_link_controller('courses')?>">
+                            <a href="<?php echo site_url('admin/courses/courses_status'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Course Status '; ?></span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('specialization')?>">
+                            <a href="<?php echo site_url('admin/specialization '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Specialization '; ?></span>
+                            </a>
+                        </li>
+						
 						
 						<li class="header text-uppercase">Coupons and Questions</li>
 						<li class="<?=active_link_controller('coupons')?>">
@@ -159,7 +186,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <a href="<?php echo site_url('admin/course_detail '); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Courses Detail '; ?></span>
                             </a>
-                        </li>	
+                        </li>
+
+						<li class="<?=active_link_controller('caller')?>">
+                            <a href="<?php echo site_url('admin/caller'); ?>">
+                                <i class="fa fa-user"></i> <span><?php echo 'Caller'; ?></span>
+                            </a>
+                        </li>						
 
 						<?php } ?>	
                     </ul>

@@ -16,7 +16,7 @@ class Questions extends Admin_Controller {
 
         /* Breadcrumbs :: Common */
         $this->breadcrumbs->unshift(1, lang('menu_users'), 'admin/users');
-		
+
 		/* college model */
 		        $this->load->model('common/college_model');
 		        $this->load->model('admin/quiz_model');
@@ -24,13 +24,13 @@ class Questions extends Admin_Controller {
 
 
 	public function index()
-	{ 
+	{
         if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
         {
             redirect('auth/login', 'refresh');
         }
         else
-        { 
+        {
             /* Breadcrumbs */
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
@@ -42,21 +42,21 @@ class Questions extends Admin_Controller {
             }
 
             /* Load Template */
-			$this->data['questions_lists'] = $this->quiz_model->quiz();
-            $this->template->admin_render('admin/questions/index', $this->data);
+			         $this->data['questions_lists'] = $this->quiz_model->quiz();
+               $this->template->admin_render('admin/questions/index', $this->data);
         }
 	}
 
 
 	public function create()
 	{
-		
+
 		/* Breadcrumbs */
        // $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/users/create');
         //$this->data['breadcrumb'] = $this->breadcrumbs->show();
         /* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
-		
+
            if( $this->input->method() == 'post'){
 			   $this->data = array();
 			$this->data = array(
@@ -74,17 +74,17 @@ class Questions extends Admin_Controller {
 			}
 			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
             redirect(base_url().'index.php/questions/index');
-			
+
 		}else{
 			//$this->data = array();
 			$this->data['form_type'] = 'create';
 		}
 			$this->data['desire_courses'] = $this->college_model->get_all("tbl_desire_courses");
 	            $this->template->admin_render('admin/questions/quiz', $this->data);
-				
+
 
         }
-	
+
 
 
 	public function delete()

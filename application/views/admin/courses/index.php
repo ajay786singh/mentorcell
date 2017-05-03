@@ -20,7 +20,7 @@
                 <thead>
                 <tr>
 				  <th>Course ID</th>
-				  <th>Course Type</th>
+				  <th>Course Stream</th>
 				  <th>Course Name</th>
 				  <th>Course Duration</th>
                   <th>Status</th>
@@ -32,8 +32,8 @@
                 <tr>
 				  <td><?php echo $courses['course_id'];?></td>
 				  <td><?php
-							$course_id = $this->common_model->get_single_row("mc_types", "type_id",$courses['type_id']);
-						echo $course_id['type_name'];
+							$course_id = $this->common_model->get_single_row("mc_streams", "stream_id",$courses['stream_id']);
+						echo $course_id['stream_name'];
 				  ?>
 				  </td>
 				  <td><?php echo $courses['course_name'];?></td>

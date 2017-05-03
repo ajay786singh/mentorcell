@@ -32,10 +32,20 @@
 			}else{$form_type = "edit/".$form_data;}?>
             <form role="form" method="post" action="<?php echo base_url()."admin/exams/".$form_type;?>">
               <div class="box-body">
-              <div class="form-group">
+              <!--<div class="form-group">
                   <label for="exampleInputEmail1">Course Name</label>
                   <input type="text"  class="form-control" name="course_name" id="course_name" value="<?php echo @$exams_list['course_name']; ?>" placeholder="">
-                </div>
+                </div>-->
+				<div class="form-group">
+										  <label for="exampleInputEmail1">Course Name</label>
+										  <select  class="form-control" required="" name="course_name" id="course_name" >
+										  <option value="">Select Course</option>
+										  <?php foreach($streams as $type){
+											  if($type['stream_id']==@$exams_list['course_name']){$type_id_seleted="selected";}else{$type_id_seleted="";}
+											  echo '<option '.$type_id_seleted.' value="'.$type['stream_id'].'">'.$type['stream_name'].'</option>';
+										  } ?>
+										  </select>
+										</div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Exam Name</label>
                   <input type="text"  class="form-control" name="exam_name" id="exam_name" value="<?php echo @$exams_list['exam_name']; ?>" placeholder="" onBlur="return create_slug(this.value);">
@@ -44,30 +54,37 @@
                   <label for="exampleInputEmail1">Slug</label>
                   <input type="text"  class="form-control" name="slug" id="slug" value="<?php echo @$exams_list['slug']; ?>" placeholder="">
                 </div>
+
+				<div class="form-group">
+				  <label for="exampleInputEmail1" class="col-sm-2 control-label">Popular Exam</label>
+				  <input type="radio" <?php if(@$exams_list['popular_exam']=='1'){ echo 'checked';} ?>  required="" name="popular_exam" id="popular_exam" value="1">Yes
+				   <input type="radio" <?php if(@$exams_list['popular_exam']=='0'){ echo 'checked';} ?> required="" name="popular_exam" id="popular_exam" value="0">No
+				
+				</div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Overview</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="overview" id="overview"><?php echo @$exams_list['overview']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="overview" id="overview"><?php echo @$exams_list['overview']; ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Eligibility</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="eligibility" id="eligibility"><?php echo @$exams_list['eligibility']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="eligibility" id="eligibility"><?php echo @$exams_list['eligibility']; ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Process</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="process" id="process"><?php echo @$exams_list['process']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="process" id="process"><?php echo @$exams_list['process']; ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Pattern</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="pattern" id="pattern"><?php echo @$exams_list['pattern']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="pattern" id="pattern"><?php echo @$exams_list['pattern']; ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Syllabus</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="syllabus" id="syllabus"><?php echo @$exams_list['syllabus']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="syllabus" id="syllabus"><?php echo @$exams_list['syllabus']; ?></textarea>
                   
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Contact Information</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="contact_information" id="contact_information"><?php echo @$exams_list['contact_information']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="contact_information" id="contact_information"><?php echo @$exams_list['contact_information']; ?></textarea>
                 </div>
                   <div class="form-group">
                   <label for="exampleInputEmail1">Important Dates</label>
@@ -93,7 +110,7 @@
                 </div>
                  <div class="form-group">
                   <label for="exampleInputEmail1">Results</label>
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="results" id="results"><?php echo @$exams_list['results']; ?></textarea>
+                  <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"  name="results" id="results"><?php echo @$exams_list['results']; ?></textarea>
                 </div>
               <div class="form-group">
                   <label for="exampleInputEmail1">Status</label>
@@ -120,60 +137,3 @@
   </div>
 
 
-
-<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
-  <script>tinymce.init({
-  selector: 'textarea',
-  height: 500,
-  theme: 'modern',
-  plugins: [
-    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-    'searchreplace wordcount visualblocks visualchars code fullscreen',
-    'insertdatetime media nonbreaking save table contextmenu directionality',
-    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
-  ],
-  toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-  toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
-  image_advtab: true,
-  templates: [
-    { title: 'Test template 1', content: 'Test 1' },
-    { title: 'Test template 2', content: 'Test 2' }
-  ],
-  content_css: [
-    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-    '//www.tinymce.com/css/codepen.min.css'
-  ]
- });</script>
- 
-   <!-- /.content-wrapper -->
- <script type="text/javascript" language="javascript">
-
-		var field_sr = 1;
-	function important_dates(){
-			field_sr++;
-			var numItems = jQuery('.important_dates_class').length;
-			if(numItems <10){
-			var field_html = '<p id="important_dates_p_'+field_sr+'"  class="important_dates_class"><input type="text"  id="datepicker" name="important_dates[]"  placeholder="date"  style="width:30%"> <input type="text" name="important_dates_description[]" placeholder="Content" style="width:50%" /> <a onclick = "return delete_field('+field_sr+');"  style="cursor:pointer">Delete</a></p>';
-			$("#important_dates_field_reapeater").append(field_html);
-			$("#important_dates_limit_msg").html("");
-			}else{
-				$("#important_dates_limit_msg").html("Max 9 important dates allowed.");
-			}
-		}
-		
-	function delete_field(pid){
-		$("#important_dates_p_"+pid).remove();
-		$("#important_dates_limit_msg").html("");
-	}
-
- $('#datepicker').datepicker({
-      autoclose: true
-    });
-	
-	function create_slug(exam_name){
-		var slug_name  = exam_name.replace(" ","_");
-		var final_slug_name = slug_name.toLowerCase();
-		$("#slug").val(final_slug_name);
-	}
-
-</script>

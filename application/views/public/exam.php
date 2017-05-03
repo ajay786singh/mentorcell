@@ -7,6 +7,7 @@
 
 <div class="courcecol bigCol bgColor1">
 <i class="icon-users"></i>
+
 <div class="vertical">
 <h3>About <?php echo ucwords($exam_data['exam_name']); ?></h3>
 <ul>
@@ -104,6 +105,7 @@
 <div class="importantDates">
 
 <?php 
+if($exam_data['impotant_dates']){
  echo $important_date =$exam_data['impotant_dates']; 
   $imp_date_exp = explode("@@",$important_date);
   $imp_date_name  = unserialize($imp_date_exp[0]);
@@ -123,7 +125,8 @@
 </div>
 <h4><a href="#"><?php echo @$imp_date_content[$i]; ?></a></h4>
 </div>
-<?php }?>
+<?php }
+}?>
 
 
 </div>
@@ -224,7 +227,7 @@
 <li><a href="#" class="active">About <?php echo ucwords($exam_data['exam_name']); ?></a>
 <div class="subMenu">
   <ol>
-    <li><a href="#overview" class="active">Overview/Summary</a></li>
+    <li><a href="#overview"  class="active">Overview/Summary</a></li>
 	<li><a href="#eligibility">Eligibility</a></li>
 	<li><a href="#process">Process</a></li>
 	<li><a href="#pattern">Pattern</a></li>
@@ -240,7 +243,7 @@
 <li><a href="#">News and articles</a></li>
 </ul>
 
-<a href="#" class="downloadBro"><i class="icon-download"></i> Download Brochure</a>
+<!--<a href="#" class="downloadBro"><i class="icon-download"></i> Download Brochure</a>-->
 </div>
 </div>
 

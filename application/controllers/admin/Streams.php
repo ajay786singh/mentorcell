@@ -44,6 +44,22 @@ class Streams extends Admin_Controller {
         }
 	}
 
+	public function counseling_video()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['counceling_video'] = $this->common_model->get_all("mc_counceling_video");
+            $this->template->admin_render('admin/streams/counseling_video', $this->data);
+        }
+	}
 
 	public function create()
 	{
@@ -62,7 +78,7 @@ class Streams extends Admin_Controller {
 		/* Validate form input */
 		$this->form_validation->set_rules('stream_name', 'Stream Name', 'required');
 		$this->form_validation->set_rules('stream_code', 'Stream Code', 'required');
-		$this->form_validation->set_rules('stream_description', 'Stream Description', 'required');
+		//$this->form_validation->set_rules('stream_description', 'Stream Description', 'required');
 		//$this->form_validation->set_rules('stream_logo', 'Stream Logo', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 		
@@ -99,6 +115,60 @@ class Streams extends Admin_Controller {
 
     }
 	
+	
+	public function create_counseling_video()
+	{
+		/* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/streams/create_counseling_video');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Variables */
+		$tables = $this->config->item('tables', 'ion_auth');
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		$config['allowed_types']    = 'gif|jpg|png|avi|flv|wmv|mp3|mp4|pdf|doc|xml';
+		$config['max_size'] = "1000KB";
+		$config['max_height'] = "768";
+		$config['max_width'] = "1024";
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+
+		/* Validate form input */
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+		
+		
+		if ($this->form_validation->run() == TRUE)
+		{	
+	
+			$this->upload->do_upload('video');
+			$logo = $this->upload->data();
+		//	print_r($logo);die;
+		    
+			$this->data = array();
+			$this->data = $this->input->post();
+			$this->data['video'] = $logo['file_name'];
+			
+		}
+
+		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data," mc_counceling_video"))
+		{
+            $this->session->set_flashdata('message', 'Counseling Video added successfully!');
+			redirect('admin/streams/counseling_video', 'refresh');
+		}
+		else
+		{
+            $this->data['message'] =  (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+			$this->data['stream_name']['title'] = $this->form_validation->set_value('title');
+		$this->data['status']['value'] = $this->form_validation->set_value('status');
+		
+            /* Load Template */
+            $this->template->admin_render('admin/streams/create_counseling_video', $this->data);
+        }
+
+    }
+	
 
 
 	public function delete($id)
@@ -111,7 +181,7 @@ class Streams extends Admin_Controller {
 			redirect('auth', 'refresh');
 		}
 		
-				if($this->common_model->delete("mc_streams",$id))
+				if($this->common_model->delete_where("mc_streams",'stream_id',$id))
 			    {
                     $this->session->set_flashdata('message', 'Stream Deleted!');
 					redirect('admin/streams', 'refresh');
@@ -120,6 +190,28 @@ class Streams extends Admin_Controller {
 			    {
 					$this->session->set_flashdata('message', 'No Stream found.');
 					redirect('admin/colleges', 'refresh');
+				}
+	}
+	
+		public function delete_councelingvideo($id)
+	{
+        /* Load Template */
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+				if($this->common_model->delete_where("mc_counceling_video",'id',$id))
+			    {
+                    $this->session->set_flashdata('message', 'Video Deleted!');
+					redirect('admin/streams/counseling_video', 'refresh');
+			    }
+			    else
+			    {
+					$this->session->set_flashdata('message', 'No Stream found.');
+					redirect('admin/streams/counseling_video', 'refresh');
 				}
 	}
 
@@ -149,7 +241,7 @@ class Streams extends Admin_Controller {
 		/* Validate form input */
 		$this->form_validation->set_rules('stream_name', 'Stream Name', 'required');
 		$this->form_validation->set_rules('stream_code', 'Stream Code', 'required');
-		$this->form_validation->set_rules('stream_description', 'Stream Description', 'required');
+		//$this->form_validation->set_rules('stream_description', 'Stream Description', 'required');
 		//$this->form_validation->set_rules('stream_logo', 'Stream Logo', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 
@@ -204,6 +296,76 @@ class Streams extends Admin_Controller {
 			
         /* Load Template */
 		$this->template->admin_render('admin/streams/edit', $this->data);
+	}
+	
+	public function edit_counselingvideo($id)
+	{
+        $id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		$config['allowed_types']    = 'gif|jpg|png|avi|flv|wmv|mp3|mp4|pdf|doc|xml';
+		$config['max_size'] = "1000KB";
+		$config['max_height'] = "768";
+		$config['max_width'] = "1024";
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+        /* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/streams/edit_counselingvideo');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Data */
+		$counceling_video = $this->common_model->get_single_row("mc_counceling_video", "id", $id);
+		
+		/* Validate form input */
+		/* Validate form input */
+		$this->form_validation->set_rules('title', 'Counseling Title', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+
+		if (isset($_POST) && ! empty($_POST))
+		{
+			if ($this->form_validation->run() == TRUE)
+			{
+				$this->upload->do_upload('video');
+				$logo = $this->upload->data();
+				if(!empty($logo['file_name'])){
+				$data['video'] = $logo['file_name'];
+				}else{
+					$data['video'] = $counceling_video['video'];
+				}
+				$data['title'] = $this->input->post('title');
+				$data['status'] = $this->input->post('status');
+				
+                if($this->common_model->update("mc_counceling_video", $data, "id", $counceling_video['id']))
+			    {
+                    $this->session->set_flashdata('message', 'Video data Updated!');
+					redirect('admin/streams/counseling_video', 'refresh');
+			    }
+			    else
+			    {
+                    $this->session->set_flashdata('message', $this->ion_auth->errors());
+
+				    
+						redirect('admin/streams/counseling_video', 'refresh');
+					
+			    }
+			}
+		}
+
+		// display the edit user form
+		$this->data['csrf'] = $this->_get_csrf_nonce();
+		$this->data['counceling_video'] = $counceling_video;
+		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+			$this->data['title']['value'] = $this->form_validation->set_value('title',$counceling_video['title']);
+			$this->data['video']['value'] = $this->form_validation->set_value('video',$counceling_video['video']);
+			$this->data['status']['value'] = $this->form_validation->set_value('status',$counceling_video['status']);
+        /* Load Template */
+		$this->template->admin_render('admin/streams/edit_counselingvideo', $this->data);
 	}
 
 

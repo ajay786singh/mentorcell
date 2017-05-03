@@ -70,6 +70,7 @@ class Exams extends Admin_Controller {
 			unset($_POST['important_dates_description']);
 			$this->data = $this->input->post();
 			$this->data['impotant_dates'] = $important_dates;
+			$this->data['popular_exam'] = $_POST['popular_exam'];
 			$this->exam_model->insert($this->data,"mc_exams");
 			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
 			    redirect('admin/exams/index', 'refresh');
@@ -78,6 +79,8 @@ class Exams extends Admin_Controller {
 			$this->data['form_type'] = 'add';
 		}
 	           $this->data['exams_list'] = $this->exam_model->get_all("mc_exams");
+			   			$this->data['streams'] = $this->exam_model->get_all_rows("mc_streams", 1,1);
+
 			    $this->template->admin_render('admin/exams/exam', $this->data);
         }
 	
@@ -107,6 +110,7 @@ class Exams extends Admin_Controller {
 			unset($_POST['important_dates_description']);
 			$this->data = $this->input->post();
 			$this->data['impotant_dates'] = $important_dates;
+			$this->data['popular_exam'] = $_POST['popular_exam'];
 			$this->exam_model->update("mc_exams",$this->data, "id", $id);
 			//$this->session->set_flashdata('success_msg',"Record Inserted Successfully.");
 			  //$this->data['exam_lists'] = $this->exam_model->get_all("mc_exams");
@@ -118,6 +122,8 @@ class Exams extends Admin_Controller {
 			//$this->data['form_type'] = 'add';
 		}
 	    $this->data['form_data'] = $id;
+		$this->data['streams'] = $this->exam_model->get_all_rows("mc_streams", 1,1);
+		//$this->data['courses'] = $this->exam_model->get_all_rows("mc_courses", 1,1);
 		$this->data['exams_list'] = $this->exam_model->get_single_row("mc_exams","id", $id);
 		$this->template->admin_render('admin/exams/exam', $this->data);
         /* Load Template */

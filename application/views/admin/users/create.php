@@ -33,9 +33,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <?php echo lang('users_company', 'company', array('class' => 'col-sm-2 control-label')); ?>
+                                            <?php echo lang('users_college', 'company', array('class' => 'col-sm-2 control-label')); ?>
                                             <div class="col-sm-10">
-                                                <?php echo form_input($company);?>
+                                                <?php //echo form_input($company);?>
+												<select  class="form-control basic-multiple"  name="college_id[]" id="college_id" multiple="multiple">
+												  <?php foreach($college_lists as $college){
+																	  echo '<option  value="'.$college['id'].'">'.$college['name'].'</option>';
+												   } ?>
+												</select>
+                                            </div>
+                                        </div>
+										 <div class="form-group">
+                                            <label for="college_name" class="col-sm-2 control-label">College Name<br/> (if college not listed)</label>
+                                            <div class="col-sm-10">
+                                               <?php echo form_input($college_name);?>
                                             </div>
                                         </div>
                                         <div class="form-group">

@@ -16,6 +16,12 @@ class Users extends Admin_Controller {
 
         /* Breadcrumbs :: Common */
         $this->breadcrumbs->unshift(1, lang('menu_users'), 'admin/users');
+		
+		/* college model */
+		$this->load->model('common/common_model');
+		/* college model */
+		$this->load->model('common/college_model');
+		/* college model */
     }
 
 
@@ -69,12 +75,14 @@ class Users extends Admin_Controller {
 			$username = strtolower($this->input->post('first_name')) . ' ' . strtolower($this->input->post('last_name'));
 			$email    = strtolower($this->input->post('email'));
 			$password = $this->input->post('password');
+			$college_name = $this->input->post('college_name');
 
 			$additional_data = array(
 				'first_name' => $this->input->post('first_name'),
 				'last_name'  => $this->input->post('last_name'),
-				'company'    => $this->input->post('company'),
+				//'company'    => $this->input->post('company'),
 				'phone'      => $this->input->post('phone'),
+				'colleges'   => json_encode($this->input->post('college_id'))
 			);
 		}
 
@@ -83,6 +91,11 @@ class Users extends Admin_Controller {
 			
 			$id  = $this->ion_auth->register($username, $password, $email, $additional_data);
 			
+			$clgdata = array('name'=>$college_name,'user_id'=>$id,'email_id'=>$email,'country'=>101,'status'=>0); 
+			$this->common_model->insert($clgdata,"mc_colleges");
+			
+			
+			 
 			if($id){
 			
 				if ($this->ion_auth->is_admin())
@@ -154,6 +167,13 @@ class Users extends Admin_Controller {
                 'class' => 'form-control',
 				'value' => $this->form_validation->set_value('company'),
 			);
+			$this->data['college_name'] = array(
+				'name'  => 'college_name',
+				'id'    => 'college_name',
+				'type'  => 'text',
+                'class' => 'form-control',
+				'value' => $this->form_validation->set_value('college_name'),
+			);
 			$this->data['phone'] = array(
 				'name'  => 'phone',
 				'id'    => 'phone',
@@ -176,17 +196,35 @@ class Users extends Admin_Controller {
                 'class' => 'form-control',
 				'value' => $this->form_validation->set_value('password_confirm'),
 			);
-
+			
+			$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
+			
             /* Load Template */
             $this->template->admin_render('admin/users/create', $this->data);
         }
 	}
 
 
-	public function delete()
+	public function delete($id)
 	{
         /* Load Template */
-		$this->template->admin_render('admin/users/delete', $this->data);
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
+		{
+			redirect('auth/users', 'refresh');
+		}
+		
+				if($this->common_model->delete("users",$id))
+			    {
+                    $this->session->set_flashdata('message', 'User Deleted!');
+					redirect('admin/users', 'refresh');
+			    }
+			    else
+			    {
+					$this->session->set_flashdata('message', 'No User found.');
+					redirect('admin/users', 'refresh');
+				}
 	}
 
 
@@ -213,7 +251,7 @@ class Users extends Admin_Controller {
 		//$this->form_validation->set_rules('last_name', 'lang:edit_user_validation_lname_label', 'required');
 		//$this->form_validation->set_rules('phone', 'lang:edit_user_validation_phone_label', 'required');
 		//$this->form_validation->set_rules('company', 'lang:edit_user_validation_company_label', 'required');
-
+	
 		if (isset($_POST) && ! empty($_POST))
 		{
             if ($this->_valid_csrf_nonce() === FALSE OR $id != $this->input->post('id'))
@@ -226,14 +264,15 @@ class Users extends Admin_Controller {
 				$this->form_validation->set_rules('password', $this->lang->line('edit_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
 				$this->form_validation->set_rules('password_confirm', $this->lang->line('edit_user_validation_password_confirm_label'), 'required');
 			}
-
-			if ($this->form_validation->run() == TRUE)
+			if ($this->form_validation->run() == TRUE || $this->input->post('password')=='')
 			{
+				
 				$data = array(
 					'first_name' => $this->input->post('first_name'),
 					'last_name'  => $this->input->post('last_name'),
-					'company'    => $this->input->post('company'),
-					'phone'      => $this->input->post('phone')
+				//	'company'    => $this->input->post('company'),
+					'phone'      => $this->input->post('phone'),
+					'colleges'   => json_encode($this->input->post('college_id'))
 				);
 
                 if ($this->input->post('password'))
@@ -337,8 +376,8 @@ class Users extends Admin_Controller {
             'class' => 'form-control',
 			'type' => 'password'
 		);
-
-
+        $this->data['college_selected'] = json_decode($user->colleges);
+        $this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
         /* Load Template */
 		$this->template->admin_render('admin/users/edit', $this->data);
 	}
@@ -433,11 +472,54 @@ class Users extends Admin_Controller {
         {
             $this->data['user_info'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
         }
+		
+		/*user extra data*/
+			$city = $this->ion_auth->get_user_meta($id, 'city');
+			$this->data['city_id'] = $city;
+			$this->data['city'] = $this->common_model->get_single_var('name', 'cities','id', $city);
+			$state = $this->ion_auth->get_user_meta($id, 'state');
+			$this->data['state_id'] = $state;
+			$this->data['state'] = $this->common_model->get_single_var('name', 'states','id', $state);
+			
+			$this->data['dob'] = $this->ion_auth->get_user_meta($id, 'dob');
+			$this->data['about_me'] = $this->ion_auth->get_user_meta($id, 'about_me');
+			$this->data['bio'] = $this->ion_auth->get_user_meta($id, 'bio');
+			$this->data['interest'] = $this->ion_auth->get_user_meta($id, 'interest');
+			$this->data['course'] = $this->ion_auth->get_user_meta($id, 'course');
+			$this->data['coupon'] = $this->common_model->get_single_row('mc_coupons','user_id',$id);
+		
+		/*user extra data*/
+		
 
         /* Load Template */
 		$this->template->admin_render('admin/users/profile', $this->data);
 	}
 
+	
+	
+	public function exports_data(){
+		
+			$data  = $this->common_model->export_user_data();
+            //$data[] = array('x'=> "rajan", 'y'=> "rajan", 'z'=> "rajan", 'a'=> "rajan");
+			//$data[] = array('x'=> "rajan1", 'y'=> "rajan1", 'z'=> "rajan1", 'a'=> "rajan1");
+             header("Content-type: application/csv");
+            header("Content-Disposition: attachment; filename=\"test".".csv\"");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+
+            $handle = fopen('php://output', 'w');
+
+			$headerarray = array('first_name' => 'First Name','last_name' => 'Last Name','phone' => 'Phone','email' => 'Email','Course' => 'Course','CouponCode' => 'CouponCode' ,'Total_correct' =>'Total Correct'
+			,'Result' => 'Result','Score' => 'Score','Date' => 'Date','city' => 'city','State' => 'State','DOB' => 'DOB','AboutMe' => 'AboutMe','Bio' => 'Bio');
+
+			fputcsv($handle, $headerarray);
+            foreach ($data as $data) {
+                fputcsv($handle, $data);
+            }
+                fclose($handle);
+            exit;
+    }
+	
 
 	public function _get_csrf_nonce()
 	{

@@ -73,6 +73,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <input type="text" class="form-control"  id="contact_person_name" name="contact_person_name" value="<?php echo @$contact_person_name['value']; ?>" placeholder="Enter Contact Person Name">
 										  </div>
 										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >College Search By</label>
+										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >College By Location</label>
+										    <div class="col-sm-10">
+										  <input type="radio" <?php if(@$college_location['value'] =='1'){echo 'checked';} ?>  required="" name="college_location" id="college_location" value="1">Yes
+										   <input type="radio" <?php if(@$college_location['value'] =='0'){echo 'checked';} ?> required="" name="college_location" id="college_location" value="0">No
+										  </div>
+										</div>
+										
+										  <div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Top Colleges</label>
+										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Popular Colleges</label>
+										  <div class="col-sm-10">
+										  <input type="radio" <?php if(@$popular_colleges['value'] =='1'){echo 'checked';} ?>  required="" name="popular_colleges" id="popular_colleges" value="1">Yes
+										   <input type="radio" <?php if(@$popular_colleges['value'] =='0'){echo 'checked';} ?> required="" name="popular_colleges" id="popular_colleges" value="0">No
+										  </div>
+										
+										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Featured Colleges</label>
+										  <div class="col-sm-10">
+										  <input type="radio" <?php if(@$featured_colleges['value'] =='1'){echo 'checked';} ?> required="" name="featured_colleges" id="featured_colleges" value="1">Yes
+										   <input type="radio" <?php if(@$featured_colleges['value'] =='0'){echo 'checked';} ?>  required="" name="featured_colleges" id="featured_colleges" value="0">No
+										  </div>
+										
+										</div>
+										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Official Email address</label>
 										  <div class="col-sm-10">
@@ -178,6 +213,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <select name="status">
 										  <option value="1" <?php if(@$status['value']==1){echo "selected";} ?>>Active</option>
 										  <option value="0" <?php if(@$status['value']==0){echo "selected";} ?>>De-active</option>
+										   <option value="2" <?php if(@$status['value']==2){echo "selected";} ?>>Tie Up</option>
 										  </select>
 										  </div>
 										</div>

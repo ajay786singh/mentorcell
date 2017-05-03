@@ -21,6 +21,7 @@ class Exam extends Public_Controller {
 
 	public function index($exam_name)
 	{
+
 		if ($this->ion_auth->logged_in()){
 		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
 		}else{

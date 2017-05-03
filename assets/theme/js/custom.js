@@ -1,4 +1,23 @@
+function getExamByCourse(){
+	var course_name  = $("#stream_name").val();
+	$.ajax({
+		url: base_url+"index.php/home/get_exam_list/"+course_name,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#exam_lists").html(html);
+		}
+	});
+}
+
+
 $(document).ready(function(){
+	
+	  $('.footerTop .footerWidget h3').click(function(){
+		$(this).parent().addClass('active');
+		$(this).parent().siblings().find('.active').removeClass('active');
+	});
+	
 
      $('.subMenuLeft ol li').mouseover(function(){
         var menuId = $(this).attr('menu-id');
@@ -217,7 +236,7 @@ $('.profileBox .addButton').click(function(){
 	
 	/*triggering the popup*/
     if(localStorage.getItem('popState') != 'shown'){
-       $('#landingpage').modal('show');
+       /*$('#landingpage').modal('show');*/
         localStorage.setItem('popState','shown')
     }
 	/*triggering the popup*/
@@ -225,6 +244,24 @@ $('.profileBox .addButton').click(function(){
 	if(isPasswordRest == 1){
 		 $('#forgotsetModal').modal('show');
 	}
+	
+	
+	/*video fancybox*/
+	
+	
+		$(".various").fancybox({
+            maxWidth    : 800,
+            maxHeight   : 600,
+            fitToView   : false,
+            width       : '70%',
+            height      : '70%',
+            autoSize    : false,
+            closeClick  : false,
+            openEffect  : 'none',
+            closeEffect : 'none',
+			autoCenter  : true
+        });
+
 
 
 });

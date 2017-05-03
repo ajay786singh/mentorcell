@@ -28,6 +28,24 @@
 					<?php echo form_open_multipart(current_url(), array('class' => 'form-horizontal', 'id' => 'form-create_stream'));
 					
 					?>
+					
+					<div class="form-group">
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Streams</label>
+						  <div class="col-sm-10">
+						  
+						  <select  class="form-control clg_stream_id" required="" name="clg_streams_id" id="streams" >
+						  <?php 
+						 
+						   echo '<option  value="">Select Streams</option>';
+						  foreach($streams as $stream){
+							  //print_r($course);
+											//  if(in_array($course['course_id'],@$course_id)){
+												  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>'; 
+											//  }
+											 
+						   } ?></select>
+						  </div>
+						</div>
 						
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Courses</label>
@@ -38,13 +56,62 @@
 						 
 						   echo '<option  value="">Select Course</option>';
 						  foreach($courses as $course){
-											  if(in_array($course['course_id'],@$course_id)){
+							  //print_r($course);
+											//  if(in_array($course['course_id'],@$course_id)){
 												  echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>'; 
-											  }
+											//  }
 											 
 						   } ?></select>
 						  </div>
 						</div>
+						
+						<div class="form-group">
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Specialization </label>
+						  <div id="clg_specialization1" class="col-sm-10">
+						  
+						  <select  class="form-control "  name="clg_specialization" id="clg_specialization" >
+						  <option  value="">Select Specialization </option>
+						   </select>
+						  </div>
+						</div>
+						
+						<div class="form-group">
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course Status</label>
+						  <div class="col-sm-10">
+						   <select  class="form-control clg_stream_id" required="" name="clg_streams_id" id="streams" >
+						  <?php 
+						 
+						   echo '<option  value="">Select Course Status</option>';
+						  foreach($course_statname as $status_name){
+												  echo '<option  value="'.$status_name['name'].'">'.$status_name['name'].'</option>'; 
+						   } ?></select>
+						 <!-- <input type="text" class="form-control" required="" name="course_status" id="course_status" value="" placeholder="Enter Course Status">-->
+						  </div>
+						</div>
+						<div class="form-group">
+										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >Admission Procedure</label>
+										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >For Conveyer Quota</label>
+										  <div class="col-sm-10">
+										  <input type="text" class="form-control" required="" id="conveyer_quota" name="conveyer_quota" placeholder="For Conveyer Quota" value="<?php echo @$conveyer_quota['value']; ?>">
+										  </div>
+										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >For Management Quota</label>
+										  <div class="col-sm-10">
+										  	 <input type="text" class="form-control" required="" id="management_quota" name="management_quota" placeholder="For Management Quota" value="<?php echo @$management_quota['value']; ?>">
+										  </div>
+										</div>
+										
+										<div class="form-group">
+										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >For International Students</label>
+										  <div class="col-sm-10">
+										   	 <input type="text" class="form-control" required="" id="international_quota" name="international_quota" placeholder="For International Quota" value="<?php echo @$international_quota['value']; ?>">
+										  </div>
+										</div>
 						
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course Title</label>
@@ -70,6 +137,15 @@
 						  <input type="number" class="form-control" required="" name="fee" id="fee" value="" placeholder="Enter Course Fee">
 						  </div>
 						</div>
+						
+						<div class="form-group">
+						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Incentive</label>
+						  <div class="col-sm-10">
+						  <input type="number" class="form-control" required="" name="incentive" id="incentive" value="" placeholder="Enter Course Incentive">
+						  </div>
+						</div>
+						
+						
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College procedure</label>
 						  <div class="col-sm-10">
@@ -85,7 +161,15 @@
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Exams</label>
 						  <div class="col-sm-10">
-						  <input type="text" class="form-control" required="" name="exam" id="exam" value="" placeholder="Enter Exams">
+							 <select  class="form-control basic-multiple" required="" name="exam" id="exam" multiple="multiple">
+							   <?php
+							   echo "<option value=''>Choose Exam</option>";
+							  foreach($exams as $exam){
+								echo "<option value='".$exam['id']."'>".$exam['exam_name']."</option>";
+							  }
+							  ?>
+							</select>
+		
 						  </div>
 						</div>
 										

@@ -72,34 +72,6 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 
 <div id="mainContainer">
 <!-- header start -->
-<header id="header-top">
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-5 col-sm-5 col-md-2 pull-right col-lg-2">
-
- <?php if(isset($user_login['id']) && ((int)$user_login['id'])>0){ ?>
-	<div class="profileNav">
-	<h3><?php echo (isset($user_login['firstname']))? $user_login['firstname'] :" "; ?></h3>
-	<ul>
-		<li><a href="<?php echo site_url('user/profile'); ?>">Profile</a></li>
-		<li><a href="<?php echo site_url('user/logout'); ?>">Sign Out</a></li>
-	</ul>
-	</div>
-
- <?php }else{ ?>
-	<div class="userNav">
-	<ul>
-		<li class="userLogin" data-toggle="modal" data-target="#loginModal" onClick="document.getElementById('couponClicked').value=0" >Login</li>
-		<li class="userReg" data-toggle="modal" data-target="#registerModal">Register</li>
-	</ul>
-	</div>
-
- <?php } ?>
-
-</div>
-</div>
-</div>
-</header>
 <header id="header">
 <div class="container-fluid">
 <div class="row">
@@ -586,7 +558,7 @@ $eng_college_location2 = $this->common_model->get_all_main_course("mc_colleges",
 <li><a href="<?php echo base_url('home/underconstruction'); ?>">Study Abroad</a>
 
 </li>
-<li><a href="<?php echo base_url('home/underconstruction'); ?>">Admission 2017</a>
+<li><a href="<?php echo base_url()?>home/search?course=41">Admission 2017</a>
 
 
 </li>
@@ -614,8 +586,30 @@ $eng_college_location2 = $this->common_model->get_all_main_course("mc_colleges",
 </nav>
 </div>
 
-<div class="col-xs-5 col-sm-5 col-md-2 pull-right col-lg-2">
-<a href="<?php echo base_url()?>coupon/"><img src="<?php echo base_url('assets/theme/images/btn-cpn.png'); ?>" style="width:80%; float:right"></a>
+<div class="col-xs-5 col-sm-5 col-md-3 pull-right col-lg-3">
+<a href="<?php echo base_url()?>coupon/"><img src="<?php echo base_url('assets/theme/images/btn-cpn.png'); ?>" style="width:160px; float:left"></a>
+
+
+ <?php if(isset($user_login['id']) && ((int)$user_login['id'])>0){ ?>
+	<div class="profileNav">
+	<h3><?php echo (isset($user_login['firstname']))? $user_login['firstname'] :" "; ?></h3>
+	<ul>
+		<li><a href="<?php echo site_url('user/profile'); ?>">Profile</a></li>
+		<li><a href="<?php echo site_url('user/logout'); ?>">Sign Out</a></li>
+	</ul>
+	</div>
+
+ <?php }else{ ?>
+	<div class="userNav">
+	<ul>
+		<li class="userLogin" data-toggle="modal" data-target="#loginModal" onClick="document.getElementById('couponClicked').value=0" >Login</li>
+		<li class="userReg" data-toggle="modal" data-target="#registerModal">Register</li>
+	</ul>
+	</div>
+
+ <?php } ?>
+
+
 </div>
 </div>
 </div>

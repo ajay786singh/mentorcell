@@ -17,7 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://www.mentorcell.com/';
+
+$config['base_url'] =  'http://ec2-35-154-102-247.ap-south-1.compute.amazonaws.com/';
 
 
 /*

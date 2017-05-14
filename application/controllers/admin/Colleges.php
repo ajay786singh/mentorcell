@@ -18,6 +18,7 @@ class Colleges extends Admin_Controller {
         $this->breadcrumbs->unshift(1, lang('menu_users'), 'admin/colleges');
 		
 		/* college model */
+		 $this->load->model('admin/exam_model');
 		$this->load->model('common/common_model');
 		/* college model */
 		$this->load->model('common/college_model');
@@ -83,35 +84,29 @@ class Colleges extends Admin_Controller {
 		$tables = $this->config->item('tables', 'ion_auth');
 		/* Conf */
 		$config['upload_path']      = './upload/';
-		$config['allowed_types']    = 'gif|jpg|png';
+		$config['allowed_types']    = 'gif|jpg|png|pdf';
 		$config['file_ext_tolower'] = TRUE;
 		$this->load->library('upload', $config);
 
-		/* Validate form input */
-		//$this->form_validation->set_rules('user_id', 'User', 'required');
 		$this->form_validation->set_rules('name', 'College name', 'required');
-		$this->form_validation->set_rules('college_location', 'College Location', 'required');
 		$this->form_validation->set_rules('popular_colleges', 'Popular Colleges', 'required');
 		$this->form_validation->set_rules('featured_colleges', 'Featured Colleges', 'required');
-		//$this->form_validation->set_rules('code', 'College Code', 'required');
-		//$this->form_validation->set_rules('description', 'College Description', 'required');
-		//$this->form_validation->set_rules('contact_person_name', 'Contact Person Name', 'required');
-		//$this->form_validation->set_rules('email_id', 'Official Email address', 'required|valid_email');
-		//$this->form_validation->set_rules('phone', 'Mobile', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 		
 		
 		if ($this->form_validation->run() == TRUE)
 		{	
-	
+	        $this->upload->do_upload('brochure');
+			$brochure = $this->upload->data();
 			$this->upload->do_upload('logo');
 			$logo = $this->upload->data();
 		    $this->upload->do_upload('banner');
 			$banner = $this->upload->data();
-		
+			
 			$this->data = array();
 			$this->data = $this->input->post();
+			$this->data['brochure'] = $brochure['file_name'];
 			$this->data['logo'] = $logo['file_name'];
 			$this->data['banner'] = $banner['file_name'];
 			$this->data['country'] = 101;
@@ -150,7 +145,6 @@ class Colleges extends Admin_Controller {
 			$this->data['top_faculty']['value'] = $this->form_validation->set_value('top_faculty');
 			$this->data['partner_colleges']['value'] = $this->form_validation->set_value('partner_colleges');
 			$this->data['rank_holders']['value'] = $this->form_validation->set_value('rank_holders');
-			$this->data['college_location']['value'] = $this->form_validation->set_value('college_location');
 			$this->data['popular_colleges']['value'] = $this->form_validation->set_value('popular_colleges');
 			$this->data['featured_colleges']['value'] = $this->form_validation->set_value('featured_colleges');
             $this->data['status']['value'] = $this->form_validation->set_value('status');
@@ -164,17 +158,7 @@ class Colleges extends Admin_Controller {
 
     }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		public function createlogo()
+	public function createlogo()
 	{
 		/* Breadcrumbs */
         $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/colleges/createlogo');
@@ -228,14 +212,6 @@ class Colleges extends Admin_Controller {
 
     }
 	
-	
-	
-	
-	
-	
-	
-
-
 	public function delete($id)
 	{
         /* Load Template */
@@ -292,7 +268,7 @@ class Colleges extends Admin_Controller {
 
 		/* Conf */
 		$config['upload_path']      = './upload/';
-		$config['allowed_types']    = 'gif|jpg|png';
+		$config['allowed_types']    = 'gif|jpg|png|pdf';
 		$config['file_ext_tolower'] = TRUE;
 		$this->load->library('upload', $config);
         /* Breadcrumbs */
@@ -301,33 +277,18 @@ class Colleges extends Admin_Controller {
 
         /* Data */
 		$colleges = $this->common_model->get_single_row("mc_colleges", "id", $id);
-		
-		/* Validate form input */
-		//$this->form_validation->set_rules('user_id', 'User', 'required');
 		$this->form_validation->set_rules('name', 'College name', 'required');
-		$this->form_validation->set_rules('college_location', 'College Location', 'required');
 		$this->form_validation->set_rules('popular_colleges', 'Popular Colleges', 'required');
 		$this->form_validation->set_rules('featured_colleges', 'Featured Colleges', 'required');
-		//$this->form_validation->set_rules('code', 'College Code', 'required');
-		//$this->form_validation->set_rules('description', 'College Description', 'required');
-		//$this->form_validation->set_rules('contact_person_name', 'Contact Person Name', 'required');
-		//$this->form_validation->set_rules('email_id', 'Official Email address', 'required|valid_email');
-		//$this->form_validation->set_rules('phone', 'Mobile', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
-		//$this->form_validation->set_rules('state', 'State', 'required');
-		//$this->form_validation->set_rules('city', 'City', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 
 		if (isset($_POST) && ! empty($_POST))
 		{
-            /*if ($this->_valid_csrf_nonce() === FALSE OR $id != $this->input->post('id'))
-			{	
-				show_error('There is something wrong with security.');
-			}*/
-
 			if ($this->form_validation->run() == TRUE)
 			{
-				
+				$this->upload->do_upload('brochure');
+				$brochure = $this->upload->data();
 				$this->upload->do_upload('logo');
 				$logo = $this->upload->data();
 				$this->upload->do_upload('banner');
@@ -335,6 +296,10 @@ class Colleges extends Admin_Controller {
 			
 				$this->data = array();
 		
+		       if(isset($brochure['file_name']) && $brochure['file_size']>0){
+				$data['brochure'] = $brochure['file_name'];
+				}
+				
 				if(isset($logo['file_name']) && $logo['file_size']>0){
 				$data['logo'] = $logo['file_name'];
 				}
@@ -365,7 +330,6 @@ class Colleges extends Admin_Controller {
 				$data['top_faculty'] = $this->input->post('top_faculty');
 				$data['partner_colleges'] = $this->input->post('partner_colleges');
 				$data['rank_holders'] = $this->input->post('rank_holders');
-				$data['college_location'] = $this->input->post('college_location');
 				$data['popular_colleges'] = $this->input->post('popular_colleges');
 				$data['featured_colleges'] = $this->input->post('featured_colleges');
 				$data['country'] = 101;
@@ -416,7 +380,6 @@ class Colleges extends Admin_Controller {
 			$this->data['top_faculty']['value'] = $this->form_validation->set_value('top_faculty',$colleges['top_faculty']);
 			$this->data['partner_colleges']['value'] = $this->form_validation->set_value('partner_colleges',$colleges['partner_colleges']);
 			$this->data['rank_holders']['value'] = $this->form_validation->set_value('rank_holders',$colleges['rank_holders']);
-			$this->data['college_location']['value'] = $this->form_validation->set_value('college_location',$colleges['college_location']);
 			$this->data['popular_colleges']['value'] = $this->form_validation->set_value('popular_colleges',$colleges['popular_colleges']);
 			$this->data['featured_colleges']['value'] = $this->form_validation->set_value('featured_colleges',$colleges['featured_colleges']);
 			
@@ -427,6 +390,29 @@ class Colleges extends Admin_Controller {
 		
         /* Load Template */
 		   $this->template->admin_render('admin/colleges/edit', $this->data);
+	}
+	
+		public function editassigncourse($id)
+	{
+        $id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
+		{
+			redirect('auth', 'refresh');
+		}
+
+        /* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/colleges/editassigncourse');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Data */
+	      $this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		$this->data['streams'] = $this->common_model->get_stream("mc_streams", 1);
+		$this->data['exams'] = $this->common_model->get_all_rows("mc_exams", 1,1);
+		$this->data['course_statname'] = $this->common_model->get_all_rows("mc_course_status","status","1");
+		
+        /* Load Template */
+		   $this->template->admin_render('admin/colleges/editassigncourse', $this->data);
 	}
 
 	
@@ -461,22 +447,10 @@ class Colleges extends Admin_Controller {
 
 		if (isset($_POST) && ! empty($_POST))
 		{
-            /*if ($this->_valid_csrf_nonce() === FALSE OR $id != $this->input->post('id'))
-			{	
-				show_error('There is something wrong with security.');
-			}*/
+          
 
 			if ($this->form_validation->run() == TRUE)
 			{
-				
-				//$this->upload->do_upload('logo');
-				//$logo = $this->upload->data();
-				//print_r($logo['file_name']);die;
-				/*if(!empty($logo['file_name'])){
-				$data['logo'] = $logo['file_name'];
-				}else{
-					$data['logo'] = $logoslide['logo'];
-				}*/
 				
 				$data['college_name'] = $this->input->post('college_name');
 				$data['college_url'] = $this->input->post('college_url');
@@ -586,6 +560,7 @@ class Colleges extends Admin_Controller {
 		$this->data['coursedata'] = $this->college_model->get_course_relation($id);
 		$this->data['streamdata'] = $this->college_model->get_stream_relation($id);
 		$this->data['specializedata'] = $this->college_model->get_specialize_relation($id);
+		$this->data['assign_list'] = $this->college_model->get_course_assign_data($id);
 		/* Load Template */
 		$this->template->admin_render('admin/colleges/course', $this->data);
 	}
@@ -623,7 +598,6 @@ class Colleges extends Admin_Controller {
 		$course_status = $this->input->post('course_status');
 		$conveyer_quota = $this->input->post('conveyer_quota');
 		$management_quota = $this->input->post('management_quota');
-		$international_quota = $this->input->post('international_quota');
 		$clg_course_id = $this->input->post('clg_course_id');
 		$title = $this->input->post('title');
 		$duration = $this->input->post('duration');
@@ -642,7 +616,6 @@ class Colleges extends Admin_Controller {
 		$course['course_status'] = $course_status;
 		$course['conveyer_quota'] = $conveyer_quota;
 		$course['management_quota'] = $management_quota;
-		$course['international_quota'] = $international_quota;
 		$course['title'] = $title;
 		$course['duration'] = $duration;
 		$course['recognition'] = $recognition;
@@ -658,6 +631,21 @@ class Colleges extends Admin_Controller {
 	//exit;
 	}
 	/*assign courses to colleges*/
+	
+	public function get_exam_list_by_stream($course_name){
+		$exams_name = $this->exam_model->get_exams_by_course($course_name);
+
+		if(count($exams_name) > 0){
+		echo "<option value=''>-- Choose Exam --</option>";
+			foreach($exams_name as $exam_data){
+				//echo "<option value='".$exam_data['slug']."'>".$exam_data['exam_name']."</option>";
+				echo "<option value='".$exam_data['id']."'>".$exam_data['exam_name']."</option>";
+			}
+		}else{
+			echo "<option value='0'>-- Choose Exam --</option>";
+		}
+		die;
+	}
 	
 	
 	public function _get_csrf_nonce()
@@ -700,6 +688,7 @@ class Colleges extends Admin_Controller {
 	{
 		$specialization_id = $this->input->get('specialization_id');
 		$specialization = $this->common_model->get_all_specialization("mc_specialization", "course_id",$specialization_id);
+		//$specialization = $this->common_model->get_all_leftspecialization("mc_specialization", "course_id",$specialization_id);
 		echo '<select  class="form-control" name="clg_specialization" id="clg_specialization" >
 		<option value="">Select Specialization</option>';
 		foreach($specialization as $special){

@@ -33,7 +33,7 @@
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Streams</label>
 						  <div class="col-sm-10">
 						  
-						  <select  class="form-control clg_stream_id" required="" name="clg_streams_id" id="streams" >
+						  <select  class="form-control clg_stream_id stren" required="" name="clg_streams_id" id="streams" >
 						  <?php 
 						 
 						   echo '<option  value="">Select Streams</option>';
@@ -90,28 +90,12 @@
 						</div>
 						<div class="form-group">
 										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >Admission Procedure</label>
-										</div>
-										
-										<div class="form-group">
-										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >For Conveyer Quota</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" id="conveyer_quota" name="conveyer_quota" placeholder="For Conveyer Quota" value="<?php echo @$conveyer_quota['value']; ?>">
+										  <textarea class="form-control" id="conveyer_quota" name="conveyer_quota"><?php echo @$conveyer_quota['value']; ?></textarea>
 										  </div>
 										</div>
 										
-										<div class="form-group">
-										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >For Management Quota</label>
-										  <div class="col-sm-10">
-										  	 <input type="text" class="form-control" required="" id="management_quota" name="management_quota" placeholder="For Management Quota" value="<?php echo @$management_quota['value']; ?>">
-										  </div>
-										</div>
 										
-										<div class="form-group">
-										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >For International Students</label>
-										  <div class="col-sm-10">
-										   	 <input type="text" class="form-control" required="" id="international_quota" name="international_quota" placeholder="For International Quota" value="<?php echo @$international_quota['value']; ?>">
-										  </div>
-										</div>
 						
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course Title</label>
@@ -132,9 +116,15 @@
 						  </div>
 						</div>
 						<div class="form-group">
+										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >College Affiliation</label>
+										  <div class="col-sm-10">
+										  	 <input type="text" class="form-control"  id="management_quota" name="management_quota" placeholder="College Affiliation" value="<?php echo @$management_quota['value']; ?>">
+										  </div>
+										</div>
+						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Fee</label>
 						  <div class="col-sm-10">
-						  <input type="number" class="form-control" required="" name="fee" id="fee" value="" placeholder="Enter Course Fee">
+						  <input type="text" class="form-control" required="" name="fee" id="fee" value="" placeholder="Enter Course Fee">
 						  </div>
 						</div>
 						
@@ -161,12 +151,12 @@
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Exams</label>
 						  <div class="col-sm-10">
-							 <select  class="form-control basic-multiple" required="" name="exam" id="exam" multiple="multiple">
+							 <select  class="form-control basic-multiple"  name="exam" id="exam" multiple="multiple">
 							   <?php
-							   echo "<option value=''>Choose Exam</option>";
+							   /*echo "<option value=''>Choose Exam</option>";
 							  foreach($exams as $exam){
 								echo "<option value='".$exam['id']."'>".$exam['exam_name']."</option>";
-							  }
+							  }*/
 							  ?>
 							</select>
 		

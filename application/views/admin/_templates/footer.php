@@ -185,23 +185,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			var course_status = $("#course_status").val();
 			var conveyer_quota = $("#conveyer_quota").val();
 			var management_quota = $("#management_quota").val();
-			var international_quota = $("#international_quota").val();
 			var title = $("#title").val();
 			var duration = $("#duration").val();
 			var recognition = $("#recognition").val();
 			var fee = $("#fee").val();
 			var incentive = $("#incentive").val();
-			var exam = $("#exam").val().join();
+			var exam1 = $("#exam").val();
+			if(exam1 == null){
+				var exams = 0;
+			}else{
+				var exams = $("#exam").val().join();
+			}
 			var assigned_id = $("#assigned_id").val();
 			var procedure = $("#procedure").val();
 			var eligibility = $("#eligibility").val();
-			
-			
 			jQuery.ajax({
 				type: "POST",
 				url: base_url+"index.php/admin/colleges/save_assigncourses",
 				dataType: 'text',
-				data: {clg_course_id:clg_course_id,clg_streams_id:clg_streams_id,college_id:college_id,clg_specialization:clg_specialization,course_status:course_status,conveyer_quota:conveyer_quota,management_quota:management_quota,international_quota:international_quota,title:title,duration:duration,recognition:recognition,fee:fee,incentive:incentive,exam:exam,assigned_id:assigned_id,procedure:procedure,eligibility:eligibility},
+				data: {clg_course_id:clg_course_id,clg_streams_id:clg_streams_id,college_id:college_id,clg_specialization:clg_specialization,course_status:course_status,conveyer_quota:conveyer_quota,management_quota:management_quota,title:title,duration:duration,recognition:recognition,fee:fee,incentive:incentive,exam:exams,assigned_id:assigned_id,procedure:procedure,eligibility:eligibility},
 				success: function(res) {
 					$("#message").show().html('<p>'+res+'</p>');
 					setTimeout(function(){
@@ -285,6 +287,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  $('#datepicker').datepicker({
       autoclose: true
     });
+	
+	$(".stren").change(function(){
+	var course  = $(".stren").val();
+		$.ajax({
+		url: base_url+"index.php/admin/colleges/get_exam_list_by_stream/"+course,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#exam").html(html);
+		}
+	});
+});
 	
 	function create_slug(exam_name){
 		var slug_name  = exam_name.replace(" ","_");

@@ -2,7 +2,7 @@
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading">Our Management Team</div>
+<div class="sectionHeading">Our Management <span>Team</span></div>
 
 <div class="teamRow">
 <div class="teamPic"><img src="<?php echo base_url('assets/theme/images/ak-gupta.jpg')?>"></div>

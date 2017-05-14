@@ -3,7 +3,7 @@
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading">Company overview</div>
+<div class="sectionHeading"><span>Company</span> overview</div>
 
 <div class="staticPage">
 <div class="col-xs-12 col-sm-3">

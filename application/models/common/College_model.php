@@ -83,6 +83,26 @@ class College_model extends CI_Model {
 		return $result;
 	}
 	
+	function get_streamsbycolid($id){
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $id);
+		$this->db->group_by('stream_id');
+		$result = $this->db->get()->result_array();
+		//$result = array_column($result, 'term_id');
+		return $result;
+	}
+	
+	function get_types_by_stream($streamid,$collegeid){
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where("college_id = $collegeid AND stream_id = $streamid");
+		$this->db->group_by('course_id');
+		$result = $this->db->get()->result_array();
+		//$result = array_column($result, 'term_id');
+		return $result;
+	}
+	
 	function get_course_relation($id){
 		$this->db->distinct();
 		$this->db->select('course_id');
@@ -94,6 +114,14 @@ class College_model extends CI_Model {
 		return $result;
 	}
 	
+	function get_course_assign_data($id){
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $id);
+		$result = $this->db->get()->result_array();
+		return $result;
+	}
+	
 	function get_stream_relation($id){
 		$this->db->distinct();
 		$this->db->select('stream_id');
@@ -102,6 +130,14 @@ class College_model extends CI_Model {
 		//$this->db->where('term_name', "stream");
 		$result = $this->db->get()->result_array();
 		//$result = array_column($result, 'term_id');
+		return $result;
+	}
+	
+	function get_all_courses(){
+		$this->db->select('*');
+		$this->db->from('mc_courses');
+		$this->db->where('status', '1');
+		$result = $this->db->get()->result_array();
 		return $result;
 	}
 	
@@ -133,6 +169,15 @@ class College_model extends CI_Model {
         return $res;
     }
 	
+	  function get_exam_name($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_exams');
+		$this->db->where('id', $id);
+        $res= $this->db->get()->row();
+        return $res;
+    }
+	
 	   function get_exam_data($id)
     {
 			$this->db->select('*');
@@ -142,22 +187,58 @@ class College_model extends CI_Model {
         return $res;
     }
 	
-	   function get_collageid($id)
+	   function get_exam_detail($id)
     {
 			$this->db->select('*');
 		$this->db->from('mc_course_assignment');
 		$this->db->where('course_id', $id);
-		$this->db->group_by('college_id');
+		$this->db->group_by('exam');
         $res= $this->db->get()->result_array();
         return $res;
     }
 	
+	   function get_sexam_data()
+    {
+			$this->db->select('*');
+		$this->db->from('mc_exams');
+		$this->db->group_by('id');
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
+	
+	   function get_collageid($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->join('mc_colleges', 'mc_course_assignment.college_id = mc_colleges.id');
+		$this->db->where('course_id', $id);
+		$this->db->group_by('mc_colleges.city');
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
+	  function get_all_location()
+    {
+			$this->db->select('*');
+		$this->db->from('cities');
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
 	   function get_feedata($id)
     {
 			$this->db->select('*');
 		$this->db->from('mc_course_assignment');
 		$this->db->where('course_id', $id);
 		$this->db->group_by('fee');
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
+	
+	 function get_streamlist($college_id)
+    {
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $college_id);
+		$this->db->group_by('stream_id');
         $res= $this->db->get()->result_array();
         return $res;
     }
@@ -169,6 +250,17 @@ class College_model extends CI_Model {
         $res= $this->db->get()->result_array();
         return $res;
     }
+	
+	   function get_specialatabycourse($id)
+    {
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->join('mc_colleges', 'mc_course_assignment.college_id = mc_colleges.id');
+		$this->db->where('mc_course_assignment.course_id', $id);
+		$this->db->group_by('mc_course_assignment.specialization_id');
+        $res= $this->db->get()->result_array();
+        return $res;
+    }
 	   function get_specialata($id)
     {
 			$this->db->select('*');
@@ -176,18 +268,28 @@ class College_model extends CI_Model {
 		$this->db->where('course_id', $id);
         $res= $this->db->get()->result_array();
         return $res;
+		
+    }
+	
+	function get_streamname_byid($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_specialization');
+		$this->db->where('specialization_id', $id);
+        $res= $this->db->get()->row();
+        return $res;
     }
 	 function get_recognize($id)
     {
 			$this->db->select('*');
 		$this->db->from('mc_course_assignment');
 		$this->db->where('course_id', $id);
+		$this->db->group_by('recognition');
         $res= $this->db->get()->result_array();
         return $res;
     }
-
 	
-	 function get_location($id)
+ function get_location($id)
     {
 			$this->db->select('*');
 		$this->db->from('mc_colleges');
@@ -205,6 +307,14 @@ class College_model extends CI_Model {
         return $res;
     }
 	
+	function get_stream($id)
+    {
+			$this->db->select('*');
+		$this->db->from('mc_streams');
+		$this->db->where('stream_id', $id);
+        $res= $this->db->get()->row();
+        return $res;
+    }
 	 function get_course_data($id)
     {
 			$this->db->select('*');
@@ -299,7 +409,7 @@ class College_model extends CI_Model {
 	}*/
 	//select * FROM mc_colleges INNER JOIN mc_course_assignment ON mc_colleges.id =  mc_course_assignment.college_id WHERE mc_colleges.city = '176' OR mc_course_assignment.course_id = '41'
 
-	function search_result_course($query){
+	function search_result_course($query, $limit, $start){
 
 		$loation = $query['location'];
 		$course = $query['course'];
@@ -309,11 +419,12 @@ class College_model extends CI_Model {
 		if($loation==0){
 		$where = "mc_course_assignment.course_id = $course";
 		}else{
-		$where = "mc_colleges.city = $loation OR mc_course_assignment.course_id = $course";	
+		$where = "mc_colleges.city = $loation AND mc_course_assignment.course_id = $course";	
 		}
-		
+		$this->db->limit($limit,$start);
         $this->db->where($where);
 		$this->db->group_by('mc_colleges.id');
+		//$this->db->limit($limit, $start);
 		$result = $this->db->get()->result_object();
 		return $result;
 	}
@@ -326,13 +437,83 @@ class College_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('mc_colleges');
 		$this->db->join('mc_course_assignment', 'mc_colleges.id = mc_course_assignment.college_id');
-		$where = "mc_colleges.city = $loation OR mc_course_assignment.course_id = $course";
+		if($loation==0){
+		$where = "mc_course_assignment.course_id = $course AND mc_colleges.status = '2'";
+		}else{
+		$where = "mc_colleges.city = $loation AND mc_course_assignment.course_id = $course AND mc_colleges.status = '2'";	
+		}
+		
         $this->db->where($where);
 		$this->db->group_by('mc_colleges.id');
 		$result = $this->db->get();
 		$rowcount = $result->num_rows();
 		return $rowcount;
 	}
+	
+	function get_review_databy_college($id){
+		$this->db->select('*');
+		$this->db->from('mc_review');
+		$where = "college_name = $id AND status = '1'";	
+		$this->db->where($where);
+		$result = $this->db->get();
+		$rowcount = $result->num_rows();
+		return $rowcount;
+	}
+	
+	function get_review_databy_collegedataworth_money($id,$courseid,$streamid){
+		 $this->db->select_sum('worth_money');
+    $this->db->from('mc_review');
+    $this->db->where("college_name = $id AND status = '1' AND stream_name = $streamid AND course_name = $courseid");
+    $query = $this->db->get();
+    return $query->row()->worth_money;
+	}
+	
+	function get_review_databy_collegedatacampus_life($id,$courseid,$streamid){
+		 $this->db->select_sum('campus_life');
+    $this->db->from('mc_review');
+    $this->db->where("college_name = $id AND status = '1' AND stream_name = $streamid AND course_name = $courseid");
+    $query = $this->db->get();
+    return $query->row()->campus_life;
+	}
+	
+	function get_review_databy_collegedatacollege_placment($id,$courseid,$streamid){
+		 $this->db->select_sum('college_placment');
+    $this->db->from('mc_review');
+    $this->db->where("college_name = $id AND status = '1' AND stream_name = $streamid AND course_name = $courseid");
+    $query = $this->db->get();
+    return $query->row()->college_placment;
+	}
+	
+	function get_review_databy_collegedatacampus_facility($id,$courseid,$streamid){
+		 $this->db->select_sum('campus_facility');
+    $this->db->from('mc_review');
+    $this->db->where("college_name = $id AND status = '1' AND stream_name = $streamid AND course_name = $courseid");
+    $query = $this->db->get();
+    return $query->row()->campus_facility;
+	}
+	
+	function get_review_databy_collegedatafaculty($id,$courseid,$streamid){
+		 $this->db->select_sum('faculty');
+    $this->db->from('mc_review');
+    $this->db->where("college_name = $id AND status = '1' AND stream_name = $streamid AND course_name = $courseid");
+    $query = $this->db->get();
+    return $query->row()->faculty;
+	}
+	
+	function get_review_databy_collegedatacollege_recomd($id,$courseid,$streamid){
+	$this->db->select('*');
+		$this->db->from('mc_review');
+		$where = "college_name = $id AND status = '1' AND college_recomd = 'Yes' AND stream_name = $streamid AND course_name = $courseid";	
+		$this->db->where($where);
+		$result = $this->db->get();
+		$rowcount = $result->num_rows();
+		return $rowcount;
+	}
+	
+	public function record_count() {
+        return $this->db->count_all("mc_colleges");
+    }
+	
 	
 	
 	function search_result_college($query){
@@ -447,6 +628,27 @@ class College_model extends CI_Model {
 		$result = $this->db->get()->row_object();
 		return $result;
 	}	
+	
+	function get_college_detail($college_id,$stream_name,$course_main,$specializetion_main){
+		/**/
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $college_id);
+		$this->db->where('stream_id', $stream_name);
+		$this->db->where('course_id', $course_main);
+		$this->db->where('specialization_id', $specializetion_main);
+		$result = $this->db->get()->row_object();
+		return $result;
+	}
+	
+	function get_single_exam_detail($exam_id){
+		/**/
+		$this->db->select('*');
+		$this->db->from('mc_exams');
+		$this->db->where('id', $exam_id);
+		$result = $this->db->get()->row_object();
+		return $result;
+	}
 	/**/
 	
 	function get_all_home_logo(){
@@ -463,6 +665,24 @@ class College_model extends CI_Model {
 		$this->db->where_in('id', $colleges);
         $result = $this->db->get('mc_colleges')->result_array();
         return $result;
+	}
+
+function get_recomdreview($collegeid,$stream_name,$course_main){
+		$this->db->select('*');
+		$this->db->from('mc_review');
+		$where = "college_name = $collegeid AND stream_name = $stream_name AND course_name = $course_main AND status = 1";
+		$this->db->where($where);
+		$result = $this->db->get();
+		$rowcount = $result->num_rows();
+		return $rowcount;
+	}	
+	
+	function get_recomdreview_detail($collegeid,$stream_name,$course_main){
+		$this->db->select('*');
+		$where = "college_name = $collegeid AND stream_name = $stream_name AND course_name = $course_main AND status = 1";
+		$this->db->where($where);
+		 $result = $this->db->get('mc_review')->result_array();
+		return $result;
 	}	
 	/**/
 	

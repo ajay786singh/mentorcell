@@ -78,6 +78,17 @@ class Common_model extends CI_Model {
 		
         return $row;
     }
+	function get_all_leftspecialization($table, $where_col, $where_val) {
+		/*$this->db->where("$where_col",$where_val);
+        $row = $this->db->get($table)->result_array();
+		return $row;*/
+		$this->db->select('*');
+		$this->db->from($table);
+		$this->db->where($where_col,$where_val);
+		$this->db->join('mc_course_assignment', 'mc_course_assignment.stream_id = mc_specialization.specialization_id', 'left');
+		$row = $this->db->get()->result_array(); 
+		return $row;
+    }
 	function get_all_stream($table, $where_col, $where_val) {
 		$this->db->where("$where_col",$where_val);
         $row = $this->db->get($table)->result_array();

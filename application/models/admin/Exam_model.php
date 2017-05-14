@@ -102,19 +102,21 @@ class Exam_model extends CI_Model {
         return $row;
 	}
 	
-	public function get_colltype_by_stream($stream_name){
+	public function get_colltype_by_stream($stream_name,$college_id){
 		$this->db->select('*');
         $this->db->from("mc_course_assignment");
 		$this->db->where("stream_id",$stream_name);
+		$this->db->where("college_id",$college_id);
 		$this->db->group_by('course_id');
         $row = $this->db->get()->result_array();
         return $row;
 	}
 	
-		public function get_speltype_by_course($course){
+		public function get_speltype_by_course($course,$college_id){
 		$this->db->select('*');
         $this->db->from("mc_course_assignment");
 		$this->db->where("course_id",$course);
+		$this->db->where("college_id",$college_id);
 		$this->db->group_by('specialization_id');
         $row = $this->db->get()->result_array();
         return $row;

@@ -55,6 +55,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <textarea class="form-control"  name="description" placeholder="Enter College Description"><?php echo @$description['value']; ?></textarea>
 										  </div>
 										</div>
+										<div class="form-group">
+										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Brochure</label>
+										  <div class="col-sm-10">
+										  <input type="file" class="form-control"  name="brochure" id="brochure" value="" placeholder="Enter College Code">
+										  </div>
+										</div>
 										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Logo</label>
@@ -81,13 +87,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >College Search By</label>
 										</div>
 										
-										<div class="form-group">
+										<!--<div class="form-group">
 										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >College By Location</label>
 										    <div class="col-sm-10">
 										  <input type="radio"  required="" name="college_location" id="college_location" value="1">Yes
 										   <input type="radio"  required="" name="college_location" id="college_location" value="0">No
 										  </div>
-										</div>
+										</div>-->
 										
 										  <div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Top Colleges</label>

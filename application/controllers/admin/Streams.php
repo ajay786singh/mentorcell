@@ -43,6 +43,40 @@ class Streams extends Admin_Controller {
             $this->template->admin_render('admin/streams/index', $this->data);
         }
 	}
+	
+	public function reviewlist()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['review_list'] = $this->common_model->get_all("mc_review");
+            $this->template->admin_render('admin/streams/reviewlist', $this->data);
+        }
+	}
+	
+	public function viewreview($id)
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['review_list'] = $this->common_model->get_single_row("mc_review", "id", $id);
+            $this->template->admin_render('admin/streams/viewreview', $this->data);
+        }
+	}
 
 	public function counseling_video()
 	{
@@ -366,6 +400,60 @@ class Streams extends Admin_Controller {
 			$this->data['status']['value'] = $this->form_validation->set_value('status',$counceling_video['status']);
         /* Load Template */
 		$this->template->admin_render('admin/streams/edit_counselingvideo', $this->data);
+	}
+	
+	public function editstatus()
+	{
+        /* Load Template */
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+		$status = $_GET['stat'];
+		$id = $_GET['id'];
+		if($status==1){
+			$data['status'] =0;
+		}else{
+			$data['status'] = 1;
+		}
+			  if($this->common_model->update("mc_review", $data, "id", $id))
+			    {
+                    $this->session->set_flashdata('message', 'Review Status Updated!');
+					redirect('admin/streams/reviewlist', 'refresh');
+			    }
+			    else
+			    {
+                    $this->session->set_flashdata('message', $this->ion_auth->errors());
+
+				    
+						redirect('admin/streams/reviewlist', 'refresh');
+					
+			    }
+		
+	}
+	
+		public function deletereview($id)
+	{
+        /* Load Template */
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+				if($this->common_model->delete_where("mc_review",'id',$id))
+			    {
+                    $this->session->set_flashdata('message', 'Review Deleted!');
+					redirect('admin/streams/reviewlist', 'refresh');
+			    }
+			    else
+			    {
+					$this->session->set_flashdata('message', 'No Review found.');
+					redirect('admin/streams/reviewlist', 'refresh');
+				}
 	}
 
 

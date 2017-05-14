@@ -3,7 +3,10 @@
 <section class="footerTop">
 
 <div class="footerWidget">
-<h3>MentorCell</h3>
+<h3>Website Name</h3>
+<p>G-130, Sec-63,<br>
+Noida, UP<br>
+201301</p>
 <p>info@mentorcell.com</p>
 </div>
 
@@ -22,11 +25,11 @@
 <div class="footerWidget">
 <h3>Services</h3>
 <ul>
-<li><a href="<?php echo base_url()?>home/underconstruction">Admission 2017</a></li>
+<li><a href="<?php echo base_url()?>home/search?course=41">Admission 2017</a></li>
 <!--<li><a href="<?php echo base_url()?>home/underconstruction">Career Profiling test</a></li>-->
 <li><a href="<?php echo base_url()?>home/underconstruction">Abroad Education</a></li>
 <li><a href="<?php echo base_url()?>page/counselling">Counselling</a></li>
-<li><a href="<?php echo base_url()?>home/underconstruction">Counselling Video</a></li>
+<li><a href="<?php echo base_url()?>home/gallery">Counselling Video</a></li>
 <!--<li><a href="<?php echo base_url()?>home/underconstruction">Placement</a></li>-->
 </ul>
 </div>
@@ -39,10 +42,10 @@
 <li><a style="cursor: pointer;" data-toggle="modal" data-target="#loginModal">College Login</a></li>
 <?php } ?>
 <li><a href="#">Chat</a></li>
-<li><a href="<?php echo base_url()?>blog">Blog</a></li>
+<li><a href="#">Blog</a></li>
 <li><a href="#">News</a></li>
-<li><a href="<?php echo base_url()?>pages/contactus">Contact us</a></li>
-<li><a href="#">Write reviews</a></li>
+<li><a href="#" data-target="#contact">Contact us</a></li>
+<li><a href="<?php echo base_url()?>page/write_review">Write reviews</a></li>
 </ul>
 </div>
 
@@ -213,11 +216,11 @@
       	<form id="register_form">
 		<div class="inputRow">
       		<input type="text" id="register_fname" required='' placeholder="First Name" name="">
-      		<i class="icon-email"></i>
+      		<i class="icon-name"></i>
       	</div>
 		<div class="inputRow">
       		<input type="text" id="register_lname" required='' placeholder="Last Name" name="">
-      		<i class="icon-email"></i>
+      		<i class="icon-name"></i>
       	</div>
       	<div class="inputRow">
       		<input type="email" id="register_email" required='' placeholder="Email Address" name="">
@@ -274,7 +277,7 @@
 			
 			
 			<div class="inputRow">
-			<select id="register_caller" class="register_caller"><option value="0">Counsellor</option>
+			<select id="register_caller" class="register_caller"><option value="0">Other</option>
 			<?php
 				$callers = $this->common_model->get_all_rows("mc_caller", 1,1);
 				foreach($callers as $caller){
@@ -398,10 +401,52 @@
     top: 39%;
     right: -29px;
 	line-height: 29px;}
+	 
+	 
+	 #main-slider .owl-prev {
+    font-size: 40px;
+	color:#000;
+	background: transparent;	 
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 39%;
+    left: -33px;
+	line-height: 29px;}
 
-	
+	#main-slider .owl-next {
+    font-size: 40px;
+    background: transparent;
+	color:#000;	 
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 39%;
+    right: -60px;
+	line-height: 29px;}
+
 	 
 </style>
+  <script>
+  $('#main-slider').owlCarousel({
+    loop:true,
+    navText:['<', '>' ],
+    margin:0,
+    nav:true,
+		 
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+</script>
    <script>
      $('.owl-carousel').owlCarousel({
     loop:true,
@@ -421,6 +466,8 @@
         }
     }
 })
+	 
+	
        
    </script>
 	<script type="text/javascript">
@@ -483,20 +530,24 @@ $(document).ready(function(){
 
 	$("#stream").change(function(){
 	var stream_name  = $("#stream").val();
+	var college_id = $("#streamcol").val();
 		$.ajax({
-		url: base_url+"index.php/home/get_coursetype_list_by_stream/"+stream_name,
+		url: base_url+"index.php/home/get_coursetype_list_by_stream/"+stream_name+"/"+college_id,
 		data:"",
 		async:false,
 		success: function(html){
 			$("#type").html(html);
+			$("#streamtype").val(college_id);
 		}
 	});
 });
 
 $("#type").change(function(){
 	var course  = $("#type").val();
+	var college_id = $("#streamtype").val();
+	//alert(college_id);
 		$.ajax({
-		url: base_url+"index.php/home/get_specialize_list_by_course/"+course,
+		url: base_url+"index.php/home/get_specialize_list_by_course/"+course+"/"+college_id,
 		data:"",
 		async:false,
 		success: function(html){
@@ -504,6 +555,20 @@ $("#type").change(function(){
 		}
 	});
 });
+
+$("#search_college").change(function(){
+	var college_id = $("#search_college").val();
+		$.ajax({
+		url: base_url+"index.php/home/get_stream_by_college/"+college_id,
+		data:"",
+		async:false,
+		success: function(html){
+			$("#stream").html(html);
+			$("#streamcol").val(college_id);
+		}
+	});
+});
+
 });
 </script>
 </body>

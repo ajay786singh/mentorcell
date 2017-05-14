@@ -1,12 +1,15 @@
+<link href="<?php echo base_url('assets/theme/slider-css/lightbox.min.css'); ?>" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="<?php echo base_url('assets/theme/sliderjs/lightbox-plus-jquery.min.js'); ?>"></script>
+
 <section class="bgWhite collegeHead">
 <div class="container">
 <div class="row">
 <div class="containerBox">
 
-<div class="col-xs-12 col-sm-3 col-md-2"><div class="collegeThumb"></div></div>
+<div class="col-xs-12 col-sm-3 col-md-2"><div class="collegeThumb"><img  width ="100%" src="<?php echo base_url()."upload/".$college->logo; ?>"></div></div>
 <div class="col-xs-12 col-sm-9 col-md-10">
 <div class="collegeQuick">
-<h2><?php echo $college->name; ?><span class="reviewRating"><b>(4.5/5)</b> 37 Reviews</span></h2>
+<h2><?php echo $college->name; ?><span class="reviewRating"><b>(4.5/5)</b>&nbsp;<span class="rev">(37 Reviews)</span></span></h2>
 <h3><?php echo $college->address; ?><?php echo $college->city; ?>, 
 					<?php echo $college->state; ?><br/>
 					<?php echo $college->country; ?> <?php echo $college->pincode; ?></h3>
@@ -17,16 +20,10 @@
 </div>
 </div>
 </section>
-
-
-
-
 <section class="bgWhite">
 <div class="container">
 <div class="row">
 <div class="containerBox">
-
-
 <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
 
 <div class="sectionGap">
@@ -42,74 +39,141 @@
 </ul>
 </div>
 </div>
-
 </div>
-
-
-
 <div class="sectionGap">
 <div class="heading1" id="courses-offered">Courses offered</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-
 <!--course loop-->
-<?php 
 
-					foreach($streams as $stream){
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script>$(function () {			
+                    $('a[data-toggle="collapse"]').on('click',function(){
+				
+				var objectID=$(this).attr('href');
+				
+				if($(objectID).hasClass('in'))
+				{
+                                    $(objectID).collapse('hide');
+				}
+				
+				else{
+                                    $(objectID).collapse('show');
+				}
+                    });
+                    
+                    
+                    $('#expandAll').on('click',function(){
+                        
+                        $('a[data-toggle="collapse"]').each(function(){
+                            var objectID=$(this).attr('href');
+                            if($(objectID).hasClass('in')===false)
+                            {
+                                 $(objectID).collapse('show');
+                            }
+                        });
+                    });
+                    
+                    $('#collapseAll').on('click',function(){
+                        
+                        $('a[data-toggle="collapse"]').each(function(){
+                            var objectID=$(this).attr('href');
+                            $(objectID).collapse('hide');
+                        });
+                    });
+                    
+		});</script>
+            <div class="panel-group" id="accordion">
+			<?php for($i=1;$i<3;$i++){ ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                         <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i;?>" class="">
+                                Collapsible Group Item #<?php echo $i;?>
+                              </a>
+                            </h4>
+
+                    </div>
+                    <div id="collapse<?php echo $i;?>" class="panel-collapse collapse">
+                        <div class="panel-body">
+						<li> <strong style="font-weight:bold;">Title:</strong> test</a>
+	        <p> <strong style="font-weight:bold;">Duration:</strong> Test1 </p>
+		<p> <strong style="font-weight:bold;">Recognition:</strong> Test3 </p>
+		<p> <strong style="font-weight:bold;">Fee:</strong> Test4</p>
+				<p> <strong style="font-weight:bold;">Exam:</strong> Test5</p>
+					<p> <strong style="font-weight:bold;">Procedure:</strong> Test6</p></li>
+                     </div>
+                    </div>
+                </div>
+				<?php  } ?>
+                
+                
+            </div>
+			
+			<?php
+foreach($stream_ids as $streamsdata){
+	$streamsname = $this->college_model->get_strem_data($streamsdata['stream_id']);
+	if($streamsname){
+	echo '<div class="coursesOffer"><h3> '.$streamsname->stream_name.'<span class="collegeClose"></span></h3>';
+	$courses = $this->college_model->get_types_by_stream($streamsdata['stream_id'],$streamsdata['college_id']);
+	echo  '<div class="subCourses">
+	<ul id="collegetab'.$streamsdata['stream_id'].'" >';
+	foreach($courses as $course){
+	if($course['course_id']>0){
+		$coursename = $this->college_model->get_course_data($course['course_id']);
+		
+		
+		                                   echo '<li> <strong style="font-weight:bold;">Title:</strong> '.$coursename->course_name.'</a>';
+											echo '<p> <strong style="font-weight:bold;">Duration:</strong> '.$coursename->course_duration.'</p>';
+														echo '<p> <strong style="font-weight:bold;">Recognition:</strong> '.$course['recognition'].'</p>';
+														echo '<p> <strong style="font-weight:bold;">Fee:</strong> '.$course['fee'].'</p>';
+														echo '<p> <strong style="font-weight:bold;">Exam:</strong> '.$course['exam'].'</p>';
+														echo '<p> <strong style="font-weight:bold;">Procedure:</strong> '.$course['procedure'].'</p></li>';
+	}
+
+	}
+	echo  '</ul></div>'; 
+	echo "</div>";
+	}
+}
+
+
+/*foreach($stream_ids as $stream){
 						if(in_array($stream['stream_id'],@$stream_id)){
 							  echo '<div class="coursesOffer"><h3> '.$stream['stream_name'].'<span class="collegeClose"></span></h3>';
-							  
-							  
-							  
 							  foreach($types as $type){
 											  if(in_array($type['type_id'],@$type_id)){
-											  echo '<h4 data-tab="collegetab'.$type['type_id'].'">'.$type['type_name'].'</h4>';
+											  echo '<h4 data-tab="collegetab'.$type['type_id'].'"><strong style="font-weight:bold;">'.$type['type_name'].'</strong></h4>';
 											  
 											  
 											  echo  '<div class="subCourses">
 												<ul id="collegetab'.$type['type_id'].'" >';
 											  
 												foreach($course_id as $course){
-														echo '<li><a>'.$course->title.'</a></li>';
-														//echo '<p>'.$course->duration.'</p>';
-														//echo '<p>'.$course->recognition.'</p>';
-														//echo '<p>'.$course->fee.'</p>';
-														//echo '<p>'.$course->exam.'</p>';
-														//echo '<p>'.$course->procedure.'</p>';
+														echo '<li> <strong style="font-weight:bold;">Title:</strong> '.$course->title.'</a>';
+														echo '<p> <strong style="font-weight:bold;">Duration:</strong> '.$course->duration.'</p>';
+														echo '<p> <strong style="font-weight:bold;">Recognition:</strong> '.$course->recognition.'</p>';
+														echo '<p> <strong style="font-weight:bold;">Fee:</strong> '.$course->fee.'</p>';
+														echo '<p> <strong style="font-weight:bold;">Exam:</strong> '.$course->exam.'</p>';
+														echo '<p> <strong style="font-weight:bold;">Procedure:</strong> '.$course->procedure.'</p></li>';
 												}
 												
 											  
-											 echo  '</div>
-												</ul>'; 
-											  
-											  
-											  
-											  }
-											  
-											  
-											
-						     } 
+											 echo  '</ul></div>'; 
+											 }
+								 } 
 							  
 							echo "</div>";  
 							  
 						}
 											  
-					}
-
-
-
-
-				?>
+					}*/
+?>
 <!--course loop-->
-
-
-
 </div>
-
-
 </div>
-
-
 <div class="sectionGap">
 <div class="heading1" id="why-join">Why Join <?php echo $college->name; ?></div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -168,103 +232,100 @@
 
 <div class="sectionGap">
 <div class="heading2" id="top-recruiting-companies">Top Recruiting Companies</div>
-<ul class="liststyletyep">
 <?php $companies = explode(';',$college->top_recruiting_companies);
 		if(count($companies)>1){
 		foreach($companies as $company){
-				echo "<li>$company</li>";
+				echo "$company";
 		}
 		}
  ?>
-<ul class="liststyletyep">
-
 </div>
 
 
 <div class="sectionGap">
 <div class="heading2" id="hostel-facility">Hostel Facility</div>
-<ul class="liststyletyep">
-<?php $companies = explode(';',$college->hostel_details);
+<?php $companies1 = explode(';',$college->hostel_details);
 	   $i = 0;
-	   if(count($companies)>1){
-		foreach($companies as $company){
-				echo "<li>$company</li>";
-		}
-	   }
+						    foreach($companies1 as $company1){
+							    if($i == count($companies1)){
+									echo "$company1";
+							    }else{
+								   echo "$company1";
+							    }
+							    $i++;
+						    }
 
  ?>
-</ul>
 
 </div><div class="sectionGap">
 <div class="heading2" id="infrastructure">Infrastructure / Teaching Facilities</div>
-<ul class="liststyletyep">
-<?php $companies = explode(';',$college->teaching_facilities);
-	   $i = 0;
-	   if(count($companies)>1){
-		foreach($companies as $company){
-				echo "<li>$company</li>";
-		}
-	   }
+<?php $companies2 = explode(';',$college->top_faculty);
+	   $companies2 = explode(';',$college->teaching_facilities);
+						   $i = 0;
+						    foreach($companies2 as $company2){
+							    if($i == count($companies2)){
+									echo "<span>$company2,</span>&nbsp; ";
+							    }else{
+								   echo "<span>$company2</span>&nbsp; ";
+							    }
+							    $i++;
+						    }
 
  ?>
-</ul>
 
-</div><div class="sectionGap">
+
+</div>
+<div class="sectionGap">
 <div class="heading2" id="top-faculties">Top Faculties</div>
-<ul class="liststyletyep">
+
 <?php $companies = explode(';',$college->top_faculty);
-	   $i = 0;
-	   if(count($companies)>1){
-		foreach($companies as $company){
-				echo "<li>$company</li>";
-		}
-	   }
+						   $i = 0;
+						    foreach($companies as $company){
+							    if($i == count($companies)){
+									echo "<span>$company,</span>&nbsp; ";
+							    }else{
+								   echo "<span>$company</span>&nbsp; ";
+							    }
+							    $i++;
+						    }
 
- ?>
-</ul>
+					 ?>
 
-</div><div class="sectionGap">
+
+</div>
+<div class="sectionGap">
 <div class="heading2" id="partner-colleges">Partner Colleges</div>
-<ul class="liststyletyep">
-<?php $companies = explode(';',$college->partner_colleges);
-	   $i = 0;
-	   if(count($companies)>1){
-		foreach($companies as $company){
-				echo "<li>$company</li>";
-		}
-	   }
 
- ?>
-</ul>
+<?php $companies = explode(';',$college->partner_colleges);
+							$i = 0;
+							foreach($companies as $company){
+							   if($i == count($companies)){
+									echo "<span>$company,</span>&nbsp; ";
+							    }else{
+								   echo "<span>$company</span>&nbsp; ";
+							    }
+							    $i++;
+						  }
+
+					 ?>
 
 </div><div class="sectionGap">
 <div class="heading2" id="ranking-awards">Ranking and Awards</div>
-<ul class="liststyletyep">
 <?php $companies = explode(';',$college->rank_holders);
-		$i = 0;
-		if(count($companies)>1){
-		foreach($companies as $company){
-				echo "<li>$company</li>";
-		}
-		}
+					        $i = 0;
+						    foreach($companies as $company){
+							    if($i == count($companies)){
+									echo "<span>$company,</span>&nbsp; ";
+							    }else{
+								   echo "<span>$company</span>&nbsp; ";
+							    }
+							    $i++;
+						    }
 
- ?>
-</ul>
-
+					 ?>
 </div>
-
-
-
-
 </div>
-
-
 </div>
-
-
-
-
-
 </div>
 
 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
@@ -290,8 +351,39 @@
 <!--<li><a href="#">College Details of IITD</a></li>-->
 </ul>
 
-<a href="#" class="downloadBro"><i class="icon-download"></i> Download Brochure</a>
+<a href="<?php if(!empty($college->brochure)){ echo base_url()."upload/".$college->brochure;} else{ ?> # <?php } ?>" <?php if(!empty($college->brochure)){ ?> download <?php } ?> class="downloadBro"><i class="icon-download"></i> Download Brochure</a>
+<style>
+   a:focus{
+	   outline:none !important;
+   }
+   a:hover, a:focus{
+	   color:#999 !important;
+     text-decoration: none !important;
+   }
+   a:hover, a:focus {
+    color: #6a6969 !important;
+    
+}
+   
+   ul.infra.flex-ul li {
+    float: left;
+	margin: 7px 10px;
+}
+.panel-default>.panel-heading {
+    
+    background-color: #fff !important;
+	
+    
+}
+.panel-group .panel{
+	border:none !important;
+}
 
+
+    
+   
+
+</style>
 </div>
 </div>
 
@@ -299,3 +391,4 @@
 </div>
 </div>
 </section>
+

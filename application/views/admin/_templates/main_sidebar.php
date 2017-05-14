@@ -104,6 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-shield"></i> <span><?php echo 'Colleges'; ?></span>
                             </a>
                         </li>
+					
 						
 						
 						<li class="<?=active_link_controller('coupons')?>">
@@ -116,6 +117,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						}
 						
 						if($this->ion_auth->is_admin()){ ?>
+							<li class="<?=active_link_controller('review')?>">
+                            <a href="<?php echo site_url('admin/streams/reviewlist'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Review List'; ?></span>
+                            </a>
+                        </li>
 						
 						<li class="<?=active_link_controller('logo')?>">
                             <a href="<?php echo site_url('admin/colleges/logo'); ?>">
@@ -192,7 +198,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <a href="<?php echo site_url('admin/caller'); ?>">
                                 <i class="fa fa-user"></i> <span><?php echo 'Caller'; ?></span>
                             </a>
-                        </li>						
+                        </li>	
+						
 
 						<?php } ?>	
                     </ul>

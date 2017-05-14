@@ -57,6 +57,46 @@ class Page extends Public_Controller {
 		$this->load->view('public/layout/footer', $this->data);
 	}
 	
+	  public function write_review()
+	{
+    
+	  $this->form_validation->set_rules('college_name', 'College Name', 'required');
+		$this->form_validation->set_rules('stream_name', 'Stream Name', 'required');
+		$this->form_validation->set_rules('course_name', 'Course Name', 'required');
+		$this->form_validation->set_rules('review_title', 'Review Title', 'required');
+		$this->form_validation->set_rules('review_detail', 'Review Detail', 'required');
+		$this->form_validation->set_rules('worth_money', 'Worth Money', 'required');
+		$this->form_validation->set_rules('campus_life', 'Campus Life', 'required');
+		$this->form_validation->set_rules('college_placment', 'College Placement', 'required');
+		$this->form_validation->set_rules('campus_facility', 'Campus Facility', 'required');
+		$this->form_validation->set_rules('faculty', 'Faculty', 'required');
+		$this->form_validation->set_rules('college_recomd', 'Recommend Others', 'required');
+		$this->form_validation->set_rules('fname', 'First Name', 'required');
+		$this->form_validation->set_rules('lname', 'Last Name', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+			if ($this->form_validation->run() == TRUE)
+		{	
+	
+			$this->data = array();
+			
+			$this->data = $this->input->post();
+			$this->data['post_date'] = date('y-m-d');
+			
+		}
+		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data," mc_review"))
+		{
+			$this->data['message'] = 'Review added successfully!';
+			redirect('page/write_review', 'refresh');
+		}else
+		{
+             /* Load Template */
+        $this->load->view('public/layout/header', $this->data);
+		$this->load->view('public/static/write_review', $this->data);
+		$this->load->view('public/layout/footer', $this->data);
+        }
+		
+	}
+	
 	 public function management($id)
 	{
     $cstates = $this->college_model->get_states();
@@ -75,7 +115,6 @@ class Page extends Public_Controller {
 		$this->data['location'] = $options;
 		$this->load->view('public/layout/header', $this->data);
 		$this->data['course_description_page_name_list'] = $this->course_detail_model->get_single_row("mc_course_description","id", $id);
-		//print_r($this->data);
 
 		$this->load->view('public/static/management', $this->data);
 

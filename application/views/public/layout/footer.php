@@ -545,7 +545,6 @@ $(document).ready(function(){
 $("#type").change(function(){
 	var course  = $("#type").val();
 	var college_id = $("#streamtype").val();
-	//alert(college_id);
 		$.ajax({
 		url: base_url+"index.php/home/get_specialize_list_by_course/"+course+"/"+college_id,
 		data:"",

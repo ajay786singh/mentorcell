@@ -246,6 +246,21 @@ class Home extends Public_Controller {
 		$this->load->view('public/layout/footer', $this->data);
 
 	}
+	
+	function all_college()
+	{
+		if ($this->ion_auth->logged_in()){
+		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		}else{
+			$this->data['user_login'] = array('id'=>false);
+		}
+		$this->college['streamid'] = $_GET['id'];
+		$this->college['type'] = $_GET['type'];
+		$this->load->view('public/layout/header', $this->data);
+		$this->load->view('public/all_college', $this->college);
+		$this->load->view('public/layout/footer', $this->data);
+
+	}
 
 	public function clgcity()
 	{
@@ -274,7 +289,7 @@ class Home extends Public_Controller {
 		$stream_name = $this->exam_model->get_colltype_by_stream($stream_name,$college_id);
       
 		if(count($stream_name) > 0){
-			 echo "<option value=''>-- Select Type --</option>";
+			 echo "<option value=''>-- Select Course --</option>";
 			foreach($stream_name as $exam_data){
 				if($exam_data['course_id']!='' OR $exam_data['course_id']!= '0'){
 				$course_name = $this->exam_model->get_coursetype_name($exam_data['course_id']);
@@ -293,7 +308,7 @@ class Home extends Public_Controller {
 		$course_name = $this->exam_model->get_speltype_by_course($course,$college_id);
 
 		if(count($course_name) > 0){
-		echo "<option value=''>-- Select Course --</option>";
+		echo "<option value=''>-- Select Specialization --</option>";
 			foreach($course_name as $exam_data){
 				$special_name = $this->college_model->get_spel_data($exam_data['specialization_id']);
 				echo "<option value='".$exam_data['specialization_id']."'>".$special_name->specialization_name."</option>";

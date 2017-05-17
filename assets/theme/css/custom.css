@@ -170,7 +170,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .homeSlider .searchArea .searchForm.active {z-index: 2; opacity:1; height:48px; }
 .homeSlider .searchArea .formHolder input,
 .homeSlider .searchArea .formHolder select {width: 100%; border:none; background: none; height: 48px;}
-.homeSlider .searchArea .formHolder .go {background:#f77a52; transition: all ease-in-out 0.3s; position: relative; cursor: pointer; width: 108px; height: 48px; border:none; color: #fff; overflow: hidden; text-align: center; font-size: 20px;}
+.homeSlider .searchArea .formHolder .go {background:#f66132; transition: all ease-in-out 0.3s; position: relative; cursor: pointer; width: 108px; height: 48px; border:none; color: #fff; overflow: hidden; text-align: center; font-size: 20px;}
 
 
 .homeSlider .searchArea .formHolder .formcol50 {width:calc(50% - 54px); position: relative; float: left; border-right: 1px solid rgba(0,0,0,0.20); padding: 0px 10px;}
@@ -184,7 +184,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 .featureSlider {background:#e4e9f3; padding:0px; position: relative; z-index: 2; height:91px; overflow:hidden;}
 .featureSlider .row {position: relative; padding: 15px 50px 15px 40px;}
-.featureSlider .featureHeading {position: absolute; top:0px; left: 0px; width: 40px; height: 100%; z-index: 10; background: #f77a52; font-size: 15px; color:#fff;}
+.featureSlider .featureHeading {position: absolute; top:0px; left: 0px; width: 40px; height: 100%; z-index: 10; background: #f66132; font-size: 15px; color:#fff;}
 .featureSlider .featureHeading:before {content: 'Featured'; display: block; transform: rotate(-90deg) translate(-45px, 0px);}
 .featureSlider .featureLogo {width: 100%; display: inline-block; margin: 0px 10px 0px 0px; vertical-align: middle;}
 .featureSlider .featureLogo img{width:auto; height:65px;}
@@ -228,16 +228,16 @@ header#header .logo img {max-width: 100%; height: auto;}
 .stepsRow .stepText h3 {font-size: 22px; display: inline-block; position: relative; z-index: 4; margin: 0px 0px 15px 0px; font-weight: bold; color:#303a47; padding: 0px 0px 0px 4px;}
 .stepsRow .stepText h3 span {position: absolute; left:-10px; z-index: -1; color: rgba(0,0,0,0.12); font-size:50px; transform: translateY(-28%);}
 .stepsRow .stepText p {margin: 0px 0px 10px 0px; display: block; font-size:16px; color:#303a47;}
-.stepsRow .stepText a.stepButton {display: inline-block; font-size: 14px; transition: all ease-in-out 0.3s; color: #fff; border-radius: 5px; background: #f77a52; padding: 6px 15px;}
-.stepsRow .stepText a.stepButton:hover {background:#303a47; color:#fff !important;}
+.stepsRow .stepText a.stepButton {display: inline-block; font-size: 14px; transition: all ease-in-out 0.3s; color: #fff; border-radius: 5px; background: #f66132; padding: 6px 15px;}
+.stepsRow .stepText a.stepButton:hover {background:#15202f; color:#fff !important;}
 
 .youTubePlayer iframe,
 .youTubePlayer img {width:100%; height: auto;} 
 
 .careerCol {padding: 0px 0px 30px 0px;}
 .careerCol p {font-size: 14px; margin: 0px 0px 15px 0px; color: rgba(0,0,0,0.87);}
-.careerCol .counsButton {background:#f77a52; transition: all ease-in-out 0.3s; color: #fff; padding:10px 40px; float: left; clear: both; display: block; border-radius: 6px; text-decoration: none;} 
-.careerCol .counsButton:hover {background:#303a47; color:#fff !important;}
+.careerCol .counsButton {background:#f66132; transition: all ease-in-out 0.3s; color: #fff; padding:10px 40px; float: left; clear: both; display: block; border-radius: 6px; text-decoration: none;} 
+.careerCol .counsButton:hover {background:#15202f; color:#fff !important;}
 
 .youtubeThumb {padding: 30px 0px 0px 0px; position: relative; text-align: center; font-size: 0px;}
 .youtubeThumb .viewAll {position: absolute; z-index: 6; top: -30px; right: 15px; font-size: 15px; color:#003e8c;}
@@ -265,8 +265,8 @@ header#header .logo img {max-width: 100%; height: auto;}
 .studyAbroad p {color: #fff; margin: 0px 0px 20px 0px; font-size: 15px;}
 
 .studyAbroad h3 {font-size: 21px; letter-spacing: 1px; color: #fff; margin: 0px 0px 20px 0px; font-weight: normal;}
-.studyAbroad .findHere {background:#f77a52; font-size: 16px; transition: all ease-in-out 0.3s; color: #fff; padding:10px 20px; width: 200px; display:inline-block; border-radius: 6px;}
-.studyAbroad .findHere:hover {background:#303a47; color:#fff !important;}
+.studyAbroad .findHere {background:#f66132 !important; font-size: 16px; transition: all ease-in-out 0.3s; color: #fff; padding:10px 20px; width: 200px; display:inline-block; border-radius: 6px;}
+.studyAbroad .findHere:hover {background:#15202f !important; color:#fff !important;}
 
 .studyAbroad ul {display: block; padding: 30px 0px 40px 0px;}
 .studyAbroad ul li {display: inline-block; text-align: center; width:150px; margin: 10px; background: #fff; border-radius: 6px; padding:15px 10px;}
@@ -290,8 +290,8 @@ header#header .logo img {max-width: 100%; height: auto;}
 .contactForm ul li input:focus, .contactForm ul li textarea:focus {border:2px solid #2c76bf;}
 .contactForm ul li input:focus + i, .contactForm ul li textarea:focus + i {color: #2c76bf;}
 .contactForm ul li textarea {padding: 10px; height:150px;}
-.contactForm ul li input.go {background:#f77a52; color: #fff; font-size: 16px; border:none; padding: 0px 20px; width: 150px;}
-.contactForm ul li input.go:hover {background:#303a47;}
+.contactForm ul li input.go {background:#f66132; color: #fff; font-size: 16px; border:none; padding: 0px 20px; width: 150px;}
+.contactForm ul li input.go:hover {background:#15202f;}
 
 
 #loginModal .modal-dialog {max-width: 400px;}
@@ -383,7 +383,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 
 .informationList {border-bottom: 1px solid rgba(0,0,0,0.15); padding: 0px 0px 8px 0px; margin: 0px 0px 15px 0px;}
-.informationList h3 {display: block; margin: 0px 0px 10px 0px; font-size: 15px; font-family: 'ubuntumedium'; color: rgba(0,0,0,0.54);}
+.informationList h3 {display: block; margin: 0px 0px 10px 0px; font-size: 15px; color: rgba(0,0,0,0.54);}
 .informationList p {font-size: 14px; color: rgba(0,0,0,0.87); margin: 0px 0px 12px 0px;}
 .informationList p strong {font-weight:bold;}
 .informationList .bulletPoint {display: inline-block; position: relative; width: 8px; height: 8px; background: rgba(0,0,0,0.20); border-radius: 20px; margin: 0px 15px;}
@@ -638,11 +638,11 @@ a:active{
 .couponHolder .regForm h3 a:hover {color: rgba(0,0,0,0.87);}
 .couponHolder .regForm .inputRow {margin: 0px 0px 10px 0px; position: relative;}
 .couponHolder .regForm i {position: absolute;  top: 8px; left:18px; font-size: 23px; line-height: 1px; color:#bababa;}
-.couponHolder .regForm .inputRow input, .couponHolder .regForm .inputRow select {width: 100%; font-size: 14px; letter-spacing: 1px; border:1px solid #c5c5c5; height: 40px; border-radius: 5px; padding: 0px 0px 0px 60px;}
+.couponHolder .regForm .inputRow input, .couponHolder .regForm .inputRow select {width: 100%; font-size: 14px; border:1px solid #c5c5c5; height: 45px; border-radius: 5px; padding: 0px 0px 0px 60px;}
 .couponHolder .regForm .inputRow input:focus, .couponHolder .regForm .inputRow select:focus {border:1px solid #5792cc;}
 .couponHolder .regForm .inputRow input:focus + i, .couponHolder .regForm .inputRow select:focus + i {color:#5792cc;}
-.couponHolder .regForm .inputRow input.go {background: #f77a52 !important; width:150px; transition: all  ease-in-out 0.3s; margin: 10px 0px 0px 0px; color: #fff; padding: 0px; border:none; text-align:center;}
-.couponHolder .regForm .inputRow input.go:hover {background: #303a47 !important; color:#fff !important; }
+.couponHolder .regForm .inputRow input.go {background: #f66132 !important; width:150px; transition: all  ease-in-out 0.3s; margin: 10px 0px 0px 0px; color: #fff; padding: 0px; border:none; text-align:center;}
+.couponHolder .regForm .inputRow input.go:hover {background: #15202f !important; color:#fff !important; }
 
 .couponHolder .loginForm {padding:20px; vertical-align: top; margin: 0px 15px; background: rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.10); border-radius: 10px; display: inline-block; width: calc(50% - 40px);}
 .couponHolder .loginForm h3 {font-size: 20px; margin: 0px 0px 20px 0px; color: rgba(0,0,0,0.87); display: block;}
@@ -654,11 +654,11 @@ a:active{
 .couponHolder .loginForm h5 a:hover {color: #000;}
 .couponHolder .loginForm .inputRow {margin: 0px 0px 20px 0px; position: relative;}
 .couponHolder .loginForm i {position: absolute; z-index: 2; top: 12px; left:18px; font-size: 23px; line-height: 1px; color:#bababa;}
-.couponHolder .loginForm .inputRow input {width: 100%; font-size: 14px; letter-spacing: 1px; border:1px solid #c5c5c5; height: 40px; border-radius: 5px; padding: 0px 0px 0px 60px;}
+.couponHolder .loginForm .inputRow input {width: 100%; font-size: 14px; border:1px solid #c5c5c5; height: 45px; border-radius: 5px; padding: 0px 0px 0px 60px;}
 .couponHolder .loginForm .inputRow input:focus {border:1px solid #5792cc;}
 .couponHolder .loginForm .inputRow input:focus + i {color:#5792cc;}
-.couponHolder .loginForm .inputRow input.go {background: #f77a52 !important; width:150px; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
-.couponHolder .loginForm .inputRow input.go:hover {background: #303a47 !important;}
+.couponHolder .loginForm .inputRow input.go {background: #f66132 !important; width:150px; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
+.couponHolder .loginForm .inputRow input.go:hover {background: #15202f !important;}
 
 .iqTest ol li {background: rgba(0,0,0,0.03); border:1px dashed rgba(0,0,0,0.07); padding: 15px; margin: 0px 0px 15px 0px;}
 .iqTest ol li h3 {font-size: 17px; margin: 0px 0px 12px 0px; color: #000;}
@@ -862,7 +862,7 @@ li.catstyle p{
 	background:#303a47;
 }
 .featureSlider .bx-wrapper .bx-controls-direction a:hover{
-	color:#f77a52 !important;
+	color:#f66132 !important;
 }
 	
 

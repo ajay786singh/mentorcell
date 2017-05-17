@@ -1,7 +1,7 @@
 <!-- Home Slider start -->
 <section class="homeSlider">
 <div class="searchArea">
-
+<h3>what are you looking for?</h3>
 <div class="searchNav">
 <ul>
 	<li target-form="form1" class="active">College</li>
@@ -11,43 +11,123 @@
 </div>
 
 <div class="formHolder">
-<form style="
-    width: 60%;
-    margin: 0 auto;
-"><select style="
-    width: 40%;
-    color: #fff;
-    border-bottom: 1px solid #fff;
-    height: 40px;
-"><option>Choose a collage to join</option></select><input type="text" placeholder="Select some options" style="
-    width: 40%;
-    border-bottom: solid 1px #fff;
-    margin-left: 2%;
-    height: 40px;
-"><input type="submit" value="SEARCH" style="
-    width: 16%;
-    /* float: left; */
-    background: #ff551a;
-    color: #fff;
-    padding: 5px;
-    display: inline-block;
-    margin-left: 1%;
-    height: 40px;
-"></form> 
+<div id="form1" class="searchForm active">
+<form action="search">
+<div class="formcol50">
+<select id="search_college" required='' data-placeholder="Choose a College" class="auto-choice search_college" name="college">
+<option value="">Choose a College to Join</option>
+	<?php
+			foreach($colleges as $college){
+				echo '<option value="'.$college['id'].'">'.$college['name'].'</option>';
+			}
+	?>
+</select>
+</div>
+<div class="formcol50">
+<select id="register_city_location"  class="auto-choice" multiple name="location">
+	<?php echo $location; ?>
+
+</select>
+</div>
+		<div  class="extra_filters" style="display:none;">
+			<div class="formcol00">
+			<input type="hidden" id="streamcol" value="">
+			<select id="stream"  class="auto-choice"  name="stream">
+				<?php
+
+				foreach($streams as $stream){
+				  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
+				} ?>
+
+			</select>
+			</div>
+			<div class="formcol00">
+			<input type="hidden" id="streamtype" value="">
+			<select id="type" required class="auto-choice"  name="type">
+			<option value='0'>-- Select Type --</option>
+				<?php
+
+				/*foreach($types as $type){
+				  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
+			  } */?>
+
+			</select>
+			</div>
+			<div class="formcol00">
+			<select id="course" required  class="auto-choice"  name="course_main">
+			<option value='0'>-- Select Course --</option>
+			<?php
+				/*foreach($courses as $course){
+					echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+				}*/ ?>
+
+			</select>
+			</div>
+		</div>
+<button class="go">Search</button>
+</form>
+</div>
+
+<div id="form2" class="searchForm">
+<form  action="search">
+<div class="formcol50">
+
+<select id="stream_name" required='' data-placeholder="Stream" class="auto-choice" name="stream" onChange="return getExamByCourse(this.value);">
+<option value="">Find Stream</option>
+	<?php
+			$exam_search = $this->college_model->get_all_stream();
+foreach($exam_search as $exam_search_data){
+				echo '<option value="'.$exam_search_data['stream_id'].'">'.$exam_search_data['stream_name'].'</option>';
+			}
+	?>
+</select>
+</div>
+<div class="formcol50">
+<select id="exam_lists" required  name="exam_lists">
+
+</select>
+</div>
+<button class="go" onClick="return exam_button();"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+</div>
+
+<div id="form3" class="searchForm">
+<form action="search">
+<div class="formcol50">
+<select id="search_course" required='' class="auto-choice" name="course">
+<option value="">Choose a Course to Join</option>
+	<?php
+
+		foreach($courses as $course){
+
+				echo '<option   value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+
+		}
+	?>
+</select>
+</div>
+<div class="formcol50">
+<select id="city_loc"  class="auto-choice"  name="location">
+	<?php //echo $location; ?>
+
+</select>
+</div>
+<button class="go"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+
 </div>
 
 </div>
-<div class="containerBox" style="padding: 0px 70px; width: 80% !important; margin: 0 10% !important;">
-<div class="owl-carousel owl-theme" id="main-slider" style="float:left; margin-top:30px; margin-bottom:30px;">
-    <div class="item"><img src="<?php echo base_url('assets/theme/images/banner-1.jpg'); ?>"/></div>
-    <div class="item"><img src="<?php echo base_url('assets/theme/images/banner-2.jpg'); ?>"/></div>
-    <div class="item"><img src="<?php echo base_url('assets/theme/images/banner-3.jpg'); ?>"/></div>
-    <div class="item"><img src="<?php echo base_url('assets/theme/images/banner-2.jpg'); ?>"/></div>
-    <div class="item"><img src="<?php echo base_url('assets/theme/images/banner-3.jpg'); ?>"/></div>
-    <div class="item"><img src="<?php echo base_url('assets/theme/images/banner-1.jpg'); ?>"/></div>
-</div>
+
 </div>
 
+<div class="mobileAppIcons hidden-xs"><a href="#"><img src="<?php echo base_url('assets/theme/images/googleplay.jpg'); ?>"></a></div>
+
+<ul class="bxslider">
+<li><img src="<?php echo base_url('assets/theme/images/slide1.jpg'); ?>"></li>
+<li><img src="<?php echo base_url('assets/theme/images/slide1.jpg'); ?>"></li>
+<li><img src="<?php echo base_url('assets/theme/images/slide1.jpg'); ?>"></li>
+</ul>
 </section>
 <!-- Home Slider close -->
 
@@ -165,39 +245,12 @@ foreach($home_logo as $logo){
 </div>
 </div>
 <style>
-	
-.homeSlider .searchArea {
-    float: left;
-    margin-top: 0px;
-    background: #172031;
-    width: 100%;
-	position: relative;
-    z-index: 12;
-	padding:4px 0 20px;
-    top: 0;
-    left: 0;
-    transform: none;
-    transition: none;
-}	
-
-	
-	
 img.play-img {
     position: absolute;
     top: 20%;
     width: 60px !important;
     left: 35%;
 }
-	
-.searchArea ul {
-    width: 100%;
-    float: left;
-    text-align: center;
-}
-	
-.searchArea ul li{display:inline-block; float:none;}	
-	
-	
 	</style>
 <div class="col-xs-12 col-sm-12 text-center col-md-12 text-center col-lg-12" style="margin-top: 30px;">
 <div class="careerCol">

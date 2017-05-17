@@ -185,6 +185,26 @@ class Common_model extends CI_Model {
         return $result;
     }
 	
+		function get_college_detail_bylimit($table,$stream_name,$stream_value)
+    {
+		$limit = 8;
+		$start = 0;
+        $this->db->where("$stream_name",$stream_value);
+		$this->db->limit($limit,$start);
+		$this->db->group_by('college_id'); 
+        $result = $this->db->get($table)->result_array();
+        return $result;
+    }
+	
+		function college_count($table,$stream_name,$stream_value)
+    {
+        $this->db->where("$stream_name",$stream_value);
+		$this->db->group_by('college_id'); 
+        $result = $this->db->get($table)->num_rows();
+        return $result;
+		
+    }
+	
 	
     
 }

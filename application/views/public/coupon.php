@@ -7,19 +7,20 @@
 <style>
 .couponHolder .regForm .inputRow {
     margin: 0px 0px 20px 0px;
+
     }
 
-.couponHolder .regForm .inputRow input.go {
 
-margin:28px 0px 5px 0px;
-}
 .couponHolder .loginForm {
 	margin:23px 15px;
 }
 .couponHolder .regForm .inputRow {
     margin: 0px 0px 20px 0px;
     float: left;
-    width: 100%;
+    
+}
+.couponHolder .regForm .inputRow:nth-child(4){
+	width:50% !important;
 }
 
 </style>
@@ -48,7 +49,7 @@ margin:28px 0px 5px 0px;
 	<div class="couponRow <?php echo $couponBox1;?>" id="couponBox1">
 		<div class="regForm">
             <div class="orline">
-            <img src="<?php echo base_url()?>assets/theme/images/or-line.png">
+            <img src="http://nationproducts.in/mentorcell/assets/theme/images/or-line.png">
             </div>
 			<h3>Want to be a part of it?</h3>
 			<div id="register_response"></div>
@@ -58,17 +59,17 @@ margin:28px 0px 5px 0px;
 					<input type="text" id="register_fname" required='' placeholder="Enter your full Name" name="">
 					<i class="icon-name"></i>
 				</div>
-				<div class="inputRow coupon-detel">
+				<div class="col-md-12 inputRow coupon-detel">
                     <span>Last Name</span>
 					<input type="text" id="register_lname" required='' placeholder="Last Name" name="">
 					<i class="icon-name"></i>
 				</div>
-				<div class="col-md-12 inputRow coupon-detel">
+				<div class="col-md-6 inputRow coupon-detel">
                      <span>Email Address</span>
 					<input type="email" id="register_email" required='' placeholder="Enter your ID" name="">
 					<i class="icon-email"></i>
 				</div>
-				<div class="col-md-12 inputRow coupon-detel">
+				<div class="col-md-6 inputRow coupon-detel">
                      <span>Mobile Number</span>
 					<input type="number" id="register_phone" pattern="/(7|8|9)\d{9}/" required='' placeholder="Contact No" name="">
 					<i class="icon-phone-call"></i>
@@ -118,7 +119,7 @@ margin:28px 0px 5px 0px;
 				</div>
 
                 
-                <div class="col-md-12 inputRow coupon-detel">
+                <div class="col-md-6 inputRow coupon-detel">
                      <span>Counsellor</span>
 					<input type="hidden" value="<?php echo $referral_key;?>"  id="register_refer-key"  name="">
 					<i class="icon-city"></i>
@@ -135,7 +136,7 @@ margin:28px 0px 5px 0px;
 
 				
 				
-				<div class="col-md-6 inputRow coupon-detel">
+				<div class="col-md-12 inputRow coupon-detel">
 					<input type="button" value="Register"  id="register_button" class="go" name="">
 				</div>
 			</form>
@@ -252,12 +253,11 @@ margin:28px 0px 5px 0px;
 <style>
 .couponHolder .regForm .inputRow input, .couponHolder .regForm .inputRow select {
     width: 100%;
-    font-size: 12px;
-    letter-spacing: 1px;
+    font-size: 13px;
     border: 1px solid #c5c5c5;
-    height: 40px;
+    height: 45px;
     border-radius: 0px;
-    padding: 0 0px 0px 37px;
+    padding: 0 0px 0px 42px;
     margin-top: 10px;
 }
     .couponHolder .regForm i {
@@ -269,7 +269,7 @@ margin:28px 0px 5px 0px;
     color: #bababa;
 }
     .couponHolder .regForm {
-    background: none;
+    background: #f8f8f8;
     border: 1px solid rgba(0,0,0,0.10);
     width: 46%; margin: 2%; border-radius: 2px; padding: 45px 45px;
         
@@ -278,14 +278,14 @@ margin:28px 0px 5px 0px;
     padding: 0px 4px;
 }
     .couponHolder .loginForm {
-    background: none;
+    background: #f8f8f8;
     border: 1px solid rgba(0,0,0,0.10);width: 46%; margin: 2%; border-radius: 2px;padding: 45px 45px;
         
 }
 .couponHolder .loginForm .inputRow input.go{width: 115px;background: #ea5c2e;font-size: 14px;
-text-transform: uppercase;}
-.couponHolder .regForm .inputRow input.go{width: 115px;background: #ea5c2e;font-size: 14px;text-transform: uppercase;}
-.couponHolder .loginForm .inputRow input{margin-top: 10px;padding: 0 0px 0px 37px;border-radius: 0px; font-size: 12px;}
+text-transform: uppercase; border-radius:6px;}
+.couponHolder .regForm .inputRow input.go{width: 115px;background: #ea5c2e;font-size: 14px;text-transform: uppercase; border-radius:6px; }
+.couponHolder .loginForm .inputRow input{margin-top: 10px;padding: 0 0px 0px 42px;border-radius: 0px; font-size: 13px;}
 .couponHolder .loginForm i{top: 44px;
 left: 20px;
 font-size: 16px;}
@@ -307,7 +307,7 @@ width:2px;
 .couponTabs ul li h3 i{ display: none;}
 .couponTabs ul li h4{padding: 20px 0px 0px 0px;font-weight: 600;}
 .couponTabs ul li{opacity: 1;}
-    .couponHolder{ background: rgba(0,0,0,0.04);margin: 25px 0;}
+    .couponHolder{ background:#f8f8f8;margin: 25px 0;}
     .couponHolder .regForm h3{font-weight: 600;}
     .couponHolder .loginForm h3{font-weight: 600;}
     .couponHolder .loginForm .inputRow{float: left;}
@@ -318,7 +318,11 @@ width:2px;
     
     .couponTabs ul li.active h3 img{
 filter: invert(0) !important;
-}
+	}
+
     
+	.couponHolder {
+    background:none !important; 
 }
+
 </style>

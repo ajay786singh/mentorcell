@@ -9,6 +9,7 @@
 <div class="col-xs-12 col-sm-3 col-md-2"><div class="collegeThumb"><img  width ="100%" src="<?php echo base_url()."upload/".$college->logo; ?>"></div></div>
 <div class="col-xs-12 col-sm-9 col-md-10">
 <div class="collegeQuick">
+
 <h2><?php echo $college->name; ?><span class="reviewRating"><b>(4.5/5)</b>&nbsp;<span class="rev">(37 Reviews)</span></span></h2>
 <h3><?php echo $college->address; ?><?php echo $college->city; ?>, 
 					<?php echo $college->state; ?><br/>
@@ -25,7 +26,6 @@
 <div class="row">
 <div class="containerBox">
 <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
-
 <div class="sectionGap">
 <div class="heading1" id="college-videos-photos">College Photos and Videos(<?php echo count($videos); ?> Videos, <?php echo count($images); ?> Photos)</div>
 
@@ -42,138 +42,44 @@
 </div>
 <div class="sectionGap">
 <div class="heading1" id="courses-offered">Courses offered</div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <!--course loop-->
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-  <script>$(function () {			
-                    $('a[data-toggle="collapse"]').on('click',function(){
-				
-				var objectID=$(this).attr('href');
-				
-				if($(objectID).hasClass('in'))
-				{
-                                    $(objectID).collapse('hide');
-				}
-				
-				else{
-                                    $(objectID).collapse('show');
-				}
-                    });
-                    
-                    
-                    $('#expandAll').on('click',function(){
-                        
-                        $('a[data-toggle="collapse"]').each(function(){
-                            var objectID=$(this).attr('href');
-                            if($(objectID).hasClass('in')===false)
-                            {
-                                 $(objectID).collapse('show');
-                            }
-                        });
-                    });
-                    
-                    $('#collapseAll').on('click',function(){
-                        
-                        $('a[data-toggle="collapse"]').each(function(){
-                            var objectID=$(this).attr('href');
-                            $(objectID).collapse('hide');
-                        });
-                    });
-                    
-		});</script>
-            <div class="panel-group" id="accordion">
-			<?php for($i=1;$i<3;$i++){ ?>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                         <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i;?>" class="">
-                                Collapsible Group Item #<?php echo $i;?>
-                              </a>
-                            </h4>
-
-                    </div>
-                    <div id="collapse<?php echo $i;?>" class="panel-collapse collapse">
-                        <div class="panel-body">
-						<li> <strong style="font-weight:bold;">Title:</strong> test</a>
-	        <p> <strong style="font-weight:bold;">Duration:</strong> Test1 </p>
-		<p> <strong style="font-weight:bold;">Recognition:</strong> Test3 </p>
-		<p> <strong style="font-weight:bold;">Fee:</strong> Test4</p>
-				<p> <strong style="font-weight:bold;">Exam:</strong> Test5</p>
-					<p> <strong style="font-weight:bold;">Procedure:</strong> Test6</p></li>
-                     </div>
-                    </div>
-                </div>
-				<?php  } ?>
-                
-                
-            </div>
 			
-			<?php
-foreach($stream_ids as $streamsdata){
-	$streamsname = $this->college_model->get_strem_data($streamsdata['stream_id']);
+			<?php foreach($stream_ids as $streamsdata){
+$streamsname = $this->college_model->get_strem_data($streamsdata['stream_id']);
 	if($streamsname){
-	echo '<div class="coursesOffer"><h3> '.$streamsname->stream_name.'<span class="collegeClose"></span></h3>';
-	$courses = $this->college_model->get_types_by_stream($streamsdata['stream_id'],$streamsdata['college_id']);
-	echo  '<div class="subCourses">
-	<ul id="collegetab'.$streamsdata['stream_id'].'" >';
-	foreach($courses as $course){
-	if($course['course_id']>0){
-		$coursename = $this->college_model->get_course_data($course['course_id']);
-		
-		
-		                                   echo '<li> <strong style="font-weight:bold;">Title:</strong> '.$coursename->course_name.'</a>';
-											echo '<p> <strong style="font-weight:bold;">Duration:</strong> '.$coursename->course_duration.'</p>';
-														echo '<p> <strong style="font-weight:bold;">Recognition:</strong> '.$course['recognition'].'</p>';
-														echo '<p> <strong style="font-weight:bold;">Fee:</strong> '.$course['fee'].'</p>';
-														echo '<p> <strong style="font-weight:bold;">Exam:</strong> '.$course['exam'].'</p>';
-														echo '<p> <strong style="font-weight:bold;">Procedure:</strong> '.$course['procedure'].'</p></li>';
-	}
-
-	}
-	echo  '</ul></div>'; 
-	echo "</div>";
-	}
-}
-
-
-/*foreach($stream_ids as $stream){
-						if(in_array($stream['stream_id'],@$stream_id)){
-							  echo '<div class="coursesOffer"><h3> '.$stream['stream_name'].'<span class="collegeClose"></span></h3>';
-							  foreach($types as $type){
-											  if(in_array($type['type_id'],@$type_id)){
-											  echo '<h4 data-tab="collegetab'.$type['type_id'].'"><strong style="font-weight:bold;">'.$type['type_name'].'</strong></h4>';
-											  
-											  
-											  echo  '<div class="subCourses">
-												<ul id="collegetab'.$type['type_id'].'" >';
-											  
-												foreach($course_id as $course){
-														echo '<li> <strong style="font-weight:bold;">Title:</strong> '.$course->title.'</a>';
-														echo '<p> <strong style="font-weight:bold;">Duration:</strong> '.$course->duration.'</p>';
-														echo '<p> <strong style="font-weight:bold;">Recognition:</strong> '.$course->recognition.'</p>';
-														echo '<p> <strong style="font-weight:bold;">Fee:</strong> '.$course->fee.'</p>';
-														echo '<p> <strong style="font-weight:bold;">Exam:</strong> '.$course->exam.'</p>';
-														echo '<p> <strong style="font-weight:bold;">Procedure:</strong> '.$course->procedure.'</p></li>';
-												}
-												
-											  
-											 echo  '</ul></div>'; 
-											 }
-								 } 
-							  
-							echo "</div>";  
-							  
+		echo '<button class="accordion">'.$streamsname->stream_name.'</button>';
+		$courses = $this->college_model->get_types_by_stream($streamsdata['stream_id'],$streamsdata['college_id']);
+		echo '<div class="panel">';
+                        echo '<div class="panel-body">';
+						echo '<ul>';
+						foreach($courses as $course){
+							if($course['course_id']>0){
+								$coursename = $this->college_model->get_course_data($course['course_id']);
+						echo '<li style="border-bottom: 1px solid #f0eded;border-bottom-width: 10%;margin-bottom: 10px;"> <strong style="font-weight:bold;">Course Name:</strong>&nbsp;'. $coursename->course_name.'</a>';
+	        echo '<p> <strong style="font-weight:bold;">Duration:</strong>&nbsp;'. $coursename->course_duration.'</p>';
+		echo '<p> <strong style="font-weight:bold;">Recognition:</strong>&nbsp;'. $course['recognition'].'</p>';
+		echo '<p> <strong style="font-weight:bold;">Fee:</strong>&nbsp;'. $course['fee'].'</p>';
+				echo '<p> <strong style="font-weight:bold;">Exam:</strong>&nbsp;'. $course['exam'].'</p>';
+					echo '<p> <strong style="font-weight:bold;">Procedure:</strong>&nbsp;'. $course['procedure'].'</p></li>';
+							}else{
+								echo '<li style="border-bottom: 1px solid #f0eded;border-bottom-width: 10%;margin-bottom: 10px;"> <strong style="font-weight:bold;">Course Name:</strong></a>';
+	        echo '<p> <strong style="font-weight:bold;">Duration:</strong></p>';
+		echo '<p> <strong style="font-weight:bold;">Recognition:</strong></p>';
+		echo '<p> <strong style="font-weight:bold;">Fee:</strong></p>';
+				echo '<p> <strong style="font-weight:bold;">Exam:</strong></p>';
+					echo '<p> <strong style="font-weight:bold;">Procedure:</strong></p></li>';
+							}
 						}
-											  
-					}*/
-?>
+					echo '</ul>';
+					echo '</div>';
+					echo '</div>';
+	}
+			}
+			?>
+		</div>	
+			
+
 <!--course loop-->
-</div>
-</div>
 <div class="sectionGap">
 <div class="heading1" id="why-join">Why Join <?php echo $college->name; ?></div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -328,7 +234,7 @@ foreach($stream_ids as $streamsdata){
 </div>
 </div>
 
-<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+<div style="position: absolute;right: 0px;" class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
 <div class="collegeSidenav">
 <ul>
 <li><a href="#counselling-video">Counselling Videos</a></li>
@@ -384,9 +290,65 @@ foreach($stream_ids as $streamsdata){
    
 
 </style>
-</div>
-</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
 
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+<style>
+button.accordion {
+    background:#fff;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 14px;
+    transition: 0.4s;
+	border-bottom: 1px solid #eae9e9 !important;
+    font-family: 'ubuntumedium';
+	color: rgba(0,0,0,0.87);
+}
+
+
+
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+	border:none;
+	
+}
+</style>
+
+</div>
+</div>
 </div>
 </div>
 </div>

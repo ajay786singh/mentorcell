@@ -209,6 +209,17 @@ $('html, body').animate({
 
 });
 
+$('.vertical a').click(function(e){
+  e.preventDefault();
+var scrollTarget = $(this).attr('href'),
+    scrollPoint = $(scrollTarget).offset().top - 60; 
+$('html, body').animate({
+       scrollTop:  scrollPoint
+
+    });
+
+});
+
 /***this is for profile section start***/
 
 $('.profileTab ul li a').click(function(e){

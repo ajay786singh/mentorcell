@@ -67,8 +67,8 @@ for($i=0;$i<count($exam);$i++){
 <?php  //echo "<pre>";
 //print_r($fees);
  ?>
-<p><?php if($college_detail OR !empty($college_detail->fee)){
-		 echo $college_detail->fee;
+<p><?php if($college_detail OR !empty($college_detail->fee)){ ?>
+		Rs. <?php echo $college_detail->fee;
  } ?></p>
 </div>
 

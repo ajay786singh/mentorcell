@@ -155,16 +155,28 @@ foreach($get_college as $college){
 <h3>Popular Colleges</h3>
 <div class="links">
 <?php 
+$college_count = $this->common_model->college_count("mc_course_assignment","stream_id","37");
+if($college_count>5){
+	$get_college1 = $this->common_model->get_college_detail_bylimit("mc_course_assignment","stream_id","37");
+
+}else{
 $get_college1 = $this->common_model->get_college_detail("mc_course_assignment","stream_id","37");
+	
+}
  if($get_college1){
+
 foreach($get_college1 as $college1){
 	 $manage_college_location1 = $this->common_model->get_all_main_course("mc_colleges","id",$college1['college_id'],"popular_colleges","1");
+	
 	foreach($manage_college_location1 as $college_location1){ ?>
 		<span class="sublinks"><a href="<?php echo base_url('home/search?college='.$college_location1["id"]); ?>"><?=$college_location1['name'];?></a></span>
 	<?php }
-}
+	 }
  }
  ?>
+ <?php if($college_count>5){ ?>
+ <span class="buttonstyle"><a href="<?php echo base_url('home/all_college?id=37&type=popular'); ?>">View All</a></span>
+<?php } ?>
 </div>
 </div>
 
@@ -172,7 +184,14 @@ foreach($get_college1 as $college1){
 <h3>Featured Colleges</h3>
 <div class="links">
 <?php 
+$college_count2 = $this->common_model->college_count("mc_course_assignment","stream_id","37");
+if($college_count2>5){
+	$get_college2 = $this->common_model->get_college_detail_bylimit("mc_course_assignment","stream_id","37");
+
+}else{
 $get_college2 = $this->common_model->get_college_detail("mc_course_assignment","stream_id","37");
+	
+}
  if($get_college2){
 foreach($get_college2 as $college2){
 $manage_college_location2 = $this->common_model->get_all_main_course("mc_colleges","id",$college2['college_id'],"featured_colleges","1");
@@ -182,6 +201,9 @@ $manage_college_location2 = $this->common_model->get_all_main_course("mc_college
 }
  }
  ?>
+ <?php if($college_count2>5){ ?>
+ <span class="buttonstyle"><a href="<?php echo base_url('home/all_college?id=37&type=featured'); ?>">View All</a></span>
+<?php } ?>
 </div>
 </div>
 
@@ -274,7 +296,14 @@ foreach($get_college_eng as $college_eng){
 <h3>Popular Colleges</h3>
 <div class="links">
 <?php 
+$college_count3 = $this->common_model->college_count("mc_course_assignment","stream_id","34");
+if($college_count3>5){
+	$get_college_eng1 = $this->common_model->get_college_detail_bylimit("mc_course_assignment","stream_id","34");
+
+}else{
 $get_college_eng1 = $this->common_model->get_college_detail("mc_course_assignment","stream_id","34");
+	
+}
  if($get_college_eng1){
 foreach($get_college_eng1 as $college_eng1){
  $eng_college_location1 = $this->common_model->get_all_main_course("mc_colleges","id",$college_eng1['college_id'],"popular_colleges","1");
@@ -284,6 +313,9 @@ foreach($get_college_eng1 as $college_eng1){
 }
  }
  ?>
+ <?php if($college_count3>5){ ?>
+ <span class="buttonstyle"><a href="<?php echo base_url('home/all_college?id=34&type=popular'); ?>">View All</a></span>
+<?php } ?>
 </div>
 </div>
 
@@ -291,7 +323,14 @@ foreach($get_college_eng1 as $college_eng1){
 <h3>Featured Colleges</h3>
 <div class="links">
 <?php 
+$college_count4 = $this->common_model->college_count("mc_course_assignment","stream_id","34");
+if($college_count4>5){
+	$get_college_eng2 = $this->common_model->get_college_detail_bylimit("mc_course_assignment","stream_id","34");
+
+}else{
 $get_college_eng2 = $this->common_model->get_college_detail("mc_course_assignment","stream_id","34");
+	
+}
  if($get_college_eng2){
 foreach($get_college_eng2 as $college_eng2){
 $eng_college_location2 = $this->common_model->get_all_main_course("mc_colleges","id",$college_eng2['college_id'],"featured_colleges","1");
@@ -301,6 +340,9 @@ $eng_college_location2 = $this->common_model->get_all_main_course("mc_colleges",
 }
  }
  ?>
+<?php if($college_count4>5){ ?>
+ <span class="buttonstyle"><a href="<?php echo base_url('home/all_college?id=34&type=featured'); ?>">View All</a></span>
+<?php } ?>
 </div>
 </div>
 </div>
@@ -623,5 +665,10 @@ mainMenu .subMenuArea .subMenubox .sublinks a {
 header#header {
    z-index: 13;
 }
+.buttonstyle a{
+color: #15202f;
+cursor:pointer;
+}
+
 </style>
 <!-- header close -->

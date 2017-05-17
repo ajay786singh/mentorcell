@@ -11,32 +11,160 @@
 </div>
 
 <div class="formHolder">
-<form style="
-    width: 60%;
-    margin: 0 auto;
-"><select style="
-    width: 40%;
-    color: #fff;
-    border-bottom: 1px solid #fff;
-    height: 40px;
-"><option>Choose a collage to join</option></select><input type="text" placeholder="Select some options" style="
-    width: 40%;
-    border-bottom: solid 1px #fff;
-    margin-left: 2%;
-    height: 40px;
-"><input type="submit" value="SEARCH" style="
+<div id="form1" class="sas active">
+   <form action="search" style="width: 60%;margin: 0 auto;">
+   <select class="col-to-join" id="search_college" required='' data-placeholder="Choose a College" class="auto-choice search_college" name="college">
+<option value="">Choose a College to Join</option>
+	<?php
+			foreach($colleges as $college){
+				echo '<option value="'.$college['id'].'">'.$college['name'].'</option>';
+			}
+	?>
+</select>
+  <select style="width: 40%; border-bottom: solid 1px #fff; margin-left: 2%; height: 40px;" id="register_city_location"  class="auto-choice" multiple name="location">
+	<?php echo $location; ?>
+
+</select>
+  
+  
+  <div  class="extra_filters" style="display:none;">
+			<div class="formcol00">
+			<input type="hidden" id="streamcol" value="">
+			<select id="stream"  class="auto-choice"  name="stream">
+				<?php
+
+				foreach($streams as $stream){
+				  echo '<option  value="'.$stream['stream_id'].'">'.$stream['stream_name'].'</option>';
+				} ?>
+
+			</select>
+			</div>
+			<div class="formcol00">
+			<input type="hidden" id="streamtype" value="">
+			<select id="type" required class="auto-choice"  name="type">
+			<option value='0'>-- Select Course --</option>
+				<?php
+
+				/*foreach($types as $type){
+				  echo '<option  value="'.$type['type_id'].'">'.$type['type_name'].'</option>';
+			  } */?>
+
+			</select>
+			</div>
+			<div class="formcol00">
+			<select id="course" required  class="auto-choice"  name="course_main">
+			<option value='0'>-- Select Specialization --</option>
+			<?php
+				/*foreach($courses as $course){
+					echo '<option  value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+				}*/ ?>
+
+			</select>
+			</div>
+		</div>
+  
+  
+  
+  
+   <!--<input type="submit" value="Search" style="
     width: 16%;
-    /* float: left; */
     background: #ff551a;
     color: #fff;
     padding: 5px;
     display: inline-block;
     margin-left: 1%;
     height: 40px;
-"></form> 
+">-->
+<button class="go"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+</div> 
+<div id="form2" class="sas">
+<form  action="search">
+   <select id="stream_name" required='' data-placeholder="Stream" class="auto-choice" name="stream" onChange="return getExamByCourse(this.value);">
+<option value="">Find Stream</option>
+	<?php
+			$exam_search = $this->college_model->get_all_stream();
+foreach($exam_search as $exam_search_data){
+				echo '<option value="'.$exam_search_data['stream_id'].'">'.$exam_search_data['stream_name'].'</option>';
+			}
+	?>
+</select>
+
+<select id="exam_lists" required  name="exam_lists">
+
+</select>
+
+<button class="go" onClick="return exam_button();"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+</div> 
+<div id="form3" class="sas">
+  <form action="search">
+   <select id="search_course" required='' class="auto-choice" name="course">
+<option value="">Choose a Course to Join</option>
+	<?php
+
+		foreach($courses as $course){
+
+				echo '<option   value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
+
+		}
+	?>
+</select>
+<select id="city_loc"  class="auto-choice"  name="location">
+	<?php //echo $location; ?>
+
+</select>
+<button class="go"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+</div> 
 </div>
 
 </div>
+	<style>
+		.sas{display:none;}
+		.sas.active{display:block;}
+		div#form2 {
+    width: 60%;
+    margin: 0 auto;
+}
+	div#form3 {
+    width: 60%;
+    margin: 0 auto;
+}	
+		
+	select#search_course {
+    width: 40%;
+    display: inline-block !important;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+	background: #172031;
+}
+
+		
+	select#city_loc {
+    width: 40%;
+    display: inline-block !important;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+	background: #172031;
+}
+
+		
+		select#stream_name {
+    width: 40%;
+    display: inline-block !important;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+			background: #172031;
+}
+		select#exam_lists {
+    margin-right: 15px;
+    width: 40%;
+    color: #fff;
+	background: #172031;		
+    border-bottom: solid 1px #fff;
+}
+	</style>
 <div class="containerBox" style="padding: 0px 70px; width: 80% !important; margin: 0 10% !important;">
 <div class="owl-carousel owl-theme" id="main-slider" style="float:left; margin-top:30px; margin-bottom:30px;">
     <div class="item"><img src="<?php echo base_url('assets/theme/images/banner-1.jpg'); ?>"/></div>

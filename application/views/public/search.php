@@ -2,7 +2,6 @@
 
 <?php
 $cad = $this->college_model->get_course_data($coursename);
-
 ?>
 <section class="bgWhite collegeHead">
 <div class="container">
@@ -15,7 +14,7 @@ $cad = $this->college_model->get_course_data($coursename);
 <select class="auto-choice" data-placeholder="Choose a Course" data-placeholder="Choose a Course"  id="course" name="course">
 <!--<select  id="course" name="course">-->
 <?php foreach($course_list as $couselist){ ?>
-	<option <?php if($couselist['course_id']==$cad->course_id){echo 'selected'; } ?> value="<?=$couselist['course_id']?>"><?=$couselist['course_name']?></option>
+	<option <?php if($couselist['course_id']==$coursename){echo 'selected'; } ?> value="<?=$couselist['course_id']?>"><?=$couselist['course_name']?></option>
 <?php } ?>
 
 </select>

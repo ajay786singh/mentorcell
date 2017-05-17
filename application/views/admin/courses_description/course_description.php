@@ -43,7 +43,8 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">About Study</label>
-                  <input type="text"  class="form-control" name="about_study" id="about_study" value="<?php echo @$course_description_page_name_list['about_study']; ?>" placeholder="">
+                 <!-- <input type="text"  class="form-control" name="about_study" id="about_study" value="<?php echo @$course_description_page_name_list['about_study']; ?>" placeholder="">-->
+				   <textarea  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="about_study" id="about_study"><?php echo @$course_description_page_name_list['about_study']; ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Eligibility</label>

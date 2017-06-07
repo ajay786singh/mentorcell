@@ -5,15 +5,14 @@
 <div class="container">
 <div class="row">
 <div class="containerBox">
-
 <div class="col-xs-12 col-sm-3 col-md-2"><div class="collegeThumb"><img  width ="100%" src="<?php echo base_url()."upload/".$college->logo; ?>"></div></div>
 <div class="col-xs-12 col-sm-9 col-md-10">
 <div class="collegeQuick">
 
 <h2><?php echo $college->name; ?><span class="reviewRating"><b>(4.5/5)</b>&nbsp;<span class="rev">(37 Reviews)</span></span></h2>
 <h3><?php echo $college->address; ?><?php echo $college->city; ?>, 
-					<?php echo $college->state; ?><br/>
-					<?php echo $college->country; ?> <?php echo $college->pincode; ?></h3>
+<?php echo $college->state; ?><br/>
+<?php echo $college->country; ?> <?php echo $college->pincode; ?></h3>
 </div>
 </div>
 
@@ -46,35 +45,38 @@
 			
 			<?php foreach($stream_ids as $streamsdata){
 $streamsname = $this->college_model->get_strem_data($streamsdata['stream_id']);
+$streamid = $streamsdata['stream_id'];
 	if($streamsname){
-		echo '<button class="accordion">'.$streamsname->stream_name.'</button>';
-		$courses = $this->college_model->get_types_by_stream($streamsdata['stream_id'],$streamsdata['college_id']);
-		echo '<div class="panel">';
-                        echo '<div class="panel-body">';
-						echo '<ul>';
-						foreach($courses as $course){
-							if($course['course_id']>0){
-								$coursename = $this->college_model->get_course_data($course['course_id']);
-						echo '<li style="border-bottom: 1px solid #f0eded;border-bottom-width: 10%;margin-bottom: 10px;"> <strong style="font-weight:bold;">Course Name:</strong>&nbsp;'. $coursename->course_name.'</a>';
-	        echo '<p> <strong style="font-weight:bold;">Duration:</strong>&nbsp;'. $coursename->course_duration.'</p>';
-		echo '<p> <strong style="font-weight:bold;">Recognition:</strong>&nbsp;'. $course['recognition'].'</p>';
-		echo '<p> <strong style="font-weight:bold;">Fee:</strong>&nbsp;'. $course['fee'].'</p>';
-				echo '<p> <strong style="font-weight:bold;">Exam:</strong>&nbsp;'. $course['exam'].'</p>';
-					echo '<p> <strong style="font-weight:bold;">Procedure:</strong>&nbsp;'. $course['procedure'].'</p></li>';
-							}else{
-								echo '<li style="border-bottom: 1px solid #f0eded;border-bottom-width: 10%;margin-bottom: 10px;"> <strong style="font-weight:bold;">Course Name:</strong></a>';
-	        echo '<p> <strong style="font-weight:bold;">Duration:</strong></p>';
-		echo '<p> <strong style="font-weight:bold;">Recognition:</strong></p>';
-		echo '<p> <strong style="font-weight:bold;">Fee:</strong></p>';
-				echo '<p> <strong style="font-weight:bold;">Exam:</strong></p>';
-					echo '<p> <strong style="font-weight:bold;">Procedure:</strong></p></li>';
-							}
-						}
-					echo '</ul>';
-					echo '</div>';
-					echo '</div>';
-	}
-			}
+	?>
+	<button class="accordion"><?=$streamsname->stream_name?></button>
+	<?php $courses = $this->college_model->get_types_by_stream($streamsdata['stream_id'],$streamsdata['college_id']); ?>
+<div class="panel">
+
+<?php foreach($courses as $course){ 
+if($course['course_id']>0){
+	$coursename = $this->college_model->get_course_data($course['course_id']);
+	$courseid = $course['course_id'];
+	$specdat = $this->common_model->get_all_coursespecialization($course['course_id']);
+?>
+<button class="accordion"><?=$coursename->course_name?>(<?=count($specdat)?>)</button>
+
+<div class="panel">
+  <ul>
+  <?php foreach($specdat as $specialdada){
+$special_data = $this->common_model->get_single_row('mc_specialization','specialization_id',$specialdada['specialization_id']);
+$specid = $specialdada['specialization_id'];
+  ?>
+    <li><a href="<?php echo base_url()."search?college=".$college->id."&stream=".$streamid."&type=".$courseid."&course_main=".$specid; ?>"><?=$special_data['specialization_name'];?></a></li>
+  <?php } ?>
+  </ul>
+</div>
+
+<?php } } ?>
+</div>
+
+
+<?php
+	}	}
 			?>
 		</div>	
 			
@@ -301,12 +303,25 @@ for (i = 0; i < acc.length; i++) {
     if (panel.style.maxHeight){
       panel.style.maxHeight = null;
     } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+      panel.style.maxHeight = "1000px";
     } 
   }
 }
 </script>
 <style>
+
+/**24-5-2017**/
+
+
+.collegeVideoSlide .bx-wrapper .bx-controls-direction a{
+	z-index: 1;
+}
+.bx-viewport {
+    height: 169px !important;
+}
+
+
+
 button.accordion {
     background:#fff;
     cursor: pointer;
@@ -345,6 +360,7 @@ div.panel {
 	border:none;
 	
 }
+
 </style>
 
 </div>

@@ -71,11 +71,34 @@ class Common_model extends CI_Model {
         $result = $this->db->get($table)->result_array();
         return $result;
     }
+
+    	function get_all_colleges($table, $where_col, $where_val, $order_by="", $limit="")
+    {
+        $this->db->select("name, logo, banner, id");
+        $this->db->where("$where_col",$where_val);
+		if($order_by) {
+			$this->db->order_by($order_by);
+		}
+		if($limit) {
+			$this->db->limit($limit);
+		}
+		
+        $result = $this->db->get($table)->result_array();
+        return $result;
+    }
 	
 	function get_all_specialization($table, $where_col, $where_val) {
 		$this->db->where("$where_col",$where_val);
         $row = $this->db->get($table)->result_array();
-		
+        return $row;
+    }
+	
+	function get_all_coursespecialization($where_val) {
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('course_id', $where_val);
+		$this->db->group_by('specialization_id');
+		$row= $this->db->get()->result_array();
         return $row;
     }
 	function get_all_leftspecialization($table, $where_col, $where_val) {
@@ -154,6 +177,33 @@ class Common_model extends CI_Model {
 		return $result;
 		
 	}	
+	
+		function export_counsel_data(){
+		$this->db->select('mc_counselling_data.id,mc_counselling_data.name,mc_counselling_data.email,mc_counselling_data.phone,stream.stream_name,courses.course_name,mc_counselling_data.message,mc_counselling_data.created');
+		$this->db->from('mc_counselling_data');
+		$this->db->join('mc_streams as  stream', 'stream.stream_id =  mc_counselling_data.intrested', 'LEFT');
+		$this->db->join('mc_courses as  courses', 'courses.course_id =  mc_counselling_data.courses', 'LEFT');
+		
+		$result = $this->db->get()->result_array();
+
+		return $result;
+		
+	}	
+	
+	function export_study_data(){
+		$this->db->select('mc_studyabroad_data.id as studyid,mc_studyabroad_data.name,mc_studyabroad_data.email,mc_studyabroad_data.phone,states.name as state_name,districts.name as city_name,mc_desire_country.name as country_name,mc_desire_course.name as course_name,mc_intake.name as intake_name');
+		$this->db->from('mc_studyabroad_data');
+		$this->db->join('mc_desire_country', 'mc_desire_country.id =  mc_studyabroad_data.country', 'LEFT');
+		$this->db->join('states', 'states.id =  mc_studyabroad_data.state', 'LEFT');
+		$this->db->join('districts', 'districts.id =  mc_studyabroad_data.city', 'LEFT');
+		$this->db->join('mc_intake', 'mc_intake.id =  mc_studyabroad_data.intake', 'LEFT');
+		$this->db->join('mc_desire_course', 'mc_desire_course.id =  mc_studyabroad_data.courses', 'LEFT');
+		
+		$result = $this->db->get()->result_array();
+
+		return $result;
+		
+	}
 	/*get user data to export*/
 	
 	/**
@@ -205,6 +255,23 @@ class Common_model extends CI_Model {
 		
     }
 	
+	function get_more_course($college_id)
+    {
+        $this->db->where("college_id",$college_id);
+		$this->db->group_by('course_id'); 
+        $result = $this->db->get("mc_course_assignment")->result_array();
+        return $result;
+    }
+	
+		function get_course_row($courseid,$collegeid){
+		/**/
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $collegeid);
+		$this->db->where('course_id', $courseid);
+		$result = $this->db->get()->row_object();
+		return $result;
+	}
 	
     
 }

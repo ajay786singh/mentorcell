@@ -5,6 +5,15 @@ a, input, button, *:focus {outline: none; color: #333;}
 
 
 
+.footerWidget h3 a {
+    color: #fff;
+}
+.footerWidget h3 a:hover{
+	color:#f66132;
+}
+
+
+
 
 .collegeSearch input[type="submit"]:hover{
 	background:#303a47;
@@ -12,6 +21,76 @@ a, input, button, *:focus {outline: none; color: #333;}
 	transition: all ease-in-out 0.3s;
 	font-family: 'open', sans-serif;
 }
+
+ul.chosen-results li{
+	text-align:left;
+}
+.bxslider li:nth-child(even) {
+    background: #eee !important;
+}
+.bxslider li:nth-child(odd) {
+    background: #fff !important;
+}
+ul.bxslider li{
+	width:250px !important;
+	height:91px !important;
+	margin-top:0px !important;
+	text-align:left !important;
+	padding:10px !important;
+	margin-right:0px !important;
+}
+.featureSlider .row {
+    position: relative;
+    padding: 0px 50px 15px 40px !important;
+}
+.featureSlider .featureText p{
+	line-height:none !important;
+}
+.featureSlider .featureText p{
+	width:180px;
+}
+.featureSlider .featureText{
+	width: auto !important;
+}
+.homeSlider .searchArea .formHolder .go{
+	height: 40px !important;
+}
+.featureSlider .bx-wrapper .bx-controls-direction a{
+	top: 0px !important;
+}
+.popularCourses ul li:hover{
+	background-color: #f66132 !important;
+}
+.homeSlider .searchArea .formHolder .formcol00 active{
+	color:#fff;
+}
+a, input, button, *:focus {
+    color: #fff;
+}
+.homeSlider .searchArea .formHolder .formcol00{
+	background: #172031;
+}
+select#stream {
+    background: #172031;
+}
+select#type {
+    background: #172031;
+}
+select#course {
+    background: #172031;
+}
+#loginModal .loginForm .inputRow input.go{
+	margin-left: 114px !important;
+}
+
+
+
+
+
+
+
+
+
 
 a:hover {text-decoration: none;}
 
@@ -170,7 +249,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .homeSlider .searchArea .searchForm.active {z-index: 2; opacity:1; height:48px; }
 .homeSlider .searchArea .formHolder input,
 .homeSlider .searchArea .formHolder select {width: 100%; border:none; background: none; height: 48px;}
-.homeSlider .searchArea .formHolder .go {background:#f66132; transition: all ease-in-out 0.3s; position: relative; cursor: pointer; width: 108px; height: 48px; border:none; color: #fff; overflow: hidden; text-align: center; font-size: 20px;}
+.homeSlider .searchArea .formHolder .go {background:#f66132; transition: all ease-in-out 0.3s; position: relative; cursor: pointer; width: 127px; height: 48px; border:none; color: #fff; overflow: hidden; text-align: center; font-size: 20px;}
 
 
 .homeSlider .searchArea .formHolder .formcol50 {width:calc(50% - 54px); position: relative; float: left; border-right: 1px solid rgba(0,0,0,0.20); padding: 0px 10px;}
@@ -192,7 +271,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 .featureSlider .featureText h3 {font-size: 21px; margin: 0px 0px 3px 0px; color: rgba(0,0,0,0.87);}
 .featureSlider .featureText p {margin: 0px; line-height: normal; color:rgba(0,0,0,0.54); font-size: 15px;}
 
-.featureSlider .bx-wrapper .bx-controls-direction a {width: 50px; height: 90px; right:-50px; margin: 0px; top:-15px; color:#fff; background: #15202f;}
+.featureSlider .bx-wrapper .bx-controls-direction a {width: 50px; height: 90px; right:-50px; top:10px !important; color:#fff; background: #15202f;}
 .featureSlider .bx-wrapper .bx-prev {display: none!important;}
 .featureSlider .bx-wrapper .bx-next:after {content: '>'; font-size: 20px; text-indent: 1px; right: 0px; top:0px; line-height:55px; text-align: center; display: block;}
 .featureSlider .bx-wrapper .bx-next:hover {color: rgba(0,0,0,0.54); text-decoration: none;}
@@ -201,10 +280,12 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 .sectionHeading {text-transform: capitalize; font-size: 24px; display: block; position: relative; text-align: center; margin: 0px 0px 40px 0px; color: #15202f; font-weight: 600; margin-bottom: 65px;}
 .sectionHeading span{color:#f77a52;}
-.sectionHeading:before {content: url('http://ec2-35-154-95-127.ap-south-1.compute.amazonaws.com/assets/theme/images/line.png'); position: absolute; bottom:10px; left: 46%; transform: translateX(-50%); width: 115px; height:3px; }
+.sectionHeading:before {content: url('http://mentorcell.com/assets/theme/images/line.png'); position: absolute; bottom:10px; left: 46%; transform: translateX(-50%); width: 115px; height:3px; }
 .whiteColor {color:#fff;}
 .sectionHeading.whiteColor {color:#fff;}
-.sectionHeading.whiteColor:before {content: url('http://ec2-35-154-95-127.ap-south-1.compute.amazonaws.com/assets/theme/images/line.png');}
+
+/**
+.sectionHeading.whiteColor:before {content: url('http://ec2-35-154-95-127.ap-south-1.compute.amazonaws.com/assets/theme/images/line.png');}**/
 
 .bgWhite {background: #fff; width: 100%; float: left; clear: both;}
 .bgGrey {background:#f3f3f6; width: 100%; float: left; clear: both;}
@@ -309,7 +390,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 #loginModal .loginForm .inputRow input {width: 100%; font-size: 13px; border:1px solid #c5c5c5; height: 30px; border-radius: 5px; padding: 0px 0px 0px 50px;}
 #loginModal .loginForm .inputRow input:focus {border:1px solid #5792cc;}
 #loginModal .loginForm .inputRow input:focus + i {color:#5792cc;}
-#loginModal .loginForm .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none;}
+#loginModal .loginForm .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 5px 0px; color: #fff; padding: 0px; border:none; width:127px;}
 #loginModal .loginForm .inputRow input.go:hover {background: #303a47;}
 
 
@@ -323,7 +404,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 #registerModal .regForm .inputRow input, #registerModal .regForm .inputRow select {width: 100%; font-size: 13px; border:1px solid #c5c5c5; height: 30px; border-radius: 5px; padding: 0px 0px 0px 50px;}
 #registerModal .regForm .inputRow input:focus, #registerModal .regForm .inputRow select:focus {border:1px solid #5792cc;}
 #registerModal .regForm .inputRow input:focus + i, #registerModal .regForm .inputRow select:focus + i {color:#5792cc;}
-#registerModal .regForm .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 0px 0px; color: #fff; padding: 0px; border:none;}
+#registerModal .regForm .inputRow input.go {background: #f77a52; transition: all  ease-in-out 0.3s; margin: 10px 0px 0px 0px; color: #fff; padding: 0px; border:none; width: 127px;}
 #registerModal .regForm .inputRow input.go:hover {background: #303a47;}
 
 
@@ -942,6 +1023,243 @@ li.catstyle p{
 	.couponHolder .loginForm .inputRow input.go{
 		width: 100% !important;
 	}
+	.careerCol p{
+		    padding: 0 22px !important;
+            text-align: justify !important;
+	}
+	li.item img {
+    margin-left: 31px;
+}
+.careerCol .counsButton{
+	display: inline-block;
+	float: none;
+	margin-left: 0%!important;
+}
+.link-section{
+	    padding: 0 15px;
+}
+#link-form{
+	width: 100% !important;
+}
+#btn-link-style{
+	margin-left: 0px !important;
+	margin-top: 10px;
+	width: 100% !important;
+}
+.app-img{
+	margin-top: 28px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+.mobile-img{
+	float: none !important;
+}
+.footerTop{
+	padding: 30px 15px;
+}
+.modal-content{
+  margin-left: 41px !important;  
+}
+#registerModal .modal-content{
+	width: 100%;
+}
+.modal{
+	left: -54px !important;
+}
+#loginModal .modal-dialog{
+	margin-left: 34px;
+}
+.owl-prev{
+	left: 62px !important;
+}
+.owl-next{
+	right: 60px !important;
+}
+.featureSlider{
+	display: block !important;
+}
+/*07-6-17*/
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+.featureSlider .bx-wrapper .bx-controls-direction a{
+	right: -26px;
+}
+.featureSlider .featureHeading{
+	left: -15px;
+}
+.featureSlider .row{
+	padding: 0px 1px 8px 25px !important;
+}
+.userNav ul li{
+	margin: 0 5px 0 5px;
+	font-size: 12px;
+}
+.userNav{
+   height: 34px ;
+   margin-top: -4px;
+   position: absolute;
+   top: 18px;
+   left: 190px;
+   width: 100%;
+}
+.userNav:after {
+    height: 34px !important;
+	margin-top: -3px;
+	width:0px;
+}
+.col-xs-7 {
+    width: 100%;
+}
+header#header{
+	height: auto;
+}
+.homeSlider .searchArea .formHolder{
+	    margin-top: 70px !important;
+}
+.pull-right {
+    float: left !important;
+}
+.homeSlider .searchArea{
+	margin-top: 91px !important;
+}
+
+
+.col-to-join{
+	    width: 100% !important;
+		float: left;
+}
+.homeSlider .searchArea .formHolder .go{
+	width: 100% !important;
+	top: 13px;
+}
+.homeSlider .searchArea .formHolder select{
+	width: 100% !important;
+	margin-left: 0px !important;
+}
+#form1 form {
+    width: 100% !important;
+    padding: 0 21px;
+    margin-top: -43px !important;
+}
+.homeSlider .searchArea{
+	margin-top: 0px !important;
+}
+
+/**End of home page responsive**/
 
 	
 }
+/*media querries*/
+/* councelling page*/
+
+
+@media screen and (max-width: 750px){
+	.button-style3{
+		width: 50%;
+		margin-top: 9px !important;
+		margin-left: 114px !important;
+	}
+.content-box{
+	    width: 100%;
+}
+
+	
+	
+	
+	
+	
+	
+	}
+
+	/*media querries*/
+/* coupon page*/
+
+
+@media screen and (max-width: 750px){
+	.couponHolder .regForm .inputRow:nth-child(4){
+		width: 100% !important;
+	}
+	.couponHolder .regForm .inputRow{
+		     float: none !important; 
+	}
+	
+	
+	
+	}
+	
+		/*media querries*/
+/* write your review*/
+
+
+@media screen and (max-width: 750px){
+	.containerBox {
+    padding: 43px 22px !important;
+}
+.sectionHeading {
+    margin: 31px 57px 37px 0px !important;
+}
+.star-color {
+    margin-left: 63px !important;
+}
+	
+	}
+	
+		
+		/*media querries*/
+/* Career Councelling page*/
+
+
+@media screen and (max-width: 750px){
+	.manageText a{
+		margin-left: -50%;
+	}
+	.manageIcon img {
+    width: 37px !important;
+}
+img.play-img {
+    left: 30% !important;
+	top: 35px !important;
+}
+.managementArea ul li .manageIcon img {
+    position: absolute;
+    width: 31px !important;
+    top: 41px !important;
+	
+	}
+	.sectionHeading p {
+    margin-left: 69px;
+    font-size: 15px;
+}
+}
+
+		
+		/*media querries*/
+/* Colleage page*/
+
+@media screen and (max-width: 750px){
+	.chosen-container{
+	  margin-right: 0px;	
+	}
+	#course{
+	width: 100% !important;
+    margin-top: 20px;
+    background: #fff !important;	
+	}
+	button.go{
+	 width: 100% !important;
+     top: 8px !important;	 
+	}
+	.col-xs-6{
+		width: 100% !important;
+	}
+	.couponHolder .regForm, .couponHolder .loginForm{
+		margin: 0px 0px 0px 0px;
+	}
+	.orline{
+		display:none;
+	}
+}
+
+

@@ -3,6 +3,23 @@
 <div class="row">
 <div class="containerBox">
 
+
+<style>
+  a, input, button, *:focus {
+    color: #15202f;
+}
+.collegeHead .collegeQuick h5{
+	font-size: 24px !important;
+	color: #15202f !important;
+	    font-weight: 600 !important;
+		    font-family: 'Open Sans', sans-serif !important;
+}
+.collegeHead .collegeQuick h4{
+	font-family: 'Open Sans', sans-serif !important;
+	font-size:18px !important;
+}
+</style>
+
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="collegeQuick">
 	<?php
@@ -21,8 +38,8 @@
 	}
 	
 	?>
-<h4><?php echo $college->address; ?><?php echo $college->city; ?>, <?php echo $college->state; ?><br/><?php echo $college->country; ?> <?php echo $college->pincode; ?> <span class="reviewRating"><b>(<?=$totalreview?>/5)</b> <?=$reviewcount?> Reviews</span></h4>
 <h5><?php echo $college->name; ?> <!--<a href="#">view all courses</a>--></h5>
+<h4><?php echo $college->address; ?><?php echo $college->city; ?>, <?php echo $college->state; ?><br/><?php echo $college->country; ?> <?php echo $college->pincode; ?> <span class="reviewRating"><b>(<?=$totalreview?>/5)</b> <?=$reviewcount?> Reviews</span></h4>
 </div>
 </div>
 
@@ -44,6 +61,15 @@
 <div class="sectionGap">
 <div class="heading1" id="information">Information</div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<!--<div class="informationList">
+<h3>COURSE TITLE</h3>
+<?php  //echo "<pre>";
+//print_r($fees);
+ ?>
+<p><?php if($college_detail OR !empty($college_detail->title)){ ?>
+		<?php echo $college_detail->title;
+ } ?></p>
+</div>-->
 <div class="informationList">
 <h3>EXAMS REQUIRED</h3>
  <?php if(!empty($college_detail->exam)){ $exam = explode(",",$college_detail->exam);
@@ -72,15 +98,6 @@ for($i=0;$i<count($exam);$i++){
  } ?></p>
 </div>
 
-<div class="informationList" id="eligibility">
-<h3>AFFILIATION</h3>
-<p>
- 
- <?php if($college_detail OR !empty($college_detail->recognition)){
-		 echo $college_detail->recognition;
- } ?></p>
-</div>
-
 <div class="informationList" id="course-details">
 <h3>COURSE STATUS</h3>
 <p><?php if($college_detail OR !empty($college_detail->course_status)){
@@ -98,29 +115,26 @@ for($i=0;$i<count($exam);$i++){
 
 <div class="informationList" id="admissionProcedure">
 <h3>ADMISSION PROCEDURE</h3>
-
-<div class="addmisionProcedure">
-<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">For conveyer quota:</div>
-<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9"><p><?php if($college_detail OR !empty($college_detail->conveyer_quota)){
+<p><?php if($college_detail OR !empty($college_detail->conveyer_quota)){
 		 echo $college_detail->conveyer_quota;
- } ?></p></div>
+ } ?></p>
 </div>
 
-<div class="addmisionProcedure">
-<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">For management quota:</div>
-<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9"><p><?php if($college_detail OR !empty($college_detail->management_quota)){
+<div class="informationList" id="admissionProcedure">
+<h3>RECOGNITION</h3>
+<p><?php if($college_detail OR !empty($college_detail->recognition)){
+		 echo $college_detail->recognition;
+ } ?></p>
+</div>
+
+<div class="informationList" id="admissionProcedure">
+<h3>AFFILIATION</h3>
+<p><?php if($college_detail OR !empty($college_detail->management_quota)){
 		 echo $college_detail->management_quota;
- } ?></p></div>
+ } ?></p>
 </div>
 
-<div class="addmisionProcedure">
-<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">For international students:</div>
-<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9"><p><?php if($college_detail OR !empty($college_detail->international_quota)){
-		 echo $college_detail->international_quota;
- } ?></p></div>
-</div>
 
-</div>
 
 <div class="informationList" id="duration">
 <h3>DURATION</h3>
@@ -386,5 +400,5 @@ $treview = $tcount/5;
 </div>
 </section>
 <style>
-	.review-form input{width: 100%; padding: 10px; border: solid 1px #ccc; }			input, button, select, textarea{		width:100%;		height:32px;	}		div.stars {  width: 270px;  display: inline-block;}input.star { display: none; }label.star {  float: right;  padding: 10px;  font-size: 27px;  color: #444;  transition: all .2s;  margin-left: -11px;}input.star:checked ~ label.star:before {  content: '\f005';  color: #FD4;  transition: all .25s;}input.star-5:checked ~ label.star:before {  color: #FE7;  text-shadow: 0 0 20px #952;}input.star-1:checked ~ label.star:before { color: #F62; }label.star:hover { transform: rotate(-15deg) scale(1.3); }label.star:before {  content: '\f006';  font-family: FontAwesome;}		label{   font-weight:bold;		}.col-md-8 {    border: 1px solid #b8b8b8;    border-radius: 6px;	border-bottom:none;}.heading1{	background:none;}button{width: 100%;    height: 32px;    margin-top: 10px;	background:#f77a52;	border:none;	border-radius:6px;}button:hover{	background:#000;	border-radius:6px;	border:none;	color:#fff;}
+	.review-form input{width: 100%; padding: 10px; border: solid 1px #ccc; }			input, button, select, textarea{		width:100%;		height:32px;	}		div.stars {  width: 270px;  display: inline-block;}input.star { display: none; }label.star {  float: right;  padding: 10px;  font-size: 27px;  color: #444;  transition: all .2s;  margin-left: -11px;}input.star:checked ~ label.star:before {  content: '\f005';  color: #FD4;  transition: all .25s;}input.star-5:checked ~ label.star:before {  color: #FE7;  text-shadow: 0 0 20px #952;}input.star-1:checked ~ label.star:before { color: #F62; }label.star:hover { transform: rotate(-15deg) scale(1.3); }label.star:before {  content: '\f006';  font-family: FontAwesome;}		label{   font-weight:bold;		}.col-md-8 {    border: 1px solid #b8b8b8;    border-radius: 6px;	border-bottom:none;}button{width: 100%;    height: 32px;    margin-top: 10px;	background:#f77a52;	border:none;	border-radius:6px;}button:hover{	background:#000;	border-radius:6px;	border:none;	color:#fff;}
 </style>

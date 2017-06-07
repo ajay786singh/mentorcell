@@ -244,6 +244,15 @@ margin:28px 0px 5px 0px;
 </div>
 </section>
 <style>
+@media screen and (max-width: 750px){
+	.couponHolder .regForm .inputRow:nth-child(4){
+		width: 100% !important;
+	}
+	}
+
+
+
+
 .couponHolder .regForm .inputRow input, .couponHolder .regForm .inputRow select {
     width: 100%;
     font-size: 13px !important;

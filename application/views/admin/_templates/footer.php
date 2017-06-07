@@ -182,8 +182,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			var clg_streams_id = $("#streams").val();
 			var clg_course_id = $("#clg_course_id").val();
 			var clg_specialization = $("#clg_specialization").val();
-			var course_status = $("#course_status").val();
-			var conveyer_quota = $("#conveyer_quota").val();
+			var course_status = $("#clg_status_id").val();
+			var conveyer_quota = $("#tes").val();
+			alert(conveyer_quota);
+			var management_quota = $("#management_quota").val();
+			var title = $("#title").val();
+			var duration = $("#duration").val();
+			var recognition = $("#recognition").val();
+			var fee = $("#fee").val();
+			var incentive = $("#incentive").val();
+			var exam1 = $("#exam").val();
+			if(exam1 == null){
+				var exams = 0;
+			}else{
+				var exams = $("#exam").val().join();
+			}
+			var assigned_id = $("#assigned_id").val();
+			var procedure = $("#procedure").val();
+			var eligibility = $("#eligibility").val();
+			jQuery.ajax({
+				type: "POST",
+				url: base_url+"index.php/admin/colleges/save_assigncourses",
+				dataType: 'text',
+				data: {clg_course_id:clg_course_id,clg_streams_id:clg_streams_id,college_id:college_id,clg_specialization:clg_specialization,course_status:course_status,conveyer_quota:conveyer_quota,management_quota:management_quota,title:title,duration:duration,recognition:recognition,fee:fee,incentive:incentive,exam:exams,assigned_id:assigned_id,procedure:procedure,eligibility:eligibility},
+				success: function(res) {
+					$("#message").show().html('<p>'+res+'</p>');
+					setTimeout(function(){
+								location.reload();
+							},1000);
+					
+				}
+			});
+			
+		});
+		
+		
+			$(".updateassign_courses").click(function(e){
+			e.preventDefault();
+			var ID = $(this).attr('id');
+			var college_id = $("#college_id").val();
+			var clg_streams_id = $("#streams").val();
+			var clg_course_id = $("#clg_course_id").val();
+			var clg_specialization = $("#clg_specialization").val();
+			var course_status = $("#clg_status_id").val();
+			var conveyer_quota = $("textarea#conveyer_quota").val();
 			var management_quota = $("#management_quota").val();
 			var title = $("#title").val();
 			var duration = $("#duration").val();

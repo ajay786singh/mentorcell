@@ -247,5 +247,88 @@
 			}
 		}	
 		
+		public function counselling()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['streams_list'] = $this->common_model->get_all("mc_counselling_data");
+            $this->template->admin_render('admin/coupons/counselling', $this->data);
+        }
+	}
+	
+		public function study_abroad()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['streams_list'] = $this->common_model->get_all("mc_studyabroad_data");
+            $this->template->admin_render('admin/coupons/study_abroad', $this->data);
+        }
+	}
+	
+	public function exportcounsel_data(){
+		//$data = $this->common_model->get_all("mc_counselling_data");
+		
+			$data  = $this->common_model->export_counsel_data();
+            //$data[] = array('x'=> "rajan", 'y'=> "rajan", 'z'=> "rajan", 'a'=> "rajan");
+			//$data[] = array('x'=> "rajan1", 'y'=> "rajan1", 'z'=> "rajan1", 'a'=> "rajan1");
+             header("Content-type: application/csv");
+            header("Content-Disposition: attachment; filename=\"counselling".".csv\"");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+
+            $handle = fopen('php://output', 'w');
+         
+			$headerarray = array('id' => 'S.N','name' => 'Name','email' => 'Email','phone' => 'Phone','stream_name' => 'Education Interests','course_name' => 'Courses' ,'message' =>'Comment'
+			,'created' => 'created');
+
+			fputcsv($handle, $headerarray);
+            foreach ($data as $data) {
+                fputcsv($handle, $data);
+            }
+                fclose($handle);
+            exit;
+    }
+	
+	public function exportstuday_data(){
+		//$data = $this->common_model->get_all("mc_counselling_data");
+		
+			$data  = $this->common_model->export_study_data();
+			//echo"<pre>";
+			//print_r($data);die;
+            //$data[] = array('x'=> "rajan", 'y'=> "rajan", 'z'=> "rajan", 'a'=> "rajan");
+			//$data[] = array('x'=> "rajan1", 'y'=> "rajan1", 'z'=> "rajan1", 'a'=> "rajan1");
+             header("Content-type: application/csv");
+            header("Content-Disposition: attachment; filename=\"Study_abroad".".csv\"");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+
+            $handle = fopen('php://output', 'w');
+         
+			$headerarray = array('studyid' => 'S.N','name' => 'Name','email' => 'Email','phone' => 'Phone','state_name' => 'State Name','city_name' => 'City Name' ,'country_name' =>'Desire Country Name','course_name' => 'Desire Course name','intake_name' => 'Intake');
+
+			fputcsv($handle, $headerarray);
+            foreach ($data as $data) {
+                fputcsv($handle, $data);
+            }
+                fclose($handle);
+            exit;
+    }
+		
 	}
 ?>

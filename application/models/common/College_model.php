@@ -429,6 +429,17 @@ class College_model extends CI_Model {
 		return $result;
 	}
 	
+	function populat_college_result($course){
+		$this->db->select('*');
+		$this->db->from('mc_colleges');
+		$this->db->join('mc_course_assignment', 'mc_colleges.id = mc_course_assignment.college_id');
+		$where = "mc_course_assignment.course_id = $course";
+        $this->db->where($where);
+		$this->db->group_by('mc_colleges.id');
+		$result = $this->db->get()->result_object();
+		return $result;
+	}
+	
 	function search_result_cont($query){
 		//print_r($query);
 		$this->db->distinct();

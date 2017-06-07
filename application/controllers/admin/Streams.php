@@ -354,8 +354,9 @@ class Streams extends Admin_Controller {
         $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
         /* Data */
-		$counceling_video = $this->common_model->get_single_row("mc_counceling_video", "id", $id);
+	$counceling_video = $this->common_model->get_single_row("mc_counceling_video","id",$id);
 		
+		//print_r($counceling_video);die;
 		/* Validate form input */
 		/* Validate form input */
 		$this->form_validation->set_rules('title', 'Counseling Title', 'required');
@@ -392,14 +393,14 @@ class Streams extends Admin_Controller {
 		}
 
 		// display the edit user form
-		$this->data['csrf'] = $this->_get_csrf_nonce();
-		$this->data['counceling_video'] = $counceling_video;
-		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
-			$this->data['title']['value'] = $this->form_validation->set_value('title',$counceling_video['title']);
-			$this->data['video']['value'] = $this->form_validation->set_value('video',$counceling_video['video']);
-			$this->data['status']['value'] = $this->form_validation->set_value('status',$counceling_video['status']);
+		$this->data['counceling_video1'] = $counceling_video;
+	//	print_r($counceling_video['title']);
+//print_r($this->data['counceling_video1']); die;
+			//$this->data['title']['value'] = $this->form_validation->set_value('title',$counceling_video['title']);
+			//$this->data['video']['value'] = $this->form_validation->set_value('video',$counceling_video['video']);
+			//$this->data['status']['value'] = $this->form_validation->set_value('status',$counceling_video['status']);
         /* Load Template */
-		$this->template->admin_render('admin/streams/edit_counselingvideo', $this->data);
+		$this->template->admin_render('admin/streams/edit_counselingvideo',$this->data);
 	}
 	
 	public function editstatus()

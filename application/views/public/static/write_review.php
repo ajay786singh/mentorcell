@@ -4,7 +4,7 @@
 <div class="containerBox">
 <div class="sectionHeading"> <span class="star-color">Write Your</span><span class="review-color"> Review </span></div>
 
-<div class="sectionHeading"><p>Your college review can help thousands of students make an informed college decision.<br>
+<div class="sectionHeading1"><p>Your college review can help thousands of students make an informed college decision.<br>
 
 To increase your chances of having your review accepted on Shiksha, make your review HONEST and DETAILED by giving specifics on Placements, Internships, Infrastructure, Curriculum and Faculty.<p>
 <h4>We will reject your review if:<h4<br>
@@ -267,8 +267,47 @@ To increase your chances of having your review accepted on Shiksha, make your re
 
 
 <style>
+.sectionHeading.sec2 p {
+    font-size: 18px;
+}
+.sectionHeading.sec2 {
+    text-transform: capitalize;
+    font-size: 24px;
+    display: block;
+    position: relative;
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+    color: #15202f;
+    font-weight: 600;
+    margin-bottom: 65px;
+}
+
+
+.sectionHeading1 p {
+    font-size: 14px !important;
+    text-align: left;
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600 !important;
+}
+.sectionHeading1 h4{
+	font-size: 18px;
+    font-weight: bold;
+	font-family: 'Open Sans', sans-serif;
+}
+.sectionHeading1 ol li {
+    font-size: 14px;
+    list-style-type: decimal;
+    margin: 10px 5px 5px 18px;
+}
+.sectionHeading.sec2 p {
+    text-align: center;
+}
+
+
 .couponHolder {
     text-align: center;
+	margin-top: 35px;
 }
 .sectionHeading{
 	margin:28px 0px 40px 0px;
@@ -374,7 +413,7 @@ hr {
 		margin-top:43px;
 	}
 	.containerBox {
-    padding: 9px 70px !important;
+    padding: 9px 70px;
 }
 
 

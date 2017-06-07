@@ -325,7 +325,7 @@ $(document).ready(function() {
 		});
 	/*login*/
 
-
+	
 
 	$(".register_state").change(function(event) {
 
@@ -341,9 +341,6 @@ $(document).ready(function() {
 				}
 			});
 		});
-
-
-
 
 		$("#search_college").chosen().change(function() {
 			var college_id = $(this).val();
@@ -428,7 +425,8 @@ $(document).ready(function() {
 			});
 
 		});
-
+		
+	
 		/*get the coupon value*/
 
 });

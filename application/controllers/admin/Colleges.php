@@ -103,7 +103,6 @@ class Colleges extends Admin_Controller {
 			$logo = $this->upload->data();
 		    $this->upload->do_upload('banner');
 			$banner = $this->upload->data();
-			
 			$this->data = array();
 			$this->data = $this->input->post();
 			$this->data['brochure'] = $brochure['file_name'];
@@ -234,6 +233,59 @@ class Colleges extends Admin_Controller {
 				}
 	}
 	
+	public function deletecourse($assigned_id,$college_id)
+	{
+        /* Load Template */
+		$assid = (int) $assigned_id;
+		$id = (int) $college_id;
+
+		if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+				if($this->common_model->delete_where("mc_course_assignment","assigned_id",$assid))
+			    {
+                    $this->session->set_flashdata('message', 'Assign Course Deleted!');
+					$this->data['message']= "Assign Streams, Types and Courses";
+		
+		$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+		$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+		$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		
+		$this->data['college_id'] = $id;
+		$this->data['stream_id'] = $this->college_model->get_streams($id);
+		$this->data['type_id'] = $this->college_model->get_types($id);
+		$this->data['course_id'] = $this->college_model->get_courses($id);
+		$this->data['coursedata'] = $this->college_model->get_course_relation($id);
+		$this->data['streamdata'] = $this->college_model->get_stream_relation($id);
+		$this->data['specializedata'] = $this->college_model->get_specialize_relation($id);
+		$this->data['assign_list'] = $this->college_model->get_course_assign_data($id);
+		/* Load Template */
+		$this->template->admin_render('admin/colleges/course', $this->data);
+			    }
+			    else
+			    {
+					$this->session->set_flashdata('message', 'No college found.');
+					$this->data['message']= "Assign Streams, Types and Courses";
+		
+		$this->data['streams'] = $this->common_model->get_all_rows("mc_streams", 1,1);
+		$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+		$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
+		
+		$this->data['college_id'] = $id;
+		$this->data['stream_id'] = $this->college_model->get_streams($id);
+		$this->data['type_id'] = $this->college_model->get_types($id);
+		$this->data['course_id'] = $this->college_model->get_courses($id);
+		$this->data['coursedata'] = $this->college_model->get_course_relation($id);
+		$this->data['streamdata'] = $this->college_model->get_stream_relation($id);
+		$this->data['specializedata'] = $this->college_model->get_specialize_relation($id);
+		$this->data['assign_list'] = $this->college_model->get_course_assign_data($id);
+		/* Load Template */
+		$this->template->admin_render('admin/colleges/course', $this->data);
+				}
+	}
+	
 	public function deletelogo($id)
 	{
         /* Load Template */
@@ -285,6 +337,7 @@ class Colleges extends Admin_Controller {
 
 		if (isset($_POST) && ! empty($_POST))
 		{
+			
 			if ($this->form_validation->run() == TRUE)
 			{
 				$this->upload->do_upload('brochure');
@@ -392,9 +445,10 @@ class Colleges extends Admin_Controller {
 		   $this->template->admin_render('admin/colleges/edit', $this->data);
 	}
 	
-		public function editassigncourse($id)
+		public function editassigncourse($assigned_id,$college_id)
 	{
-        $id = (int) $id;
+        $assid = (int) $assigned_id;
+        $id = (int) $college_id;
 
 		if ( ! $this->ion_auth->logged_in() OR (! $this->ion_auth->is_admin() && ! $this->ion_auth->in_group('college')))
 		{
@@ -404,7 +458,8 @@ class Colleges extends Admin_Controller {
         /* Breadcrumbs */
         $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/colleges/editassigncourse');
         $this->data['breadcrumb'] = $this->breadcrumbs->show();
-
+        $this->data['college_id'] = $id;
+        $this->data['assigned_id'] = $assigned_id;
         /* Data */
 	      $this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
 		$this->data['streams'] = $this->common_model->get_stream("mc_streams", 1);
@@ -412,6 +467,16 @@ class Colleges extends Admin_Controller {
 		$this->data['course_statname'] = $this->common_model->get_all_rows("mc_course_status","status","1");
 		
         /* Load Template */
+		
+		
+		$this->data['types'] = $this->common_model->get_all_rows("mc_types", 1,1);
+		$this->data['stream_id'] = $this->college_model->get_streams($id);
+		$this->data['type_id'] = $this->college_model->get_types($id);
+		$this->data['course_id'] = $this->college_model->get_courses($id);
+		$this->data['coursedata'] = $this->college_model->get_course_relation($id);
+		$this->data['streamdata'] = $this->college_model->get_stream_relation($id);
+		$this->data['specializedata'] = $this->college_model->get_specialize_relation($id);
+		$this->data['assign_list'] = $this->college_model->get_course_assign_data($id);
 		   $this->template->admin_render('admin/colleges/editassigncourse', $this->data);
 	}
 
@@ -568,7 +633,17 @@ class Colleges extends Admin_Controller {
 	/*assign courses to colleges*/
 		public function assigncourse($id)
 	{
-		
+		/* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/colleges/create');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Variables */
+		$tables = $this->config->item('tables', 'ion_auth');
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		$config['allowed_types']    = 'gif|jpg|png|pdf';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
         /* Load Template */
 		$id = (int) $id;
 
@@ -576,6 +651,19 @@ class Colleges extends Admin_Controller {
 		{
 			redirect('auth', 'refresh');
 		}
+		
+		/*if (isset($_POST) && ! empty($_POST)){
+			echo "hello";
+		}
+		$this->form_validation->set_rules('clg_course_id', 'Course Name', 'required');
+		$this->form_validation->set_rules('clg_specialization', 'Specialization Name', 'required');
+		if ($this->form_validation->run() == TRUE)
+		{	
+			$couseid = $this->input->post('clg_course_id');
+			print_r($couseid);
+	
+			
+		}*/
 
 		$this->data['message']= "Assign Courses and extra informtion";
 
@@ -586,49 +674,89 @@ class Colleges extends Admin_Controller {
 		$this->data['college_id'] = $id;
 		$this->data['course_id'] = $this->college_model->get_courses($id);
 		
+		
 		/* Load Template */
 		$this->template->admin_render('admin/colleges/assigncourse', $this->data);
 	}
 	
 	public function save_assigncourses()
 	{
-		$stream_id = $this->input->post('clg_streams_id');
-		$college_id = $this->input->post('college_id');
-		$specialization_id = $this->input->post('clg_specialization');
-		$course_status = $this->input->post('course_status');
-		$conveyer_quota = $this->input->post('conveyer_quota');
-		$management_quota = $this->input->post('management_quota');
-		$clg_course_id = $this->input->post('clg_course_id');
-		$title = $this->input->post('title');
-		$duration = $this->input->post('duration');
-		$recognition = $this->input->post('recognition');
-		$fee = $this->input->post('fee');
-		$incentive = $this->input->post('incentive');
+		//print_r($this->input->post());die;
 		$exam = $this->input->post('exam');
-		$procedure = $this->input->post('procedure');
-		$eligibility = $this->input->post('eligibility');
+		if(!empty($exam)){
+			for($i=0;$i<count($exam);$i++){
+			$exams = implode(',',$exam);
+		}
+		$course['exam'] = $exams;
+		}
+		
+		//print_r($exams);die;
 		$assigned_id = $this->input->post('assigned_id');
 		
-		$course['college_id'] = $college_id;
-		$course['stream_id'] = $stream_id;
-		$course['course_id'] = $clg_course_id;
-		$course['specialization_id'] = $specialization_id;
-		$course['course_status'] = $course_status;
-		$course['conveyer_quota'] = $conveyer_quota;
-		$course['management_quota'] = $management_quota;
-		$course['title'] = $title;
-		$course['duration'] = $duration;
-		$course['recognition'] = $recognition;
-		$course['fee'] = $fee;
-		$course['incentive'] = $incentive;
-		$course['exam'] = $exam;
-		$course['procedure'] = $procedure;
-		$course['eligibility'] = $eligibility;
+		$course['college_id'] = $this->input->post('college_id');
+		$course['stream_id'] = $this->input->post('clg_streams_id');
+		$course['course_id'] = $this->input->post('clg_course_id');
+		$course['specialization_id'] = $this->input->post('clg_specialization');
+		$course['course_status'] = $this->input->post('clg_course_status');
+		$course['conveyer_quota'] = $this->input->post('conveyer_quota');
+		$course['management_quota'] = $this->input->post('management_quota');
+		$course['title'] = $this->input->post('coursetitle');
+		$course['duration'] = $this->input->post('duration');
+		$course['recognition'] = $this->input->post('recognition');
+		$course['fee'] = $this->input->post('fee');
+		$course['incentive'] =  $this->input->post('incentive');
 		
+		$course['procedure'] = $this->input->post('procedure');
+		$course['eligibility'] = $this->input->post('eligibility');
+		if(empty($assigned_id)){
         $this->common_model->insert($course,"mc_course_assignment");
+		}else{
+		$this->common_model->update("mc_course_assignment", $course, "assigned_id", $assigned_id);	
+		}
+		$college_id = $course['college_id'];
+		redirect('admin/colleges/course/'.$college_id, 'refresh');
+	
+	
+	}
+	
+	public function save_updateassigncourses()
+	{
+		//print_r($this->input->post());die;
+		$exam = $this->input->post('exam');
+		if(!empty($exam)){
+			for($i=0;$i<count($exam);$i++){
+			$exams = implode(',',$exam);
+		}
+		$course['exam'] = $exams;
+		}
 		
-	//echo "Updated Successfully.";
-	//exit;
+		//print_r($exams);die;
+		$assigned_id = $this->input->post('assigned_id');
+		
+		$course['college_id'] = $this->input->post('college_id');
+		$course['stream_id'] = $this->input->post('clg_streams_id');
+		$course['course_id'] = $this->input->post('clg_course_id');
+		$course['specialization_id'] = $this->input->post('clg_specialization');
+		$course['course_status'] = $this->input->post('clg_course_status');
+		$course['conveyer_quota'] = $this->input->post('conveyer_quota');
+		$course['management_quota'] = $this->input->post('management_quota');
+		$course['title'] = $this->input->post('coursetitle');
+		$course['duration'] = $this->input->post('duration');
+		$course['recognition'] = $this->input->post('recognition');
+		$course['fee'] = $this->input->post('fee');
+		$course['incentive'] =  $this->input->post('incentive');
+		
+		$course['procedure'] = $this->input->post('procedure');
+		$course['eligibility'] = $this->input->post('eligibility');
+		if(empty($assigned_id)){
+        $this->common_model->insert($course,"mc_course_assignment");
+		}else{
+		$this->common_model->update("mc_course_assignment", $course, "assigned_id", $assigned_id);	
+		}
+		$college_id = $course['college_id'];
+		redirect('admin/colleges/course/'.$college_id, 'refresh');
+	
+	
 	}
 	/*assign courses to colleges*/
 	

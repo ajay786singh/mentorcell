@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Logo</label>
 										  <div class="col-sm-10">
-										  <input type="file" class="form-control"  name="logo" id="code" value="" placeholder="Enter College Code">
+										  <input type="file" class="form-control"  name="logo" id="code" placeholder="Enter College Code">
 										  </div>
 										</div>
 										

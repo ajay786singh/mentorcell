@@ -1,5 +1,19 @@
 <link href="<?php echo base_url('assets/theme/css/jquery.mCustomScrollbar.css');?>" rel="stylesheet" type="text/css" media="all" />
 
+
+
+<style>
+ .chosen-container-single .chosen-single span{
+	 color:#333;
+ }
+ .collegeSort .customSelect select{
+	 color:#333;
+ }
+ a {
+    color: #333;
+}
+</style>
+
 <?php
 $cad = $this->college_model->get_course_data($coursename);
 ?>
@@ -133,12 +147,12 @@ $city_name = $this->college_model->get_city_name($location_id[0]['city']);
 <h4>Total Fee(in Rs.) <span><!--<i class="icon-cw"></i> Reset--></span></h4>
 <div class="filterItems">
 <ul>
-<li><input type="checkbox" name="feecheck" id="check3f1" value="99999"> <label for="check3f1"> < 1 Lakh</label></li>
-<li><input type="checkbox" name="feecheck" id="check3f2" value="200000"> <label for="check3f2"> 1 - 2 Lakh</label></li>
-<li><input type="checkbox" name="feecheck" id="check3f3" value="300000"> <label for="check3f3"> 2 - 3 Lakh</label></li>
-<li><input type="checkbox" name="feecheck" id="check3f4" value="50000"> <label for="check3f4"> 3 - 5 Lakh</label></li>
-<li><input type="checkbox" name="feecheck" id="check3f5" value="700000"> <label for="check3f5"> 5 - 7 Lakh</label></li>
-<li><input type="checkbox" name="feecheck" id="check3f6" value="1200000"> <label for="check3f6"> > 7 Lakh</label></li>
+<li><input type="radio" name="feecheck" id="check3f1" value="99999"> <label for="check3f1"> < 1 Lakh</label></li>
+<li><input type="radio" name="feecheck" id="check3f2" value="200000"> <label for="check3f2"> 1 - 2 Lakh</label></li>
+<li><input type="radio" name="feecheck" id="check3f3" value="300000"> <label for="check3f3"> 2 - 3 Lakh</label></li>
+<li><input type="radio" name="feecheck" id="check3f4" value="50000"> <label for="check3f4"> 3 - 5 Lakh</label></li>
+<li><input type="radio" name="feecheck" id="check3f5" value="700000"> <label for="check3f5"> 5 - 7 Lakh</label></li>
+<li><input type="radio" name="feecheck" id="check3f6" value="1200000"> <label for="check3f6"> > 7 Lakh</label></li>
 </ul>
 
 </div>
@@ -213,7 +227,7 @@ if($spealdata['specialization_id']){	?>
 		<div class="collegeTop">
 		<div class="collegeThumb"><img src="<?php echo base_url('upload/'.$college->logo); ?>" /></div>
 		<div class="collegeName">
-		<h3><?php echo $college->name;?></h3>
+		<h3><a target="_blank" href="<?php echo base_url()."search?college=".$college->college_id; ?>"><?php echo $college->name;?></a></h3>
 		<h4><?php echo $college->address; ?></h4>
 		</div>
 		<div class="viewCollege"><a target="_blank" href="<?php echo base_url()."search?college=".$college->college_id; ?>">View College</a></div>
@@ -222,13 +236,14 @@ if($spealdata['specialization_id']){	?>
 		<div class="collegeMiddle">
 		<div class="col-xs-8">
 		<?php $cad1 = $this->college_model->get_course_data($college->course_id);
- ?>
-		<h3><?php  echo $cad->course_name ?><span>0 Reviews</span></h3>
+              $streamids = $this->common_model->get_single_row('mc_courses','course_id',$college->course_id);
+              $specialids = $this->common_model->get_single_row('mc_course_assignment','course_id',$college->course_id); ?>
+		<h3><a style="color: #3757ab;" href="<?php echo base_url()."/home/search?college=".$college->id."&stream=".$streamids['stream_id']."&type=".$college->course_id."&course_main=".$specialids['specialization_id']?>"><?=$cad->course_name?></a><span>0 Reviews</span></h3>
 		<h4><?php
 		echo $college->duration; ?>
 					&bull; <?php echo $college->recognition; ?></h4>
 		<ul>
-		<li><span>Total Fees(Rs.)</span> <?php echo $college->fee; ?></li>
+		<li><span>Total Fees(Rs.)</span> Rs.  <?php echo $college->fee; ?></li>
 		<li class="catstyle" style="width:70%;"><span>Exam required</span>  <?php if(!empty($college->exam)){ $exam = explode(",",$college->exam);
 for($i=0;$i<count($exam);$i++){
 	$exam_detail = $this->college_model->get_single_exam_detail($exam[$i]); ?>
@@ -244,9 +259,11 @@ for($i=0;$i<count($exam);$i++){
  } ?></li>
 		</ul>
 
-		<a href="#" class="moreCourses">+12 more courses</a>
+		
 
 		</div>
+
+		
 		<div class="col-xs-4">
 		<?php
 		$images = $this->college_model->get_images($college->id);
@@ -254,16 +271,84 @@ for($i=0;$i<count($exam);$i++){
 		?>
 		<ol>
 		<li><a target="_blank" href="<?php echo base_url()?>home/gallery"><i class="icon-play-circle"></i> Watch Counselling Video.</a></li>
-		<li><a target="_blank" href="<?php echo base_url()."search?college=".$college->college_id; ?>"><i class="icon-camera"></i> <?php echo count($images); ?> photos and <?php echo count($videos); ?> are available.</a></li>
+		<li><a target="_blank" href="<?php echo base_url()."search?college=".$college->college_id; ?>"><i class="icon-camera"></i> <?php echo count($images); ?> photos and <?php echo count($videos); ?> videos are available.</a></li>
 		</ol>
 		</div>
 		</div>
+		<div class="collegeMiddle" >
+		<div class="toggle-title col-xs-12" style="margin-bottom: 15px;">
+			<?php $more_course = $this->common_model->get_more_course($college->college_id);
+				
+$count_course = count($more_course);
+$totalcount = $count_course-1;
 
+if($totalcount > 0){ ?>
+	<a class="moreCourses">+<?=$totalcount?> more courses</a>
+<?php }
+ ?>
+
+		</div>
+		<div class="col-xs-12 toggle-details">
+		<?php for($i=0; $i<=$totalcount;$i++) {
+			if($college->course_id != $more_course[$i]['course_id']){
+			?>
+			<?php
+			$morecoursedata = $this->college_model->get_course_data($more_course[$i]['course_id']);
+			
+			?>
+			<?php if(!empty($morecoursedata->course_name)){
+$courid = $more_course[$i]['course_id'];
+$streamid = $this->common_model->get_single_row('mc_courses','course_id',$courid);
+$specialid = $this->common_model->get_single_row('mc_course_assignment','course_id',$courid);
+
+?>
+			<div class="col-xs-12" style="border-top: 1px solid #becad7;">
+			
+		<h3 style="margin: 9px 0px 5px 0px;"><a style="color: #3757ab;" href="<?php echo base_url()."/home/search?college=".$college->id."&stream=".$streamid['stream_id']."&type=".$courid."&course_main=".$specialid['specialization_id']?>"><?=$morecoursedata->course_name?></a><span>0 Reviews</span></h3>
+		<h4> <?=$more_course[$i]['duration']?>	• </h4>
+		<ul>
+		<li><span>Total Fees(Rs.)</span> Rs. <?=$more_course[$i]['fee']?></li>
+		<li class="catstyle" style="width:70%;">
+		<span>Exam required</span>
+		<?php if(!empty($more_course[$i]['exam'])){ $exams = explode(",",$more_course[$i]['exam']);
+for($j=0;$j<count($exams);$j++){
+	$exam_details = $this->college_model->get_single_exam_detail($exams[$j]); ?>
+		<?php if($exam_details->exam_name){ ?>	
+		<p>
+	 <span class="bulletPoint"></span>  
+	 <a target="_blank" href="<?php echo base_url()?>index.php/exam/index/<?=$exams[$j]?>">
+ <?php echo $exam_details->exam_name; ?>,
+ </a>
+
+ </p>
+		<?php } }
+ } ?>
+		</li>
+		</ul>
+		</div>
+<?php }  } } ?>
+		   <div class="toggle-title show-less col-xs-12">
+       <p>- Show Less</p>
+		</div>
+		</div>
+     
+        </div>
 		<div class="collegeBottom">
 		<ul>
-		<li><a href="#" class="button1">Apply Online</a></li>
-		<li><a href="#" class="button2"><i class="icon-star"></i> Shortlist</a></li>
-		<li><a href="#" class="button3"><i class="icon-download"></i> Download Brochure</a></li>
+		 <?php if(!isset($user_login['id']) && ((int)$user_login['id'])<0){ ?>
+		<li><a href="#" data-toggle="modal" data-target="#registerModal" class="button1">Apply Online</a></li>
+		 <?php } ?>
+		<li>
+		 <?php if(isset($user_login['id']) && ((int)$user_login['id'])>0){ ?> 
+		 <input type="hidden" name="shortdata" id="shortdata" value="<?=$college->college_id;?>">
+		 <input type="hidden" name="courseid" id="courseid" value="<?=$college->course_id;?>">
+		 <input type="hidden" name="userids" id="userids" value="<?=$user_login['id'];?>">
+		<a  class="button2 shortlist" style="cursor:pointer;" id="<?=$college->college_id;?>"><i class="icon-star"></i> Shortlist</a>
+		 <?php }else{ ?>
+			 <a data-toggle="modal" data-target="#loginModal" onClick="document.getElementById('couponClicked').value=0" class="button2"><i class="icon-star"></i> Shortlist</a>
+		 <?php } ?>
+		</li>
+		<li><a href="<?php if(!empty($college->brochure)){ echo base_url()."upload/".$college->brochure;} else{ ?> # <?php } ?>" <?php if(!empty($college->brochure)){ ?> download <?php } ?> class="button3"><i class="icon-download"></i> Download Brochure</a></li>
 		</ul>
 		</div>
 			
@@ -293,6 +378,40 @@ $(document).ready(function(){
 	});
 });
 </script>
+<script>
+$(document).ready(function(){
+	$('.shortlist').click(function(){
+		var ID = $(this).attr('id');
+		var colegid = $("#" + ID).siblings("input[name=shortdata]").val();
+			var userids = $("#" + ID).siblings("input[name=userids]").val();
+			var courseid = $("#" + ID).siblings("input[name=courseid]").val();
+		 $.ajax({
+			type: "POST",
+			url: base_url+"shortlist.php",
+			data: {sort: colegid,userids: userids,courseid: courseid}, 
+			cache: false,
+			beforeSend: function() {
+              $('.loader').html('<img src="'+base_url+'assets/theme/images/bx_loader.gif" alt="" width="50" style="margin: 10% 0% 0% 30%;" >');
+              },
+			success: function(html){
+				alert(html);
+                $('.loader').html('');
+             }
+			});
+	});
+	
+});
+</script>
+<script>
+		$(".toggle-title").click(function () {
+		$(".toggle-details").hide();
+		$(this).next(".toggle-details").show();
+});
+	</script>
+	<style>
+		.show-less{margin-top:15px; font-size: 12px;}
+		.toggle-details {display:none;}
+	</style>
 </div>
 </div>
 </div>

@@ -25,10 +25,10 @@
 				 <div class="box-body">
 					<div class="alert alert-success" id="message" style="display:none;">
 					</div>
-					<?php echo form_open_multipart(current_url(), array('class' => 'form-horizontal', 'id' => 'form-create_stream'));
+					<?php //echo form_open_multipart(current_url(), array('class' => 'form-horizontal', 'id' => 'form-create_stream'));
 					
 					?>
-					
+					<form action="<?php echo site_url('admin/colleges/save_assigncourses'); ?>" method="post" class="form-horizontal" id="form-create_stream">
 					<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select Streams</label>
 						  <div class="col-sm-10">
@@ -78,7 +78,7 @@
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course Status</label>
 						  <div class="col-sm-10">
-						   <select  class="form-control clg_stream_id" required="" name="clg_streams_id" id="streams" >
+						   <select  class="form-control clg_stream_id" name="clg_course_status" id="streams" >
 						  <?php 
 						 
 						   echo '<option  value="">Select Course Status</option>';
@@ -91,16 +91,16 @@
 						<div class="form-group">
 										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >Admission Procedure</label>
 										  <div class="col-sm-10">
-										  <textarea class="form-control" id="conveyer_quota" name="conveyer_quota"><?php echo @$conveyer_quota['value']; ?></textarea>
+										<textarea class="form-control" id="conveyer_quota" name="conveyer_quota"></textarea>
+										 
 										  </div>
 										</div>
-										
 										
 						
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">Course Title</label>
 						  <div class="col-sm-10">
-						  <input type="text" class="form-control" required="" name="title" id="title" value="" placeholder="Enter Course Title">
+						  <input type="text" class="form-control"  name="coursetitle" id="coursetitle" value="" placeholder="Enter Course Title">
 						  </div>
 						</div>
 						<div class="form-group">
@@ -118,20 +118,20 @@
 						<div class="form-group">
 										  <label for="exampleInputEmail1"  class="col-sm-2 control-label" >College Affiliation</label>
 										  <div class="col-sm-10">
-										  	 <input type="text" class="form-control"  id="management_quota" name="management_quota" placeholder="College Affiliation" value="<?php echo @$management_quota['value']; ?>">
+										  	 <input type="text" class="form-control"  id="management_quota" name="management_quota" placeholder="College Affiliation" value="">
 										  </div>
 										</div>
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Fee</label>
 						  <div class="col-sm-10">
-						  <input type="text" class="form-control" required="" name="fee" id="fee" value="" placeholder="Enter Course Fee">
+						  <input type="text" class="form-control" name="fee" id="fee" value="" placeholder="Enter Course Fee">
 						  </div>
 						</div>
 						
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Incentive</label>
 						  <div class="col-sm-10">
-						  <input type="number" class="form-control" required="" name="incentive" id="incentive" value="" placeholder="Enter Course Incentive">
+						  <input type="number" class="form-control" name="incentive" id="incentive" value="" placeholder="Enter Course Incentive">
 						  </div>
 						</div>
 						
@@ -139,19 +139,19 @@
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College procedure</label>
 						  <div class="col-sm-10">
-						  <input type="text" class="form-control" required="" name="procedure" id="procedure" value="" placeholder="Enter procedure">
+						  <input type="text" class="form-control" name="procedure" id="procedure" value="" placeholder="Enter procedure">
 						  </div>
 						</div>
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College eligibility</label>
 						  <div class="col-sm-10">
-						  <input type="text" class="form-control" required="" name="eligibility" id="eligibility" value="" placeholder="Enter eligibility">
+						  <input type="text" class="form-control"  name="eligibility" id="eligibility" value="" placeholder="Enter eligibility">
 						  </div>
 						</div>
 						<div class="form-group">
 						  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Exams</label>
 						  <div class="col-sm-10">
-							 <select  class="form-control basic-multiple"  name="exam" id="exam" multiple="multiple">
+							 <select  class="form-control basic-multiple"  name="exam[]" id="exam" multiple="multiple">
 							   <?php
 							   /*echo "<option value=''>Choose Exam</option>";
 							  foreach($exams as $exam){
@@ -171,9 +171,9 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="btn-group">
-									<input type="hidden" class="ignoreField" value="<?php echo $college_id; ?>" id="college_id">
+									<input type="hidden" class="ignoreField" value="<?php echo $college_id; ?>" name="college_id" id="college_id">
 									<input type="hidden" class="ignoreField" value="" id="assigned_id">
-									<?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-primary btn-flat', 'id'=>'assign_courses', 'content' => lang('actions_submit'))); ?>
+									<?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-primary btn-flat', 'id'=>'assign_courses1', 'content' => lang('actions_submit'))); ?>
 								</div>
 								
 								<div class="btn-group" style="float:right">
@@ -196,4 +196,5 @@
     </section>
     <!-- /.content -->
   </div>  <!-- Content Wrapper. Contains page content -->
+
   

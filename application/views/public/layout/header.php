@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -10,6 +11,12 @@ header('Vary: Accept-Encoding');
 ?>
 <!DOCTYPE html>
 <html>
+
+
+
+
+
+
         <head prefix="og: http://ogp.me/ns#">
         <meta charset="<?php echo $charset; ?>">
         <title>Higher Education - MentorCell</title>
@@ -68,7 +75,84 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 </script>
 <!--End of Zendesk Chat Script-->
 		</head>
+		
+		
+		
+		<ul class="rightbtns">
+		   <li>
+		      <img src="<?php echo base_url('assets/theme/images/telephone.png'); ?>"
+ 
+           </li>
+		</ul>
+<div class="container">
+
+<!--side form start-->
+      <form>
+        
+
+
+              <div class="inback">
+			  <div class="form-style col-md-12">
+               <div class="speak-sec"><p>Speak With Counsellor </p>
+			   <span class="mob-sec"> <p>9899772211</p></span>
+			    
+			     <span class="or-sec"><p>OR</p></span>
+				 <span class="call-sec"><p>Call me back</p></span>
+			     
+			   
+			   </div>
+			  
+			   <span id="form-close"><p>x</p></span>
+               </div>
+            
+                <div class="form-style col-md-12">
+               <input type="text" class="form-control" name="name" placeholder="Enter your full name" id="your-name">
+               </div>
+               
+
+
+               <div class="form-style col-md-12">
+               <input type="text" class="form-control" name="mobile-no." placeholder="Contact No" id="mobile">
+               </div>
+			   
+               <div class="form-style col-md-12">
+               <textarea class="form-control" rows="5" id="comment" placeholder="Textarea"></textarea>
+               </div>
+			   
+
+
+              
+
+               
+
+               
+
+               <div class="form-style col-md-12">
+               <button type="button" btn btn-default id="button-sub">SUBMIT</button>
+               </div>
+
+               </div><!--end of inner background-->
+
+
+               
+
+               
+
+            </form><!--end of form--> 
+
+        </div><!--end of container--> 
+          
+      
+      
+    </form>		
+		
+		
+<!--sidefrom end-->		
+		
+		
+		
 <body>
+
 
 <div id="mainContainer">
 <!-- header start -->
@@ -597,7 +681,7 @@ $eng_college_location2 = $this->common_model->get_all_main_course("mc_colleges",
 </div>
 <!--submenu close-->
 </li>
-<li><a href="<?php echo base_url('home/underconstruction'); ?>">Study Abroad</a>
+<li><a href="<?php echo base_url('page/study_abroad'); ?>">Study Abroad</a>
 
 </li>
 <li><a href="<?php echo base_url()?>home/search?course=41">Admission 2017</a>
@@ -637,6 +721,7 @@ $eng_college_location2 = $this->common_model->get_all_main_course("mc_colleges",
 	<h3><?php echo (isset($user_login['firstname']))? $user_login['firstname'] :" "; ?></h3>
 	<ul>
 		<li><a href="<?php echo site_url('user/profile'); ?>">Profile</a></li>
+		<li><a href="<?php echo site_url('home/shortlist'); ?>">Shortlist</a></li>
 		<li><a href="<?php echo site_url('user/logout'); ?>">Sign Out</a></li>
 	</ul>
 	</div>
@@ -656,7 +741,204 @@ $eng_college_location2 = $this->common_model->get_all_main_course("mc_colleges",
 </div>
 </div>
 </header>
+
+
+
+
 <style>
+
+/*05-6-17*/
+.call-sec p {
+    margin-top: 6px !important;
+}
+
+span.mob-sec p {
+    padding-bottom: 9px !important;
+}
+
+/**03june**/
+#form-close p:hover {
+    color: #fff;
+}
+#form-close p {
+    color: #ff551a;
+    font-weight: bold;
+	position: relative;
+    top: 2px;
+	transition: all ease-in-out .2s;
+}
+.or-sec p:before{
+	position:absolute;
+	content:"";
+	width:44px;
+	height:1px;
+	background-color:#ff551a;
+    right: 170px;
+    top: 69px;
+}
+.or-sec p:after{
+	position:absolute;
+	content:"";
+	width:44px;
+	height:1px;
+	background-color:#ff551a;
+    right: 93px;
+    top: 69px;
+}
+.mob-sec p {
+    margin-top: -9px;
+    font-size: 16px !important;
+	margin-left: 9px;
+}
+.call-sec p {
+    margin-top: -9px;
+	margin-left: 5px;
+}
+
+.or-sec p {
+    margin-top: -9px;
+    font-size: 15px !important;
+    color: #919191;
+	font-weight:bold;
+}
+
+
+.sectionHeading.sec2:before {
+    left: 93px;
+}
+.mobile-no p {
+    margin-top: -35px !important;
+}
+#form-close:hover {
+    color: #15202f;
+	opacity: .4;
+	
+}
+button#button-sub:hover{
+	background: #172031;
+}
+.userNav:after{
+       height: 70px;
+	}
+.form-style p .cont-head {
+    color: #f66132;
+}
+#form-close {
+    color: #f66132;
+    position: absolute;
+	cursor:pointer;
+	left:6px;
+	top:-4px;
+	font-size: 18px;
+	background-color:#15202f;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}
+
+.rightbtns {
+    width: 20px;
+    width: 68px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    right: 0;
+    bottom: 172px;
+    z-index: 99;
+	cursor:pointer;
+	top:316px;
+}
+
+
+
+
+
+.form-style {
+    margin-bottom: 10px;
+	margin-top: 10px;
+	
+}
+.form-control{
+  height: 45px;
+  border-radius:0;
+  border: 1px solid #b8b8b8;
+  letter-spacing: 1px;
+}
+textarea.form-control {
+    height: 85px;
+    resize: none;
+}
+button#button-sub {
+    width: 106px;
+    height: 37px;
+    background: #f66132;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+	transition:all ease-in-out 0.3s;
+	margin-left:14px;
+}
+
+   
+
+.container{
+  padding-right: 0px !important; 
+  padding-left: 0px !important; 
+}
+.form-style p{
+  color: #000;
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+}
+.form-control:focus {
+    border-color: #b8b8b8;
+    outline: 0;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+}
+
+
+.inback {
+    background-color: #f8f8f8;
+    display: inline-block;
+	width: 310px;
+    border: 1px solid #ccc;
+	position: fixed;
+    right: 0;
+	border-radius: 6px;
+	z-index: 111;
+	display: none;
+	top:131px;
+}
+
+
+
+
+
+.mainMenu .subMenuArea .subMenuLeft ol li{
+	height:40px;
+	line-height: 40px;
+	padding: 0px 30px;
+	font-size: 14px;
+}
+.mainMenu .subMenuArea .subMenubox .sublinks a{
+	padding: 5px 0 5px 0;
+	font-size: 12px !important;
+	line-height: 20px;
+}
+
+
+
+
+
 mainMenu .subMenuArea .subMenubox .sublinks a {
    color: #828282;
    font-size: 12px !important;
@@ -669,6 +951,44 @@ header#header {
 color: #15202f;
 cursor:pointer;
 }
+#loginModal .modal-dialog {
+    max-width: 100% !important;
+}
+.modal-content {
+    width: 70%;
+	margin-left: 99px;
+}
+
+
+
+
+
+/**media queries**/
+
+
+
+@media (max-width: 768px){
+	
+	#loginModal .loginForm .inputRow input.go {
+    margin-left: 33px !important;
+}
+	
+}
+button.close{
+	width: 23px;
+}
+.homeSlider {
+    height: auto;
+}
+.careerCol a {
+    width: 100%;
+    margin: 0 0%;
+}
+
+img.play-img{
+	left: 41% !important;
+}
+
 
 </style>
 <!-- header close -->

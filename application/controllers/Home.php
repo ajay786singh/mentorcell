@@ -49,48 +49,15 @@ class Home extends Public_Controller {
 		$this->data['types'] 				= $this->common_model->get_all_rows("mc_types", 1,1);
 		//$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
 		$this->data['courses'] 				= $this->common_model->get_all("mc_courses");
-		$this->data['counselling_video'] 	=  array("zoHm5AXeYYQ","Qqn0ChMyOyc","axltjnTyHOc","OQzPfib7YyA","zoHm5AXeYYQ");
+		//$this->data['counselling_video'] 	=  array("zoHm5AXeYYQ","Qqn0ChMyOyc","axltjnTyHOc","OQzPfib7YyA","zoHm5AXeYYQ");
+		$this->data['counselling_video'] = $this->common_model->get_all_rows("mc_counceling_video", "status",1);
 
 		$this->load->view('public/home', $this->data);
 
 		$this->load->view('public/layout/footer', $this->data);
 	}
 	
-		public function newhome()
-	{
-		if ($this->ion_auth->logged_in()){
-		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
-		}else{
-			$this->data['user_login'] = array('id'=>false);
-		}
-
-		$cstates = $this->college_model->get_states();
-		$options = '';
-		foreach($cstates as $stateeach){
-				//echo '<option  value="'.$stateeach->id.'">'.$stateeach->name.'</option>';
-				$options.= '<optgroup label="'.$stateeach->name.'">';
-					$cities = $this->college_model->get_cities($stateeach->id);
-					foreach($cities as $city){
-						$options.= '<option value="'.$city->id.'">'.$city->name.'</option>';
-					}
-					$options.=  '</optgroup>';
-		}
-		
-
-		$this->data['location'] = $options;
-		$this->load->view('public/layout/header', $this->data);
-
-		$this->data['colleges'] 			= $this->common_model->get_all_rows("mc_colleges",'status','2','name');
-		$this->data['streams'] 				= $this->common_model->get_all_rows("mc_streams", 1,1);
-		$this->data['types'] 				= $this->common_model->get_all_rows("mc_types", 1,1);
-		//$this->data['courses'] = $this->common_model->get_all_rows("mc_courses", 1,1);
-		$this->data['courses'] 				= $this->common_model->get_all("mc_courses");
-		$this->data['counselling_video'] 	=  array("zoHm5AXeYYQ","Qqn0ChMyOyc","axltjnTyHOc","OQzPfib7YyA","zoHm5AXeYYQ");
-
-		$this->load->view('public/newhome', $this->data);
-
-		$this->load->view('public/layout/footer', $this->data);
-	}
+	
 	
 	public function gallery()
 	{
@@ -261,6 +228,33 @@ class Home extends Public_Controller {
 		$this->load->view('public/layout/footer', $this->data);
 
 	}
+	
+	function shortlist()
+	{
+		if ($this->ion_auth->logged_in()){
+		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		}else{
+			$this->data['user_login'] = array('id'=>false);
+		}
+		$this->load->view('public/layout/header', $this->data);
+		$this->load->view('public/shortlist');
+		$this->load->view('public/layout/footer', $this->data);
+
+	}
+	
+		function more_course()
+	{
+		if ($this->ion_auth->logged_in()){
+		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		}else{
+			$this->data['user_login'] = array('id'=>false);
+		}
+		$this->college['college_id'] = $_GET['id'];
+		$this->load->view('public/layout/header', $this->data);
+		$this->load->view('public/more_course', $this->college);
+		$this->load->view('public/layout/footer', $this->data);
+
+	}
 
 	public function clgcity()
 	{
@@ -361,6 +355,8 @@ class Home extends Public_Controller {
 		$phone = $_POST['phone'];
 		$message = $_POST['message'];
 
+		
+		
 		$email_data = array(
 								'subject'=>'New Enquiry Request from MentorCell',
 								'to' =>'dinesh@mentorcell.com',
@@ -391,6 +387,8 @@ class Home extends Public_Controller {
 		$this->load->view('public/404', $this->data);
 		$this->load->view('public/layout/footer', $this->data);
 	}
+	
+	
 	
 	
 

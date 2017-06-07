@@ -341,6 +341,20 @@ class User extends Public_Controller {
 		$state_id = $this->input->get('state_id');
 		$cities = $this->common_model->get_all_rows("districts", "state_id",$state_id);
 		$option = '';
+		$option .= '<option value="">Select</option>';
+		foreach($cities as $city){
+			$option .= '<option value="'.$city['id'].'">'.$city['name'].'</option>';
+		}
+		$option .= '';
+		echo $option; die;
+	}
+	
+	public function state()
+	{
+		$country_id = $this->input->get('country_id');
+		$cities = $this->common_model->get_all_rows("states", "country_id",$country_id);
+		$option = '';
+		$option .= '<option value="">Select</option>';
 		foreach($cities as $city){
 			$option .= '<option value="'.$city['id'].'">'.$city['name'].'</option>';
 		}

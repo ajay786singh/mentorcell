@@ -94,6 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>-->
 						
+						
 						<?php } 
 						
 						if($this->ion_auth->in_group('college') || $this->ion_auth->is_admin()) {
@@ -110,6 +111,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<li class="<?=active_link_controller('coupons')?>">
                             <a href="<?php echo site_url('admin/coupons/redeem'); ?>">
                                 <i class="fa fa-user"></i> <span>Redeem / Enquiry</span>
+                            </a>
+                        </li>
+						
+							<li class="<?=active_link_controller('counsellingdata')?>">
+                            <a href="<?php echo site_url('admin/coupons/counselling'); ?>">
+                                <i class="fa fa-user"></i> <span>Counselling</span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('counsellingdata')?>">
+                            <a href="<?php echo site_url('admin/coupons/study_abroad'); ?>">
+                                <i class="fa fa-user"></i> <span>Study Abroad</span>
                             </a>
                         </li>
 						
@@ -149,6 +162,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<li class="<?=active_link_controller('courses')?>">
                             <a href="<?php echo site_url('admin/courses '); ?>">
                                 <i class="fa fa-shield"></i> <span><?php echo 'Courses '; ?></span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('desirecourses')?>">
+                            <a href="<?php echo site_url('admin/courses/desirecourses '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Desire Courses '; ?></span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('desirecountry')?>">
+                            <a href="<?php echo site_url('admin/courses/desirecountry '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Desire Country '; ?></span>
+                            </a>
+                        </li>
+						<li class="<?=active_link_controller('intake')?>">
+                            <a href="<?php echo site_url('admin/courses/intake '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Intake '; ?></span>
+                            </a>
+                        </li>
+						
+						<li class="<?=active_link_controller('testimonial')?>">
+                            <a href="<?php echo site_url('admin/courses/testimonial '); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo 'Testimonial '; ?></span>
                             </a>
                         </li>
 						

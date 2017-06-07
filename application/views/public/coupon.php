@@ -51,7 +51,7 @@
             <div class="orline">
             <img src="http://nationproducts.in/mentorcell/assets/theme/images/or-line.png">
             </div>
-			<h3>Want to be a part of it?</h3>
+			<h3>Register for a new account</h3>
 			<div id="register_response"></div>
 			<form id="register_form">
 				<div class="col-md-12 inputRow coupon-detel">

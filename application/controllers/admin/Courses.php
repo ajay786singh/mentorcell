@@ -44,6 +44,74 @@ class Courses extends Admin_Controller {
         }
 	}
 	
+	public function desirecourses()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['courses_list'] = $this->common_model->get_all("mc_desire_course");
+            $this->template->admin_render('admin/courses/desirecourses', $this->data);
+        }
+	}
+	
+	public function desirecountry()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['courses_list'] = $this->common_model->get_all("mc_desire_country");
+            $this->template->admin_render('admin/courses/desirecountry', $this->data);
+        }
+	}
+	
+	public function intake()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['courses_list'] = $this->common_model->get_all("mc_intake");
+            $this->template->admin_render('admin/courses/intake', $this->data);
+        }
+	}
+	
+	public function testimonial()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['courses_list'] = $this->common_model->get_all("mc_testimonial");
+            $this->template->admin_render('admin/courses/testimonial', $this->data);
+        }
+	}
+	
 	public function courses_status()
 	{
         if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
@@ -112,6 +180,333 @@ class Courses extends Admin_Controller {
 
     }
 	
+		public function createdesire()
+	{
+		/* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/courses/createdesire');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Variables */
+		$tables = $this->config->item('tables', 'ion_auth');
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		$config['allowed_types']    = 'gif|jpg|png';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+
+		/* Validate form input */
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+		
+		
+		if ($this->form_validation->run() == TRUE)
+		{	
+			$this->data = array();
+			$this->data = $this->input->post();
+		}
+		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data,"mc_desire_course"))
+		{
+            $this->session->set_flashdata('message', 'Desire Courses added successfully!');
+			redirect('admin/courses/desirecourses', 'refresh');
+		}
+		else
+		{
+            $this->data['message'] =  (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+			$this->data['name']['value'] = $this->form_validation->set_value('name');
+			$this->data['duration']['value'] = $this->form_validation->set_value('duration');			
+			$this->data['status']['value'] = $this->form_validation->set_value('status');
+            /* Load Template */
+            $this->template->admin_render('admin/courses/createdesire', $this->data);
+        }
+
+    }
+	
+		public function createdesirecountry()
+	{
+		/* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/courses/createdesirecountry');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Variables */
+		$tables = $this->config->item('tables', 'ion_auth');
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		$config['allowed_types']    = 'gif|jpg|png';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+
+		/* Validate form input */
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+		
+		
+		if ($this->form_validation->run() == TRUE)
+		{	
+			$this->data = array();
+			$this->data = $this->input->post();
+		}
+		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data,"mc_desire_country"))
+		{
+            $this->session->set_flashdata('message', 'Desire Country added successfully!');
+			redirect('admin/courses/desirecountry', 'refresh');
+		}
+		else
+		{
+            $this->data['message'] =  (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+			$this->data['name']['value'] = $this->form_validation->set_value('name');
+			$this->data['status']['value'] = $this->form_validation->set_value('status');
+            /* Load Template */
+            $this->template->admin_render('admin/courses/createdesirecountry', $this->data);
+        }
+
+    }
+	
+	public function createintake()
+	{
+		/* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/courses/createintake');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Variables */
+		$tables = $this->config->item('tables', 'ion_auth');
+		/* Conf */
+		$config['upload_path']      = './upload/';
+		$config['allowed_types']    = 'gif|jpg|png';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+
+		/* Validate form input */
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+		
+		
+		if ($this->form_validation->run() == TRUE)
+		{	
+			$this->data = array();
+			$this->data = $this->input->post();
+		}
+		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data,"mc_intake"))
+		{
+            $this->session->set_flashdata('message', 'Intake added successfully!');
+			redirect('admin/courses/intake', 'refresh');
+		}
+		else
+		{
+            $this->data['message'] =  (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+			$this->data['name']['value'] = $this->form_validation->set_value('name');
+			$this->data['status']['value'] = $this->form_validation->set_value('status');
+            /* Load Template */
+            $this->template->admin_render('admin/courses/createintake', $this->data);
+        }
+
+    }
+	
+	
+		public function createtestimonial()
+	{
+		/* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_create'), 'admin/courses/createtestimonial');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+ /* Variables */
+		$tables = $this->config->item('tables', 'ion_auth');
+		/* Conf */
+		$config['upload_path']      = './upload/testimonial/';
+		$config['allowed_types']    = 'gif|jpg|png|pdf';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+		
+		$this->form_validation->set_rules('status', 'Status', 'required');
+		
+		if ($this->form_validation->run() == TRUE)
+		{	
+	       $this->upload->do_upload('image');
+			$image = $this->upload->data();
+			$this->data = array();
+			$this->data = $this->input->post();
+			$this->data['image'] = $image['file_name'];
+		}
+		if ($this->form_validation->run() == TRUE && $this->common_model->insert($this->data,"mc_testimonial"))
+		{
+            $this->session->set_flashdata('message', 'Testimonial added successfully!');
+			redirect('admin/courses/testimonial', 'refresh');
+		}else{
+       $this->data['message'] =  (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+       $this->template->admin_render('admin/courses/createtestimonial', $this->data);
+		}
+    }
+	
+	
+	public function editdesire($id)
+	{
+        $id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+
+        /* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/courses/editdesire');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Data */
+		$courses = $this->common_model->get_single_row("mc_desire_course", "id", $id);
+		
+		/* Validate form input */
+		$this->form_validation->set_rules('name', 'Course Name', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+
+		if (isset($_POST) && ! empty($_POST))
+		{
+            
+			if ($this->form_validation->run() == TRUE)
+			{
+				$data['name'] = $this->input->post('name');
+				$data['duration'] = $this->input->post('duration');
+				$data['status'] = $this->input->post('status');
+				
+                if($this->common_model->update("mc_desire_course", $data, "id", $courses['id']))
+			    {
+                    $this->session->set_flashdata('message', 'Course data Updated!');
+					redirect('admin/courses/desirecourses', 'refresh');
+			    }
+			    else
+			    {
+                    $this->session->set_flashdata('message', $this->ion_auth->errors());
+						redirect('admin/courses/desirecourses', 'refresh');
+					
+			    }
+			}
+		}
+
+		// display the edit user form
+		$this->data['csrf'] = $this->_get_csrf_nonce();
+		$this->data['courses'] = $courses;
+
+		// set the flash data error message if there is one
+		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+			$this->data['name']['value'] = $this->form_validation->set_value('name',$courses['name']);
+			$this->data['status']['value'] = $this->form_validation->set_value('status',$courses['status']);
+			$this->data['duration']['value'] = $this->form_validation->set_value('duration',$courses['duration']);
+			/* Load Template */
+		$this->template->admin_render('admin/courses/editdesire', $this->data);
+	}
+	
+	public function editdesirecountry($id)
+	{
+        $id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+
+        /* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/courses/editdesirecountry');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Data */
+		$courses = $this->common_model->get_single_row("mc_desire_country", "id", $id);
+		
+		/* Validate form input */
+		$this->form_validation->set_rules('name', 'Course Name', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+
+		if (isset($_POST) && ! empty($_POST))
+		{
+            
+			if ($this->form_validation->run() == TRUE)
+			{
+				$data['name'] = $this->input->post('name');
+				$data['status'] = $this->input->post('status');
+				
+                if($this->common_model->update("mc_desire_country", $data, "id", $courses['id']))
+			    {
+                    $this->session->set_flashdata('message', 'Course data Updated!');
+					redirect('admin/courses/desirecourses', 'refresh');
+			    }
+			    else
+			    {
+                    $this->session->set_flashdata('message', $this->ion_auth->errors());
+						redirect('admin/courses/desirecountry', 'refresh');
+					
+			    }
+			}
+		}
+
+		// display the edit user form
+		$this->data['csrf'] = $this->_get_csrf_nonce();
+		$this->data['courses'] = $courses;
+
+		// set the flash data error message if there is one
+		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+			$this->data['name']['value'] = $this->form_validation->set_value('name',$courses['name']);
+			$this->data['status']['value'] = $this->form_validation->set_value('status',$courses['status']);
+			/* Load Template */
+		$this->template->admin_render('admin/courses/editdesirecountry', $this->data);
+	}
+	
+	public function editintake($id)
+	{
+        $id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+
+        /* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/courses/editdesire');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Data */
+		$courses = $this->common_model->get_single_row("mc_intake", "id", $id);
+		
+		/* Validate form input */
+		$this->form_validation->set_rules('name', 'Intake Name', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+
+		if (isset($_POST) && ! empty($_POST))
+		{
+            
+			if ($this->form_validation->run() == TRUE)
+			{
+				$data['name'] = $this->input->post('name');
+				$data['status'] = $this->input->post('status');
+				
+                if($this->common_model->update("mc_intake", $data, "id", $courses['id']))
+			    {
+                    $this->session->set_flashdata('message', 'Intake data Updated!');
+					redirect('admin/courses/intake', 'refresh');
+			    }
+			    else
+			    {
+                    $this->session->set_flashdata('message', $this->ion_auth->errors());
+						redirect('admin/courses/intake', 'refresh');
+					
+			    }
+			}
+		}
+
+		// display the edit user form
+		$this->data['csrf'] = $this->_get_csrf_nonce();
+		$this->data['courses'] = $courses;
+
+		// set the flash data error message if there is one
+		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+			$this->data['name']['value'] = $this->form_validation->set_value('name',$courses['name']);
+			$this->data['status']['value'] = $this->form_validation->set_value('status',$courses['status']);
+			/* Load Template */
+		$this->template->admin_render('admin/courses/editintake', $this->data);
+	}
+	
 		public function create_status()
 	{
 		/* Breadcrumbs */
@@ -177,6 +572,72 @@ class Courses extends Admin_Controller {
 				}
 	}
 	
+		public function deletedesire($id)
+	{
+        /* Load Template */
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+					if($this->common_model->delete_where("mc_desire_course",'id',$id))
+			    {
+                    $this->session->set_flashdata('message', 'Course Deleted!');
+					redirect('admin/courses/desirecourses', 'refresh');
+			    }
+			    else
+			    {
+					$this->session->set_flashdata('message', 'No Course found.');
+					redirect('admin/courses/desirecourses', 'refresh');
+				}
+	}
+	
+	public function deletedesirecountry($id)
+	{
+        /* Load Template */
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+					if($this->common_model->delete_where("mc_desire_country",'id',$id))
+			    {
+                    $this->session->set_flashdata('message', 'Course Deleted!');
+					redirect('admin/courses/desirecourses', 'refresh');
+			    }
+			    else
+			    {
+					$this->session->set_flashdata('message', 'No Course found.');
+					redirect('admin/courses/desirecountry', 'refresh');
+				}
+	}
+	
+	public function deleteintake($id)
+	{
+        /* Load Template */
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+					if($this->common_model->delete_where("mc_intake",'id',$id))
+			    {
+                    $this->session->set_flashdata('message', 'Intake Deleted!');
+					redirect('admin/courses/intake', 'refresh');
+			    }
+			    else
+			    {
+					$this->session->set_flashdata('message', 'No Intake found.');
+					redirect('admin/courses/intake', 'refresh');
+				}
+	}
+	
 	public function status_delete($id)
 	{
         /* Load Template */
@@ -196,6 +657,28 @@ class Courses extends Admin_Controller {
 			    {
 					$this->session->set_flashdata('message', 'No Course found.');
 					redirect('admin/courses/courses_status', 'refresh');
+				}
+	}
+	
+	public function deletetestimonial($id)
+	{
+        /* Load Template */
+		$id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+		
+					if($this->common_model->delete_where("mc_testimonial",'id',$id))
+			    {
+                    $this->session->set_flashdata('message', 'Course Deleted!');
+					redirect('admin/courses/testimonial', 'refresh');
+			    }
+			    else
+			    {
+					$this->session->set_flashdata('message', 'No Course found.');
+					redirect('admin/courses/testimonial', 'refresh');
 				}
 	}
 
@@ -343,6 +826,70 @@ class Courses extends Admin_Controller {
 			$this->data['status']['value'] = $this->form_validation->set_value('status',$courses['status']);
         /* Load Template */
 		$this->template->admin_render('admin/courses/status_edit', $this->data);
+	}
+	
+	
+	public function edittestimonial($id)
+	{
+        $id = (int) $id;
+
+		if ( ! $this->ion_auth->logged_in() OR ( ! $this->ion_auth->is_admin() ))
+		{
+			redirect('auth', 'refresh');
+		}
+
+		/* Conf */
+		$config['upload_path']      = './upload/testimonial/';
+		$config['allowed_types']    = 'gif|jpg|png';
+		$config['file_ext_tolower'] = TRUE;
+		$this->load->library('upload', $config);
+        /* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_users_edit'), 'admin/courses/edittestimonial');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        /* Data */
+		$testimonial_data = $this->common_model->get_single_row("mc_testimonial", "id", $id);
+		//print_r($courses);die;
+		
+		/* Validate form input */
+		$this->form_validation->set_rules('username', 'Name', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+
+		if (isset($_POST) && ! empty($_POST))
+		{
+            /*if ($this->_valid_csrf_nonce() === FALSE OR $id != $this->input->post('id'))
+			{	
+				show_error('There is something wrong with security.');
+			}*/
+			
+
+			if ($this->form_validation->run() == TRUE)
+			{
+				$this->upload->do_upload('image');
+				$image = $this->upload->data();
+		
+		       if(isset($image['file_name']) && $image['file_size']>0){
+				$data['image'] = $image['file_name'];
+				}
+				$data['username'] = $this->input->post('username');				
+				$data['title'] = $this->input->post('title');				
+				$data['description'] = $this->input->post('description');				
+				$data['status'] = $this->input->post('status');
+				
+                if($this->common_model->update("mc_testimonial", $data, "id", $testimonial_data['id']))
+			    {
+                    $this->session->set_flashdata('message', 'Testimonial data Updated!');
+					redirect('admin/courses/testimonial', 'refresh');
+			    }
+			  
+			}
+		}
+
+		// display the edit user form
+		$this->data['testimonial_data'] = $testimonial_data;
+
+        /* Load Template */
+		$this->template->admin_render('admin/courses/edittestimonial', $this->data);
 	}
 
 

@@ -21,9 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                     <?php echo form_open_multipart(current_url(), array('class' => 'form-horizontal', 'id' => 'form-create_college'));
 									?>
-									
-									
-										<div class="form-group">
+							<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Select user</label>
 										  <div class="col-sm-10">
 										  <select  class="form-control basic-multiple"  name="user_id" id="user_id" multiple="multiple" >
@@ -58,18 +56,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Brochure</label>
 										  <div class="col-sm-10">
-										  <input type="file" class="form-control"  name="brochure" id="brochure" value="" placeholder="Enter College Code">
+										  <input type="file" class="form-control"  name="brochure" id="brochure"  placeholder="Enter College Code">
 										  </div>
 										</div>
 										
 										<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Logo</label>
 										  <div class="col-sm-10">
-										  <input type="file" class="form-control"  name="logo" id="code" value="" placeholder="Enter College Code">
+										  <input type="file" class="form-control"  name="logo" id="logo" placeholder="Enter College Code">
 										  </div>
 										</div>
 										
-										<div class="form-group">
+									<div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">College Banner</label>
 										  <div class="col-sm-10">
 										  <input type="file" class="form-control"  name="banner" id="banner"  placeholder="Enter College Code">

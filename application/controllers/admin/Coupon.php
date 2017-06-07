@@ -203,4 +203,21 @@ class Coupon extends Public_Controller {
 		$this->load->view('public/countrydata', $data);
 		$this->load->view('public/layout/footer', $this->data);
 	}
+	
+	public function counselling()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            /* Load Template */
+			$this->data['streams_list'] = $this->common_model->get_all("mc_counselling_data");
+            $this->template->admin_render('admin/coupons/counselling', $this->data);
+        }
+	}
 }

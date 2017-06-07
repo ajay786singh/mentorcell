@@ -41,7 +41,7 @@
 </td>
 				  <td><?php echo $counceling_video['title'];?></td>
                   <td><?php echo ($counceling_video['status']==1)?"Active":"Inactive";?>   </td>
-                  <td><!--<a href="<?php echo base_url()."admin/streams/edit_counselingvideo/".$counceling_video['id'];?>">Edit</a> |--> <a href="<?php echo base_url()."admin/streams/delete_councelingvideo/".$counceling_video['id'];?>">Delete</a></td>
+                  <td><a href="<?php echo base_url()."admin/streams/edit_counselingvideo/".$counceling_video['id'];?>">Edit</a> | <a href="<?php echo base_url()."admin/streams/delete_councelingvideo/".$counceling_video['id'];?>">Delete</a></td>
                </tr>
                <?php }?>
                 </tbody>

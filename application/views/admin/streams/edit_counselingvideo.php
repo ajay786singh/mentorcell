@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <h3 class="box-title"><?php echo 'Update Counseling Video'; ?></h3>
                                 </div>
                                 <div class="box-body">
-                                    <?php echo $message;?>
+                                    <?php //echo $message;?>
 
                                     <?php echo form_open_multipart(current_url(), array('class' => 'form-horizontal', 'id' => 'form-update_counseling_video'));
 									?>
@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="form-group">
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Counseling Title</label>
 										  <div class="col-sm-10">
-										  <input type="text" class="form-control" required="" name="title" id="title" value="<?php echo @$title['value']; ?>" placeholder="title">
+										  <input type="text" class="form-control" required="" name="title" id="title" value="<?php echo $counceling_video1['title']; ?>" placeholder="title">
 										  </div>
 										</div>
 										
@@ -35,9 +35,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Counseling Video</label>
 										  <div class="col-sm-10">
 										  <input type="file" class="form-control"  name="video" id="video" value="" placeholder="Add Stream Logo">
-										   <?php if(!empty(@$video['value'])){?>
+										   <?php if(!empty($counceling_video1['video'])){?>
 											  <video width="320" height="240" controls>
-    <source src="<?php echo base_url()."upload/".@$video['value']?>">
+    <source src="<?php echo base_url()."upload/".$counceling_video1['video']?>">
 </video>
 										 <?php }  ?>
 										  </div>
@@ -48,8 +48,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										  <label for="exampleInputEmail1" class="col-sm-2 control-label">Status</label>
 										  <div class="col-sm-10">
 										  <select name="status">
-										  <option value="1" <?php if(@$status['value']==1){echo "selected";} ?>>Active</option>
-										  <option value="0" <?php if(@$status['value']==0){echo "selected";} ?>>De-active</option>
+										  <option value="1" <?php if($counceling_video1['status']==1){echo "selected";} ?>>Active</option>
+										  <option value="0" <?php if($counceling_video1['status']==0){echo "selected";} ?>>De-active</option>
 										  </select>
 										  </div>
 										</div>

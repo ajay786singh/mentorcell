@@ -1,4 +1,5 @@
-<?php include('config.php');
+<?php session_start();
+ include('config.php');
 $sort = $_REQUEST['sort'];
 if($sort == 0){
 	$sql = mysql_query("SELECT * FROM mc_colleges INNER JOIN mc_course_assignment ON mc_colleges.id = mc_course_assignment.college_id WHERE mc_colleges.status = '2' GROUP BY mc_course_assignment.college_id ORDER BY mc_course_assignment.fee ASC");

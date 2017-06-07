@@ -7,9 +7,10 @@
 
     <!-- Modal content-->
     <div class="modal-content">
+	<div class="termandcond">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><span class="term-style">Privacy </span><span>Policys</span></h4>
+        <div class="sectionHeading"><h4 class="modal-title"><span class="term-style">Privacy </span><span>Policys</span></h4></div>
       </div>
       <div class="modal-body">
       <h5>Introduction</h5>
@@ -93,6 +94,18 @@
       </div>
 
     </div>
+	
+	
+	
+	
+	
+	
+	
+	
+	</div>
+	
+	
+	
 
   </div>
 </div>
@@ -104,6 +117,17 @@
   <div class="modal-dialog">
   
   <style>
+  .privacyContent .modal-content{
+	  width: 100%;
+	  margin-left: 11px !important;
+  }
+ 
+  
+  
+  
+  
+  
+  
      button.close{
 		 color:#f77a52;
 	 }
@@ -119,7 +143,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><span class="term-style">Terms &</span> <span>Conditions</span></h4>
+        <div class="sectionHeading"><h4 class="modal-title"><span class="term-style">Terms &</span> <span>Conditions</span></h4></div>
       </div>
       <div class="modal-body">
       <p>It is hereby informed to all the users of “Mentrocell.com” that the following terms and conditions, along with all other terms and legal notices located on <a href="www.mentorcell.com">www.mentorcell.com</a> (collectively, "Terms"), govern your use of <a href="www.mentorcell.com">www.mentorcell.com</a>.</p>

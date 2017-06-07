@@ -19,7 +19,8 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header with-border">
-
+<?php $college_location_eng2 = $this->common_model->get_single_row("mc_colleges","id",$college_id);?>
+<h3><?=$college_location_eng2['name'];?></h3>
  </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -56,9 +57,9 @@
 							if(!empty($spel->specialization_name)){  echo $spel->specialization_name; ?><?php
 							  } } ?></td>
                         <td>
-					<a title="Delete" href="<?php echo base_url()."admin/colleges/delete/".$college_list['assigned_id'];?>">
+					<a title="Delete" href="<?php echo base_url()."admin/colleges/deletecourse/".$college_list['assigned_id']."/".$college_id?>">
 					<i class="fa fa-trash" aria-hidden="true"></i></a> |
-					<a title="Assign Courses" href="<?php echo base_url()."admin/colleges/editassigncourse/".$college_list['assigned_id'];?>">
+					<a title="Assign Courses" href="<?php echo base_url()."admin/colleges/editassigncourse/".$college_list['assigned_id']."/".$college_id;?>">
 					<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 					</td>
 

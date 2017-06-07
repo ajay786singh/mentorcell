@@ -12,7 +12,7 @@
          <P>Are you looking to Study Abroad (US, Europe, UK, Australia, Canada, Singapore, New Zealand)</P>
 		 
 		 <h2>Fill the form for FREE Counseling</h2>
-		 <img src="http://ec2-35-154-102-247.ap-south-1.compute.amazonaws.com/assets/theme/images/right_hand.png">
+		 <img src="http://www.mentorcell.com/assets/theme/images/right_hand.png">
 		<p style="font-size:17px !important; margin-top: 19px;">Mentorcell.com will assist you to get admission at the best University with a course of your choice.</p>
       </div><!--end of content box-->
 

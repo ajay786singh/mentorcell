@@ -462,7 +462,7 @@ Noida, UP<br>
   <script>
   $('#main-slider').owlCarousel({
     loop:true,
-    navText:['<img src="http://ec2-35-154-102-247.ap-south-1.compute.amazonaws.com/assets/theme/images/pre.png" />', '<img src="http://ec2-35-154-102-247.ap-south-1.compute.amazonaws.com/assets/theme/images/next.png" />' ],
+    navText:['<img src="http://www.mentorcell.com/assets/theme/images/pre.png" />', '<img src="http://www.mentorcell.com/assets/theme/images/next.png" />' ],
     margin:0,
     nav:true,
 		 

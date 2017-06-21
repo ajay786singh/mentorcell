@@ -388,6 +388,68 @@ class Home extends Public_Controller {
 		$this->load->view('public/layout/footer', $this->data);
 	}
 	
+		function study_abroad($page = 0)
+	{
+
+		if ($this->ion_auth->logged_in()){
+		$this->data['user_login']  = $this->prefs_model->user_info_login($this->ion_auth->user()->row()->id);
+		}else{
+			$this->data['user_login'] = array('id'=>false);
+		}
+
+
+		$this->load->view('public/layout/header', $this->data);
+
+		$query = array();
+		
+			$query['course'] = $_GET['course'];
+			$query['location'] = 0;
+			
+			$this->college['coursename'] = $query['course'];
+			$stream_detail = $this->common_model->get_single_row('mc_courses','course_id',$query['course']);
+			$this->college['streamids'] = $stream_detail['stream_id'];
+			$config = array();
+         $config["total_rows"] = $this->college_model->search_result_cont($query);
+        $config["per_page"] = 20;
+		 $config['first_link'] = 'First';
+        $config['last_link'] = 'Last';
+		 $config['uri_segment'] = 3;
+         $config["base_url"] = base_url() . "home/study_abroad";
+		 $config['suffix'] = '?'.http_build_query($_GET, '', "&"); 
+		$this->pagination->initialize($config);
+		$page = ($this->uri->segment(3) != '' ? $this->uri->segment(3): 0);
+		$this->college["paginglinks"] = $this->pagination->create_links();
+			$this->college['colleges'] = $this->college_model->search_result_course($query,$config["per_page"], $page);
+			$this->college['count_res'] = $this->college_model->search_result_cont($query);
+			
+			$this->load->view('public/study_abroad', $this->college);
+		
+		$this->load->view('public/layout/footer', $this->data);
+
+	}
+	
+		function streamcourses()
+	{
+$streamids = $_GET['streamid'];
+$assigned_streamcourses = $this->college_model->get_assigned_streamcourses($streamids);
+
+		if(count($assigned_streamcourses) > 0){
+			 echo "<option value=''>-- Select Courses --</option>";
+			foreach($assigned_streamcourses as $a_streamcourse){
+
+			$assigned_course_name = $this->common_model->get_single_row('mc_courses','course_id',$a_streamcourse['course_id']);
+		
+				
+				echo "<option value='".$a_streamcourse['course_id']."'>".$assigned_course_name['course_name']."</option>";
+				}
+			
+		}else{
+			echo "<option value='0'>-- Select Course --</option>";
+		}
+		die;
+					
+	}
+	
 	
 	
 	

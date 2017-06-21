@@ -4,14 +4,22 @@ h1, h2, h3, h4, h5, h6, ol, ul, li, form, label, strong {margin: 0px; padding: 0
 a, input, button, *:focus {outline: none; color: #333;}
 
 
-
+.sectionHeading h5 {
+    font-size: 18px;
+    font-weight: 600;
+}
 .footerWidget h3 a {
     color: #fff;
 }
 .footerWidget h3 a:hover{
 	color:#f66132;
 }
-
+div#loginModal {
+    padding-right: 0px !important;
+}
+.banner-coupon img{
+	padding-top: 33px;
+}
 
 
 
@@ -81,6 +89,9 @@ select#course {
 }
 #loginModal .loginForm .inputRow input.go{
 	margin-left: 114px !important;
+}
+.chosen-container-single .chosen-single span{
+	margin: 3px; 
 }
 
 
@@ -278,7 +289,7 @@ header#header .logo img {max-width: 100%; height: auto;}
 
 .containerBox {padding: 20px 70px;}
 
-.sectionHeading {text-transform: capitalize; font-size: 24px; display: block; position: relative; text-align: center; margin: 0px 0px 40px 0px; color: #15202f; font-weight: 600; margin-bottom: 65px;}
+.sectionHeading {text-transform: capitalize; font-size: 24px; display: block; position: relative; text-align: center; margin: 0px 0px 40px 0px; color: #15202f; font-weight: 600; margin-bottom: 65px !important;}
 .sectionHeading span{color:#f77a52;}
 .sectionHeading:before {content: url('http://mentorcell.com/assets/theme/images/line.png'); position: absolute; bottom:10px; left: 46%; transform: translateX(-50%); width: 115px; height:3px; }
 .whiteColor {color:#fff;}
@@ -663,7 +674,7 @@ a:active{
 .collegeResultBox .collegeMiddle h4 { font-size: 14px; margin: 0px 0px 15px 0px; color: rgba(0,0,0,0.54);}
 
 .collegeResultBox .collegeMiddle ul li {display:block; float: left; font-size: 14px; padding:0px 15px; border-left:1px solid rgba(0,0,0,0.20);}
-.collegeResultBox .collegeMiddle ul li:first-child {border: none; padding-left: 0px;}
+
 .collegeResultBox .collegeMiddle ul li span  {display: block; font-size: 12px; color:#303a47; font-family: 'ubuntumedium'; color: rgba(0,0,0,0.54);}
 
 .collegeResultBox .collegeMiddle .moreCourses {display: block; float: left; font-size: 14px; margin: 15px 0px 0px 0px; clear: both; background: #d6e2ef; border-radius: 5px; padding: 3px 8px; color: #3757ab; transition: all ease-in-out 0.3s;}
@@ -677,7 +688,7 @@ a:active{
 .collegeResultBox .collegeBottom {background: #f4f6f8; padding: 10px 15px;}
 .collegeResultBox .collegeBottom ul {float: right;}
 .collegeResultBox .collegeBottom ul li {float: left; padding: 0px 0px 0px 15px; display: block; font-size: 14px;}
-.collegeResultBox .collegeBottom ul li a {color: rgba(0,0,0,0.54); transition: all ease-in-out 0.3s; min-width: 100px; display: block; padding: 4px 10px; text-align: center;}
+.collegeResultBox .collegeBottom ul li a {color: rgba(0,0,0,0.54); transition: all ease-in-out 0.3s; max-width: 100%; display: block; padding: 4px 10px; text-align: center;}
 
 .collegeResultBox .collegeBottom ul li a i {font-size: 16px; float: left; margin: 0px 4px 0px 0px;}
 .collegeResultBox .collegeBottom ul li a.button2 {background:#ffffd4; border-radius: 5px;  border: 1px solid rgba(0,0,0,0.15); color:#000;} 
@@ -987,7 +998,7 @@ li.catstyle p{
 /* colleage page*/
 
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 767px){
 	.collegeHead .collegeQuick h3 {
     text-align: center;
 }
@@ -1001,7 +1012,7 @@ li.catstyle p{
 /* coupon page*/
 
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 767px){
 	.couponHolder .regForm{
 	 width: 100% !important;
 	 margin:0px !important;
@@ -1024,11 +1035,11 @@ li.catstyle p{
 		width: 100% !important;
 	}
 	.careerCol p{
-		    padding: 0 22px !important;
+		    
             text-align: justify !important;
 	}
 	li.item img {
-    margin-left: 31px;
+    margin-left: 15px;
 }
 .careerCol .counsButton{
 	display: inline-block;
@@ -1036,7 +1047,7 @@ li.catstyle p{
 	margin-left: 0%!important;
 }
 .link-section{
-	    padding: 0 15px;
+		margin-top: 0px;
 }
 #link-form{
 	width: 100% !important;
@@ -1058,22 +1069,25 @@ li.catstyle p{
 	padding: 30px 15px;
 }
 .modal-content{
-  margin-left: 41px !important;  
+  margin-left: 20%!important;  
 }
 #registerModal .modal-content{
 	width: 100%;
 }
 .modal{
-	left: -54px !important;
+	left: -77px !important;
 }
 #loginModal .modal-dialog{
 	margin-left: 34px;
 }
 .owl-prev{
-	left: 62px !important;
+	left: 20px !important;
+	top: 32% !important;
+	
 }
 .owl-next{
-	right: 60px !important;
+	right: 20px !important;
+	top: 32% !important;
 }
 .featureSlider{
 	display: block !important;
@@ -1144,7 +1158,20 @@ header#header{
     margin-top: -43px !important;
 }
 .homeSlider .searchArea{
-	margin-top: 0px !important;
+	margin-top: 57px !important;
+}
+.careerCol {
+    padding: 0 0 !important;
+}
+#form2{
+	width: 100% !important;
+    padding: 0 21px;
+    margin-top: -41px !important;
+}
+#form3{
+	width: 100% !important;
+    padding: 0 21px;
+    margin-top: -41px !important;
 }
 
 /**End of home page responsive**/
@@ -1155,7 +1182,7 @@ header#header{
 /* councelling page*/
 
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 767px){
 	.button-style3{
 		width: 50%;
 		margin-top: 9px !important;
@@ -1177,14 +1204,41 @@ header#header{
 /* coupon page*/
 
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 767px){
+	
 	.couponHolder .regForm .inputRow:nth-child(4){
 		width: 100% !important;
 	}
 	.couponHolder .regForm .inputRow{
 		     float: none !important; 
 	}
+	.sectionHeading h5 {
+    margin-top: 90px;
+	font-size: 18px;
+	font-weight:600;
+}
+.sectionHeading:before{
+	width: 100%;
+	bottom: 3px;
+}
+.sectionHeading{
+	margin: 0px 0px 25px 0px;
+}
+.banner-coupon {
+    margin-top: 59px;
+}
+.banner-coupon img{
+	padding-bottom: 16px !important;
 	
+}
+.profileNav{
+	position: absolute;
+	left: 242px;
+    top: 14px;
+}
+.profileHead .profileThumb{
+	margin-top:33px;
+}
 	
 	
 	}
@@ -1193,16 +1247,12 @@ header#header{
 /* write your review*/
 
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 767px){
 	.containerBox {
-    padding: 43px 22px !important;
+    padding: 43px 32px !important;
 }
-.sectionHeading {
-    margin: 31px 57px 37px 0px !important;
-}
-.star-color {
-    margin-left: 63px !important;
-}
+
+
 	
 	}
 	
@@ -1211,9 +1261,9 @@ header#header{
 /* Career Councelling page*/
 
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 767px){
 	.manageText a{
-		margin-left: -50%;
+		margin-left: -61%;
 	}
 	.manageIcon img {
     width: 37px !important;
@@ -1238,7 +1288,7 @@ img.play-img {
 		/*media querries*/
 /* Colleage page*/
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 767px){
 	.chosen-container{
 	  margin-right: 0px;	
 	}
@@ -1261,5 +1311,286 @@ img.play-img {
 		display:none;
 	}
 }
+		/*media querries*/
+/* admission 2017 page*/
+
+@media screen and (max-width: 767px){
+	.pagination a {
+    margin-left: 12px;
+}
+}
+
+		/*media querries*/
+/* Privacy Policy*/
+
+@media screen and (max-width: 767px){
+	.modal.in .modal-dialog {
+    margin-left: 92px;
+    width: 70% !important;
+	}
+}
+
+
+
+		/*media querries*/
+/* Study Abroad*/
+
+@media screen and (max-width: 767px){
+	
+	.content-box{
+	 width: 100% !important;
+	}
+	#back{
+		height:auto;
+	}
+	.top-head{
+		width: 100% !important;
+		height: auto;
+	}
+	.form-back{
+		width: 100% !important;
+		margin-top: 65px !important;
+		height:753px !important;
+	}
+	.content-box img{
+		display:none;
+	}
+	.main{
+		padding: 105px 38px 0px 38px;
+	}
+}
+
+
+
+		/*media querries*/
+/* Sortlist colleage*/
+
+@media screen and (max-width: 767px){
+	.sectionHeading h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 51px;
+}
+	
+}
+
+		/*media querries*/
+/* User Profile*/
+
+@media screen and (max-width: 767px){
+	.cancelButton {
+    
+    margin-bottom: 10px !important;
+}
+
+	
+}
+
+
+/**Media querries**/
+/*home page*/
+@media screen and (min-device-width:768px) and (max-device-width:1024px){
+	header#header .logo img{
+		width: 66%;
+	}
+	.chosen-container{
+		    width: 100% !important;
+	}
+	.chosen-container-multi .chosen-choices li.search-field input[type=text]{
+		    width: 100% !important;
+			    margin: 1px 7px !important;
+	}
+	.homeSlider .searchArea .formHolder .go{
+    width: 100%;
+    margin-top: 11px;
+	}
+	.stepsRow .stepText p{
+		font-size: 17px;
+	}
+	.youtubeThumb ul li{
+		    width: 100% !important;
+		
+	}
+	.owl-prev{
+	  left: 0px !important;	
+	}
+	.owl-next{
+	      right: 0px !important;	
+	}
+	.teamArea ul li{
+		 width: 24% !important;
+	}
+	.teamArea ul li .teamText p{
+		font-size: 14px !important;
+	}
+	.link-section{
+		margin-top: 0px !important;
+	}
+	#btn-link-style{
+		margin-left: 0px !important;
+		margin-top: 8px !important;
+		width: 100% !important;
+	}
+	.app-img {
+    margin-top: 20px !important;
+}
+.footerSection{
+	margin-top: 0px !important;
+}
+.bgWhite{
+	padding: 0px 0px !important;
+}
+#stream_name{
+	    width: 100% !important;
+}
+#exam_lists{
+	width: 100% !important;
+}
+#search_course{
+	width: 100% !important;
+}
+#city_loc{
+	width: 100% !important;
+}
+
+
+
+}
+
+
+
+
+/**Media querries**/
+/*coupon page*/
+@media screen and (min-device-width:768px) and (max-device-width:1024px){
+	.couponHolder .regForm .inputRow:nth-child(4) {
+    width: 100% !important;
+}
+.couponHolder .regForm .inputRow{
+	float:none !important;
+}
+.couponHolder .loginForm .inputRow{
+	float: none !important;
+}
+.orline{
+	display:none !important;
+}
+.couponTabs ul li h4{
+padding: 33px 0px 0px 0px !important;
+}
+.sectionHeading:before{
+	left: 44% !important;
+}
+.sectionHeading h5 {
+    font-size: 18px !important;
+	font-weight: 600;
+}
+.row {
+    margin-right: 15px;
+     margin-left: 15px;
+}
+.col-xs-5{
+	 padding-right: 0;
+    padding-left: 0;
+}
+
+
+}
+
+/**Media querries**/
+/*Privacy Policy*/
+@media screen and (min-device-width:768px) and (max-device-width:1024px){
+	.modal-content {
+    width: 70% !important;
+    margin-left: 99px !important;
+}
+#privacyModal {
+    margin-left: 171px;
+}
+
+}
+
+/**Media querries**/
+/*terms and */
+@media screen and (min-device-width:768px) and (max-device-width:1024px){
+	#termsModal {
+    margin-left: 171px;
+}
+
+}
+
+/**Media querries**/
+/*Admission 2017*/
+@media screen and (min-device-width:768px) and (max-device-width:1024px){
+	.collegeResultBox .collegeTop .collegeThumb img{
+		height: 100px;
+	}
+	.chosen-container-single .chosen-single{
+		display: inline !important;
+	}
+	button.go{
+    left: 4px !important;
+    top: -15px !important;
+	}
+	.collegeResultBox .collegeBottom ul li a{
+		width: 100% !important;
+	}
+
+}
+
+/**Media querries**/
+/*Study Abroad*/
+@media screen and (min-device-width:768px) and (max-device-width:1024px){
+	.content-box{
+		width:100% !important;
+	}
+	.content-box img{
+		display: none;
+	}
+	.form-back{
+	 width: 100% !important;
+     margin-top: 27px;	 
+	}
+	.top-head{
+		width: 100% !important;
+	}
+	.inner-background{
+		width: 100%;
+	}
+	.main {
+    padding: 105px 38px 0px 38px;
+}
+.footerSection {
+    margin-top: -157px !important;
+}
+	
+	
+	}
+	
+	/**Media querries**/
+/*Study Abroad*/
+@media screen and (min-device-width:768px) and (max-device-width:1024px){
+	#back{
+		height: auto !important;
+		margin-bottom: 17px !important;
+	}
+	.form-back{
+		    margin-bottom: 150px !important;
+			margin-top: 38px;
+	}
+	
+	}
+	
+		
+	/**Media querries**/
+/*Concelling video*/
+@media screen and (min-device-width:768px) and (max-device-width:1024px){
+	.manage-back{
+		margin-bottom: 180px !important;
+		height: auto !important;
+	}
+	
+	}
+
 
 

@@ -141,6 +141,15 @@ class College_model extends CI_Model {
 		return $result;
 	}
 	
+	function get_all_courses1(){
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->group_by('course_id');
+		//$this->db->where('course_id', $coursename);
+		$result = $this->db->get()->result_array();
+		return $result;
+	}
+	
 	function get_specialize_relation($id){
 		$this->db->select('specialization_id');
 		$this->db->from('mc_course_assignment');
@@ -695,6 +704,23 @@ function get_recomdreview($collegeid,$stream_name,$course_main){
 		 $result = $this->db->get('mc_review')->result_array();
 		return $result;
 	}	
+	
+		function get_assigned_stream(){
+		$this->db->distinct();
+		$this->db->select('stream_id');
+		$this->db->from('mc_course_assignment');
+		$result = $this->db->get()->result_array();
+		return $result;
+	}
+	
+	function get_assigned_streamcourses($stream_id){
+		$this->db->distinct();
+		$this->db->select('course_id');
+		$this->db->where('stream_id', $stream_id);
+		$this->db->from('mc_course_assignment');
+		$result = $this->db->get()->result_array();
+		return $result;
+	}
 	/**/
 	
 }

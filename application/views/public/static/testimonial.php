@@ -2,7 +2,7 @@
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading">Testimonial</div>
+<div class="sectionHeading"><h5>Testimonial</h5></div>
 <?php $testimonial = $this->common_model->get_all_rows("mc_testimonial", 1,1); ?>
 <?php foreach($testimonial as $testiml){ ?>
 					

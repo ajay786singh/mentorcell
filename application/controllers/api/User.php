@@ -395,6 +395,17 @@ class User extends REST_Controller {
 		die;
 	
 	}
+
+		public function collegeById_get($college_id)
+	{	
+	   $college_lists = $this->common_model->get_single_row("mc_colleges",'id',$college_id);
+		//$college_lists = $this->common_model->get_all("mc_colleges", $offset);
+		$response = array('data'=>$college_lists);
+		//$response = $offset;
+		echo json_encode($response);
+		die;
+	
+	}
 	
 	function curpassword_validation_post() {
 			$key = $this->input->post('key');

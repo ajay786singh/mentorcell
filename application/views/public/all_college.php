@@ -2,7 +2,7 @@
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading"><?php if($streamid==37){ echo 'Management'; }else if($streamid==34){echo 'Engineering';} ?></br><span><?php if($type == 'popular'){echo '(Popular Colleges)';}else if($type == 'featured'){ echo '(Featured Colleges)';} ?></span></div>
+<div class="sectionHeading"><h3><?php if($streamid==37){ echo 'Management'; }else if($streamid==34){echo 'Engineering';} ?></br><span><?php if($type == 'popular'){echo '(Popular Colleges)';}else if($type == 'featured'){ echo '(Featured Colleges)';} ?></span><h3></div>
 <?php
 if($streamid==37){
 	$course_id = '41';
@@ -116,6 +116,11 @@ if($count_course > 0){ ?>
 </div>
 
 <style>
+.sectionHeading h3 {
+    font-size: 18px;
+    font-weight: 600;
+    
+}
   .teamRow .teamPic {
     
     height: auto !important;

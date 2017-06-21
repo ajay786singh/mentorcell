@@ -38,8 +38,13 @@
 	}
 	
 	?>
-<h5><?php echo $college->name; ?> <!--<a href="#">view all courses</a>--></h5>
-<h4><?php echo $college->address; ?><?php echo $college->city; ?>, <?php echo $college->state; ?><br/><?php echo $college->country; ?> <?php echo $college->pincode; ?> <span class="reviewRating"><b>(<?=$totalreview?>/5)</b> <?=$reviewcount?> Reviews</span></h4>
+<p style="font-size:18px;"><?php echo $college->name; ?> <!--<a href="#">view all courses</a>--></p>
+<?php 
+$courseName =	$this->common_model->get_single_var('course_name', 'mc_courses', 'course_id', $courseid);
+$streamName =	$this->common_model->get_single_var('stream_name', 'mc_streams', 'stream_id', $streamid);
+ ?>
+<h5><?php echo $courseName; ?> in <?=$streamName;?><!--<a href="#">view all courses</a>--></h5>
+<!--<h4><?php echo $college->address; ?><?php echo $college->city; ?>, <?php echo $college->state; ?><br/><?php echo $college->country; ?> <?php echo $college->pincode; ?> <span class="reviewRating"><b>(<?=$totalreview?>/5)</b> <?=$reviewcount?> Reviews</span></h4>-->
 </div>
 </div>
 

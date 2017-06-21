@@ -2,7 +2,7 @@
 <div class="container">
 <div class="row">
 <div class="containerBox">
-<div class="sectionHeading">Shortlist<span> Colleges</span></div>
+<div class="sectionHeading"><h3>Shortlist<span> Colleges</span></h3></div>
 
 
 <div class="col-xs-12">
@@ -90,6 +90,12 @@ if($count_course > 0){ ?>
 </div>
 
 </section>
+<style>
+.sectionHeading h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+</style>
 
 
 

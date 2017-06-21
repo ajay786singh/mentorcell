@@ -1,6 +1,6 @@
 
 <div class="containerBox">
-<div class="sectionHeading"><p>Career coun<span class="video-col">selling video</span></p></div>
+<div class="sectionHeading"><h4>Career couns<span>elling video</span><h4></div>
 </div>
 <div class="full-width">
 

@@ -98,7 +98,7 @@ Noida, UP<br>
 <ul>
 <li><a href="<?php echo base_url()?>home/search?course=41">Admission 2017</a></li>
 <!--<li><a href="<?php echo base_url()?>home/underconstruction">Career Profiling test</a></li>-->
-<li><a href="<?php echo base_url()?>home/underconstruction">Abroad Education</a></li>
+<li><a href="<?php echo base_url()?>page/study_abroad">Abroad Education</a></li>
 <li><a href="<?php echo base_url()?>page/counselling">Counselling</a></li>
 <li><a href="<?php echo base_url()?>home/gallery">Counselling Video</a></li>
 <!--<li><a href="<?php echo base_url()?>home/underconstruction">Placement</a></li>-->
@@ -125,7 +125,7 @@ Noida, UP<br>
 <ul>
 <!--<li><a href="<?php echo base_url()?>home/underconstruction">Search step by step</a></li>
 <li><a href="<?php echo base_url()?>home/underconstruction">Common Application Form</a></li>-->
-<li><a href="<?php echo base_url()?>coupon/">Value of redeem coupon</a></li>
+<li><?php if(empty($user_login['id'])) { ?><a style="cursor: pointer;" data-toggle="modal" data-target="#loginModal"><?php }else{ ?> <a href="<?php echo base_url()?>user/profile"> <?php } ?>Value of redeem coupon</a></li>
 <li><a href="#">Mobile Apps</a></li>
 </ul>
 </div>

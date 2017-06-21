@@ -93,10 +93,11 @@ class Common_model extends CI_Model {
         return $row;
     }
 	
-	function get_all_coursespecialization($where_val) {
+	function get_all_coursespecialization($where_val,$college_id) {
 		$this->db->select('*');
 		$this->db->from('mc_course_assignment');
 		$this->db->where('course_id', $where_val);
+		$this->db->where('college_id', $college_id);
 		$this->db->group_by('specialization_id');
 		$row= $this->db->get()->result_array();
         return $row;
@@ -266,6 +267,25 @@ class Common_model extends CI_Model {
 		function get_course_row($courseid,$collegeid){
 		/**/
 		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $collegeid);
+		$this->db->where('course_id', $courseid);
+		$result = $this->db->get()->row_object();
+		return $result;
+	}
+	function get_max_fee($collegeid,$courseid){
+		/**/
+		$this->db->select_max('fee');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $collegeid);
+		$this->db->where('course_id', $courseid);
+		$result = $this->db->get()->row_object();
+		return $result;
+	}
+	
+	function get_min_fee($collegeid,$courseid){
+		/**/
+		$this->db->select_min('fee');
 		$this->db->from('mc_course_assignment');
 		$this->db->where('college_id', $collegeid);
 		$this->db->where('course_id', $courseid);

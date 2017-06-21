@@ -411,6 +411,7 @@ $(document).ready(function() {
 
 		/*get the coupon value*/
 		$("#show_coupon_value").click(function(event){
+			alert('hi');
 			event.preventDefault();
 			var _coupon_college   = $("#redeem_college_id").val();
 			var _coupon_course    = $("#redeem_search_course").val();

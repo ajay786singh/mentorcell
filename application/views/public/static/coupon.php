@@ -5,6 +5,10 @@
 <div class="sectionHeading"><span>Get</span> Coupon</div>
 
 <style>
+.banner-coupon{
+	margin-left: 22px;
+    margin-bottom: 60px;
+}
 .couponHolder .regForm .inputRow {
     margin: 0px 0px 20px 0px;
     }

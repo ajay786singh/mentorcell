@@ -5,7 +5,7 @@
 <?php $more_course = $this->common_model->get_more_course($college_id); 
 $college_location_eng2 = $this->common_model->get_single_row("mc_colleges","id",$college_id);
 ?>
-<div class="sectionHeading">More<span> Courses</span></div>
+<div class="sectionHeading"><h3>More<span> Courses<h3></span></div>
 <a target="_blank" href="<?php echo base_url()."search?college=".$college_id; ?>" ><h3><?=$college_location_eng2['name'];?></h3></a>
 <?php 
 	foreach($more_course as $shortlist){
@@ -29,6 +29,10 @@ $stream_detail = $this->common_model->get_single_row("mc_streams","stream_id",$c
 </div>
 
 <style>
+.sectionHeading h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
   .teamRow .teamPic {
     
     height: auto !important;

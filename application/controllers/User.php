@@ -386,7 +386,7 @@ class User extends Public_Controller {
 		$this->data['coupon'] = $this->common_model->get_single_row('mc_coupons','user_id',$user['id']);
 
 		$this->data['college_lists'] = $this->common_model->get_all("mc_colleges");
-
+          $this->data['colleges'] = $this->common_model->get_all_rows("mc_colleges",'status','2','name');
 
 		$this->load->view('public/layout/header', $this->data);
 
@@ -630,6 +630,62 @@ class User extends Public_Controller {
 
 			die;
 		}
+		
+		function select_special() {
+				$college_id	= $_POST['colllege_id'];
+				$special = $this->coupon_model->get_all_spec($college_id);
+				echo '<option value="">Choose a Course to apply coupon</option>';
+				if($special) {
+					foreach($special as $specials){
+                      $special_name = $this->coupon_model->get_all_specname($specials['specialization_id']);
+						echo '<option value="'.$specials['specialization_id'].'" >'.$special_name->specialization_name.'</option>';
+					}
+				}
+                '</option>';
+			die;
+		}
+		
+		function redeemcoupon() {
+			$this->load->library('sendgridemail');
+        $college_id	= $_POST['colllege_id'];
+        $coupon_course	= $_POST['coupon_course'];
+        $userid	= $_POST['userid'];
+		$incentive = $this->coupon_model->get_insentive($college_id,$coupon_course);
+		$collegeName	=	$this->common_model->get_single_var('name', 'mc_colleges', 'id', $college_id);
+		$courseName		=	$this->common_model->get_single_var('specialization_name', 'mc_specialization', 'specialization_id', $coupon_course);
+		$coupon         =   $this->common_model->get_single_var('coupon','mc_coupons','user_id',$userid);
+		$incentive_data = $incentive->incentive;
+		$fee = $incentive->fee;
+		if($incentive_data==0){
+			$email_data = array(
+		'subject'=>'Enquiry has been made on MentorCell by college '.$collegeName,
+		'to' =>'sanjeev.singh82@gmail.com',
+		'message' => "An enquiry has been made on MentorCell by College : ".$collegeName." for Course: ".$courseName." .\n Coupon: ".$coupon."\n URL: ".site_url()."\n Team\n MentorCell"
+						);
+          $response_array = $this->sendgridemail->send_email($email_data);
+		echo '<div class="alert alert-danger">No Discount for this College.</div>';
+		die;
+		}else{
+			$user_coupon_value = $this->coupon_model->get_coupon_value($userid);
+		$scoredata = $user_coupon_value->resultDisplay;
+		$score = $user_coupon_value->score;
+		$total_disc	= ($incentive_data * $score) / 100;
+		$total_disc_fee	= $fee - $total_disc;
+		$email_data = array(
+		'subject'=>'Enquiry has been made on MentorCell by college '.$collegeName,
+		'to' =>'sanjeev.singh82@gmail.com',
+		'message' => "An enquiry has been made on MentorCell by College: ".$collegeName." for Course: ".$courseName." .\n Coupon: ".$coupon."\n URL: ".site_url()."\n Team\n MentorCell"
+						);
+          $response_array = $this->sendgridemail->send_email($email_data);
+		  echo '<div class="alert alert-success"><p>Fee: Rs. '.$fee.' </p><p>Discount: Rs. '.$total_disc.'</p><p>Fee after Discount: Rs. '.$total_disc_fee.'</p></div>';
+						
+						die;
+		}
+		
+		
+		print_r($coupon_value2);
+			die;
+			}
 
 
 
@@ -644,12 +700,20 @@ class User extends Public_Controller {
 
 				$this->form_validation->set_rules('course', 'Course', 'required');
 				$this->form_validation->set_rules('college', 'College', 'required');
+if($this->form_validation->run() == TRUE) {
+	$response = "hi";
+	echo json_encode($response);
+}else{
+	$response = "hello";
+	echo json_encode($response);
+}
 
-
-				if ($this->form_validation->run() == TRUE) {
+				/*if ($this->form_validation->run() == TRUE) {
 					$this->load->library('sendgridemail');
 					$college_id		=	$this->input->post('college');
+					echo $college_id;
 					$coupon         =   $this->common_model->get_single_var('coupon','mc_coupons','user_id',$userId);
+						
 					$str_course_id	=	$this->input->post('course');
 					list($course_id,$incentive)	=	explode("|",$str_course_id);
 
@@ -697,7 +761,7 @@ class User extends Public_Controller {
 					$response = array('status'=>false,'message'=>'<div class="alert alert-danger">'.$error.'</div>');
 					echo json_encode($response);
 					die;
-				}
+				}*/
 			}
 		}
 

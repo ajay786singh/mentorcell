@@ -2,9 +2,23 @@
 <div class="container">
 <div class="row">
 <div class="container">
-<div class="sectionHeading"><span>Get</span> Coupon</div>
-
+<!--<div class="sectionHeading"><h5><span>Get</span> Coupon</h5></div>-->
+<div class="row">
+<div class="col-sm-12">
+<div class="banner-coupon"><img src="<?php echo base_url()?>assets/theme/images/coupan_banner.jpg"></div>
+</div>
+</div><!--end of row-->
 <style>
+.banner-coupon img {
+    width: 100%;
+	padding-bottom: 63px;
+}
+.sectionHeading h5{
+	font-size:18px;
+	font-weight:600;
+
+}
+	
 .couponHolder .regForm .inputRow {
     margin: 0px 0px 20px 0px;
 
@@ -20,7 +34,7 @@
     
 }
 .couponHolder .regForm .inputRow:nth-child(4){
-	width:50% !important;
+	width:50%;
 }
 
 </style>
@@ -49,7 +63,7 @@
 	<div class="couponRow <?php echo $couponBox1;?>" id="couponBox1">
 		<div class="regForm">
             <div class="orline">
-            <img src="http://nationproducts.in/mentorcell/assets/theme/images/or-line.png">
+            <img src="<?php echo base_url()?>assets/theme/images/or-line.png">
             </div>
 			<h3>Register for a new account</h3>
 			<div id="register_response"></div>

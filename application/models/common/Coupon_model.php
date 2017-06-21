@@ -79,6 +79,43 @@ class Coupon_model extends CI_Model {
 		}
 	}
 	
+	function get_all_spec($college_id) {
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $college_id);
+		$this->db->group_by('specialization_id');
+		$result = $this->db->get()->result_array();
+		//if($result->num_rows() > 0) {
+			return $result;
+		/*} else {
+			return false;
+		}*/
+	}
+	
+	function get_all_specname($speciid) {
+		$this->db->select('*');
+		$this->db->from('mc_specialization');
+		$this->db->where('specialization_id', $speciid);
+		 $res= $this->db->get()->row();
+			return $res;
+	}
+	function get_insentive($college_id,$coupon_course) {
+		$this->db->select('*');
+		$this->db->from('mc_course_assignment');
+		$this->db->where('college_id', $college_id);
+		$this->db->where('specialization_id', $coupon_course);
+		 $res= $this->db->get()->row();
+			return $res;
+	}
+	
+	function get_coupon_value($userid) {
+		$this->db->select('*');
+		$this->db->from('mc_coupons');
+		$this->db->where('user_id', $userid);
+		 $res= $this->db->get()->row();
+			return $res;
+	}
+	
 	public function record_count() {
         return $this->db->count_all("countries");
     }

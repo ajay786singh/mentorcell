@@ -56,7 +56,7 @@ $streamid = $streamsdata['stream_id'];
 if($course['course_id']>0){
 	$coursename = $this->college_model->get_course_data($course['course_id']);
 	$courseid = $course['course_id'];
-	$specdat = $this->common_model->get_all_coursespecialization($course['course_id']);
+	$specdat = $this->common_model->get_all_coursespecialization($course['course_id'],$streamsdata['college_id']);
 ?>
 <button class="accordion"><?=$coursename->course_name?>(<?=count($specdat)?>)</button>
 

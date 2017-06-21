@@ -634,13 +634,17 @@
 
 <div class="form-group">
 <label>Select College</label>
-	<select id="redeem_college_id" name="college_id">
+<input type="hidden" value="<?php echo $user_login['id']; ?>" id="userid">
+	<select id="redeem_college_ids" name="college_id">
 		<option value="">Choose a College to apply coupon</option>
 		<?php
-			if($college_lists) {
+			/*if($college_lists) {
 				foreach($college_lists as $k => $college_list){
 					echo '<option value="'.$college_list['id'].'">'.$college_list['name'].'</option>';			
 				}
+			}*/
+			foreach($colleges as $college){
+				echo '<option value="'.$college['id'].'">'.$college['name'].'</option>';
 			}
 		?>	
 	</select>
@@ -654,13 +658,55 @@
 	</select>
 </div>
 
+<!--<div class="form-group">
+<label>Select Specialization</label> 
+
+	<select id="redeem_search_special" name="course_id">						
+		<option value="">Choose a specialization to apply coupon</option>
+	</select>
+</div>-->
+
 <div class="form-group">
-<input type="button" value="Cancel" name="" class="cancelButton">
-<input type="submit" value="Save" name="" id="show_coupon_value" class="saveButton">
+<input type="button" value="Cancel" class="cancelButton">
+<input type="button" value="Save" id="show_coupon_values" class="saveButton">
 </div>
 
 
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#redeem_college_ids").change(function(){
+		var colllege_id = $("#redeem_college_ids").val();
+		$.ajax({
+type: "POST",
+url: base_url+"index.php/user/select_special",
+data: {colllege_id:colllege_id},
+cache: false,
+success: function(result){
+$("#redeem_search_course").html(result);
+}
+});
+	});
+        $("#show_coupon_values").click(function(){	
+            var colllege_id   = $("#redeem_college_ids").val();
+			var coupon_course = $("#redeem_search_course").val();
+			var userid = $("#userid").val();
+				$.ajax({
+type: "POST",
+url: base_url+"index.php/user/redeemcoupon",
+data: {colllege_id:colllege_id,coupon_course:coupon_course,userid:userid},
+cache: false,
+success: function(results){
+$("#redeem_result").html(results);
+}
+});
+			
+
+		});
+		});
+		
+</script>
 </div>
 
 

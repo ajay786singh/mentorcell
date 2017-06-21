@@ -210,7 +210,8 @@ margin-left: 78px;
         width: 100%;
         background-repeat: no-repeat;
         float: left;
-        height: 1020px;
+		padding-bottom: 160px;
+        
      }
      .content-box{
       width: 596px;

@@ -12,6 +12,32 @@
  a {
     color: #333;
 }
+
+button.accordion{
+		background:#fff;
+		cursor: pointer;
+		padding: 4px 6px !important;
+		font-size: 14px !important;
+		border-radius: 3px !important;
+		border: 1px solid #ccc !important;
+	}
+	panel ul li a {
+    height: 27px;
+    line-height: 27px;
+    font-size: 13px;
+    margin-left: -12px;
+}
+.panel ul {
+    float: left;
+}
+study_abroad?course=41:90
+ul.ulstyle {
+    width: 100%;
+    padding: 0px 15px;
+}
+.panel1 ul.ul-style {
+    padding: 0 18px;
+}
 </style>
 
 <?php
@@ -24,12 +50,15 @@ $cad = $this->college_model->get_course_data($coursename);
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="collegeSearch">
 <form action="search">
-<?php $course_list = $this->college_model->get_all_courses();?>
+<?php $course_list = $this->college_model->get_all_courses1();?>
 <select class="auto-choice" data-placeholder="Choose a Course" data-placeholder="Choose a Course"  id="course" name="course">
 <!--<select  id="course" name="course">-->
-<?php foreach($course_list as $couselist){ ?>
-	<option <?php if($couselist['course_id']==$coursename){echo 'selected'; } ?> value="<?=$couselist['course_id']?>"><?=$couselist['course_name']?></option>
-<?php } ?>
+<?php foreach($course_list as $couselist){ 
+$cadname = $this->college_model->get_course_data($couselist['course_id']);
+if($cadname->course_name){
+?>
+	<option <?php if($couselist['course_id']==$coursename){echo 'selected'; } ?> value="<?=$couselist['course_id']?>"><?=$cadname->course_name?></option>
+<?php } } ?>
 
 </select>
 <!--<input type="text" id="cname" value="<?=$cad->course_name;?>" placeholder="">-->
@@ -50,7 +79,33 @@ $cad = $this->college_model->get_course_data($coursename);
 </div>
 </section>
 <style>
-
+.panel{
+	    width: 62%;
+    margin-top: 10px;
+}
+ul.ul-style li{
+		width:100%;
+		border-left: none !important;
+		    border-bottom: 1px solid #ccc;
+			    background: #fff;
+	}
+	.panel ul li{
+		border-bottom:1px solid #ccc;
+		    border-left: none !important;
+			    width: 100%;
+	}
+	.panel ul li.style li{
+		    border-left: none !important;
+	}
+.panel ul li {
+    border-bottom: 1px solid #ccc;
+    border-left: none !important;
+}
+study_abroad?course=41:88
+.panel ul li {
+    width: 100%;
+    margin-bottom: 6px;
+}
 button.go {
    position: relative;
    left: -1px;
@@ -103,17 +158,57 @@ $exams_data = $this->college_model->get_exam_detail($coursename);
  if(!empty($exams_data)){?>
 <div class="collegeFilterBox">
 <h4>Exam Accepted <span><!--<i class="icon-cw"></i> Reset--></span></h4>
-<div class="filterItems">
+<div class="filterItems">	
+
 <ul>
-<?php foreach($exams_data as $examsearch){ 
+<?php  //$exam_array = array();
+/*foreach($exams_data as $examsearch){ 
+
 if($examsearch['exam']!=0){
 	$examname = explode(',',$examsearch['exam']);
+
+
 	for($i=0;$i<count($examname);$i++){
+	
 		$ename = $this->college_model->get_exam_name($examname[$i]);
+		
 		if($ename!='null'){
+			
+				
 ?>
 <li><input type="checkbox" name="examcheck" value="<?=$ename->id;?>" id="check1<?=$ename->id?>"> <label for="check1<?=$ename->id?>"><?=$ename->exam_name?></label></li>
-		<?php } } } } ?>
+		<?php 
+ } } } }*/ ?>
+ <?php
+
+//print_r($exams_data);
+ foreach($exams_data as $examsearch){ 
+if($examsearch['exam']!=0){
+	if(strstr($examsearch['exam'],',')) {
+	$examname = explode(',',$examsearch['exam']);
+	$a=array("a"=>$examname);
+	}else{
+		$a=array("a"=>$examsearch['exam']);
+	}
+}else{
+	$a=0;
+}
+}
+if($a!=0){
+$examnames = array_unique($a);
+foreach($examnames as $examname){
+	for($i=0;$i<count($examname);$i++){
+			$ename = $this->college_model->get_exam_name($examname[$i]);
+				if(!empty($ename)){
+?>
+<li><input type="checkbox" name="examcheck" value="<?=$ename->id;?>" id="check1<?=$ename->id?>"> <label for="check1<?=$ename->id?>"><?=$ename->exam_name?></label></li>
+		<?php 
+ }
+	}
+} }
+
+
+ ?>
 </ul>
 
 </div>
@@ -182,9 +277,15 @@ if($spealdata['specialization_id']){	?>
 <h4>Recognition <span><!--<i class="icon-cw"></i> Reset--></span></h4>
 <div class="filterItems">
 <ul>
-<?php  foreach($recogniata as $recogdata){ ?>
+<?php  
+ foreach($recogniata as $recogdata){ 
+ ?>
 <li><input type="checkbox" name="recogncheck" value="<?=$recogdata['recognition'];?>" id="check5<?=$recogdata['recognition'];?>"> <label for="check5<?=$recogdata['recognition'];?>"><?=$recogdata['recognition'];?></label></li>
-<?php } ?>
+
+ <?php  
+ } 
+
+ ?>
 </ul>
 </div>
 </div>
@@ -235,15 +336,36 @@ if($spealdata['specialization_id']){	?>
 
 		<div class="collegeMiddle">
 		<div class="col-xs-8">
-		<?php $cad1 = $this->college_model->get_course_data($college->course_id);
+	
+		<?php $specdats = $this->common_model->get_all_coursespecialization($college->course_id,$college->college_id);
+		$cad1 = $this->college_model->get_course_data($college->course_id);
               $streamids = $this->common_model->get_single_row('mc_courses','course_id',$college->course_id);
               $specialids = $this->common_model->get_single_row('mc_course_assignment','course_id',$college->course_id); ?>
-		<h3><a style="color: #3757ab;" href="<?php echo base_url()."/home/search?college=".$college->id."&stream=".$streamids['stream_id']."&type=".$college->course_id."&course_main=".$specialids['specialization_id']?>"><?=$cad->course_name?></a><span>0 Reviews</span></h3>
+		
+		
+		<h3><button class="accordion"><?=$cad->course_name?>(<?=count($specdats)?>)</button>
+		<div class="panel" >
+  <ul class="ulstyle">
+  <?php foreach($specdats as $specialdada){
+$special_data = $this->common_model->get_single_row('mc_specialization','specialization_id',$specialdada['specialization_id']);
+$specid = $specialdada['specialization_id'];
+  ?>
+    <li><a href="<?php echo base_url()."search?college=".$college->college_id."&stream=".$streamids['stream_id']."&type=".$college->course_id."&course_main=".$specid; ?>"><?=$special_data['specialization_name'];?></a></li>
+  <?php } ?>
+  </ul>
+</div><span>0 Reviews</span></h3>
 		<h4><?php
 		echo $college->duration; ?>
 					&bull; <?php echo $college->recognition; ?></h4>
 		<ul>
-		<li><span>Total Fees(Rs.)</span> Rs.  <?php echo $college->fee; ?></li>
+		<?php $maxfee = $this->common_model->get_max_fee($college->college_id,$cad->course_id);
+	 $minfee = $this->common_model->get_min_fee($college->college_id,$cad->course_id);
+	 if($maxfee==$minfee){ ?>
+		 <li><span>Total Fees(Rs.)</span> Rs.  <?php echo $maxfee->fee; ?> </li>
+	<?php }else{ ?>
+		 <li><span>Total Fees(Rs.)</span> Rs.  <?php echo $maxfee->fee; ?> <b>To</b> <?php echo $minfee->fee; ?></li>
+	<?php }
+		?>
 		<li class="catstyle" style="width:70%;"><span>Exam required</span>  <?php if(!empty($college->exam)){ $exam = explode(",",$college->exam);
 for($i=0;$i<count($exam);$i++){
 	$exam_detail = $this->college_model->get_single_exam_detail($exam[$i]); ?>
@@ -303,11 +425,29 @@ $specialid = $this->common_model->get_single_row('mc_course_assignment','course_
 
 ?>
 			<div class="col-xs-12" style="border-top: 1px solid #becad7;">
-			
-		<h3 style="margin: 9px 0px 5px 0px;"><a style="color: #3757ab;" href="<?php echo base_url()."/home/search?college=".$college->id."&stream=".$streamid['stream_id']."&type=".$courid."&course_main=".$specialid['specialization_id']?>"><?=$morecoursedata->course_name?></a><span>0 Reviews</span></h3>
+			<?php $specdat = $this->common_model->get_all_coursespecialization($courid,$college->college_id); ?>
+		<h3 style="margin: 9px 0px 5px 0px;"><button class="accordion1"><?=$morecoursedata->course_name?>(<?=count($specdat)?>)</button>
+		<div class="panel1" >
+  <ul>
+  <?php foreach($specdat as $specialdada){
+$special_data = $this->common_model->get_single_row('mc_specialization','specialization_id',$specialdada['specialization_id']);
+$specid = $specialdada['specialization_id'];
+  ?>
+    <li><a href="<?php echo base_url()."search?college=".$college->college_id."&stream=".$streamids['stream_id']."&type=".$college->course_id."&course_main=".$specid; ?>"><?=$special_data['specialization_name'];?></a></li>
+  <?php } ?>
+  </ul>
+</div><span>0 Reviews</span></h3>
 		<h4> <?=$more_course[$i]['duration']?>	• </h4>
 		<ul>
-		<li><span>Total Fees(Rs.)</span> Rs. <?=$more_course[$i]['fee']?></li>
+		<?php $maxfeem = $this->common_model->get_max_fee($college->college_id,$more_course[$i]['course_id']);
+	 $minfeem = $this->common_model->get_min_fee($college->college_id,$more_course[$i]['course_id']);
+	
+		 if($maxfeem==$minfeem){ ?>
+		 <li><span>Total Fees(Rs.)</span> Rs.  <?php echo $maxfeem->fee; ?> </li>
+	<?php }else{ ?>
+		 <li><span>Total Fees(Rs.)</span> Rs.  <?php echo $maxfeem->fee; ?> <b>To</b> <?php echo $minfeem->fee; ?></li>
+	<?php }
+		?>
 		<li class="catstyle" style="width:70%;">
 		<span>Exam required</span>
 		<?php if(!empty($more_course[$i]['exam'])){ $exams = explode(",",$more_course[$i]['exam']);
@@ -409,11 +549,166 @@ $(document).ready(function(){
 });
 	</script>
 	<style>
+	div.panel{
+	width: 62% !important;
+	line-height: 27px;
+	}
+	div.panel1{
+	width: 62% !important;
+	}
+	.panel1 ul li{
+		    border-left: none !important;
+			width: 100%;
+	}
+	button.accordion1 {
+    background: #fff;
+    cursor: pointer;
+    margin-bottom: 28px !important;
+    text-align: left;
+    outline: none;
+    font-size: 13px;
+    transition: 0.4s;
+}
+.panel1 ul li a {
+    height: 27px;
+    line-height: 27px;
+    font-size: 13px;
+    margin-left: -12px;
+}
+.panel1 ul li {
+    border-bottom: 1px solid #ccc;
+}
+.panel1 ul.ul-style {
+    padding: 0 18px;
+}
+study_abroad?course=41:119
+.panel1 ul {
+    float: left;
+}
+button.accordion1 {
+    background: #fff;
+    cursor: pointer;
+    padding: 4px 6px !important;
+    font-size: 14px !important;
+    border-radius: 3px !important;
+    border: 1px solid #ccc !important;
+}
+	
+	
+	
 		.show-less{margin-top:15px; font-size: 12px;}
 		.toggle-details {display:none;}
+		
+		button.accordion {
+    background:#fff;
+    cursor: pointer;
+    padding: 18px;
+   /* width: 100%;*/
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 14px;
+    transition: 0.4s;
+	border-bottom: 1px solid #eae9e9 !important;
+    font-family: 'ubuntumedium';
+	color: rgba(0,0,0,0.87);
+}
+
+button.accordion1 {
+    background:#fff;
+    cursor: pointer;
+    padding: 18px;
+   /* width: 100%;*/
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 14px;
+    transition: 0.4s;
+	border-bottom: 1px solid #eae9e9 !important;
+    font-family: 'ubuntumedium';
+	color: rgba(0,0,0,0.87);
+}
+
+
+
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion1:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2212";
+}
+
+button.accordion1.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+	border:none;
+	
+}
+div.panel1 {
+        padding: 0 18px 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+	border:none;
+	
+}
 	</style>
 </div>
 </div>
 </div>
 </div>
 </section>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = "1000px";
+      panel.style.width = "277px";
+    } 
+  }
+}
+
+var acc1 = document.getElementsByClassName("accordion1");
+var j;
+
+for (j = 0; j < acc1.length; j++) {
+  acc1[j].onclick = function() {
+    this.classList.toggle("active");
+    var panel1 = this.nextElementSibling;
+    if (panel1.style.maxHeight){
+      panel1.style.maxHeight = null;
+    } else {
+      panel1.style.maxHeight = "1000px";
+      panel1.style.width = "277px";
+    } 
+  }
+}
+</script>

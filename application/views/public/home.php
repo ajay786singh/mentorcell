@@ -27,7 +27,7 @@
 </select>
   
   
-  <div  class="extra_filters" style="display:none;">
+  <div  class="extra_filters auto-choice" style="display:none;">
 			<div class="formcol00">
 			<input type="hidden" id="streamcol" value="">
 			<select id="stream"  class="auto-choice"  name="stream">

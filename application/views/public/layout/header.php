@@ -684,7 +684,8 @@ $eng_college_location2 = $this->common_model->get_all_main_course("mc_colleges",
 <li><a href="<?php echo base_url('page/study_abroad'); ?>">Study Abroad</a>
 
 </li>
-<li><a href="<?php echo base_url()?>home/search?course=41">Admission 2017</a>
+<!--<li><a href="<?php echo base_url()?>home/search?course=41">Admission 2017</a>-->
+<li><a href="<?php echo base_url()?>home/study_abroad?course=41">Admission 2017</a>
 
 
 </li>

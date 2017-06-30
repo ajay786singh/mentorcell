@@ -4,6 +4,13 @@
 
 
 <style>
+
+
+/**25-5-17**/
+
+
+
+
   a, input, button, *:focus {
     color: #f66132;
 }
@@ -12,6 +19,34 @@ a:hover, a:focus {
 }
 
 /**24-05-2017**/
+
+
+.footerTop .footerWidget p{
+	    margin-left: 20px;
+}
+i.icon-email {
+    float: left;
+    color: #fff;
+	position: relative;
+    top: 4px;
+}
+i.icon-phone-call {
+    float: left;
+    color: #fff;
+	position: relative;
+    top: 4px;
+}
+.footerWidget img {
+    float: left;
+    width: 20px;
+    position: relative;
+    top: 4px;
+    left: -2px;
+}
+.footerTop .footerWidget h3:hover {
+    color: #f66132;
+	cursor: pointer;
+}
 
 
 
@@ -35,11 +70,15 @@ p.signup-msg a:hover{
 
 <div class="footerWidget">
 <h3>mentorcell.com</h3>
+<img src="<?php echo base_url('assets/theme/images/address.png'); ?>">
 <p>G-130, Sec-63,<br>
 Noida, UP<br>
 201301</p>
+<i class="icon-email"></i>
 <p>info@mentorcell.com</p>
+<i class="icon-phone-call"></i>
 <p>Phone:(1800)420-4321</p>
+
 </div>
 
 <div class="footerWidget">
@@ -57,9 +96,9 @@ Noida, UP<br>
 <div class="footerWidget">
 <h3>Services</h3>
 <ul>
-<li><a href="<?php echo base_url()?>home/search?course=41">Admission 2017</a></li>
+<li><a href="<?php echo base_url()?>home/study_abroad?course=41">Admission 2017</a></li>
 <!--<li><a href="<?php echo base_url()?>home/underconstruction">Career Profiling test</a></li>-->
-<li><a href="<?php echo base_url()?>home/underconstruction">Abroad Education</a></li>
+<li><a href="<?php echo base_url()?>page/study_abroad">Abroad Education</a></li>
 <li><a href="<?php echo base_url()?>page/counselling">Counselling</a></li>
 <li><a href="<?php echo base_url()?>home/gallery">Counselling Video</a></li>
 <!--<li><a href="<?php echo base_url()?>home/underconstruction">Placement</a></li>-->
@@ -73,9 +112,9 @@ Noida, UP<br>
 <li><a style="cursor: pointer;" data-toggle="modal" data-target="#loginModal">Login</a> | <a data-toggle="modal" style="cursor: pointer;" data-target="#registerModal">Register</a></li>
 <li><a style="cursor: pointer;" data-toggle="modal" data-target="#loginModal">College Login</a></li>
 <?php } ?>
-<li><a href="#">Chat</a></li>
+<!--<li><a href="#">Chat</a></li>-->
 <li><a href="#">Blog</a></li>
-<li><a href="#">News</a></li>
+<!--<li><a href="#">News</a></li>-->
 <li><a href="#" data-target="#contact">Contact us</a></li>
 <li><a href="<?php echo base_url()?>page/write_review">Write reviews</a></li>
 </ul>
@@ -86,7 +125,7 @@ Noida, UP<br>
 <ul>
 <!--<li><a href="<?php echo base_url()?>home/underconstruction">Search step by step</a></li>
 <li><a href="<?php echo base_url()?>home/underconstruction">Common Application Form</a></li>-->
-<li><a href="<?php echo base_url()?>coupon/">Value of redeem coupon</a></li>
+<li><?php if(empty($user_login['id'])) { ?><a style="cursor: pointer;" data-toggle="modal" data-target="#loginModal"><?php }else{ ?> <a href="<?php echo base_url()?>user/profile"> <?php } ?>Value of redeem coupon</a></li>
 <li><a href="#">Mobile Apps</a></li>
 </ul>
 </div>
@@ -601,6 +640,23 @@ $("#search_college").change(function(){
 });
 
 });
+
+  jQuery(document).ready(function($) {
+jQuery( ".rightbtns" ).click(function() {
+  jQuery( ".inback" ).show( "0" );
+  jQuery( ".overlay" ).show( "0" );
+  jQuery(".rightbtns").hide("0");
+});
+jQuery("#form-close").click(function() {
+	jQuery(".rightbtns").show("0");
+	jQuery(".inback").hide("0");
+	} )
+});
+
+
+
+
+
 </script>
 </body>
 </html>

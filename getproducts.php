@@ -1,10 +1,21 @@
 <?php include('config.php');
+if($_REQUEST['stream']){
+	$streamcheck = $_REQUEST['stream'];
+}else{
+	$streamcheck = 37;
+}
+if($_REQUEST['course']){
+	$coursecheck = $_REQUEST['course'];
+}else{
+	$coursecheck = 41;
+}
+//print_r($_REQUEST);
 $echeck = $_REQUEST['excheck'];
 $loccheck = $_REQUEST['loccheck'];
 $feecheck = $_REQUEST['feecheck'];
 $speccheck = $_REQUEST['speccheck'];
 $recogcheck = $_REQUEST['recogcheck'];
-$where[] = "(mc_colleges.status != '0' AND mc_colleges.status != '1')";
+$where[] = "(mc_course_assignment.stream_id = $streamcheck AND mc_course_assignment.course_id = $coursecheck AND mc_colleges.status != '0' AND mc_colleges.status != '1')";
 if(!empty($echeck)){
 	$where[] = "mc_course_assignment.exam LIKE '%$echeck%'";
 }
@@ -123,7 +134,6 @@ if(!empty($recogcheck)) {
 $w = implode(' AND ',$where);
 if(!empty($w))$w = 'WHERE '.$w;
 	$sql = mysql_query("SELECT * FROM mc_colleges INNER JOIN mc_course_assignment ON mc_colleges.id = mc_course_assignment.college_id   ".$w." GROUP BY mc_course_assignment.college_id");
-	//echo "SELECT * FROM mc_colleges INNER JOIN mc_course_assignment ON mc_colleges.id = mc_course_assignment.college_id  ".$w." GROUP BY mc_course_assignment.college_id";
 	$count = mysql_num_rows($sql);
 ?>
 <section class="bgWhite">
@@ -189,10 +199,10 @@ if(!empty($w))$w = 'WHERE '.$w;
 		<div class="col-xs-8">
 		
 		<?php 
-		$cad1 = mysql_fetch_array(mysql_query("SELECT * FROM mc_courses WHERE stream_id = '".$college['stream_id']."'"));
-		$specdats = mysql_query("SELECT * FROM mc_course_assignment WHERE course_id = '".$cad1['course_id']."' AND college_id = '".$college['college_id']."' GROUP BY specialization_id");
+		$cad1 = mysql_fetch_array(mysql_query("SELECT * FROM mc_courses WHERE course_id = '".$coursecheck."'"));
+		$specdats = mysql_query("SELECT * FROM mc_course_assignment WHERE course_id = '".$coursecheck."' AND college_id = '".$college['college_id']."' GROUP BY specialization_id");
 		$specdats_count = mysql_num_rows($specdats);
-		$streamids = $college['stream_id'];
+		$streamids = $streamcheck;
  ?>
 		<h3><button class="accordion"><?=$cad1['course_name']?>(<?=$specdats_count?>)</button>
 			<div class="panel" >
@@ -202,7 +212,7 @@ if(!empty($w))$w = 'WHERE '.$w;
 $special_data = mysql_fetch_array(mysql_query("SELECT * FROM mc_specialization WHERE specialization_id = '".$specid."'"));
 
   ?>
- <li><a href="<?php echo $base_url."search?college=".$college['college_id']."&stream=".$streamids."&type=".$cad1['course_id']."&course_main=".$specid; ?>"><?=$special_data['specialization_name'];?></a></li>
+ <li><a href="<?php echo $base_url."search?college=".$college['college_id']."&stream=".$streamids."&type=".$coursecheck."&course_main=".$specid; ?>"><?=$special_data['specialization_name'];?></a></li>
   <?php }  ?>
   </ul>
 </div>
@@ -260,7 +270,7 @@ if($totalcount > 0){ ?>
 		<div class="col-xs-12 toggle-details">
 		<?php 
 		while($more_course = mysql_fetch_array($more_course1)){
-			if($cad1['course_id'] != $more_course['course_id']){
+			if($coursecheck != $more_course['course_id']){
 		$morecoursedata = mysql_fetch_array(mysql_query("SELECT * FROM mc_courses WHERE course_id = '".$more_course['course_id']."'"));
 		
 		if(!empty($morecoursedata['course_name'])){

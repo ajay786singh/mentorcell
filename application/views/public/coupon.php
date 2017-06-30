@@ -187,11 +187,12 @@
 					<i class="icon-key"></i>
 				</div>
 
+				<h5><a href='#' data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>
 				<div class="inputRow">
 					<input type="submit" value="Submit" id="login_button" class="go" name="">
 				</div>
 				<!--<h4><input type="checkbox" id="login_remember" name=""> Keep me signed in.</h4>-->
-				<!--<h5><a href='#' data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot password?</a></h5>-->
+				
 				<input type='hidden' id="couponClicked" value='0'>
 			</form>
 		</div>

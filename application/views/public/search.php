@@ -151,37 +151,19 @@ top:44px;
 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
 <div class="collegeFilter">
 <h3>Filters</h3>
+<input type="hidden" id="checkstream" value="<?=$cad->stream_id;?>">
+<input type="hidden" id="coursecheck" value="<?=$coursename?>">
 <?php 
-//$exam_data = $this->college_model->get_sexam_data($cad->stream_id);
 $exams_data = $this->college_model->get_exam_detail($coursename);
-//print_r($exams_data);
  if(!empty($exams_data)){?>
 <div class="collegeFilterBox">
 <h4>Exam Accepted <span><!--<i class="icon-cw"></i> Reset--></span></h4>
 <div class="filterItems">	
 
 <ul>
-<?php  //$exam_array = array();
-/*foreach($exams_data as $examsearch){ 
 
-if($examsearch['exam']!=0){
-	$examname = explode(',',$examsearch['exam']);
-
-
-	for($i=0;$i<count($examname);$i++){
-	
-		$ename = $this->college_model->get_exam_name($examname[$i]);
-		
-		if($ename!='null'){
-			
-				
-?>
-<li><input type="checkbox" name="examcheck" value="<?=$ename->id;?>" id="check1<?=$ename->id?>"> <label for="check1<?=$ename->id?>"><?=$ename->exam_name?></label></li>
-		<?php 
- } } } }*/ ?>
  <?php
 
-//print_r($exams_data);
  foreach($exams_data as $examsearch){ 
 if($examsearch['exam']!=0){
 	if(strstr($examsearch['exam'],',')) {

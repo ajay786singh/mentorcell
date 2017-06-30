@@ -96,7 +96,7 @@ Noida, UP<br>
 <div class="footerWidget">
 <h3>Services</h3>
 <ul>
-<li><a href="<?php echo base_url()?>home/search?course=41">Admission 2017</a></li>
+<li><a href="<?php echo base_url()?>home/study_abroad?course=41">Admission 2017</a></li>
 <!--<li><a href="<?php echo base_url()?>home/underconstruction">Career Profiling test</a></li>-->
 <li><a href="<?php echo base_url()?>page/study_abroad">Abroad Education</a></li>
 <li><a href="<?php echo base_url()?>page/counselling">Counselling</a></li>

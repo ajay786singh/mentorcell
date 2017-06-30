@@ -241,7 +241,7 @@ $specid = $specialdada['specialization_id'];
 <ul>
 <li><a href="#counselling-video">Counselling Videos</a></li>
 <li><a href="#courses-offered">Courses Offered</a></li>
-<li><a href="#why-join">Why Join IITD</a></li>
+<li><a href="#why-join">Why Join <?php echo $college->name; ?></a></li>
 <li><a href="college-videos-photos">College Videos and Photos</a></li>
 <li><a href="#" class="active">College Details</a>
   <div class="subMenu">
@@ -259,7 +259,9 @@ $specid = $specialdada['specialization_id'];
 <!--<li><a href="#">College Details of IITD</a></li>-->
 </ul>
 
+<?php if (!empty($college->brochure)) : ?>
 <a href="<?php if(!empty($college->brochure)){ echo base_url()."upload/".$college->brochure;} else{ ?> # <?php } ?>" <?php if(!empty($college->brochure)){ ?> download <?php } ?> class="downloadBro"><i class="icon-download"></i> Download Brochure</a>
+<?php endif; ?>
 <style>
    a:focus{
 	   outline:none !important;

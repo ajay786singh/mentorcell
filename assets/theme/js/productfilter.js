@@ -1,6 +1,16 @@
 $("input[type='checkbox'], input[type='radio']").on( "click", showValues );
 	
 function showValues() {
+	
+	
+		
+		var stream = $('#checkstream').val();
+	
+    var stream_checklist = "&stream="+stream;
+var course = $('#coursecheck').val();
+	
+	
+	var course_checklist = "&course="+course;
 			var examarray = new Array();		
 		$('input[name="examcheck"]:checked').each(function(){			
 			examarray.push($(this).val());	
@@ -31,7 +41,7 @@ function showValues() {
 		});
 		var recog_checklist = "&recogcheck="+recognarray;
 			
-		var main_string = exam_checklist+location_checklist+fee_checklist+spec_checklist+recog_checklist;
+		var main_string = course_checklist+stream_checklist+exam_checklist+location_checklist+fee_checklist+spec_checklist+recog_checklist;
 		main_string = main_string.substring(1, main_string.length)
          $.ajax({
 			type: "POST",

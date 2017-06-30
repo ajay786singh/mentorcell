@@ -422,7 +422,7 @@ class Home extends Public_Controller {
 			$this->college['colleges'] = $this->college_model->search_result_course($query,$config["per_page"], $page);
 			$this->college['count_res'] = $this->college_model->search_result_cont($query);
 			
-			$this->load->view('public/study_abroad', $this->college);
+			$this->load->view('public/admission', $this->college);
 		
 		$this->load->view('public/layout/footer', $this->data);
 
